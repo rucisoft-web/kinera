@@ -16,11 +16,14 @@ class ShowcaseDemoTest extends TestCase
 {
     public static function demos(): array
     {
-        return ['UIN Sunan Kalijaga' => ['UINSUKA', 12, 6]];
+        return [
+            'UIN Sunan Kalijaga' => ['UINSUKA', 12, 6, 'Audited TA 2025'],
+            'UIN Raden Fatah' => ['UINRF', 12, 6, 'LKjIP 2025'],
+        ];
     }
 
     #[\PHPUnit\Framework\Attributes\DataProvider('demos')]
-    public function test_demo_command_builds_two_periods_with_a_full_strategy_map(string $code, int $objectives, int $initiatives): void
+    public function test_demo_command_builds_two_periods_with_a_full_strategy_map(string $code, int $objectives, int $initiatives, string $source): void
     {
         $this->assertSame(0, $this->artisan('kinera:demo', ['perusahaan' => $code, '--password' => 'Contoh-2026!', '--force' => true]));
         $this->assertSame(1, $this->artisan('kinera:demo', ['perusahaan' => $code, '--force' => true])); // data ada, tanpa --reset
@@ -29,7 +32,7 @@ class ShowcaseDemoTest extends TestCase
         $company = Company::where('code', $code)->firstOrFail();
         $this->assertTrue((bool) $company->is_demo);
         $this->assertStringContainsString('DATA DEMO', \App\Support\DemoNotice::for($company));
-        $this->assertStringContainsString('Audited TA 2025', \App\Support\DemoNotice::for($company) ?? '');
+        $this->assertStringContainsString($source, \App\Support\DemoNotice::for($company) ?? '');
         $this->assertStringContainsString('memaksimalkan penyajian fitur', \App\Support\DemoNotice::for($company));
         $this->assertLessThanOrEqual(100, mb_strlen((string) $company->industry), 'companies.industry maks 100 karakter');
         $periods = AnalysisPeriod::where('company_id', $company->id)->orderBy('year')->get();
