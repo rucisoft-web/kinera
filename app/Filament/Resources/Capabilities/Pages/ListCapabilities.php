@@ -1,0 +1,16 @@
+<?php
+
+namespace App\Filament\Resources\Capabilities\Pages;
+
+use App\Filament\Resources\Capabilities\CapabilityResource;
+use Filament\Resources\Pages\ListRecords;
+
+class ListCapabilities extends ListRecords
+{
+    protected static string $resource = CapabilityResource::class;
+
+    protected function getHeaderActions(): array
+    {
+        return [\Filament\Actions\CreateAction::make()];
+    }
+}

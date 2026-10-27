@@ -1,0 +1,170 @@
+<?php
+
+namespace Tests\Feature;
+
+use App\Filament\Resources\Kpis\KpiResource;
+use App\Models\Company;
+use App\Models\User;
+use App\Models\UserContext;
+use App\Support\GuestMode;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Tests\TestCase;
+
+class GuestModeTest extends TestCase
+{
+    public function test_guest_entry_is_hidden_when_disabled(): void
+    {
+        config(['dhastram.guest_login' => false]);
+
+        $this->get('/masuk-tamu')->assertNotFound();
+        $this->get('/admin/login')->assertOk()->assertDontSee('Masuk sebagai Tamu');
+        $this->assertNull(User::where('email', GuestMode::email())->first());
+    }
+
+    public function test_one_click_guest_login_opens_the_demo_read_only(): void
+    {
+        config(['dhastram.guest_login' => true]);
+        [$other] = $this->company('AAA');
+        [$dfi, $period] = $this->company('DFI');
+
+        $this->get('/admin/login')->assertOk()->assertSee('Masuk sebagai Tamu');
+        $this->get('/masuk-tamu')->assertRedirect('/admin');
+
+        $guest = User::where('email', GuestMode::email())->firstOrFail();
+        $this->assertAuthenticatedAs($guest);
+        $this->assertTrue($guest->isGuestVisitor());
+        $this->assertSame($dfi->id, session('dhastram.company_id'));
+        $this->assertSame($period->id, session('dhastram.period_id'));
+        $this->assertSame(0, UserContext::where('user_id', $guest->id)->count(), 'konteks Tamu hanya di sesi');
+        $this->assertEqualsCanonicalizing([$other->id, $dfi->id], $guest->accessibleCompanyIds());
+
+        $this->get('/admin')->assertOk()->assertSee('Mode Tamu');
+
+        // masuk lagi tidak menggandakan akun/peran
+        $this->get('/masuk-tamu')->assertRedirect('/admin');
+        $this->assertSame(1, User::where('email', GuestMode::email())->count());
+        $this->assertSame(1, $guest->fresh()->roles()->count());
+    }
+
+    public function test_guest_can_view_but_never_change_data(): void
+    {
+        config(['dhastram.guest_login' => true]);
+        [$company, $period] = $this->company('DFI');
+        $guest = GuestMode::user();
+        $this->actingAs($guest);
+        $this->useContext($period);
+
+        $this->assertTrue($guest->hasPermission('kpi.view'));
+        $this->assertTrue($guest->hasPermission('strategy.map'));
+        foreach (['kpi.edit', 'kpi.input_actual', 'report.export', 'audit.view', 'system.admin'] as $perm) {
+            $this->assertFalse($guest->hasPermission($perm), $perm);
+        }
+        $this->assertTrue(KpiResource::canViewAny());
+        $this->assertFalse(KpiResource::canCreate());
+
+        $this->assertBlocked(fn () => $company->update(['name' => 'Diubah tamu']));
+        $this->assertBlocked(fn () => Company::create(['code' => 'XXX', 'name' => 'Baru', 'is_active' => true]));
+        $this->assertBlocked(fn () => $company->delete());
+        $this->assertBlocked(fn () => $guest->update(['name' => 'Ganti nama']));
+        $this->assertSame('PT DFI', $company->fresh()->name);
+
+        // pemeliharaan sesi tetap jalan
+        $guest->refresh()->forceFill(['remember_token' => 'abc'])->save();
+        $this->assertSame('abc', $guest->fresh()->remember_token);
+    }
+
+    public function test_landing_page_offers_current_year_demos_and_guides(): void
+    {
+        config(['dhastram.guest_login' => true]);
+        [$dfi] = $this->company('DFI');
+        [$bca, $bcaNow] = $this->company('BBCA');
+        $dfi->forceFill(['is_demo' => true])->save();
+        $bca->forceFill(['is_demo' => true])->save();
+        \App\Models\AnalysisPeriod::create(['company_id' => $bca->id, 'code' => '2025', 'name' => 'Tahun 2025', 'year' => 2025,
+            'start_date' => '2025-01-01', 'end_date' => '2025-12-31', 'status' => 'ditutup', 'is_active' => false]);
+        \Illuminate\Support\Facades\Cache::flush();
+
+        $this->get('/')->assertOk()
+            ->assertSee('Kenapa perlu Ruci BSC')
+            ->assertSee('Data demo tahun berjalan 2026')
+            ->assertSee('Panduan Ruci BSC')
+            ->assertSee('Bank Central Asia')
+            ->assertSee(route('arah.guest', ['perusahaan' => 'BBCA']), false);
+        $this->get('/admin/login')->assertOk()->assertSee('Pilih perusahaan contoh')->assertSee('Bank Central Asia (BBCA)');
+
+        $this->get(route('arah.guest', ['perusahaan' => 'bbca']))->assertRedirect('/admin');
+        $this->assertSame($bca->id, session('dhastram.company_id'));
+        $this->assertSame($bcaNow->id, session('dhastram.period_id'));
+
+        // kode yang bukan perusahaan contoh kembali ke perusahaan pembuka
+        $this->get(route('arah.guest', ['perusahaan' => 'XYZ', 'ke' => 'panduan']))
+            ->assertRedirect(\App\Filament\Pages\PanduanPengguna::getUrl());
+        $this->assertSame($dfi->id, session('dhastram.company_id'));
+
+        auth()->logout();
+        config(['dhastram.guest_login' => false]);
+        $this->get('/')->assertRedirect('/admin');
+    }
+
+    public function test_kenali_link_opens_the_introduction_page(): void
+    {
+        config(['dhastram.guest_login' => true]);
+        $this->company('DFI');
+
+        $this->get('/kenali')->assertRedirect(route('arah.guest', ['ke' => 'kenali']));
+        $this->get(route('arah.guest', ['ke' => 'kenali']))->assertRedirect(\App\Filament\Pages\KenaliRuciBsc::getUrl());
+        $this->get(\App\Filament\Pages\KenaliRuciBsc::getUrl())->assertOk()
+            ->assertSee('Strategi yang dipahami semua orang')
+            ->assertSee('Workshop Ruci BSC');
+
+        auth()->logout();
+        config(['dhastram.guest_login' => false]);
+        $this->get('/kenali')->assertRedirect(route('filament.admin.auth.login'));
+    }
+
+    public function test_guide_pages_are_open_to_every_user(): void
+    {
+        config(['dhastram.guest_login' => true]);
+        $this->company('DFI');
+        $this->get('/masuk-tamu');
+
+        $this->get(\App\Filament\Pages\PanduanPengguna::getUrl())->assertOk()
+            ->assertSee('Dewan Komisaris')->assertSee('Menyetujui realisasi KPI')->assertSee('images/panduan/kepala-input.jpg', false);
+        $this->get(\App\Filament\Pages\PanduanImplementasi::getUrl())->assertOk()
+            ->assertSee('Manajemen risiko')->assertSee('Gerbang mutu')->assertSee('Steering Committee');
+        $this->get(\App\Filament\Pages\WorkshopRuciBsc::getUrl())->assertOk()
+            ->assertSee('Rundown')->assertSee('Yang Anda peroleh')->assertSee('Sesi 6');
+    }
+
+    public function test_workshop_runs_on_the_first_sunday_of_each_month(): void
+    {
+        $dates = fn (string $today) => array_map(fn ($d) => $d->toDateString(),
+            \App\Filament\Pages\WorkshopRuciBsc::nextDates(3, \Carbon\CarbonImmutable::parse($today)));
+
+        $this->assertSame(['2026-11-01', '2026-12-06', '2027-01-03'], $dates('2026-10-22'));
+        $this->assertSame(['2026-11-01', '2026-12-06', '2027-01-03'], $dates('2026-11-01'));
+        $this->assertSame(['2026-12-06', '2027-01-03', '2027-02-07'], $dates('2026-11-02'));
+    }
+
+    public function test_regular_users_are_not_affected(): void
+    {
+        [$company, $period] = $this->company('DFI');
+        $admin = $this->user('admin@dfi.test', 'company-admin', $company);
+        $this->actingAs($admin);
+        $this->useContext($period);
+
+        $company->update(['name' => 'PT Diamond']);
+        $this->assertSame('PT Diamond', $company->fresh()->name);
+        $this->assertFalse($admin->isGuestVisitor());
+    }
+
+    private function assertBlocked(callable $write): void
+    {
+        try {
+            $write();
+            $this->fail('penulisan oleh Tamu seharusnya ditolak');
+        } catch (HttpException $e) {
+            $this->assertSame(403, $e->getStatusCode());
+        }
+    }
+}
