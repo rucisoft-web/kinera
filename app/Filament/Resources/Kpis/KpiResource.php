@@ -58,11 +58,11 @@ class KpiResource extends Resource
 
     protected static ?int $navigationSort = 5;
 
-    protected static ?string $modelLabel = 'KPI';
+    protected static ?string $modelLabel = 'Indikator Kinerja';
 
-    protected static ?string $pluralModelLabel = 'KPI';
+    protected static ?string $pluralModelLabel = 'Indikator Kinerja';
 
-    protected static ?string $navigationLabel = 'KPI';
+    protected static ?string $navigationLabel = 'Indikator Kinerja';
 
     protected static ?string $navigationGroupKey = 'karma_phala';
 
@@ -75,25 +75,41 @@ class KpiResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return $schema->columns(1)->components([
-            Section::make('Definisi')->columns(3)->schema([
-                TextInput::make('name')->label('Nama KPI')->required()->columnSpan(2),
+            Section::make('Indikator Kinerja')->columns(3)->schema([
+                TextInput::make('name')->label('Nama Indikator Kinerja')->required()->columnSpan(2),
                 Select::make('strategic_objective_id')->label('Sasaran')->relationship('objective', 'title')->required()->searchable()->preload(),
                 Select::make('unit')->label('Satuan')->options(fn ($state) => Models\Kpi::UNITS + ($state ? [$state => $state] : []))->required()->native(false),
-                Select::make('direction')->label('Arah')->options(['higher' => 'Makin besar makin baik', 'lower' => 'Makin kecil makin baik'])->required()->native(false),
-                Select::make('aggregation')->label('Agregasi YTD')->options(Models\Kpi::AGGREGATIONS)->required()->native(false),
-                F::user('owner_id', 'Pemilik KPI')->required(),
+                Select::make('direction')->label('Polaritas')->options(['higher' => 'Makin besar makin baik', 'lower' => 'Makin kecil makin baik'])->required()->native(false),
+                Select::make('aggregation')->label('Agregasi kumulatif')->options(Models\Kpi::AGGREGATIONS)->required()->native(false),
+                F::user('owner_id', 'Penanggung jawab IK')->required(),
                 TextInput::make('weight')->label('Bobot dalam sasaran')->numeric()->default(1),
                 TextInput::make('decimals')->label('Desimal tampilan')->numeric()->default(0),
-                TextInput::make('baseline')->label('Baseline')->numeric(),
+                TextInput::make('baseline')->label('Baseline (realisasi tahun lalu)')->numeric(),
                 TextInput::make('annual_target')->label('Target tahunan')->numeric(),
-                Select::make('frequency')->label('Frekuensi')->options(Models\Kpi::FREQUENCIES)->default('bulanan')->native(false),
-                Toggle::make('is_financial')->label('KPI keuangan (wajib verifikasi Keuangan)'),
-                Toggle::make('is_critical')->label('KPI kritis'),
+                Select::make('frequency')->label('Trajektori')->options(Models\Kpi::FREQUENCIES)->default('kuartalan')->native(false)
+                    ->helperText('PER-6/PB/2025 Pasal 5 ayat (2): bulanan, triwulanan, semesteran, dan/atau tahunan.'),
+                Toggle::make('is_financial')->label('Wajib verifikasi Keuangan sebelum disetujui'),
+                Toggle::make('is_critical')->label('IK kritis (dipantau pimpinan)'),
                 Toggle::make('is_active')->label('Aktif')->default(true),
-                Textarea::make('formula')->label('Rumus')->rows(2)->columnSpanFull(),
-                TextInput::make('data_source')->label('Sumber data')->columnSpanFull(),
                 Textarea::make('description')->label('Keterangan')->rows(2)->columnSpanFull(),
             ]),
+            Section::make('Kontrak Kinerja BLU')->columns(4)->description('Atribut Indikator Kinerja dalam Kontrak Kinerja Pemimpin BLU (PER-6/PB/2025).')->schema([
+                Select::make('aspect')->label('Aspek')->options(Models\Kpi::ASPECTS)->default('layanan')->required()->native(false)->live(),
+                Toggle::make('is_mandatory')->label('Wajib dicapai (mandatory)')->helperText('Pasal 14 ayat (4) huruf b')->inline(false),
+                TextInput::make('max_achievement')->label('Capaian maksimum (%)')->numeric()->placeholder((string) config('dhastram.score_cap'))->helperText('Sesuai KMK remunerasi BLU'),
+                Select::make('incentive_role')->label('Penanda syarat insentif')->options(Models\Kpi::INCENTIVE_ROLES)->native(false)->placeholder('—')
+                    ->helperText('Dipakai uji Pasal 14 ayat (4) huruf d–f'),
+            ]),
+            Section::make('Definisi Operasional Indikator Kinerja')->columns(2)
+                ->description(fn (Get $get) => 'Disusun Pemimpin BLU bersama '.(Models\Kpi::DO_PARTNERS[$get('aspect') ?? 'layanan'] ?? 'Pembina Teknis').' (Pasal 5 ayat 9) dan dilampirkan pada usulan Kontrak Kinerja.')
+                ->schema([
+                    Textarea::make('operational_definition')->label('Definisi / batasan indikator')->rows(3)->columnSpanFull(),
+                    Textarea::make('formula')->label('Formula perhitungan')->rows(2),
+                    TextInput::make('data_source')->label('Sumber data'),
+                    Textarea::make('data_collection')->label('Pelaksanaan pengambilan data capaian')->rows(2)->helperText('Siapa, kapan, dan dari sistem apa data diambil.'),
+                    Textarea::make('test_method')->label('Metode pengujian (verifikasi)')->rows(2)->helperText('Cara verifikator menguji kesesuaian perhitungan dengan dokumen pendukung.'),
+                    Textarea::make('supporting_documents')->label('Dokumen pendukung')->rows(2)->columnSpanFull(),
+                ]),
         ]);
     }
 
@@ -102,20 +118,25 @@ class KpiResource extends Resource
         return $table
             ->columns([
                 F::code(),
-                TextColumn::make('name')->label('KPI')->wrap()->searchable()->description(fn ($record) => $record->objective?->title),
+                TextColumn::make('name')->label('Indikator Kinerja')->wrap()->searchable()->description(fn ($record) => $record->objective?->title),
+                TextColumn::make('aspect')->label('Aspek')->badge()->formatStateUsing(fn ($state) => ucfirst($state))
+                    ->color(fn ($state) => match ($state) { 'keuangan' => 'danger', 'penugasan' => 'warning', default => 'info' }),
+                IconColumn::make('is_mandatory')->label('Wajib')->boolean()->falseIcon('heroicon-o-minus')->falseColor('gray'),
+                TextColumn::make('frequency')->label('Trajektori')->formatStateUsing(fn ($state) => Models\Kpi::FREQUENCIES[$state] ?? $state)->toggleable(),
                 TextColumn::make('unit')->label('Satuan'),
                 TextColumn::make('direction')->label('Arah')->formatStateUsing(fn ($state) => $state === 'lower' ? '↓' : '↑')->alignCenter(),
                 TextColumn::make('owner.name')->label('Pemilik')->searchable(),
-                IconColumn::make('is_financial')->label('Keu.')->boolean()->falseIcon('heroicon-o-minus')->falseColor('gray'),
-                F::scoreColumn('ytd_score', 'Skor YTD')->state(fn ($record) => static::ytd($record)['score']),
+                F::scoreColumn('ytd_score', 'Capaian %')->state(fn ($record) => static::ytd($record)['score']),
                 TextColumn::make('ytd_actual')->label('Realisasi YTD')->state(fn ($record) => Fmt::kpiValue(static::ytd($record)['actual'], $record->unit, $record->decimals))->alignEnd(),
                 TextColumn::make('ytd_target')->label('Target YTD')->state(fn ($record) => Fmt::kpiValue(static::ytd($record)['target'], $record->unit, $record->decimals))->alignEnd()->toggleable(),
             ])
             ->filters([
                 SelectFilter::make('strategic_objective_id')->label('Sasaran')->relationship('objective', 'title'),
                 SelectFilter::make('owner_id')->label('Pemilik')->relationship('owner', 'name'),
-                TernaryFilter::make('is_financial')->label('KPI keuangan'),
-                Filter::make('mine')->label('KPI milik saya')->query(fn (Builder $query) => $query->where('owner_id', Auth::id())),
+                SelectFilter::make('aspect')->label('Aspek')->options(Models\Kpi::ASPECTS),
+                TernaryFilter::make('is_mandatory')->label('Wajib dicapai'),
+                TernaryFilter::make('is_financial')->label('Wajib verifikasi Keuangan'),
+                Filter::make('mine')->label('IK saya')->query(fn (Builder $query) => $query->where('owner_id', Auth::id())),
             ])
             ->defaultSort('code', 'asc')
             ->modifyQueryUsing(fn (Builder $query) => $query->with(['targets', 'actuals', 'owner', 'objective']))

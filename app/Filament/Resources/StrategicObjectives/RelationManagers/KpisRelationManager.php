@@ -48,7 +48,7 @@ class KpisRelationManager extends RelationManager
 {
     protected static string $relationship = 'kpis';
 
-    protected static ?string $title = 'KPI pada sasaran ini';
+    protected static ?string $title = 'IK pada sasaran ini';
 
     protected static ?string $recordTitleAttribute = 'name';
 
@@ -64,7 +64,7 @@ class KpisRelationManager extends RelationManager
         return $table
             ->columns([
                 TextColumn::make('code')->label('Kode')->formatStateUsing(fn ($state) => Fmt::shortCode($state)),
-                TextColumn::make('name')->label('KPI')->wrap()->url(fn ($record) => \App\Filament\Resources\Kpis\KpiResource::getUrl('view', ['record' => $record])),
+                TextColumn::make('name')->label('IK')->wrap()->url(fn ($record) => \App\Filament\Resources\Kpis\KpiResource::getUrl('view', ['record' => $record])),
                 TextColumn::make('unit')->label('Satuan'),
                 TextColumn::make('owner.name')->label('Pemilik'),
                 TextColumn::make('weight')->label('Bobot'),

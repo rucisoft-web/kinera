@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 /**
  * Masuk sebagai Tamu (hanya lihat) dengan satu klik dari halaman depan atau login situs demo.
- * ?perusahaan=KODE membuka perusahaan contoh tertentu pada tahun berjalan;
+ * ?perusahaan=KODE membuka satker BLU contoh tertentu pada tahun berjalan;
  * ?ke=kenali|panduan|implementasi|workshop langsung ke halaman panduan tersebut.
  */
 class GuestLoginController extends Controller

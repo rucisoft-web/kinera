@@ -21,11 +21,11 @@ class OperationalWorkflowService
 
         return [
             ['ritme' => 'Harian', 'kegiatan' => 'Cek Beranda dan Pusat Kendali; perbarui aktivitas inisiatif yang bergerak', 'pelaku' => 'Pimpinan, kepala unit', 'batas' => '—'],
-            ['ritme' => 'Mingguan', 'kegiatan' => 'Perbarui progres aktivitas & milestone; isi realisasi KPI yang dipantau mingguan', 'pelaku' => 'PIC inisiatif, pemilik KPI', 'batas' => 'Senin 10.00, sebelum weekly report'],
+            ['ritme' => 'Mingguan', 'kegiatan' => 'Perbarui progres aktivitas & milestone; isi realisasi IK yang dipantau mingguan', 'pelaku' => 'PIC inisiatif, penanggung jawab IK', 'batas' => 'Senin 10.00, sebelum weekly report'],
             ['ritme' => 'Mingguan', 'kegiatan' => 'Catat laporan mingguan pimpinan sebagai Tinjauan Kinerja; buat temuan dan tindakan korektif baru', 'pelaku' => 'Pimpinan / Koordinator Manajemen Strategi', 'batas' => 'Senin'],
-            ['ritme' => 'Bulanan', 'kegiatan' => 'Input realisasi semua KPI bulan lalu', 'pelaku' => 'Pemilik KPI', 'batas' => 'tanggal '.$c['input_day']],
+            ['ritme' => 'Bulanan', 'kegiatan' => 'Input realisasi semua IK bulan lalu', 'pelaku' => 'Penanggung jawab IK', 'batas' => 'tanggal '.$c['input_day']],
             ['ritme' => 'Bulanan', 'kegiatan' => 'Verifikasi angka keuangan dengan laporan keuangan', 'pelaku' => 'Keuangan', 'batas' => 'tanggal '.$c['verify_day']],
-            ['ritme' => 'Bulanan', 'kegiatan' => 'Setujui realisasi; KPI terkunci', 'pelaku' => 'Pimpinan', 'batas' => 'tanggal '.$c['approve_day']],
+            ['ritme' => 'Bulanan', 'kegiatan' => 'Setujui realisasi; IK terkunci', 'pelaku' => 'Pimpinan', 'batas' => 'tanggal '.$c['approve_day']],
             ['ritme' => 'Bulanan', 'kegiatan' => 'Rapat manajemen: tinjau sasaran merah/kuning, tutup temuan selesai, ekspor laporan', 'pelaku' => 'Pimpinan, semua kepala unit', 'batas' => 'tanggal '.$c['meeting_day']],
             ['ritme' => 'Bulanan / kuartalan', 'kegiatan' => 'Laporan ke Dewan Pengawas; catatan pengawasan dan temuan pengawas', 'pelaku' => 'Ketua Dewan Pengawas', 'batas' => 'setelah rapat manajemen'],
             ['ritme' => 'Kuartalan', 'kegiatan' => 'Tinjau portofolio inisiatif (kuadran Tinjau Ulang), perbarui isu Ekosistem dan risiko', 'pelaku' => 'Pimpinan, Koordinator Manajemen Strategi', 'batas' => 'akhir kuartal'],
@@ -47,7 +47,7 @@ class OperationalWorkflowService
             'month_label' => $month ? Terms::months()[$month] : '-',
             'steps' => [
                 ['label' => 'Realisasi terisi', 'done' => $actuals->count(), 'total' => $kpiCount],
-                ['label' => 'KPI keuangan terverifikasi', 'done' => $finActuals->whereIn('status', ['terverifikasi', 'disetujui'])->count(), 'total' => $financial->count()],
+                ['label' => 'IK yang wajib verifikasi Keuangan terverifikasi', 'done' => $finActuals->whereIn('status', ['terverifikasi', 'disetujui'])->count(), 'total' => $financial->count()],
                 ['label' => 'Realisasi disetujui Pimpinan', 'done' => $actuals->where('status', 'disetujui')->count(), 'total' => $kpiCount],
             ],
             'returned' => $actuals->where('status', 'dikembalikan')->count(),

@@ -3,14 +3,15 @@
 return [
     /*
     |--------------------------------------------------------------------------
-    | Ruci BSC Professional (edisi DHASTRAM multi-perusahaan)
+    | Ruci BSC BLU — edisi Badan Layanan Umum (Kontrak Kinerja Pemimpin BLU, PER-6/PB/2025)
     |--------------------------------------------------------------------------
+    | DHASTRAM_TERMS=blu   -> istilah BLU (perspektif sektor publik: Pemangku Kepentingan, Proses Layanan Internal, ...)
     | DHASTRAM_TERMS=umum  -> istilah umum bahasa Indonesia (Ekosistem, Jati Diri, ...)
     | DHASTRAM_TERMS=dharma -> istilah asli DHASTRAM (Brahman, Atman, ...)
     */
-    'terms' => env('DHASTRAM_TERMS', 'umum'),
-    'brand_name' => env('DHASTRAM_BRAND_NAME', 'Ruci BSC Professional'),
-    'brand_tagline' => env('DHASTRAM_BRAND_TAGLINE', 'Balanced Scorecard Multi-Perusahaan'),
+    'terms' => env('DHASTRAM_TERMS', 'blu'),
+    'brand_name' => env('DHASTRAM_BRAND_NAME', 'Ruci BSC BLU'),
+    'brand_tagline' => env('DHASTRAM_BRAND_TAGLINE', 'Balanced Scorecard & Kontrak Kinerja Pemimpin BLU'),
 
     // Dibaca lewat config() supaya tetap berlaku setelah `php artisan optimize` (config cache) di produksi
     'notify_mail' => (bool) env('ARAH_NOTIFY_MAIL', false),
@@ -31,6 +32,19 @@ return [
     'score_green' => 100,
     'score_yellow' => 80,
     'score_cap' => 120,
+    // Capaian di bawah ambang ini pada satu Indikator Kinerja menggugurkan syarat insentif (PER-6/PB/2025 Pasal 14 ayat 4 huruf c)
+    'score_floor' => 65,
+
+    // Tenggat PER-6/PB/2025 (bulan-tanggal); laporan capaian = 15 hari kerja setelah trajektori berakhir
+    'blu' => [
+        'regulation' => 'PER-6/PB/2025',
+        'report_workdays' => 15,
+        'agreement_deadline' => '01-25',     // Pasal 7 ayat (2): dibahas & disepakati
+        'signing_deadline' => '01-31',       // Pasal 8 ayat (2) & Pasal 9 ayat (1)
+        'change_proposal_deadline' => '09-30', // Pasal 19 ayat (2)
+        'change_signing_deadline' => '12-01',  // Pasal 19 ayat (7)
+        'incentive_request_deadline' => '06-30', // Pasal 14 ayat (5), tahun berikutnya
+    ],
 
     // Bobot perspektif untuk skor strategis (jumlah = 100)
     'perspective_weights' => [
@@ -50,6 +64,13 @@ return [
     ],
 
     'dictionaries' => [
+        'blu' => [
+            'brahman' => 'Lingkungan Strategis', 'atman' => 'Jati Diri BLU', 'karma_phala' => 'Kinerja & Kontrak',
+            'punarbhawa' => 'Perbaikan', 'moksa' => 'Kesinambungan',
+            'keuangan' => 'Keuangan', 'pelanggan' => 'Pemangku Kepentingan',
+            'proses' => 'Proses Layanan Internal', 'sdm' => 'Pembelajaran & Pertumbuhan',
+            'app' => 'Ruci BSC BLU', 'method' => 'Manajemen Kinerja BLU',
+        ],
         'umum' => [
             'brahman' => 'Ekosistem', 'atman' => 'Jati Diri', 'karma_phala' => 'Kinerja',
             'punarbhawa' => 'Perbaikan', 'moksa' => 'Kesinambungan',

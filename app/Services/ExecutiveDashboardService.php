@@ -6,7 +6,7 @@ use App\Models\Finding;
 use App\Models\StrategicInitiative;
 use App\Support\DhastramContext;
 
-/** Pusat Kendali Eksekutif: skor strategis, capaian perspektif, sasaran merah/kuning, KPI kritis, inisiatif terlambat. */
+/** Pusat Kendali Eksekutif: skor strategis, capaian perspektif, sasaran merah/kuning, IK kritis, inisiatif terlambat. */
 class ExecutiveDashboardService
 {
     public function __construct(

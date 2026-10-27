@@ -10,6 +10,11 @@ Route::middleware(['web', 'auth', \App\Http\Middleware\SetDhastramContext::class
     ->get('/admin/laporan/ekspor/{report}', ReportExportController::class)
     ->name('arah.report.export');
 
+// Edisi BLU: cetak Kontrak Kinerja & lampiran PER-6/PB/2025
+Route::middleware(['web', 'auth', \App\Http\Middleware\SetDhastramContext::class])
+    ->get('/admin/kontrak-kinerja/cetak/{doc}/{contract}', \App\Http\Controllers\BluPrintController::class)
+    ->name('blu.print');
+
 // Situs demo: masuk sebagai Tamu (hanya lihat), aktif bila RUCI_GUEST_LOGIN=true
 Route::middleware(['web', 'throttle:20,1'])
     ->get('/masuk-tamu', \App\Http\Controllers\GuestLoginController::class)

@@ -83,7 +83,7 @@ class FindingResource extends Resource
                 Select::make('performance_review_id')->label('Tinjauan asal')->relationship('review', 'title')->searchable()->preload(),
                 F::perspective(),
                 F::money('amount', 'Nilai dampak'),
-                Select::make('kpi_id')->label('KPI terkait')->options(fn () => Models\Kpi::orderBy('code')->get()->mapWithKeys(fn ($k) => [$k->id => $k->label]))->searchable(),
+                Select::make('kpi_id')->label('IK terkait')->options(fn () => Models\Kpi::orderBy('code')->get()->mapWithKeys(fn ($k) => [$k->id => $k->label]))->searchable(),
                 Select::make('strategic_initiative_id')->label('Inisiatif terkait')->relationship('initiative', 'title')->searchable()->preload(),
             ]),
             Section::make('Penutupan')->columns(3)->visibleOn(['view'])->schema([

@@ -10,7 +10,7 @@ class Terms
 
     public static function get(string $key): string
     {
-        $dict = config('dhastram.dictionaries.'.config('dhastram.terms', 'umum'), []);
+        $dict = config('dhastram.dictionaries.'.config('dhastram.terms', 'blu'), []);
 
         return $dict[$key] ?? $key;
     }

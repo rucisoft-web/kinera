@@ -7,9 +7,9 @@ class PermissionCatalog
 {
     public const PERMISSIONS = [
         // system
-        'system.admin' => ['system', 'Administrasi sistem (perusahaan, pengguna, peran)'],
+        'system.admin' => ['system', 'Administrasi sistem (satker BLU, pengguna, peran)'],
         'audit.view' => ['system', 'Melihat log audit'],
-        'context.switch' => ['system', 'Memilih perusahaan & perioda'],
+        'context.switch' => ['system', 'Memilih satker BLU & perioda'],
         'report.view' => ['system', 'Melihat laporan'],
         'report.export' => ['system', 'Mengunduh/ekspor laporan'],
         // brahman / atman
@@ -22,11 +22,11 @@ class PermissionCatalog
         'strategy.edit' => ['strategy', 'Mengubah tema, pilihan & sasaran strategis'],
         'strategy.map' => ['strategy', 'Melihat peta strategi'],
         // kpi
-        'kpi.view' => ['kpi', 'Melihat KPI, target & realisasi'],
-        'kpi.edit' => ['kpi', 'Mengubah KPI & target'],
-        'kpi.input_actual' => ['kpi', 'Mengisi realisasi KPI (miliknya)'],
-        'kpi.approve_actual' => ['kpi', 'Menyetujui realisasi KPI'],
-        'kpi.verify_finance' => ['kpi', 'Memverifikasi realisasi KPI keuangan (baru)'],
+        'kpi.view' => ['kpi', 'Melihat IK, target & realisasi'],
+        'kpi.edit' => ['kpi', 'Mengubah IK & target'],
+        'kpi.input_actual' => ['kpi', 'Mengisi realisasi IK (miliknya)'],
+        'kpi.approve_actual' => ['kpi', 'Menyetujui realisasi IK'],
+        'kpi.verify_finance' => ['kpi', 'Memverifikasi realisasi IK yang wajib verifikasi Keuangan (baru)'],
         // initiative
         'initiative.view' => ['initiative', 'Melihat inisiatif strategis'],
         'initiative.edit' => ['initiative', 'Mengubah inisiatif strategis'],
@@ -45,7 +45,7 @@ class PermissionCatalog
         'maturity.assess' => ['maturity', 'Menilai kematangan & mengubah Kesinambungan'],
         'dashboard.view' => ['dashboard', 'Melihat Beranda & Pusat Kendali'],
         // pengelola
-        'import.manage' => ['system', 'Mengupload workbook Excel untuk mengisi data perusahaan (baru)'],
+        'import.manage' => ['system', 'Mengupload workbook Excel untuk mengisi data satker BLU (baru)'],
         'data.manage_all' => ['system', 'Mengelola semua data tanpa batas "miliknya" (pengelola)'],
     ];
 }

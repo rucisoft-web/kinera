@@ -67,8 +67,8 @@ class MultiCompanyAccessTest extends TestCase
 
         $this->actingAs($root)->get('/admin/pilih-konteks')
             ->assertOk()
-            ->assertSee('Belum ada perusahaan')
-            ->assertSee('Tambah perusahaan');
+            ->assertSee('Belum ada satker BLU')
+            ->assertSee('Tambah satker BLU');
 
         [$a] = $this->company('AAA');
         $a->periods()->delete();

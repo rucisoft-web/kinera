@@ -59,8 +59,8 @@ class RoleAssignmentsRelationManager extends RelationManager
     {
         return $schema->columns(1)->components([
             Select::make('role_id')->label('Peran')->options(fn () => static::assignableRoleOptions())->required()->native(false),
-            Select::make('company_id')->label('Perusahaan')->options(fn () => static::companyOptions())
-                ->placeholder('Global (semua perusahaan)')->native(false)
+            Select::make('company_id')->label('Satker BLU')->options(fn () => static::companyOptions())
+                ->placeholder('Global (semua satker BLU)')->native(false)
                 ->default(fn () => static::managesAllCompanies() ? null : static::activeCompanyId())
                 ->required(fn () => ! static::managesAllCompanies()),
         ]);
@@ -72,7 +72,7 @@ class RoleAssignmentsRelationManager extends RelationManager
             ->modifyQueryUsing(fn ($query) => static::managesAllCompanies() ? $query : $query->where('company_id', static::activeCompanyId()))
             ->columns([
                 TextColumn::make('role.name')->label('Peran')->description(fn ($record) => $record->role?->description)->wrap(),
-                TextColumn::make('company.code')->label('Perusahaan')->placeholder('Global'),
+                TextColumn::make('company.code')->label('Satker BLU')->placeholder('Global'),
             ])
             ->filters([
 

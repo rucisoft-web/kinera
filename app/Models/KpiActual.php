@@ -75,6 +75,6 @@ class KpiActual extends Model
 
     public function auditLabel(): string
     {
-        return ($this->kpi?->short_code ?? 'KPI').' bulan '.$this->month;
+        return ($this->kpi?->short_code ?? 'IK').' bulan '.$this->month;
     }
 }

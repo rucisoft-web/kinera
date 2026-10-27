@@ -18,7 +18,7 @@
             @if ($exec)
                 <div style="display:flex; gap:1.5rem; flex-wrap:wrap">
                     <div class="arah-stat"><span class="label">Skor strategis</span><span class="value">{{ Fmt::num($exec['overall']['score'], 1) }}</span><span class="arah-badge {{ $badge($exec['overall']['status']) }}">{{ $exec['overall']['status'] ?? 'belum ada' }}</span></div>
-                    <div class="arah-stat"><span class="label">KPI merah</span><span class="value" style="color:var(--k-merah)">{{ $exec['kpiStats']['merah'] }}</span><span class="sub">dari {{ $exec['kpiStats']['total'] }} KPI</span></div>
+                    <div class="arah-stat"><span class="label">IK merah</span><span class="value" style="color:var(--k-merah)">{{ $exec['kpiStats']['merah'] }}</span><span class="sub">dari {{ $exec['kpiStats']['total'] }} IK</span></div>
                     <div class="arah-stat"><span class="label">Inisiatif terlambat</span><span class="value">{{ $exec['lateInitiatives']->count() }}</span><span class="sub">dari {{ $exec['initiativeCount'] }} aktif</span></div>
                     <div class="arah-stat"><span class="label">Temuan terbuka</span><span class="value">{{ $exec['openFindings'] }}</span><span class="sub">belum ditutup</span></div>
                 </div>
@@ -44,7 +44,7 @@
     <div class="arah-grid arah-grid-2">
         @if ($user->hasPermission('kpi.input_actual'))
         <div class="arah-card">
-            <h3>Realisasi KPI belum diisi <small>{{ $t['month'] ? Terms::months()[$t['month']] : '' }} · batas tanggal {{ config('dhastram.cycle.input_day') }}</small></h3>
+            <h3>Realisasi IK belum diisi <small>{{ $t['month'] ? Terms::months()[$t['month']] : '' }} · batas tanggal {{ config('dhastram.cycle.input_day') }}</small></h3>
             @forelse ($t['missing']->take(10) as $k)
                 <ul class="arah-list"><li>
                     <span><a href="{{ \App\Filament\Resources\KpiActuals\KpiActualResource::getUrl('create', ['kpi' => $k->id, 'month' => $t['month']]) }}">{{ $k->short_code }}</a> {{ $k->name }}</span>
@@ -53,7 +53,7 @@
             @empty
                 <div class="arah-empty">Semua realisasi bulan ini sudah terisi. Terima kasih.</div>
             @endforelse
-            @if ($t['missing']->count() > 10)<div class="arah-muted">+{{ $t['missing']->count() - 10 }} KPI lainnya</div>@endif
+            @if ($t['missing']->count() > 10)<div class="arah-muted">+{{ $t['missing']->count() - 10 }} IK lainnya</div>@endif
             @if ($t['returned']->isNotEmpty())
                 <div style="margin-top:.6rem"><strong style="font-size:.8rem; color:var(--k-merah)">Dikembalikan untuk diperbaiki</strong></div>
                 <ul class="arah-list">
@@ -70,7 +70,7 @@
             <h3>Persetujuan realisasi <small>verifikasi tgl {{ config('dhastram.cycle.verify_day') }} · persetujuan tgl {{ config('dhastram.cycle.approve_day') }}</small></h3>
             <ul class="arah-list">
                 @if ($user->hasPermission('kpi.verify_finance'))
-                <li><span>KPI keuangan menunggu verifikasi</span><a href="{{ \App\Filament\Resources\KpiActuals\KpiActualResource::getUrl('index', ['tableFilters' => ['status' => ['value' => 'draf']]]) }}">{{ $t['toVerify']->count() }} baris</a></li>
+                <li><span>IK yang wajib verifikasi Keuangan menunggu verifikasi</span><a href="{{ \App\Filament\Resources\KpiActuals\KpiActualResource::getUrl('index', ['tableFilters' => ['status' => ['value' => 'draf']]]) }}">{{ $t['toVerify']->count() }} baris</a></li>
                 @endif
                 @if ($user->hasPermission('kpi.approve_actual'))
                 <li><span>Realisasi siap disetujui Pimpinan</span><a href="{{ \App\Filament\Resources\KpiActuals\KpiActualResource::getUrl('index') }}">{{ $t['toApprove']->count() }} baris</a></li>

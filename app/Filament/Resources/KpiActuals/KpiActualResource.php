@@ -58,11 +58,11 @@ class KpiActualResource extends Resource
 
     protected static ?int $navigationSort = 7;
 
-    protected static ?string $modelLabel = 'Realisasi KPI';
+    protected static ?string $modelLabel = 'Realisasi IK';
 
-    protected static ?string $pluralModelLabel = 'Realisasi KPI';
+    protected static ?string $pluralModelLabel = 'Realisasi IK';
 
-    protected static ?string $navigationLabel = 'Realisasi KPI';
+    protected static ?string $navigationLabel = 'Realisasi IK';
 
     protected static ?string $navigationGroupKey = 'karma_phala';
 
@@ -74,7 +74,7 @@ class KpiActualResource extends Resource
     {
         return $schema->columns(1)->components([
             Section::make('Realisasi')->columns(3)->schema([
-                Select::make('kpi_id')->label('KPI')->required()->searchable()->live()
+                Select::make('kpi_id')->label('IK')->required()->searchable()->live()
                     ->options(fn () => static::inputableKpis()->mapWithKeys(fn ($k) => [$k->id => $k->label.' ('.$k->unit.')']))
                     ->disabled(fn (string $operation) => $operation !== 'create')->dehydrated(fn (string $operation) => $operation === 'create')->columnSpan(2),
                 Select::make('month')->label('Bulan')->options(Terms::months())->required()->native(false)
@@ -105,7 +105,7 @@ class KpiActualResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('kpi.code')->label('Kode')->formatStateUsing(fn ($state) => Fmt::shortCode($state))->sortable(),
-                TextColumn::make('kpi.name')->label('KPI')->wrap()->grow()->extraAttributes(['style' => 'min-width:16rem'])->searchable()->description(fn ($record) => $record->kpi?->owner?->name),
+                TextColumn::make('kpi.name')->label('IK')->wrap()->grow()->extraAttributes(['style' => 'min-width:16rem'])->searchable()->description(fn ($record) => $record->kpi?->owner?->name),
                 TextColumn::make('month')->label('Bulan')->formatStateUsing(fn ($state) => Terms::monthShort($state))->sortable(),
                 TextColumn::make('actual')->label('Realisasi')->formatStateUsing(fn ($state, $record) => Fmt::kpiValue($state, $record->kpi?->unit, $record->kpi?->decimals ?? 0))->alignEnd(),
                 TextColumn::make('target')->label('Target')->state(fn ($record) => Fmt::kpiValue($record->target, $record->kpi?->unit, $record->kpi?->decimals ?? 0))->alignEnd(),
@@ -117,10 +117,10 @@ class KpiActualResource extends Resource
             ->filters([
                 SelectFilter::make('status')->options(Models\KpiActual::STATUSES),
                 SelectFilter::make('month')->label('Bulan')->options(Terms::months()),
-                SelectFilter::make('kpi_id')->label('KPI')->options(fn () => Models\Kpi::orderBy('code')->get()->mapWithKeys(fn ($k) => [$k->id => $k->label]))->searchable(),
+                SelectFilter::make('kpi_id')->label('IK')->options(fn () => Models\Kpi::orderBy('code')->get()->mapWithKeys(fn ($k) => [$k->id => $k->label]))->searchable(),
                 TernaryFilter::make('is_projection')->label('Proyeksi'),
-                Filter::make('financial')->label('KPI keuangan')->query(fn (Builder $query) => $query->whereHas('kpi', fn ($k) => $k->where('is_financial', true))),
-                Filter::make('mine')->label('KPI milik saya')->query(fn (Builder $query) => $query->whereHas('kpi', fn ($k) => $k->where('owner_id', Auth::id()))),
+                Filter::make('financial')->label('IK yang wajib verifikasi Keuangan')->query(fn (Builder $query) => $query->whereHas('kpi', fn ($k) => $k->where('is_financial', true))),
+                Filter::make('mine')->label('IK milik saya')->query(fn (Builder $query) => $query->whereHas('kpi', fn ($k) => $k->where('owner_id', Auth::id()))),
             ])
             ->modifyQueryUsing(fn (Builder $query) => $query->with(['kpi.targets', 'kpi.owner']))
             ->defaultSort('month', 'desc')
@@ -136,7 +136,7 @@ class KpiActualResource extends Resource
                 Action::make('kembalikan')->label('Kembalikan')->iconButton()->tooltip('Kembalikan')->icon('heroicon-o-arrow-uturn-left')->color('danger')
                     ->visible(fn ($record) => static::approval()->canReturn(Auth::user(), $record))
                     ->form([Textarea::make('note')->label('Alasan pengembalian')->required()->rows(3)])
-                    ->action(function ($record, array $data) { static::approval()->return(Auth::user(), $record, $data['note']); Notification::make()->title('Realisasi dikembalikan ke pemilik KPI')->warning()->send(); }),
+                    ->action(function ($record, array $data) { static::approval()->return(Auth::user(), $record, $data['note']); Notification::make()->title('Realisasi dikembalikan ke penanggung jawab IK')->warning()->send(); }),
                 ViewAction::make()->iconButton(),
                 EditAction::make()->iconButton(),
             ])
@@ -147,7 +147,7 @@ class KpiActualResource extends Resource
                         ->action(function ($records) { $n = 0; foreach ($records as $r) { if (static::approval()->canVerify(Auth::user(), $r)) { static::approval()->verify(Auth::user(), $r); $n++; } } Notification::make()->title($n.' realisasi terverifikasi')->success()->send(); }),
                     BulkAction::make('setujui_massal')->label('Setujui terpilih')->icon('heroicon-o-lock-closed')->color('success')->requiresConfirmation()
                         ->visible(fn () => Auth::user()?->hasPermission('kpi.approve_actual'))
-                        ->action(function ($records) { $n = 0; foreach ($records as $r) { if (static::approval()->canApprove(Auth::user(), $r)) { static::approval()->approve(Auth::user(), $r); $n++; } } Notification::make()->title($n.' realisasi disetujui')->body('Baris KPI keuangan yang belum diverifikasi dilewati.')->success()->send(); }),
+                        ->action(function ($records) { $n = 0; foreach ($records as $r) { if (static::approval()->canApprove(Auth::user(), $r)) { static::approval()->approve(Auth::user(), $r); $n++; } } Notification::make()->title($n.' realisasi disetujui')->body('Baris IK yang wajib verifikasi Keuangan yang belum diverifikasi dilewati.')->success()->send(); }),
                     DeleteBulkAction::make()->visible(fn () => Auth::user()?->managesAllData()),
                 ]),
             ]);
@@ -173,7 +173,7 @@ class KpiActualResource extends Resource
         return app(\App\Services\KpiApprovalService::class);
     }
 
-    /** KPI yang boleh diisi pengguna: miliknya, kecuali pengelola. */
+    /** IK yang boleh diisi pengguna: miliknya, kecuali pengelola. */
     public static function inputableKpis()
     {
         $user = Auth::user();

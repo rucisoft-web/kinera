@@ -61,7 +61,7 @@ class PeriodsRelationManager extends RelationManager
             Select::make('status')->options(['perencanaan' => 'Perencanaan', 'berjalan' => 'Berjalan', 'ditutup' => 'Ditutup'])->native(false),
             DatePicker::make('start_date')->label('Mulai')->required(),
             DatePicker::make('end_date')->label('Selesai')->required(),
-            Toggle::make('is_active')->label('Perioda bawaan')->helperText('Perioda yang otomatis dibuka saat pengguna masuk ke perusahaan ini. Biasanya tahun berjalan; cukup satu perioda per perusahaan.'),
+            Toggle::make('is_active')->label('Perioda bawaan')->helperText('Perioda yang otomatis dibuka saat pengguna masuk ke satker BLU ini. Biasanya tahun berjalan; cukup satu perioda per satker BLU.'),
             Textarea::make('notes')->label('Catatan')->rows(2)->columnSpanFull(),
         ]);
     }

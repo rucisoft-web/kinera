@@ -57,11 +57,11 @@ class KpiTargetResource extends Resource
 
     protected static ?int $navigationSort = 6;
 
-    protected static ?string $modelLabel = 'Target KPI';
+    protected static ?string $modelLabel = 'Target IK';
 
-    protected static ?string $pluralModelLabel = 'Target KPI';
+    protected static ?string $pluralModelLabel = 'Target IK';
 
-    protected static ?string $navigationLabel = 'Target KPI';
+    protected static ?string $navigationLabel = 'Target IK';
 
     protected static ?string $navigationGroupKey = 'karma_phala';
 
@@ -73,7 +73,7 @@ class KpiTargetResource extends Resource
     {
         return $schema->columns(1)->components([
             Section::make()->columns(3)->schema([
-                Select::make('kpi_id')->label('KPI')->options(fn () => Models\Kpi::orderBy('code')->get()->mapWithKeys(fn ($k) => [$k->id => $k->label]))->required()->searchable(),
+                Select::make('kpi_id')->label('IK')->options(fn () => Models\Kpi::orderBy('code')->get()->mapWithKeys(fn ($k) => [$k->id => $k->label]))->required()->searchable(),
                 Select::make('month')->label('Bulan')->options(Terms::months())->required()->native(false),
                 TextInput::make('target')->label('Target')->numeric()->required(),
                 Textarea::make('notes')->label('Catatan')->rows(2)->columnSpanFull(),
@@ -86,12 +86,12 @@ class KpiTargetResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('kpi.code')->label('Kode')->formatStateUsing(fn ($state) => Fmt::shortCode($state))->sortable(),
-                TextColumn::make('kpi.name')->label('KPI')->wrap()->searchable(),
+                TextColumn::make('kpi.name')->label('IK')->wrap()->searchable(),
                 TextColumn::make('month')->label('Bulan')->formatStateUsing(fn ($state) => Terms::monthShort($state))->sortable(),
                 TextColumn::make('target')->label('Target')->formatStateUsing(fn ($state, $record) => Fmt::kpiValue($state, $record->kpi?->unit, $record->kpi?->decimals ?? 0))->alignEnd(),
             ])
             ->filters([
-                SelectFilter::make('kpi_id')->label('KPI')->options(fn () => Models\Kpi::orderBy('code')->get()->mapWithKeys(fn ($k) => [$k->id => $k->label]))->searchable(),
+                SelectFilter::make('kpi_id')->label('IK')->options(fn () => Models\Kpi::orderBy('code')->get()->mapWithKeys(fn ($k) => [$k->id => $k->label]))->searchable(),
                 SelectFilter::make('month')->label('Bulan')->options(Terms::months()),
             ])
             ->defaultSort('kpi_id', 'asc')

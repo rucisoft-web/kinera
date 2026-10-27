@@ -36,11 +36,11 @@
                 <span class="label">Skor strategis {{ $lastMonth ? 's.d. '.Terms::months()[$lastMonth] : '' }}</span>
                 <span class="arah-badge {{ $badge($overall['status']) }}" style="font-size:.85rem">{{ strtoupper($overall['status'] ?? 'belum ada data') }}</span>
                 <span class="sub">Hijau ≥ {{ config('dhastram.score_green') }} · Kuning ≥ {{ config('dhastram.score_yellow') }} · Merah &lt; {{ config('dhastram.score_yellow') }}</span>
-                <span class="sub">Bobot: Keuangan {{ config('dhastram.perspective_weights.keuangan') }}%, Pelanggan {{ config('dhastram.perspective_weights.pelanggan') }}%, Proses {{ config('dhastram.perspective_weights.proses') }}%, SDM {{ config('dhastram.perspective_weights.sdm') }}%</span>
+                <span class="sub">Bobot: @foreach (['keuangan', 'pelanggan', 'proses', 'sdm'] as $p){{ \App\Support\Terms::get($p) }} {{ config('dhastram.perspective_weights.'.$p) }}%@if (! $loop->last), @endif @endforeach</span>
             </div>
         </div>
         <div class="arah-card">
-            <h3>Status KPI <small>{{ $kpiStats['total'] }} KPI aktif</small></h3>
+            <h3>Status IK <small>{{ $kpiStats['total'] }} IK aktif</small></h3>
             @foreach (['hijau' => 'Tercapai', 'kuning' => 'Perlu perhatian', 'merah' => 'Kritis', 'kosong' => 'Belum ada realisasi'] as $k => $l)
                 <div style="display:flex; align-items:center; gap:.6rem; margin-bottom:.45rem; font-size:.82rem">
                     <span style="width:8.5rem">{{ $l }}</span>
@@ -134,10 +134,10 @@
     </div>
 
     <div class="arah-card" style="margin-top:1rem">
-        <h3>KPI kritis & merah <small>capaian kumulatif (YTD)</small></h3>
+        <h3>IK kritis & merah <small>capaian kumulatif (YTD)</small></h3>
         <div class="arah-scroll">
         <table class="arah-table">
-            <thead><tr><th>KPI</th><th>Pemilik</th><th class="num">Target YTD</th><th class="num">Realisasi YTD</th><th class="num">Skor</th><th>Bulan</th></tr></thead>
+            <thead><tr><th>IK</th><th>Pemilik</th><th class="num">Target YTD</th><th class="num">Realisasi YTD</th><th class="num">Skor</th><th>Bulan</th></tr></thead>
             <tbody>
             @foreach ($criticalKpis as $r)
                 <tr>

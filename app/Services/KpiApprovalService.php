@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Notification;
 use RuntimeException;
 
 /**
- * Alur: pemilik KPI isi (draf) -> Keuangan verifikasi (KPI keuangan) -> Pimpinan setujui (terkunci).
+ * Alur: penanggung jawab IK isi (draf) -> Keuangan verifikasi (IK yang wajib verifikasi Keuangan) -> Pimpinan setujui (terkunci).
  * Kembalikan: verifikator/penyetuju mengembalikan dengan catatan.
  */
 class KpiApprovalService
@@ -74,7 +74,7 @@ class KpiApprovalService
         $a->update(['status' => 'dikembalikan', 'returned_by' => $user->id, 'returned_at' => now(), 'return_note' => $note]);
         if ($owner = $a->kpi?->owner) {
             $owner->notify(new ArahNotification(
-                'Realisasi KPI dikembalikan',
+                'Realisasi IK dikembalikan',
                 ($a->kpi->short_code ?? '').' '.$a->kpi->name.' bulan '.$a->month.': '.$note,
                 url('/admin/kpi-actuals/'.$a->id.'/edit'),
                 'danger',

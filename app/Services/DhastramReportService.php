@@ -14,7 +14,7 @@ use OpenSpout\Writer\XLSX\Writer;
 class DhastramReportService
 {
     public const REPORTS = [
-        'scorecard' => 'Kartu Skor KPI (bulanan & YTD)',
+        'scorecard' => 'Kartu Skor Indikator Kinerja (bulanan & YTD)',
         'objectives' => 'Capaian Sasaran Strategis per Perspektif',
         'initiatives' => 'Status Inisiatif Strategis & Anggaran',
         'findings' => 'Temuan & Tindakan Korektif',
@@ -79,7 +79,7 @@ class DhastramReportService
 
         switch ($report) {
             case 'scorecard':
-                $head = ['Perspektif', 'Sasaran', 'Kode', 'KPI', 'Satuan', 'Arah', 'Pemilik'];
+                $head = ['Perspektif', 'Sasaran', 'Kode', 'IK', 'Satuan', 'Arah', 'Pemilik'];
                 foreach (Terms::months() as $m => $name) {
                     $head[] = 'Target '.Terms::monthShort($m);
                     $head[] = 'Real '.Terms::monthShort($m);
@@ -105,7 +105,7 @@ class DhastramReportService
                     $w->addRow(Row::fromValues([$p['label'], $p['score'], $p['status'], $p['objectives']]));
                 }
                 $w->addRow(Row::fromValues([]));
-                $w->addRow(Row::fromValues(['Perspektif', 'Kode', 'Sasaran', 'Penanggung jawab', 'Bobot', 'Jumlah KPI', 'Skor', 'Status'], $bold));
+                $w->addRow(Row::fromValues(['Perspektif', 'Kode', 'Sasaran', 'Penanggung jawab', 'Bobot', 'Jumlah IK', 'Skor', 'Status'], $bold));
                 foreach ($d['objectives'] as $o) {
                     $w->addRow(Row::fromValues([Terms::perspective($o['objective']->perspective), $o['objective']->short_code, $o['objective']->title,
                         $o['objective']->owner?->name, (float) $o['objective']->weight, $o['kpis']->count(), $o['score'], $o['status']]));

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 
 /**
- * Menyimpan konteks perusahaan & perioda aktif di sesi dan tabel user_contexts.
+ * Menyimpan konteks satker BLU & perioda aktif di sesi dan tabel user_contexts.
  * Ketika tidak ada pengguna (console/seeder) konteks bisa di-set manual lewat set().
  */
 class DhastramContext

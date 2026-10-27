@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-/** Menyiapkan konteks perusahaan & perioda; menolak akun nonaktif. */
+/** Menyiapkan konteks satker BLU & perioda; menolak akun nonaktif. */
 class SetDhastramContext
 {
     public function handle(Request $request, Closure $next): Response

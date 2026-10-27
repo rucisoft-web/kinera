@@ -8,42 +8,29 @@ use App\Models\MaturityQuestion;
 use App\Models\Role;
 use App\Models\User;
 use App\Support\DhastramContext;
-use Database\Seeders\AstraSeeder;
-use Database\Seeders\BcaSeeder;
-use Database\Seeders\BlueBirdSeeder;
 use Database\Seeders\DhastramRolePermissionSeeder;
-use Database\Seeders\DiamondFoodSeeder;
-use Database\Seeders\GotoSeeder;
-use Database\Seeders\HerminaSeeder;
-use Database\Seeders\KimiaFarmaSeeder;
-use Database\Seeders\MandiriTaspenSeeder;
 use Database\Seeders\MaturityQuestionSeeder;
-use Database\Seeders\MedcoSeeder;
-use Database\Seeders\MitraAdiperkasaSeeder;
-use Database\Seeders\PakuwonSeeder;
-use Database\Seeders\SemenIndonesiaSeeder;
-use Database\Seeders\SmbcIndonesiaSeeder;
 use Database\Seeders\ShowcaseSeeder;
-use Database\Seeders\TelkomSeeder;
+use Database\Seeders\UinSukaSeeder;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-/** Memuat demo lengkap satu perusahaan (perioda 2025 + 2026) ke server yang sudah berjalan. */
+/** Memuat demo lengkap satu satker BLU (perioda 2025 + 2026) ke server yang sudah berjalan. */
 class DemoCompany extends Command
 {
     /** @var array<string,class-string<ShowcaseSeeder>> */
-    public const DEMOS = ['DFI' => DiamondFoodSeeder::class, 'HMN' => HerminaSeeder::class, 'MEDC' => MedcoSeeder::class, 'PWON' => PakuwonSeeder::class, 'KAEF' => KimiaFarmaSeeder::class, 'SMGR' => SemenIndonesiaSeeder::class, 'MAPI' => MitraAdiperkasaSeeder::class, 'GOTO' => GotoSeeder::class, 'ASII' => AstraSeeder::class, 'BBCA' => BcaSeeder::class, 'TLKM' => TelkomSeeder::class, 'BIRD' => BlueBirdSeeder::class, 'BTPN' => SmbcIndonesiaSeeder::class, 'BMTP' => MandiriTaspenSeeder::class];
+    public const DEMOS = ['UINSUKA' => UinSukaSeeder::class];
 
     protected $signature = 'rucibsc:demo
-        {perusahaan=DFI : Kode demo: DFI (Diamond Food), HMN (Hermina), MEDC (Medco Energi), PWON (Pakuwon Jati), KAEF (Kimia Farma), SMGR (Semen Indonesia), MAPI (Mitra Adiperkasa), GOTO (GoTo), ASII (Astra), BBCA (BCA), TLKM (Telkom), BIRD (Blue Bird), BTPN (SMBC Indonesia), BMTP (Bank Mandiri Taspen)}
-        {--password= : Kata sandi akun contoh perusahaan itu (bila kosong dibuat acak dan ditampilkan)}
-        {--reset : Hapus dulu data perusahaan itu untuk perioda 2025 & 2026 yang sudah ada}
+        {perusahaan=UINSUKA : Kode demo satker BLU: UINSUKA (UIN Sunan Kalijaga Yogyakarta)}
+        {--password= : Kata sandi akun contoh satker BLU itu (bila kosong dibuat acak dan ditampilkan)}
+        {--reset : Hapus dulu data satker BLU itu untuk perioda 2025 & 2026 yang sudah ada}
         {--force : Lewati konfirmasi}';
 
-    protected $description = 'Muat demo lengkap (Strategy Map, KPI, inisiatif, ekosistem, tinjauan) perioda 2025 & 2026: DFI, HMN, MEDC, PWON, KAEF, SMGR, MAPI, GOTO, ASII, BBCA, TLKM, BIRD, BTPN, atau BMTP';
+    protected $description = 'Muat demo lengkap satker BLU UIN Sunan Kalijaga (Strategy Map, Indikator Kinerja, Kontrak Kinerja, inisiatif, tinjauan) perioda 2025 & 2026';
 
-    protected $aliases = ['rucibsc:demo-diamond'];
+    protected $aliases = ['rucibsc:demo-uin'];
 
     public function handle(): int
     {
@@ -65,7 +52,7 @@ class DemoCompany extends Command
         $periods = $company ? AnalysisPeriod::where('company_id', $company->id)->whereIn('code', ['2025', '2026'])->get() : collect();
         if ($periods->isNotEmpty()) {
             if (! $this->option('reset')) {
-                $this->error('Perusahaan '.$code.' sudah punya perioda '.$periods->pluck('code')->join(' & ').'. Jalankan ulang dengan --reset untuk menggantinya dengan data demo.');
+                $this->error('Satker BLU '.$code.' sudah punya perioda '.$periods->pluck('code')->join(' & ').'. Jalankan ulang dengan --reset untuk menggantinya dengan data demo.');
 
                 return self::FAILURE;
             }

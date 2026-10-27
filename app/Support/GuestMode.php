@@ -45,7 +45,7 @@ class GuestMode
         return $user instanceof User && $user->isGuestVisitor();
     }
 
-    /** Akun Tamu bersama: dibuat bila belum ada, peran `tamu` global (semua perusahaan). */
+    /** Akun Tamu bersama: dibuat bila belum ada, peran `tamu` global (semua satker BLU). */
     public static function user(): User
     {
         $role = Role::where('slug', self::ROLE)->first();
@@ -72,10 +72,10 @@ class GuestMode
         return $user;
     }
 
-    /** Perusahaan pembuka untuk Tamu: contoh pertama (DFI bila ada). */
+    /** Satker BLU pembuka untuk Tamu: contoh pertama (UINSUKA bila ada). */
     public static function startCompany(): ?Company
     {
-        return Company::where('code', 'DFI')->first()
+        return Company::where('code', 'UINSUKA')->first()
             ?? Company::where('is_demo', true)->orderBy('id')->first()
             ?? Company::orderBy('id')->first();
     }

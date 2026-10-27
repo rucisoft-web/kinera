@@ -7,8 +7,8 @@ use App\Support\DhastramContext;
 use Illuminate\Support\Facades\Auth;
 
 /**
- * Pembatasan multi-perusahaan untuk menu Administrasi.
- * Super Admin mengelola semua perusahaan; admin lain hanya perusahaan yang sedang aktif.
+ * Pembatasan multi-satker BLU untuk menu Administrasi.
+ * Super Admin mengelola semua satker BLU; admin lain hanya satker BLU yang sedang aktif.
  */
 trait ScopesToActiveCompany
 {
@@ -23,9 +23,9 @@ trait ScopesToActiveCompany
     }
 
     /**
-     * Admin perusahaan hanya boleh mengubah akun yang terdaftar di perusahaan aktif saja.
-     * Akun yang juga terdaftar di perusahaan lain (atau berperan global) hanya diubah Super Admin,
-     * supaya reset sandi tidak bisa dipakai untuk masuk ke perusahaan lain.
+     * Admin satker BLU hanya boleh mengubah akun yang terdaftar di satker BLU aktif saja.
+     * Akun yang juga terdaftar di satker BLU lain (atau berperan global) hanya diubah Super Admin,
+     * supaya reset sandi tidak bisa dipakai untuk masuk ke satker BLU lain.
      */
     protected static function ownsUserAccount(Models\User $user): bool
     {
@@ -42,7 +42,7 @@ trait ScopesToActiveCompany
         return $companies->isNotEmpty() && $companies->every(fn ($id) => $id === $active);
     }
 
-    /** Pilihan perusahaan pada formulir: semua (Super Admin) atau hanya perusahaan aktif. */
+    /** Pilihan satker BLU pada formulir: semua (Super Admin) atau hanya satker BLU aktif. */
     protected static function companyOptions(): array
     {
         $q = Models\Company::orderBy('name');

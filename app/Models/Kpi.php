@@ -14,11 +14,20 @@ class Kpi extends Model
 
     protected $guarded = ['id'];
 
-    protected static ?string $sequencePrefix = 'KPI';
+    protected static ?string $sequencePrefix = 'IK';
 
     public const UNITS = ['Rp miliar' => 'Rp miliar', 'Rp juta' => 'Rp juta', 'Rp ribu' => 'Rp ribu', 'US$ juta' => 'US$ juta', 'US$/boe' => 'US$/boe', '%' => '%', 'indeks' => 'Indeks', 'skor' => 'Skor', 'kasus' => 'Kasus', 'event' => 'Event', 'unit' => 'Unit', 'hari' => 'Hari', 'jam' => 'Jam', 'menit' => 'Menit', 'rasio' => 'Rasio', 'kali' => 'Kali (x)', 'orang' => 'Orang', 'ribu' => 'Ribu', 'juta' => 'Juta', 'ribu ton' => 'Ribu ton', 'ribu unit' => 'Ribu unit', 'mboepd' => 'mboepd', 'mmboe' => 'mmboe', 'GWh' => 'GWh', 'MWh' => 'MWh', 'kg CO₂e/ton' => 'kg CO₂e/ton', 'MW' => 'MW', 'tahun' => 'Tahun', 'm²' => 'm²', 'km' => 'km', 'ha' => 'ha'];
 
-    public const FREQUENCIES = ['bulanan' => 'Bulanan', 'mingguan' => 'Mingguan', 'kuartalan' => 'Kuartalan', 'semesteran' => 'Semesteran', 'tahunan' => 'Tahunan'];
+    public const FREQUENCIES = ['bulanan' => 'Bulanan', 'mingguan' => 'Mingguan', 'kuartalan' => 'Triwulanan', 'semesteran' => 'Semesteran', 'tahunan' => 'Tahunan'];
+
+    /** Aspek Indikator Kinerja Kontrak Kinerja: paling sedikit layanan & keuangan (PER-6/PB/2025 Pasal 5 ayat 6–7). */
+    public const ASPECTS = ['layanan' => 'Aspek layanan', 'keuangan' => 'Aspek keuangan', 'penugasan' => 'Kebijakan/penugasan K/L atau Menkeu'];
+
+    /** Pihak yang dilibatkan menyusun Definisi Operasional (Pasal 5 ayat 9). */
+    public const DO_PARTNERS = ['layanan' => 'Pembina Teknis', 'keuangan' => 'Direktorat Jenderal Perbendaharaan', 'penugasan' => 'Pembina Teknis / pemberi penugasan'];
+
+    /** Indikator penanda syarat insentif (Pasal 14 ayat 4 huruf d–f). */
+    public const INCENTIVE_ROLES = ['pnbp' => 'Target PNBP (huruf d)', 'ebitda' => 'Surplus EBITDA (huruf e)', 'opini' => 'Opini laporan keuangan audited (huruf f)'];
 
     public const AGGREGATIONS = ['sum' => 'Jumlah (akumulasi)', 'average' => 'Rata-rata', 'last' => 'Nilai terakhir'];
 
@@ -38,6 +47,8 @@ class Kpi extends Model
         return [
             'is_financial' => 'boolean',
             'is_critical' => 'boolean',
+            'is_mandatory' => 'boolean',
+            'max_achievement' => 'float',
             'is_active' => 'boolean',
             'baseline' => 'float',
             'annual_target' => 'float',
@@ -80,6 +91,17 @@ class Kpi extends Model
         $t = $this->relationLoaded('targets') ? $this->targets->firstWhere('month', $month) : $this->targets()->where('month', $month)->first();
 
         return $t ? (float) $t->target : null;
+    }
+
+    /** Capaian maksimum yang diakui (KMK remunerasi BLU); bila kosong memakai batas umum aplikasi. */
+    public function achievementCap(): float
+    {
+        return (float) ($this->max_achievement ?: config('dhastram.score_cap', 120));
+    }
+
+    public function getAspectLabelAttribute(): string
+    {
+        return self::ASPECTS[$this->aspect] ?? (string) $this->aspect;
     }
 
     public function isOwnedBy(?User $user): bool

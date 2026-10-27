@@ -1,5 +1,5 @@
 @php
-    $img = fn (string $n) => asset('images/kenali/'.$n.'.jpg').'?v=1';
+    $img = fn (string $n) => asset('images/kenali/'.$n.'.jpg').'?v=2';
     $guest = fn (array $q = []) => route('arah.guest', $q);
     $year = collect($cases)->pluck('year')->filter()->max() ?? now()->year;
 @endphp
@@ -8,8 +8,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ruci BSC · Strategi yang dijalankan setiap bulan</title>
-    <meta name="description" content="Ruci BSC: perangkat manajemen strategi berbasis Balanced Scorecard untuk Dewan Komisaris, Direksi, dan pemilik usaha. Coba data demo tanpa akun.">
+    <title>Ruci BSC BLU · Kontrak Kinerja Pemimpin BLU yang terpantau setiap triwulan</title>
+    <meta name="description" content="Ruci BSC BLU: Balanced Scorecard dan Kontrak Kinerja Pemimpin BLU sesuai PER-6/PB/2025 untuk satker Badan Layanan Umum. Coba data demo tanpa akun.">
     <link rel="icon" href="{{ asset('images/favicon.svg') }}" type="image/svg+xml">
     <link rel="stylesheet" href="{{ asset('css/landing.css') }}?v=1">
 </head>
@@ -33,18 +33,18 @@
     <section class="l-hero">
         <div class="l-wrap l-hero-in">
             <div>
-                <span class="l-eyebrow">Untuk Dewan Komisaris, Direksi, dan Pemilik Usaha</span>
-                <h1>Strategi yang dipahami semua orang, dijalankan setiap bulan.</h1>
-                <p class="l-lead">Ruci BSC adalah perangkat manajemen strategi berbasis <b>Balanced Scorecard</b>. Dari analisis lingkungan dan SWOT–TOWS sampai Peta Strategi, KPI, target bulanan, inisiatif, anggaran, rapat tinjauan, dan tindak lanjutnya, semua dalam satu tempat.</p>
+                <span class="l-eyebrow">Untuk Pemimpin BLU, Pejabat Pengelola, dan Dewan Pengawas</span>
+                <h1>Kontrak Kinerja BLU yang terpantau, terbukti, dan tepat waktu.</h1>
+                <p class="l-lead">Ruci BSC BLU memadukan <b>Balanced Scorecard</b> dengan <b>Kontrak Kinerja Pemimpin BLU</b> menurut PER-6/PB/2025: Indikator Kinerja aspek layanan & keuangan, target trajektori triwulanan, Definisi Operasional, laporan capaian, uji syarat insentif, dan versi perubahan kontrak, semua dalam satu tempat.</p>
                 <div class="l-actions">
                     <a href="#data-contoh" class="l-btn l-btn-primary">Coba data demo {{ $year }}</a>
                     <a href="#panduan" class="l-btn">Baca panduannya</a>
                 </div>
-                <p class="l-note">Tanpa akun. Mode Tamu hanya melihat, data contoh tidak bisa diubah.</p>
+                <p class="l-note">Tanpa akun. Mode Tamu hanya melihat, data contoh tidak bisa diubah. Data demo hanya untuk keperluan memaksimalkan penyajian fitur-fitur perangkat lunak.</p>
             </div>
             <figure class="l-shot">
                 <span class="l-tag">Data demo</span>
-                <img src="{{ $img('pusat-kendali') }}" alt="Pusat Kendali Ruci BSC dengan data contoh" loading="eager">
+                <img src="{{ $img('pusat-kendali') }}" alt="Pusat Kendali Ruci BSC BLU dengan data contoh" loading="eager">
             </figure>
         </div>
     </section>
@@ -52,14 +52,14 @@
     {{-- ===== Kenapa perlu ===== --}}
     <section class="l-section" id="kenapa">
         <div class="l-wrap">
-            <span class="l-eyebrow">Kenapa perlu Ruci BSC</span>
-            <h2>Strategi yang baik sering berhenti di dokumen rencana.</h2>
-            <p class="l-lead">Kaplan &amp; Norton, perancang Balanced Scorecard, menemukan empat hambatan klasik pelaksanaan strategi. Ruci BSC dirancang untuk menjawab keempatnya.</p>
+            <span class="l-eyebrow">Kenapa perlu Ruci BSC BLU</span>
+            <h2>Kontrak Kinerja ditandatangani setahun sekali, tetapi dinilai setiap triwulan.</h2>
+            <p class="l-lead">PER-6/PB/2025 menuntut laporan capaian paling lambat 15 hari kerja setelah setiap periode trajektori, lengkap dengan hasil verifikasi internal, perhitungan, dan dokumen pendukung. Ruci BSC BLU menjawab empat hambatan klasik pelaksanaan strategi (Kaplan &amp; Norton) dalam bahasa BLU.</p>
             <div class="l-grid l-grid-4">
                 @foreach ([
-                    ['95%', 'karyawan tidak memahami strategi perusahaannya', 'Hambatan visi', 'Peta Strategi satu halaman yang bisa dibaca semua orang, dari Komisaris sampai kepala unit.'],
-                    ['75%', 'manajer tidak memiliki insentif yang terkait dengan strategi', 'Hambatan manusia', 'Setiap KPI punya pemilik, target bulanan, dan skor yang terlihat jelas.'],
-                    ['60%', 'organisasi tidak mengaitkan anggaran dengan strategi', 'Hambatan sumber daya', 'Setiap inisiatif terhubung ke sasaran, lengkap dengan anggaran dan serapannya.'],
+                    ['95%', 'pegawai tidak memahami strategi organisasinya', 'Hambatan visi', 'Peta Strategi satu halaman yang bisa dibaca semua orang, dari Dewan Pengawas sampai unit kerja.'],
+                    ['75%', 'manajer tidak memiliki insentif yang terkait dengan strategi', 'Hambatan manusia', 'Setiap Indikator Kinerja punya penanggung jawab, target trajektori, dan capaian maksimum; syarat insentif Pasal 14 diuji otomatis.'],
+                    ['60%', 'organisasi tidak mengaitkan anggaran dengan strategi', 'Hambatan sumber daya', 'Setiap inisiatif terhubung ke sasaran, lengkap dengan anggaran BLU dan serapannya.'],
                     ['85%', 'tim eksekutif membahas strategi kurang dari 1 jam per bulan', 'Hambatan manajemen', 'Pusat Kendali dan ritme rapat bulanan membuat strategi selalu masuk agenda.'],
                 ] as [$num, $fact, $label, $answer])
                     <div class="l-card l-barrier">
@@ -72,9 +72,9 @@
             </div>
             <div class="l-grid l-grid-3 l-gap-top">
                 @foreach ([
-                    ['Satu sumber kebenaran', 'Angka realisasi diinput unit, diverifikasi Keuangan, disetujui Direksi. Tidak ada lagi rekap Excel yang berbeda-beda versi.'],
-                    ['Peringatan dini', 'KPI kritis yang merah, data yang terlambat, dan temuan yang belum ditindaklanjuti muncul di Pusat Kendali sebelum rapat.'],
-                    ['Siap tata kelola', 'Jejak audit setiap perubahan, hak akses per peran, dan laporan untuk Komisaris yang bisa diekspor kapan saja.'],
+                    ['Satu sumber kebenaran', 'Realisasi diinput unit, diverifikasi Keuangan/SPI, disetujui Pemimpin BLU. Dokumen pendukung dan Definisi Operasional tersimpan bersama angkanya.'],
+                    ['Peringatan dini', 'Indikator dengan capaian di bawah 65%, target PNBP yang belum tercapai, dan tenggat laporan triwulan muncul sebelum terlambat.'],
+                    ['Siap DJPb & Pembina Teknis', 'Cetak Kontrak Kinerja (Lampiran I), Berita Acara (Lampiran II), perhitungan capaian (Lampiran VI), dan surat pernyataan (Lampiran IV).'],
                 ] as [$t, $d])
                     <div class="l-card"><h3>{{ $t }}</h3><p>{{ $d }}</p></div>
                 @endforeach
@@ -91,9 +91,9 @@
                 @foreach ([
                     ['1', 'Analisis', 'Lingkungan strategis: PESTEL, lima kekuatan industri, pasar, pesaing, regulasi, dan pemangku kepentingan.'],
                     ['2', 'Perumusan', 'SWOT–TOWS, isu strategis, visi–misi–nilai, dan pilihan strategi.'],
-                    ['3', 'Peta Strategi', 'Sasaran di empat perspektif dengan hubungan sebab-akibat, KPI, dan target bulanan.'],
-                    ['4', 'Pelaksanaan', 'Inisiatif, tonggak, aktivitas, anggaran dan serapan, serta input realisasi bulanan.'],
-                    ['5', 'Tinjauan', 'Rapat tinjauan, temuan, tindakan korektif, penilaian kematangan, dan pelembagaan.'],
+                    ['3', 'Peta Strategi & Kontrak', 'Sasaran di empat perspektif, Indikator Kinerja aspek layanan & keuangan, trajektori, Definisi Operasional, dan Kontrak Kinerja.'],
+                    ['4', 'Pelaksanaan', 'Inisiatif, tonggak, aktivitas, anggaran dan serapan, serta realisasi per trajektori.'],
+                    ['5', 'Capaian & Insentif', 'Laporan capaian triwulanan, uji syarat insentif, perubahan Kontrak Kinerja, temuan, dan tindakan korektif.'],
                 ] as [$n, $t, $d])
                     <div class="l-card l-phase"><span class="l-phase-n">{{ $n }}</span><h3>{{ $t }}</h3><p>{{ $d }}</p></div>
                 @endforeach
@@ -102,7 +102,7 @@
                 @foreach ([['peta-strategi', 'Peta Strategi'], ['portofolio', 'Portofolio inisiatif'], ['laporan', 'Laporan untuk pimpinan']] as [$f, $cap])
                     <figure class="l-shot l-shot-sm">
                         <span class="l-tag">Data demo</span>
-                        <img src="{{ $img($f) }}" alt="{{ $cap }} di Ruci BSC" loading="lazy">
+                        <img src="{{ $img($f) }}" alt="{{ $cap }} di Ruci BSC BLU" loading="lazy">
                         <figcaption>{{ $cap }}</figcaption>
                     </figure>
                 @endforeach
@@ -115,8 +115,8 @@
         <div class="l-wrap">
             <span class="l-eyebrow">Coba sendiri, tanpa akun</span>
             <h2>Data demo tahun berjalan {{ $year }}</h2>
-            <p class="l-lead">Pilih satu perusahaan untuk langsung masuk sebagai Tamu pada perioda {{ $year }}. Setiap contoh juga berisi perioda tahun sebelumnya yang sudah ditutup. Perusahaan lain bisa dipilih lewat kotak konteks di kiri atas setelah masuk.</p>
-            <div class="l-demo-warn" role="note"><span class="l-tag l-tag-inline">Data demo</span><span>Seluruh data disusun untuk pembelajaran dan secara garis besar mengacu pada laporan tahunan masing-masing perusahaan. Target, rincian bulanan, data {{ $year }}, dan sebagian indikator operasional adalah simulasi. Bukan data resmi perusahaan dan tidak untuk keputusan investasi.</span></div>
+            <p class="l-lead">Masuk sebagai Tamu pada perioda {{ $year }} (proyeksi). Contoh juga berisi perioda tahun sebelumnya yang sudah ditutup, lengkap dengan Kontrak Kinerja, adendum, dan perhitungan capaiannya.</p>
+            <div class="l-demo-warn" role="note"><span class="l-tag l-tag-inline">Data demo</span><span>Hanya data demo untuk keperluan memaksimalkan penyajian fitur-fitur perangkat lunak. Angka 2025 sebagian mengacu pada Laporan Keuangan BLU Audited TA 2025, Perjanjian Kinerja 2025, dan RSB 2020–2024 UIN Sunan Kalijaga; rincian triwulanan, Kontrak Kinerja, realisasi indikator layanan, dan seluruh data {{ $year }} (proyeksi) adalah simulasi. Bukan data resmi UIN Sunan Kalijaga, Kementerian Agama, maupun Kementerian Keuangan.</span></div>
             @if ($cases === [])
                 <p class="l-card">Data contoh belum dipasang. Jalankan <code>php artisan db:seed --class=DemoSeeder</code> di server.</p>
             @else
@@ -127,7 +127,7 @@
                             <b>{{ $c['name'] }}</b>
                             <small>{{ $c['sector'] }}</small>
                             <p>{{ $c['lesson'] }}</p>
-                            <span class="l-stats">{{ $c['objectives'] }} sasaran · {{ $c['kpis'] }} KPI · {{ $c['initiatives'] }} inisiatif</span>
+                            <span class="l-stats">{{ $c['objectives'] }} sasaran · {{ $c['kpis'] }} Indikator Kinerja · {{ $c['initiatives'] }} inisiatif</span>
                             <span class="l-go">Masuk sebagai Tamu →</span>
                         </a>
                     @endforeach
@@ -141,26 +141,26 @@
         <div class="l-wrap">
             <span class="l-eyebrow">Panduan Ruci BSC</span>
             <h2>Siapa mengerjakan apa, dan kapan.</h2>
-            <p class="l-lead">Ruci BSC berjalan dengan ritme bulanan yang sederhana. Setiap peran hanya melihat menu yang menjadi tugasnya.</p>
+            <p class="l-lead">Ruci BSC BLU berjalan dengan ritme yang sederhana: bulanan untuk pemantauan internal, triwulanan untuk laporan capaian Kontrak Kinerja. Setiap peran hanya melihat menu yang menjadi tugasnya.</p>
             <ol class="l-cycle">
                 @foreach ([
                     [$cycle['reminder_day'] ?? 3, 'Pengingat', 'Sistem mengingatkan PIC yang belum mengisi realisasi.'],
-                    [$cycle['input_day'] ?? 5, 'Input realisasi', 'Kepala unit & PIC mengisi angka KPI dan progres inisiatif.'],
-                    [$cycle['verify_day'] ?? 7, 'Verifikasi', 'Keuangan memeriksa angka dan serapan anggaran.'],
-                    [$cycle['approve_day'] ?? 8, 'Persetujuan', 'Direksi menyetujui; skor dan status terkunci.'],
-                    [$cycle['meeting_day'] ?? 10, 'Rapat tinjauan', 'Bahas yang merah, catat temuan, tetapkan tindakan korektif.'],
+                    [$cycle['input_day'] ?? 5, 'Input realisasi', 'Unit kerja mengisi realisasi Indikator Kinerja, dokumen pendukung, dan progres inisiatif.'],
+                    [$cycle['verify_day'] ?? 7, 'Verifikasi', 'Keuangan/SPI memverifikasi angka (hasil verifikasi internal, Pasal 10).'],
+                    [$cycle['approve_day'] ?? 8, 'Persetujuan', 'Pemimpin BLU menyetujui; capaian dan status terkunci.'],
+                    [$cycle['meeting_day'] ?? 10, 'Rapat tinjauan', 'Bahas yang merah dan di bawah 65%, lalu kirim laporan capaian ke DJPb & Pembina Teknis.'],
                 ] as [$day, $t, $d])
                     <li><span class="l-day">Tgl {{ $day }}</span><b>{{ $t }}</b><span>{{ $d }}</span></li>
                 @endforeach
             </ol>
             <div class="l-grid l-grid-3 l-gap-top">
                 @foreach ([
-                    ['Dewan Komisaris', ['Buka Beranda dan Peta Strategi untuk gambaran satu halaman.', 'Baca Laporan bulanan dan catatan rapat tinjauan.', 'Pantau temuan penting sampai ditutup.']],
-                    ['Direksi', ['Pantau Pusat Kendali: KPI kritis, data terlambat, inisiatif berisiko.', 'Setujui realisasi bulanan yang sudah diverifikasi.', 'Pimpin rapat tinjauan dan tetapkan tindakan korektif.']],
-                    ['Tim Strategi', ['Isi lingkungan strategis dan SWOT–TOWS.', 'Susun sasaran, Peta Strategi, kamus KPI, dan target.', 'Impor data dari Excel bila sudah punya rencana kerja.']],
-                    ['Keuangan', ['Verifikasi angka realisasi KPI keuangan.', 'Catat anggaran dan serapan setiap inisiatif.', 'Kembalikan angka yang tidak sesuai beserta catatannya.']],
-                    ['Kepala Unit & PIC', ['Lihat tugas di Beranda setiap awal bulan.', 'Input realisasi KPI dan aktivitas inisiatif.', 'Kerjakan tindakan korektif yang ditugaskan.']],
-                    ['Admin', ['Buat perusahaan dan perioda analisis.', 'Undang pengguna dan atur peran per perusahaan.', 'Periksa jejak audit bila diperlukan.']],
+                    ['Dewan Pengawas', ['Buka Beranda dan Peta Strategi untuk gambaran satu halaman.', 'Pantau Capaian & Insentif setiap triwulan.', 'Pantau temuan penting sampai ditutup.']],
+                    ['Pemimpin BLU', ['Pantau Pusat Kendali & Capaian: IK di bawah 65%, tenggat laporan.', 'Setujui realisasi yang sudah diverifikasi.', 'Tanda tangani Kontrak Kinerja, perubahan, dan surat pernyataan.']],
+                    ['Perencanaan', ['Isi lingkungan strategis dan SWOT–TOWS.', 'Susun Indikator Kinerja, trajektori, dan Definisi Operasional.', 'Susun usulan Kontrak Kinerja dan perubahannya.']],
+                    ['Keuangan & SPI', ['Verifikasi realisasi IK aspek keuangan (PNBP, EBITDA).', 'Catat anggaran dan serapan setiap inisiatif.', 'Kembalikan angka yang tidak sesuai beserta catatannya.']],
+                    ['Unit Kerja & Fakultas', ['Lihat tugas di Beranda setiap awal bulan.', 'Input realisasi IK beserta dokumen pendukung.', 'Kerjakan tindakan korektif yang ditugaskan.']],
+                    ['Admin', ['Buat satker BLU dan perioda.', 'Undang pengguna dan atur peran per satker.', 'Periksa jejak audit bila diperlukan.']],
                 ] as [$role, $steps])
                     <div class="l-card l-role">
                         <h3>{{ $role }}</h3>
@@ -171,7 +171,7 @@
             <div class="l-actions l-gap-top">
                 <a href="{{ $guest(['ke' => 'panduan']) }}" class="l-btn l-btn-primary">Buka Panduan Pengguna lengkap</a>
                 <a href="{{ $guest(['ke' => 'implementasi']) }}" class="l-btn">Panduan Implementasi</a>
-                <a href="{{ $guest(['ke' => 'kenali']) }}" class="l-btn">Kenali Ruci BSC</a>
+                <a href="{{ $guest(['ke' => 'kenali']) }}" class="l-btn">Kenali Ruci BSC BLU</a>
             </div>
             <p class="l-note">Panduan lengkap dengan tangkapan layar terbuka di dalam aplikasi sebagai Tamu.</p>
         </div>
@@ -183,8 +183,8 @@
             <div class="l-cta">
                 <div>
                     <span class="l-eyebrow">Workshop</span>
-                    <h2>Kenali Ruci BSC dalam satu hari.</h2>
-                    <p>Workshop untuk Komisaris, Direksi, dan tim strategi: dari Peta Strategi sampai rapat tinjauan, memakai studi kasus perusahaan di atas.</p>
+                    <h2>Kenali Ruci BSC BLU dalam satu hari.</h2>
+                    <p>Workshop untuk Pemimpin BLU, Pejabat Pengelola, Dewan Pengawas, dan tim perencanaan: dari Peta Strategi sampai Kontrak Kinerja dan laporan capaian, memakai studi kasus di atas.</p>
                 </div>
                 <div class="l-actions">
                     @if ($workshopUrl)
@@ -201,11 +201,11 @@
         <div class="l-wrap l-narrow">
             <h2>Tanya jawab</h2>
             @foreach ([
-                ['Apakah data demo ini data resmi perusahaan?', 'Bukan. Data demo disusun untuk pembelajaran dan secara garis besar mengacu pada laporan tahunan perusahaan terkait. Target, rincian bulanan, dan data tahun berjalan adalah simulasi.'],
-                ['Apa yang bisa dilakukan sebagai Tamu?', 'Melihat semua menu dan laporan, berpindah perusahaan dan perioda. Tamu tidak bisa mengubah atau menghapus data.'],
-                ['Apakah bisa dipakai untuk BUMN dan grup usaha?', 'Bisa. Satu instalasi menampung banyak perusahaan dengan hak akses per perusahaan dan per peran, termasuk peran Dewan Komisaris.'],
-                ['Bagaimana memulai dengan data sendiri?', 'Admin membuat perusahaan dan perioda, lalu Tim Strategi mengisi atau mengimpor sasaran, KPI, dan target dari Excel. Ikuti Panduan Implementasi.'],
-                ['Di mana Ruci BSC dipasang?', 'Di server atau hosting milik Anda sendiri (misalnya cPanel), sehingga data tetap berada di bawah kendali perusahaan.'],
+                ['Apakah data demo ini data resmi UIN Sunan Kalijaga?', 'Bukan. Data demo hanya untuk keperluan memaksimalkan penyajian fitur-fitur perangkat lunak. Sebagian angka 2025 mengacu pada LK BLU Audited 2025, Perjanjian Kinerja 2025, dan RSB 2020–2024; Kontrak Kinerja, rincian triwulanan, dan data 2026 adalah simulasi. Nama pejabat sengaja tidak dipakai.'],
+                ['Apa yang bisa dilakukan sebagai Tamu?', 'Melihat semua menu, Kontrak Kinerja, dan laporan, serta berpindah perioda. Tamu tidak bisa mengubah atau menghapus data.'],
+                ['Apakah cocok untuk BLU rumah sakit atau BLU lainnya?', 'Bisa. Aspek layanan, keuangan, dan kebijakan/penugasan berlaku untuk semua rumpun BLU. Satu instalasi menampung banyak satker dengan hak akses per satker dan per peran, termasuk Dewan Pengawas.'],
+                ['Bagaimana memulai dengan data sendiri?', 'Admin membuat satker BLU dan perioda, lalu Perencanaan mengisi atau mengimpor sasaran, Indikator Kinerja, dan target dari Excel, kemudian menyusun Kontrak Kinerja. Ikuti Panduan Implementasi.'],
+                ['Di mana Ruci BSC BLU dipasang?', 'Di server atau hosting milik satker sendiri (misalnya cPanel), sehingga data tetap berada di bawah kendali BLU.'],
             ] as [$q, $a])
                 <details class="l-faq"><summary>{{ $q }}</summary><p>{{ $a }}</p></details>
             @endforeach
@@ -225,8 +225,8 @@
 
 <footer class="l-foot">
     <div class="l-wrap">
-        <p><b>Ruci BSC</b> · Rucisoft</p>
-        <p class="l-foot-warn"><b>DATA DEMO:</b> seluruh data perusahaan contoh di situs ini disusun untuk pembelajaran dan secara garis besar mengacu pada laporan tahunan masing-masing perusahaan; selebihnya simulasi. Nama perusahaan dipakai sebagai studi kasus, bukan kerja sama atau dukungan.</p>
+        <p><b>Ruci BSC BLU</b> · Rucisoft</p>
+        <p class="l-foot-warn"><b>DATA DEMO:</b> hanya untuk keperluan memaksimalkan penyajian fitur-fitur perangkat lunak. Sebagian angka 2025 mengacu pada dokumen publik UIN Sunan Kalijaga (LK BLU Audited 2025, Perjanjian Kinerja 2025, RSB 2020–2024); selebihnya simulasi dan proyeksi. Nama satker dipakai sebagai studi kasus, bukan kerja sama atau dukungan, dan bukan data resmi UIN Sunan Kalijaga, Kementerian Agama, maupun Kementerian Keuangan.</p>
     </div>
 </footer>
 </body>

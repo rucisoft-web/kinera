@@ -5,7 +5,7 @@ namespace App\Filament\Pages;
 use App\Support\Terms;
 use Filament\Pages\Page;
 
-/** Penjelasan Ruci BSC untuk Dewan Komisaris, Direksi, dan pemilik usaha, dengan ajakan ikut Workshop. */
+/** Penjelasan Ruci BSC BLU untuk Pemimpin BLU, Pejabat Pengelola, dan Dewan Pengawas, dengan ajakan ikut Workshop. */
 class KenaliRuciBsc extends Page
 {
     protected static ?string $title = 'Kenali Ruci BSC';
@@ -35,9 +35,9 @@ class KenaliRuciBsc extends Page
             'workshopUrl' => config('dhastram.workshop_url'),
             'workshopContact' => config('dhastram.workshop_contact'),
             'cycle' => [
-                ['Tgl '.$c['reminder_day'], 'Pengingat', 'Sistem mengingatkan setiap pemilik KPI yang realisasinya belum masuk.'],
-                ['Tgl '.$c['input_day'], 'Input', 'Pemilik KPI mengisi realisasi bulan lalu beserta bukti dan penjelasannya.'],
-                ['Tgl '.$c['verify_day'], 'Verifikasi', 'Keuangan mencocokkan angka KPI keuangan dengan laporan keuangan.'],
+                ['Tgl '.$c['reminder_day'], 'Pengingat', 'Sistem mengingatkan setiap penanggung jawab IK yang realisasinya belum masuk.'],
+                ['Tgl '.$c['input_day'], 'Input', 'Penanggung jawab IK mengisi realisasi bulan lalu beserta bukti dan penjelasannya.'],
+                ['Tgl '.$c['verify_day'], 'Verifikasi', 'Keuangan mencocokkan angka IK aspek keuangan dengan laporan keuangan.'],
                 ['Tgl '.$c['approve_day'], 'Persetujuan', 'Pimpinan menyetujui; angka terkunci dan skor dihitung ulang otomatis.'],
                 ['Tgl '.$c['meeting_day'], 'Rapat', 'Rapat manajemen membahas sasaran merah/kuning, memutuskan tindakan korektif.'],
             ],

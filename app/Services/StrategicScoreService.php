@@ -6,7 +6,7 @@ use App\Models\StrategicObjective;
 use App\Support\Terms;
 use Illuminate\Support\Collection;
 
-/** Capaian sasaran tertimbang dari bobot KPI, capaian perspektif, dan skor strategis. */
+/** Capaian sasaran tertimbang dari bobot IK, capaian perspektif, dan skor strategis. */
 class StrategicScoreService
 {
     public function __construct(protected KpiScoringService $kpiScoring) {}

@@ -1,5 +1,5 @@
 @php
-    $img = fn (string $n) => asset('images/kenali/'.$n.'.jpg').'?v=1';
+    $img = fn (string $n) => asset('images/kenali/'.$n.'.jpg').'?v=2';
     $p = $perspectives;
 
     // Diagram peta strategi: 4 lapis perspektif, panah sebab-akibat dari bawah ke atas
@@ -24,9 +24,9 @@
     {{-- ===== Pembuka ===== --}}
     <section class="kenali-hero">
         <div class="kenali-hero-text">
-            <span class="kenali-eyebrow">Untuk Dewan Komisaris, Direksi, dan Pemilik Usaha</span>
+            <span class="kenali-eyebrow">Untuk Pemimpin BLU, Pejabat Pengelola, dan Dewan Pengawas</span>
             <h1>Strategi yang dipahami semua orang, dijalankan setiap bulan.</h1>
-            <p>Ruci BSC adalah perangkat manajemen strategi berbasis <b>Balanced Scorecard</b>. Ruci BSC membantu pimpinan <b>mengomunikasikan strategi</b> ke seluruh organisasi dan <b>menerjemahkannya menjadi rencana aksi operasional</b>: sasaran, KPI, target bulanan, inisiatif, anggaran, dan penanggung jawab yang dipantau dalam satu tempat.</p>
+            <p>Ruci BSC adalah perangkat manajemen strategi berbasis <b>Balanced Scorecard</b>. Ruci BSC membantu pimpinan <b>mengomunikasikan strategi</b> ke seluruh organisasi dan <b>menerjemahkannya menjadi rencana aksi operasional</b>: sasaran, IK, target bulanan, inisiatif, anggaran, dan penanggung jawab yang dipantau dalam satu tempat.</p>
             <div class="kenali-actions">
                 @if ($workshopUrl)
                     <a href="{{ $workshopUrl }}" target="_blank" rel="noopener" class="arah-btn arah-btn-primary kenali-btn-lg">Daftar Workshop Ruci BSC</a>
@@ -35,7 +35,7 @@
             </div>
         </div>
         <a class="kenali-shot kenali-hero-shot" href="{{ $img('peta-strategi') }}" target="_blank" rel="noopener">
-            <img src="{{ $img('peta-strategi') }}" alt="Peta Strategi Hermina di Ruci BSC" loading="eager">
+            <img src="{{ $img('peta-strategi') }}" alt="Peta Strategi UIN Sunan Kalijaga (data demo) di Ruci BSC BLU" loading="eager">
         </a>
     </section>
 
@@ -45,8 +45,8 @@
         <p class="kenali-lead">Kaplan &amp; Norton, perancang Balanced Scorecard, menemukan empat hambatan klasik pelaksanaan strategi. Ruci BSC dirancang untuk menjawab keempatnya.</p>
         <div class="arah-grid arah-grid-4">
             @foreach ([
-                ['95%', 'karyawan tidak memahami strategi perusahaannya', 'Hambatan visi', 'Peta Strategi satu halaman yang bisa dibaca semua orang, dari Komisaris sampai kepala unit.'],
-                ['75%', 'manajer tidak memiliki insentif yang terkait dengan strategi', 'Hambatan manusia', 'Setiap KPI punya pemilik, target bulanan, dan skor yang terlihat jelas.'],
+                ['95%', 'pegawai tidak memahami strategi perusahaannya', 'Hambatan visi', 'Peta Strategi satu halaman yang bisa dibaca semua orang, dari Dewan Pengawas sampai kepala unit.'],
+                ['75%', 'manajer tidak memiliki insentif yang terkait dengan strategi', 'Hambatan manusia', 'Setiap IK punya pemilik, target bulanan, dan skor yang terlihat jelas.'],
                 ['60%', 'organisasi tidak mengaitkan anggaran dengan strategi', 'Hambatan sumber daya', 'Setiap inisiatif terhubung ke sasaran, lengkap dengan anggaran dan serapannya.'],
                 ['85%', 'tim eksekutif membahas strategi kurang dari 1 jam per bulan', 'Hambatan manajemen', 'Pusat Kendali dan ritme rapat bulanan membuat strategi selalu masuk agenda.'],
             ] as [$num, $fact, $label, $answer])
@@ -64,13 +64,13 @@
     {{-- ===== Diagram 1: strategi ke aksi ===== --}}
     <section class="kenali-section">
         <h2>Dari strategi menjadi rencana aksi</h2>
-        <p class="kenali-lead">Ruci BSC menurunkan arah besar perusahaan, selangkah demi selangkah, sampai menjadi pekerjaan nyata yang punya tanggal, anggaran, dan penanggung jawab.</p>
+        <p class="kenali-lead">Ruci BSC menurunkan arah besar satker BLU, selangkah demi selangkah, sampai menjadi pekerjaan nyata yang punya tanggal, anggaran, dan penanggung jawab.</p>
         <div class="kenali-cascade">
             @foreach ([
-                ['Visi & Misi', 'Arah besar perusahaan', 'Jati Diri'],
+                ['Visi & Misi', 'Arah besar satker BLU', 'Jati Diri'],
                 ['Tema strategis', '3–5 fokus utama', 'Tema Strategis'],
                 ['Sasaran strategis', 'Dalam 4 perspektif BSC', 'Peta Strategi'],
-                ['KPI & target', 'Ukuran, pemilik, target bulanan', 'KPI'],
+                ['IK & target', 'Ukuran, pemilik, target bulanan', 'IK'],
                 ['Inisiatif', 'Proyek, anggaran, PIC', 'Portofolio Inisiatif'],
                 ['Aktivitas & milestone', 'Rencana aksi bertanggal', 'Aktivitas Inisiatif'],
             ] as $i => [$t, $d, $where])
@@ -84,7 +84,7 @@
         </div>
         <div class="kenali-loop">
             <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3M18 3v4h-4M6 21v-4h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <div><b>Umpan balik setiap bulan:</b> realisasi KPI masuk, skor hijau/kuning/merah dihitung otomatis, rapat tinjauan memutuskan <b>temuan</b> dan <b>tindakan korektif</b>, lalu inisiatif disesuaikan. Strategi tidak berhenti di dokumen, tetapi terus dikoreksi.</div>
+            <div><b>Umpan balik setiap bulan:</b> realisasi IK masuk, skor hijau/kuning/merah dihitung otomatis, rapat tinjauan memutuskan <b>temuan</b> dan <b>tindakan korektif</b>, lalu inisiatif disesuaikan. Strategi tidak berhenti di dokumen, tetapi terus dikoreksi.</div>
         </div>
     </section>
 
@@ -116,7 +116,7 @@
             <div class="kenali-explain">
                 <p>Peta Strategi menunjukkan <b>hubungan sebab-akibat</b>: SDM dan sistem yang kuat memperbaiki proses, proses yang baik memuaskan pelanggan, dan pelanggan yang setia menghasilkan kinerja keuangan.</p>
                 <ul>
-                    <li><span class="arah-dot" style="background: {{ $p['keuangan']['color'] }}"></span><b>{{ $p['keuangan']['label'] }}</b>: hasil yang diharapkan pemegang saham.</li>
+                    <li><span class="arah-dot" style="background: {{ $p['keuangan']['color'] }}"></span><b>{{ $p['keuangan']['label'] }}</b>: hasil yang diharapkan pemangku kepentingan.</li>
                     <li><span class="arah-dot" style="background: {{ $p['pelanggan']['color'] }}"></span><b>{{ $p['pelanggan']['label'] }}</b>: nilai yang dijanjikan kepada pelanggan.</li>
                     <li><span class="arah-dot" style="background: {{ $p['proses']['color'] }}"></span><b>{{ $p['proses']['label'] }}</b>: proses yang harus unggul.</li>
                     <li><span class="arah-dot" style="background: {{ $p['sdm']['color'] }}"></span><b>{{ $p['sdm']['label'] }}</b>: orang, sistem, dan budaya penggerak.</li>
@@ -159,7 +159,7 @@
                         <li><b>{{ $day }} · {{ $label }}.</b> {{ $desc }}</li>
                     @endforeach
                 </ol>
-                <p>Setiap perubahan setelah disetujui tercatat di <b>log audit</b>. Dewan Komisaris bisa memberi <b>catatan pengawasan</b> dan membuat temuan langsung dari hasil tinjauan.</p>
+                <p>Setiap perubahan setelah disetujui tercatat di <b>log audit</b>. Dewan Pengawas bisa memberi <b>catatan pengawasan</b> dan membuat temuan langsung dari hasil tinjauan.</p>
             </div>
         </div>
     </section>
@@ -169,12 +169,12 @@
         <h2>Satu sumber kebenaran, sesuai peran masing-masing</h2>
         <div class="arah-grid arah-grid-3">
             @foreach ([
-                ['Dewan Komisaris', 'Mengawasi tanpa menunggu laporan tebal', ['Skor strategis dan status setiap sasaran kapan saja', 'Catatan pengawasan dan temuan pada setiap tinjauan', 'Jejak audit atas setiap koreksi angka']],
-                ['Direksi', 'Mengarahkan dengan data yang sama', ['Pusat Kendali: KPI merah, inisiatif terlambat, temuan terbuka', 'Persetujuan realisasi bulanan dalam beberapa klik', 'Portofolio inisiatif: mana dipercepat, mana ditinjau ulang']],
-                ['Pemilik / Pemegang Saham', 'Melihat apakah strategi menghasilkan nilai', ['Hubungan jelas dari inisiatif ke hasil keuangan', 'Anggaran inisiatif dan serapannya per sasaran', 'Banyak perusahaan dalam satu aplikasi (holding/grup)']],
+                ['Dewan Pengawas', 'Mengawasi tanpa menunggu laporan tebal', ['Skor strategis dan status setiap sasaran kapan saja', 'Catatan pengawasan dan temuan pada setiap tinjauan', 'Jejak audit atas setiap koreksi angka']],
+                ['Pejabat Pengelola', 'Mengarahkan dengan data yang sama', ['Pusat Kendali: IK merah, inisiatif terlambat, temuan terbuka', 'Persetujuan realisasi bulanan dalam beberapa klik', 'Portofolio inisiatif: mana dipercepat, mana ditinjau ulang']],
+                ['Pembina Teknis & DJPb', 'Menerima laporan capaian yang lengkap dan tepat waktu', ['Kontrak Kinerja format Lampiran I beserta Definisi Operasional', 'Perhitungan capaian format Lampiran VI setiap triwulan', 'Uji syarat insentif Pasal 14 ayat (4) yang transparan']],
                 ['Kantor Strategi / Corporate Planning', 'Mengelola siklus tanpa spreadsheet berserakan', ['Impor & ekspor Excel untuk seluruh perangkat BSC', 'Pengingat otomatis dan status kelengkapan data', 'Laporan siap cetak untuk rapat']],
-                ['Kepala Divisi & Unit', 'Tahu persis kontribusinya', ['Daftar KPI dan aktivitas miliknya di Beranda', 'Input realisasi dengan bukti dan penjelasan', 'Tindakan korektif dengan tenggat yang jelas']],
-                ['Seluruh Karyawan', 'Memahami ke mana perusahaan bergerak', ['Peta strategi yang mudah dibaca', 'Bahasa yang sama dari rapat direksi sampai lapangan', 'Kerja harian yang terhubung ke sasaran perusahaan']],
+                ['Kepala Divisi & Unit', 'Tahu persis kontribusinya', ['Daftar IK dan aktivitas miliknya di Beranda', 'Input realisasi dengan bukti dan penjelasan', 'Tindakan korektif dengan tenggat yang jelas']],
+                ['Seluruh Pegawai', 'Memahami ke mana satker BLU bergerak', ['Peta strategi yang mudah dibaca', 'Bahasa yang sama dari rapat pimpinan sampai lapangan', 'Kerja harian yang terhubung ke sasaran satker BLU']],
             ] as [$who, $tag, $items])
                 <div class="arah-card kenali-role">
                     <h3>{{ $who }}</h3>
@@ -190,13 +190,15 @@
     {{-- ===== Tangkapan layar ===== --}}
     <section class="kenali-section" id="lihat-langsung">
         <h2>Lihat langsung</h2>
-        <p class="kenali-lead">Tampilan berikut diambil dari data demo PT Medikaloka Hermina Tbk dan PT Diamond Food Indonesia Tbk yang tersedia di situs ini. Klik gambar untuk memperbesar.</p>
+        <p class="kenali-lead">Tampilan berikut diambil dari data demo UIN Sunan Kalijaga Yogyakarta yang tersedia di situs ini (hanya untuk keperluan memaksimalkan penyajian fitur-fitur perangkat lunak). Klik gambar untuk memperbesar.</p>
         <div class="kenali-gallery">
             @foreach ([
-                ['pusat-kendali', 'Pusat Kendali Eksekutif', 'Skor strategis, status semua KPI, inisiatif terlambat, dan temuan terbuka dalam satu layar. Bahan utama rapat Direksi.'],
+                ['pusat-kendali', 'Pusat Kendali Eksekutif', 'Skor strategis, status semua IK, inisiatif terlambat, dan temuan terbuka dalam satu layar. Bahan utama rapat Pejabat Pengelola.'],
+                ['kontrak-kinerja', 'Kontrak Kinerja Pemimpin BLU', 'Indikator aspek layanan & keuangan, target trajektori triwulanan, capaian maksimum, dan Definisi Operasional; versi awal, adendum, dan perubahan tercatat. Cetak format Lampiran I, II, IV, dan VI PER-6/PB/2025.'],
+                ['capaian-insentif', 'Capaian & syarat insentif', 'Perhitungan capaian per triwulan, peringatan indikator di bawah 65%, uji syarat insentif Pasal 14 ayat (4), dan kalender tenggat laporan.'],
                 ['beranda', 'Beranda setiap pengguna', 'Setiap orang langsung melihat ringkasan kinerja dan tugasnya: realisasi yang harus diisi, persetujuan yang menunggu.'],
                 ['portofolio', 'Portofolio Inisiatif Strategis', 'Inisiatif dipetakan menurut nilai dan upaya, lengkap dengan progres, anggaran, serapan, dan tanda terlambat.'],
-                ['laporan', 'Kartu skor & laporan', 'Kartu skor KPI bulanan dan YTD, capaian per perspektif, status inisiatif dan temuan. Siap unduh Excel atau cetak.'],
+                ['laporan', 'Kartu skor & laporan', 'Kartu skor Indikator Kinerja bulanan dan YTD, capaian per perspektif, status inisiatif dan temuan. Siap unduh Excel atau cetak.'],
                 ['alur-kerja', 'Alur kerja yang terukur', 'Kelengkapan siklus bulanan terpantau: berapa realisasi terisi, terverifikasi, dan sudah disetujui Pimpinan.'],
             ] as [$file, $title, $desc])
                 <figure class="arah-card kenali-figure">
@@ -206,7 +208,7 @@
             @endforeach
             <figure class="arah-card kenali-figure kenali-phone">
                 <a class="kenali-shot" href="{{ $img('hp-pusat-kendali') }}" target="_blank" rel="noopener"><img src="{{ $img('hp-pusat-kendali') }}" alt="Pusat Kendali di ponsel" loading="lazy"></a>
-                <figcaption><b>Di ponsel pun bisa</b><span>Komisaris dan Direksi dapat memantau kinerja dari mana saja, tanpa aplikasi tambahan.</span></figcaption>
+                <figcaption><b>Di ponsel pun bisa</b><span>Dewan Pengawas dan Pejabat Pengelola dapat memantau kinerja dari mana saja, tanpa aplikasi tambahan.</span></figcaption>
             </figure>
         </div>
     </section>
@@ -214,9 +216,9 @@
     {{-- ===== Studi kasus ===== --}}
     <section class="kenali-section" id="studi-kasus">
         <span class="kenali-eyebrow">Bahan ajar</span>
-        <h2>Empat belas studi kasus siap dipelajari</h2>
-        <p class="kenali-lead">Setiap perusahaan contoh berisi perioda 2025 (ditutup) dan 2026 (berjalan): lingkungan strategis, SWOT–TOWS, Peta Strategi, kamus KPI, inisiatif, rapat tinjauan, temuan, dan tindak lanjutnya. Pilih perusahaan lewat kotak konteks di kiri atas.</p>
-        <div class="arah-demo-banner" role="note"><span class="arah-demo-tag">Data demo</span><span>Seluruh data disusun untuk pembelajaran dan secara garis besar mengacu pada laporan tahunan 2025 masing-masing perusahaan. Target, rincian bulanan, data 2026, dan sebagian indikator operasional adalah simulasi. Bukan data resmi perusahaan dan tidak untuk keputusan investasi.</span></div>
+        <h2>Studi kasus satker BLU siap dipelajari</h2>
+        <p class="kenali-lead">Satker BLU contoh berisi perioda 2025 (ditutup) dan 2026 (berjalan, proyeksi): lingkungan strategis, SWOT–TOWS, Peta Strategi, Indikator Kinerja beserta Definisi Operasional, Kontrak Kinerja dan perubahannya, capaian & syarat insentif, inisiatif, rapat tinjauan, temuan, dan tindak lanjutnya.</p>
+        <div class="arah-demo-banner" role="note"><span class="arah-demo-tag">Data demo</span><span>Hanya data demo untuk keperluan memaksimalkan penyajian fitur-fitur perangkat lunak. Angka 2025 sebagian mengacu pada LK BLU Audited 2025, Perjanjian Kinerja 2025, dan RSB 2020–2024 UIN Sunan Kalijaga; rincian triwulanan, Kontrak Kinerja, dan data 2026 (proyeksi) adalah simulasi. Bukan data resmi UIN Sunan Kalijaga, Kementerian Agama, maupun Kementerian Keuangan.</span></div>
         <div class="kenali-cases">
             @foreach (\App\Support\DemoCatalog::CASES as [$code, $name, $sector, $lesson])
                 <div class="arah-card kenali-case">
@@ -237,7 +239,7 @@
             @foreach ([
                 'Membaca lingkungan: PESTEL, kekuatan industri, pasar, pesaing, regulasi, SWOT dan TOWS.',
                 'Menegaskan visi, misi, nilai inti, dan kapabilitas organisasi.',
-                'Menetapkan tema, sasaran, KPI, target, dan memantau realisasi.',
+                'Menetapkan tema, sasaran, IK, target, dan memantau realisasi.',
                 'Menjalankan inisiatif, anggaran, temuan, dan tindakan korektif.',
                 'Menilai kematangan dan melembagakan praktik yang berhasil.',
             ] as $i => $desc)
@@ -255,12 +257,12 @@
         <div>
             <span class="kenali-eyebrow">Workshop sehari · setiap Minggu pertama awal bulan</span>
             <h2>Kenali Ruci BSC dalam satu hari</h2>
-            <p>Kelas praktis 08.00–16.30 WIB untuk pemilik usaha, Komisaris, Direksi, dan tim perencanaan. Workshop berikutnya: <b style="color:#fff">{{ \App\Filament\Pages\WorkshopRuciBsc::nextDates(1)[0]->locale('id')->translatedFormat('l, j F Y') }}</b>.</p>
+            <p>Kelas praktis 08.00–16.30 WIB untuk Pemimpin BLU, Pejabat Pengelola, Dewan Pengawas, dan tim perencanaan. Workshop berikutnya: <b style="color:#fff">{{ \App\Filament\Pages\WorkshopRuciBsc::nextDates(1)[0]->locale('id')->translatedFormat('l, j F Y') }}</b>.</p>
             <div class="kenali-take">
                 <b>Yang Anda bawa pulang</b>
                 <ul>
                     <li>Pemahaman utuh konsep Balanced Scorecard dan siklus kinerja bulanan</li>
-                    <li>Draf Peta Strategi dan contoh kamus KPI hasil latihan kelompok</li>
+                    <li>Draf Peta Strategi dan contoh kamus Indikator Kinerja hasil latihan kelompok</li>
                     <li>Daftar inisiatif prioritas di matriks nilai–upaya</li>
                     <li>Pengalaman memakai Ruci BSC dan simulasi rapat bulanan</li>
                     <li>Paket materi, template Excel, rencana aksi 30 hari, dan sertifikat</li>
@@ -280,7 +282,7 @@
             <li><b>Mengapa strategi gagal dijalankan</b><span>Konsep Balanced Scorecard dan lima fase Ruci BSC</span></li>
             <li><b>Membaca lingkungan &amp; jati diri</b><span>PESTEL, SWOT, TOWS, tema strategis</span></li>
             <li><b>Menyusun Peta Strategi</b><span>Sasaran empat perspektif dan hubungan sebab-akibat</span></li>
-            <li><b>KPI &amp; target yang baik</b><span>SMART, kamus KPI, target bulanan, skor</span></li>
+            <li><b>IK &amp; target yang baik</b><span>SMART, kamus Indikator Kinerja, target bulanan, skor</span></li>
             <li><b>Dari strategi ke aksi</b><span>Inisiatif, anggaran, portofolio nilai–upaya</span></li>
             <li><b>Praktik Ruci BSC</b><span>Pusat Kendali dan simulasi rapat bulanan</span></li>
         </ol>

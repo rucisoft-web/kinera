@@ -5,7 +5,7 @@ namespace App\Support;
 use App\Models\Company;
 use Illuminate\Support\Facades\DB;
 
-/** Membuat kode dokumen per perusahaan/perioda, mis. OBJ/DFI/2026/001 */
+/** Membuat kode dokumen per satker BLU/perioda, mis. OBJ/UINSUKA/2026/001 */
 class DhastramSequence
 {
     public static function next(string $prefix, ?int $companyId = null, ?int $periodId = null, ?int $year = null): string

@@ -25,7 +25,7 @@ class GuestModeTest extends TestCase
     {
         config(['dhastram.guest_login' => true]);
         [$other] = $this->company('AAA');
-        [$dfi, $period] = $this->company('DFI');
+        [$dfi, $period] = $this->company('UINSUKA');
 
         $this->get('/admin/login')->assertOk()->assertSee('Masuk sebagai Tamu');
         $this->get('/masuk-tamu')->assertRedirect('/admin');
@@ -49,7 +49,7 @@ class GuestModeTest extends TestCase
     public function test_guest_can_view_but_never_change_data(): void
     {
         config(['dhastram.guest_login' => true]);
-        [$company, $period] = $this->company('DFI');
+        [$company, $period] = $this->company('UINSUKA');
         $guest = GuestMode::user();
         $this->actingAs($guest);
         $this->useContext($period);
@@ -66,7 +66,7 @@ class GuestModeTest extends TestCase
         $this->assertBlocked(fn () => Company::create(['code' => 'XXX', 'name' => 'Baru', 'is_active' => true]));
         $this->assertBlocked(fn () => $company->delete());
         $this->assertBlocked(fn () => $guest->update(['name' => 'Ganti nama']));
-        $this->assertSame('PT DFI', $company->fresh()->name);
+        $this->assertSame('PT UINSUKA', $company->fresh()->name);
 
         // pemeliharaan sesi tetap jalan
         $guest->refresh()->forceFill(['remember_token' => 'abc'])->save();
@@ -76,30 +76,30 @@ class GuestModeTest extends TestCase
     public function test_landing_page_offers_current_year_demos_and_guides(): void
     {
         config(['dhastram.guest_login' => true]);
-        [$dfi] = $this->company('DFI');
-        [$bca, $bcaNow] = $this->company('BBCA');
-        $dfi->forceFill(['is_demo' => true])->save();
-        $bca->forceFill(['is_demo' => true])->save();
-        \App\Models\AnalysisPeriod::create(['company_id' => $bca->id, 'code' => '2025', 'name' => 'Tahun 2025', 'year' => 2025,
+        [$other] = $this->company('AAA');
+        [$uin, $uinNow] = $this->company('UINSUKA');
+        $uin->forceFill(['is_demo' => true])->save();
+        \App\Models\AnalysisPeriod::create(['company_id' => $uin->id, 'code' => '2025', 'name' => 'Tahun 2025', 'year' => 2025,
             'start_date' => '2025-01-01', 'end_date' => '2025-12-31', 'status' => 'ditutup', 'is_active' => false]);
         \Illuminate\Support\Facades\Cache::flush();
 
         $this->get('/')->assertOk()
-            ->assertSee('Kenapa perlu Ruci BSC')
+            ->assertSee('Kenapa perlu Ruci BSC BLU')
             ->assertSee('Data demo tahun berjalan 2026')
             ->assertSee('Panduan Ruci BSC')
-            ->assertSee('Bank Central Asia')
-            ->assertSee(route('arah.guest', ['perusahaan' => 'BBCA']), false);
-        $this->get('/admin/login')->assertOk()->assertSee('Pilih perusahaan contoh')->assertSee('Bank Central Asia (BBCA)');
+            ->assertSee('UIN Sunan Kalijaga Yogyakarta')
+            ->assertSee('memaksimalkan penyajian fitur')
+            ->assertSee(route('arah.guest', ['perusahaan' => 'UINSUKA']), false);
+        $this->get('/admin/login')->assertOk()->assertSee('Pilih satker BLU contoh')->assertSee('UIN Sunan Kalijaga Yogyakarta (UINSUKA)');
 
-        $this->get(route('arah.guest', ['perusahaan' => 'bbca']))->assertRedirect('/admin');
-        $this->assertSame($bca->id, session('dhastram.company_id'));
-        $this->assertSame($bcaNow->id, session('dhastram.period_id'));
+        $this->get(route('arah.guest', ['perusahaan' => 'uinsuka']))->assertRedirect('/admin');
+        $this->assertSame($uin->id, session('dhastram.company_id'));
+        $this->assertSame($uinNow->id, session('dhastram.period_id'));
 
-        // kode yang bukan perusahaan contoh kembali ke perusahaan pembuka
+        // kode yang bukan satker BLU contoh kembali ke satker pembuka
         $this->get(route('arah.guest', ['perusahaan' => 'XYZ', 'ke' => 'panduan']))
             ->assertRedirect(\App\Filament\Pages\PanduanPengguna::getUrl());
-        $this->assertSame($dfi->id, session('dhastram.company_id'));
+        $this->assertSame($uin->id, session('dhastram.company_id'));
 
         auth()->logout();
         config(['dhastram.guest_login' => false]);
@@ -109,7 +109,7 @@ class GuestModeTest extends TestCase
     public function test_kenali_link_opens_the_introduction_page(): void
     {
         config(['dhastram.guest_login' => true]);
-        $this->company('DFI');
+        $this->company('UINSUKA');
 
         $this->get('/kenali')->assertRedirect(route('arah.guest', ['ke' => 'kenali']));
         $this->get(route('arah.guest', ['ke' => 'kenali']))->assertRedirect(\App\Filament\Pages\KenaliRuciBsc::getUrl());
@@ -125,11 +125,11 @@ class GuestModeTest extends TestCase
     public function test_guide_pages_are_open_to_every_user(): void
     {
         config(['dhastram.guest_login' => true]);
-        $this->company('DFI');
+        $this->company('UINSUKA');
         $this->get('/masuk-tamu');
 
         $this->get(\App\Filament\Pages\PanduanPengguna::getUrl())->assertOk()
-            ->assertSee('Dewan Komisaris')->assertSee('Menyetujui realisasi KPI')->assertSee('images/panduan/kepala-input.jpg', false);
+            ->assertSee('Dewan Pengawas')->assertSee('Menyetujui realisasi IK')->assertSee('images/panduan/kepala-input.jpg', false);
         $this->get(\App\Filament\Pages\PanduanImplementasi::getUrl())->assertOk()
             ->assertSee('Manajemen risiko')->assertSee('Gerbang mutu')->assertSee('Steering Committee');
         $this->get(\App\Filament\Pages\WorkshopRuciBsc::getUrl())->assertOk()
@@ -148,7 +148,7 @@ class GuestModeTest extends TestCase
 
     public function test_regular_users_are_not_affected(): void
     {
-        [$company, $period] = $this->company('DFI');
+        [$company, $period] = $this->company('UINSUKA');
         $admin = $this->user('admin@dfi.test', 'company-admin', $company);
         $this->actingAs($admin);
         $this->useContext($period);

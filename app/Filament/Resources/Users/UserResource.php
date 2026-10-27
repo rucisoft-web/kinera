@@ -91,8 +91,8 @@ class UserResource extends Resource
                     ->required(fn (string $operation) => $operation === 'create')->dehydrated(fn ($state) => filled($state))
                     ->helperText('Minimal 10 karakter, huruf & angka. Pengguna wajib mengganti saat login pertama.')->visibleOn('create'),
                 Toggle::make('must_change_password')->label('Wajib ganti kata sandi saat login')->default(true),
-                // Hanya Super Admin yang mengatur akses lintas perusahaan; admin lain otomatis memakai perusahaan aktif (CreateUser).
-                Select::make('companies')->label('Akses perusahaan')->relationship('companies', 'name')->multiple()->preload()->columnSpanFull()
+                // Hanya Super Admin yang mengatur akses lintas satker BLU; admin lain otomatis memakai satker BLU aktif (CreateUser).
+                Select::make('companies')->label('Akses satker BLU')->relationship('companies', 'name')->multiple()->preload()->columnSpanFull()
                     ->visible(fn () => static::managesAllCompanies()),
             ]),
         ]);
@@ -123,7 +123,7 @@ class UserResource extends Resource
             ]);
     }
 
-    /** Admin non-Super Admin hanya melihat pengguna perusahaan yang sedang aktif. */
+    /** Admin non-Super Admin hanya melihat pengguna satker BLU yang sedang aktif. */
     public static function getEloquentQuery(): Builder
     {
         $q = parent::getEloquentQuery();
@@ -137,7 +137,7 @@ class UserResource extends Resource
             ->orWhereHas('roleAssignments', fn (Builder $r) => $r->where('company_id', $companyId)));
     }
 
-    /** Akun yang juga dipakai di perusahaan lain (atau Super Admin) hanya bisa diubah oleh Super Admin. */
+    /** Akun yang juga dipakai di satker BLU lain (atau Super Admin) hanya bisa diubah oleh Super Admin. */
     public static function canEdit(Model $record): bool
     {
         return static::canEditByPermission($record) && static::ownsUserAccount($record);

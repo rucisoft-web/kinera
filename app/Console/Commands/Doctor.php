@@ -33,7 +33,7 @@ class Doctor extends Command
         $add('Mode demo mati', ! config('dhastram.demo_enabled'));
         $add('Zona waktu Asia/Jakarta', config('app.timezone') === 'Asia/Jakarta', config('app.timezone'));
         $add('Locale id', config('app.locale') === 'id', config('app.locale'));
-        $add('Istilah (DHASTRAM_TERMS)', in_array(config('dhastram.terms'), ['umum', 'dharma'], true), config('dhastram.terms'));
+        $add('Istilah (DHASTRAM_TERMS)', in_array(config('dhastram.terms'), ['blu', 'umum', 'dharma'], true), config('dhastram.terms'));
         try {
             DB::connection()->getPdo();
             $add('Koneksi basis data', true, config('database.default').' / '.DB::connection()->getDatabaseName());
@@ -54,12 +54,12 @@ class Doctor extends Command
         }
         $add('Super Admin tersedia', User::whereHas('roles', fn ($q) => $q->where('slug', 'super-admin'))->exists(), 'php artisan dhastram:create-admin');
         $companies = Company::count();
-        $add('Perusahaan', $companies >= 1, $companies.' perusahaan ('.Company::pluck('code')->join(', ').')');
+        $add('Satker BLU', $companies >= 1, $companies.' satker BLU ('.Company::pluck('code')->join(', ').')');
         $add('Perioda aktif', AnalysisPeriod::where('is_active', true)->exists(), AnalysisPeriod::where('is_active', true)->pluck('name')->join(', '));
         $noRole = User::where('is_active', true)->whereDoesntHave('roles')->pluck('email');
         $add('Pengguna aktif punya peran', $noRole->isEmpty(), $noRole->join(', '));
         $demo = Company::where('is_demo', true)->count() + User::where('email', 'like', '%@contoh.local')->count();
-        $add('Tidak ada data contoh (wajib di produksi)', $demo === 0 || ! app()->isProduction(), $demo ? 'ada perusahaan/akun contoh → php artisan rucibsc:hapus-contoh' : '');
+        $add('Tidak ada data contoh (wajib di produksi)', $demo === 0 || ! app()->isProduction(), $demo ? 'ada satker BLU/akun contoh → php artisan rucibsc:hapus-contoh' : '');
         $add('Jadwal (cron) untuk pengingat', true, '* * * * * php artisan schedule:run');
         $this->table(['Status', 'Pemeriksaan', 'Keterangan'], $rows);
 

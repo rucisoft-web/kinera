@@ -1,6 +1,6 @@
-# Panduan Instalasi Ruci BSC Professional di Laragon
+# Panduan Instalasi Ruci BSC BLU di Laragon
 
-Lokasi program: **`C:\laragon\www\ruci-bsc`** · Alamat: **http://ruci-bsc.test/admin**
+Lokasi program: **`C:\laragon\www\bsc-blu`** · Alamat: **http://bsc-blu.test/admin**
 
 ## 1. Prasyarat
 
@@ -16,10 +16,10 @@ Lokasi program: **`C:\laragon\www\ruci-bsc`** · Alamat: **http://ruci-bsc.test/
 
 ```bat
 cd C:\laragon\www
-git clone https://github.com/rucisoft-web/ruci-bsc.git
+git clone https://github.com/rucisoft-web/bsc-blu.git
 ```
 
-Klik **Reload** pada Laragon. Laragon otomatis membuat virtual host `ruci-bsc.test` yang mengarah ke folder `public`.
+Klik **Reload** pada Laragon. Laragon otomatis membuat virtual host `bsc-blu.test` yang mengarah ke folder `public`.
 
 ## 3. Instalasi
 
@@ -28,7 +28,7 @@ Klik **Reload** pada Laragon. Laragon otomatis membuat virtual host `ruci-bsc.te
 Buka **Terminal** Laragon, lalu:
 
 ```bat
-cd C:\laragon\www\ruci-bsc
+cd C:\laragon\www\bsc-blu
 setup-laragon.bat
 ```
 
@@ -37,7 +37,7 @@ Skrip melakukan: cek PHP & ekstensi → `.env` → `composer install` (bila perl
 ### Cara B: manual
 
 ```bat
-cd C:\laragon\www\ruci-bsc
+cd C:\laragon\www\bsc-blu
 copy .env.example .env
 composer install
 php artisan key:generate
@@ -54,30 +54,30 @@ Data contoh dimuat bila `APP_ENV` bukan `production` atau `RUCI_SEED_DEMO=true` 
 
 ## 4. Masuk ke aplikasi
 
-Buka **http://ruci-bsc.test/admin**
+Buka **http://bsc-blu.test/admin**
 
 | Akun | Email | Kata sandi |
 |---|---|---|
 | Super Admin | `admin@rucibsc.local` | `Ruci@BSC2026` (atau nilai `RUCI_ADMIN_PASSWORD`) |
-| Admin Diamond Food (contoh) | `dfi.admin@contoh.local` | `Contoh-2026!` |
-| Direktur Diamond Food (contoh) | `dfi.direktur@contoh.local` | `Contoh-2026!` |
+| Admin Satker UIN Sunan Kalijaga (contoh) | `uinsuka.admin@contoh.local` | `Contoh-2026!` |
+| Rektor / Pemimpin BLU (contoh) | `uinsuka.rektor@contoh.local` | `Contoh-2026!` |
 | Admin NLP / KSB (fiktif) | `nlp.admin@contoh.local`, `ksb.admin@contoh.local` | `Contoh-2026!` |
 
 Daftar lengkap akun contoh ada di README.md. Kata sandi baru minimal 10 karakter, mengandung huruf dan angka. Login dibatasi 5 percobaan per menit.
 
-## 5. Menambah perusahaan sungguhan
+## 5. Menambah satker BLU sungguhan
 
-1. Login sebagai Super Admin › **Administrasi › Perusahaan** › tambah perusahaan, lalu buat perioda (misalnya Tahun 2026).
-2. **Pilih Perusahaan & Perioda** › pilih perusahaan baru.
+1. Login sebagai Super Admin › **Administrasi › Satker BLU** › tambah satker BLU (lengkapi identitas BLU & penandatangan), lalu buat perioda (misalnya Tahun 2026).
+2. **Pilih Satker BLU & Perioda** › pilih satker baru.
 3. **Administrasi › Import Data** › unduh template › isi di Excel › **Pratinjau** › **Proses Import**.
-4. Tambahkan admin perusahaan di **Pengguna** dengan peran *Company Admin* untuk perusahaan itu. Admin tersebut bisa menambah pengguna lain di perusahaannya sendiri.
+4. Tambahkan admin satker di **Pengguna** dengan peran *Admin Satker* untuk satker itu. Admin tersebut bisa menambah pengguna lain di satkernya sendiri.
 
 Bila data contoh tidak dibutuhkan lagi: `php artisan rucibsc:hapus-contoh`.
 
 ## 6. Pengingat otomatis (opsional di komputer lokal)
 
 - Saat uji coba: `php artisan schedule:work` (biarkan jendela terbuka).
-- Permanen di Windows: Task Scheduler › Create Task › Trigger tiap 1 menit › Action: `C:\laragon\bin\php\php-8.3.x\php.exe` dengan argumen `C:\laragon\www\ruci-bsc\artisan schedule:run`.
+- Permanen di Windows: Task Scheduler › Create Task › Trigger tiap 1 menit › Action: `C:\laragon\bin\php\php-8.3.x\php.exe` dengan argumen `C:\laragon\www\bsc-blu\artisan schedule:run`.
 - Uji manual: `php artisan rucibsc:reminders --date=2026-11-03`.
 
 ## 7. Perintah penting
@@ -87,7 +87,7 @@ Bila data contoh tidak dibutuhkan lagi: `php artisan rucibsc:hapus-contoh`.
 | `php artisan dhastram:doctor` | Pemeriksaan PHP, ekstensi, database, izin & peran |
 | `php artisan dhastram:create-admin` | Membuat Super Admin baru |
 | `php artisan db:seed --class=DhastramRolePermissionSeeder` | Memperbarui izin & peran (aman diulang) |
-| `php artisan rucibsc:hapus-contoh` | Menghapus perusahaan & akun contoh |
+| `php artisan rucibsc:hapus-contoh` | Menghapus satker BLU & akun contoh |
 | `php artisan rucibsc:reminders` | Kirim pengingat siklus hari ini |
 
 ## 8. Masalah umum
@@ -99,6 +99,6 @@ Bila data contoh tidak dibutuhkan lagi: `php artisan rucibsc:hapus-contoh`.
 | Upload Excel gagal / error `ZipArchive` | Aktifkan ekstensi **zip**. |
 | `SQLSTATE[HY000] [1049] Unknown database 'ruci_bsc'` | Buat database dulu (langkah 3). |
 | `SQLSTATE[HY000] [2002]` | MySQL belum jalan — klik **Start All**. |
-| `ruci-bsc.test` tidak terbuka | Klik **Reload** di Laragon; pastikan *Menu › Preferences › Auto virtual hosts* aktif. Alternatif: `php artisan serve` lalu buka http://127.0.0.1:8000/admin. |
+| `bsc-blu.test` tidak terbuka | Klik **Reload** di Laragon; pastikan *Menu › Preferences › Auto virtual hosts* aktif. Alternatif: `php artisan serve` lalu buka http://127.0.0.1:8000/admin. |
 | Tampilan tanpa gaya | Jalankan `php artisan filament:assets`. |
 | `419 Page Expired` | Hapus cookie situs / `php artisan optimize:clear`. |
