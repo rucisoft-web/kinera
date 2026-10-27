@@ -13,6 +13,7 @@ class DemoCatalog
     public const CASES = [
         ['UINSUKA', 'UIN Sunan Kalijaga Yogyakarta', 'BLU pendidikan tinggi (Kementerian Agama)', 'Kontrak Kinerja Pemimpin BLU: PNBP 99,48% & pendapatan kerja sama di bawah 65% menggugurkan syarat insentif; adendum 2025 dan usulan perubahan 2026.'],
         ['UINRF', 'UIN Raden Fatah Palembang', 'BLU pendidikan tinggi (Kementerian Agama)', 'Target Perjanjian Kinerja terlalu rendah (capaian sampai 553%, dibatasi capaian maksimum), PNBP bergantung UKT, dan belanja modal 72,55%; usulan perubahan target akreditasi 2026.'],
+        ['UINSUSKA', 'UIN Sultan Syarif Kasim Riau', 'BLU pendidikan tinggi (Kementerian Agama)', 'Perjanjian Kinerja dan Kontrak Kinerja belum selaras (pertumbuhan mahasiswa 6,70% vs 1%), dana BLU terserap 87,76%, pendapatan aset di bawah 65%; usulan perubahan target dosen bersertifikat pendidik mengikuti PK 2026.'],
     ];
 
     /** Perioda pembuka sebuah satker BLU: tahun berjalan (aktif) lebih dulu, lalu tahun terbaru. */

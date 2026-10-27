@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Hash;
  * - UINSUKA: UIN Sunan Kalijaga Yogyakarta — demo lengkap 2025 (LK Audited & Perjanjian Kinerja 2025) + proyeksi 2026,
  *   termasuk Kontrak Kinerja Pemimpin BLU beserta adendum & usulan perubahannya. Lihat UinSukaSeeder.
  * - UINRF: UIN Raden Fatah Palembang — LKjIP 2025 & Renstra 2020–2024; pelajaran target PK terlalu rendah. Lihat UinRadenFatahSeeder.
+ * - UINSUSKA: UIN Suska Riau — Laporan Kinerja 2025 (PK & Kontrak Kinerja), PK 2026, RIP 2014–2034; pelajaran PK vs Kontrak Kinerja belum selaras. Lihat UinSuskaRiauSeeder.
  * - Demo bertanda is_demo dan menampilkan peringatan "data demo" (App\Support\DemoNotice): hanya untuk keperluan
  *   memaksimalkan penyajian fitur-fitur perangkat lunak, bukan data resmi.
  */
@@ -36,6 +37,7 @@ class DemoSeeder extends Seeder
 
         (new UinSukaSeeder(self::PASSWORD))->run();
         (new UinRadenFatahSeeder(self::PASSWORD))->run();
+        (new UinSuskaRiauSeeder(self::PASSWORD))->run();
 
         UserContext::updateOrCreate(['user_id' => $admin->id], [
             'company_id' => Company::where('code', 'UINSUKA')->value('id'),

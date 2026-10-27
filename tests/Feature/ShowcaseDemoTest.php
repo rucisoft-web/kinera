@@ -19,6 +19,7 @@ class ShowcaseDemoTest extends TestCase
         return [
             'UIN Sunan Kalijaga' => ['UINSUKA', 12, 6, 'Audited TA 2025'],
             'UIN Raden Fatah' => ['UINRF', 12, 6, 'LKjIP 2025'],
+            'UIN Suska Riau' => ['UINSUSKA', 12, 6, 'Kontrak Kinerja'],
         ];
     }
 

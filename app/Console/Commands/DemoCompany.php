@@ -12,6 +12,7 @@ use Database\Seeders\BscRolePermissionSeeder;
 use Database\Seeders\MaturityQuestionSeeder;
 use Database\Seeders\ShowcaseSeeder;
 use Database\Seeders\UinRadenFatahSeeder;
+use Database\Seeders\UinSuskaRiauSeeder;
 use Database\Seeders\UinSukaSeeder;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
@@ -21,15 +22,15 @@ use Illuminate\Support\Str;
 class DemoCompany extends Command
 {
     /** @var array<string,class-string<ShowcaseSeeder>> */
-    public const DEMOS = ['UINSUKA' => UinSukaSeeder::class, 'UINRF' => UinRadenFatahSeeder::class];
+    public const DEMOS = ['UINSUKA' => UinSukaSeeder::class, 'UINRF' => UinRadenFatahSeeder::class, 'UINSUSKA' => UinSuskaRiauSeeder::class];
 
     protected $signature = 'kinera:demo
-        {perusahaan=UINSUKA : Kode demo satker BLU: UINSUKA (UIN Sunan Kalijaga Yogyakarta), UINRF (UIN Raden Fatah Palembang)}
+        {perusahaan=UINSUKA : Kode demo satker BLU: UINSUKA (UIN Sunan Kalijaga Yogyakarta), UINRF (UIN Raden Fatah Palembang), UINSUSKA (UIN Suska Riau)}
         {--password= : Kata sandi akun contoh satker BLU itu (bila kosong dibuat acak dan ditampilkan)}
         {--reset : Hapus dulu data satker BLU itu untuk perioda 2025 & 2026 yang sudah ada}
         {--force : Lewati konfirmasi}';
 
-    protected $description = 'Muat demo lengkap satker BLU (UIN Sunan Kalijaga, UIN Raden Fatah) (Strategy Map, Indikator Kinerja, Kontrak Kinerja, inisiatif, tinjauan) perioda 2025 & 2026';
+    protected $description = 'Muat demo lengkap satker BLU (UIN Sunan Kalijaga, UIN Raden Fatah, UIN Suska Riau) (Strategy Map, Indikator Kinerja, Kontrak Kinerja, inisiatif, tinjauan) perioda 2025 & 2026';
 
     protected $aliases = ['kinera:demo-uin'];
 

@@ -11,7 +11,7 @@ class HapusContoh extends Command
 {
     protected $signature = 'kinera:hapus-contoh {--force : Lewati konfirmasi}';
 
-    protected $description = 'Hapus satker BLU contoh (data demo UIN Sunan Kalijaga, UIN Raden Fatah, dll.) dan akun contoh sebelum dipakai produksi';
+    protected $description = 'Hapus satker BLU contoh (data demo UIN Sunan Kalijaga, UIN Raden Fatah, UIN Suska Riau) dan akun contoh sebelum dipakai produksi';
 
     public function handle(): int
     {
