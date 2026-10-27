@@ -35,9 +35,13 @@ class DemoSeeder extends Seeder
         ]);
         $this->assign($admin, 'super-admin', null);
 
-        (new UinSukaSeeder(self::PASSWORD))->run();
-        (new UinRadenFatahSeeder(self::PASSWORD))->run();
-        (new UinSuskaRiauSeeder(self::PASSWORD))->run();
+        // demo yang sudah terpasang dilewati, sehingga seeder aman dijalankan ulang untuk menambah demo baru
+        foreach ([UinSukaSeeder::class, UinRadenFatahSeeder::class, UinSuskaRiauSeeder::class] as $seeder) {
+            $installed = AnalysisPeriod::whereHas('company', fn ($q) => $q->where('code', $seeder::CODE))->whereIn('code', ['2025', '2026'])->exists();
+            if (! $installed) {
+                (new $seeder(self::PASSWORD))->run();
+            }
+        }
 
         UserContext::updateOrCreate(['user_id' => $admin->id], [
             'company_id' => Company::where('code', 'UINSUKA')->value('id'),

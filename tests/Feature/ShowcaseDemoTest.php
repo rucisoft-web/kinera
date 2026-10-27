@@ -61,6 +61,19 @@ class ShowcaseDemoTest extends TestCase
         $this->assertSame(1, $this->artisan('kinera:demo', ['perusahaan' => 'XYZ', '--force' => true]));
     }
 
+    public function test_demo_seeder_can_run_again_and_only_adds_missing_demos(): void
+    {
+        $this->seed(\Database\Seeders\BscRolePermissionSeeder::class);
+        $this->seed(\Database\Seeders\MaturityQuestionSeeder::class);
+        $this->artisan('kinera:demo', ['perusahaan' => 'UINSUKA', '--password' => 'Contoh-2026!', '--force' => true]);
+
+        $this->seed(\Database\Seeders\DemoSeeder::class);
+        $this->seed(\Database\Seeders\DemoSeeder::class);
+
+        $this->assertSame(['UINRF', 'UINSUKA', 'UINSUSKA'], Company::orderBy('code')->pluck('code')->all());
+        $this->assertSame(6, AnalysisPeriod::count());
+    }
+
     public function test_kpi_is_only_expected_in_its_reporting_months(): void
     {
         $due = fn (string $freq) => collect(range(1, 12))->filter(fn ($m) => (new Kpi(['frequency' => $freq]))->isDueIn($m))->values()->all();
