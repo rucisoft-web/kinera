@@ -3,7 +3,7 @@
 use App\Http\Controllers\ReportExportController;
 use Illuminate\Support\Facades\Route;
 
-// Halaman depan situs demo (RUCI_GUEST_LOGIN=true); selain itu langsung ke panel
+// Halaman depan situs demo (BSCBLU_GUEST_LOGIN=true); selain itu langsung ke panel
 Route::middleware('web')->get('/', \App\Http\Controllers\LandingController::class)->name('arah.landing');
 
 Route::middleware(['web', 'auth', \App\Http\Middleware\SetBscContext::class])
@@ -15,7 +15,7 @@ Route::middleware(['web', 'auth', \App\Http\Middleware\SetBscContext::class])
     ->get('/admin/kontrak-kinerja/cetak/{doc}/{contract}', \App\Http\Controllers\BluPrintController::class)
     ->name('blu.print');
 
-// Situs demo: masuk sebagai Tamu (hanya lihat), aktif bila RUCI_GUEST_LOGIN=true
+// Situs demo: masuk sebagai Tamu (hanya lihat), aktif bila BSCBLU_GUEST_LOGIN=true
 Route::middleware(['web', 'throttle:20,1'])
     ->get('/masuk-tamu', \App\Http\Controllers\GuestLoginController::class)
     ->name('arah.guest');

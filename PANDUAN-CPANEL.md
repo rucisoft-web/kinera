@@ -19,7 +19,7 @@ Bila PHP 8.3 belum tersedia, minta penyedia hosting mengaktifkannya. Laravel 13 
 ## 2. Buat database
 
 1. Buka **MySQL Databases**.
-2. *Create New Database*: misalnya `ruci_bsc` (cPanel menjadikannya `userku_ruci_bsc`).
+2. *Create New Database*: misalnya `bsc_blu` (cPanel menjadikannya `userku_bsc_blu`).
 3. *Add New User*: misalnya `bsc` (menjadi `userku_bsc`), dengan kata sandi kuat. Catat kata sandinya.
 4. *Add User To Database*: pilih user dan database tadi › centang **ALL PRIVILEGES** › Make Changes.
 
@@ -96,7 +96,7 @@ LOG_LEVEL=error
 DB_CONNECTION=mysql
 DB_HOST=localhost
 DB_PORT=3306
-DB_DATABASE=userku_ruci_bsc
+DB_DATABASE=userku_bsc_blu
 DB_USERNAME=userku_bsc
 DB_PASSWORD="kata-sandi-database"
 
@@ -110,12 +110,12 @@ MAIL_SCHEME=smtps
 MAIL_USERNAME=bsc@domainanda.com
 MAIL_PASSWORD="kata-sandi-email"
 MAIL_FROM_ADDRESS="bsc@domainanda.com"
-RUCI_NOTIFY_MAIL=true
+BSCBLU_NOTIFY_MAIL=true
 
 # data contoh (UIN Sunan Kalijaga, data demo): biarkan false untuk pemakaian sungguhan
-RUCI_SEED_DEMO=false
+BSCBLU_SEED_DEMO=false
 # situs demo/promosi: tombol "Masuk sebagai Tamu" (hanya lihat), lihat bagian 8
-RUCI_GUEST_LOGIN=false
+BSCBLU_GUEST_LOGIN=false
 ```
 
 Biarkan `APP_KEY=` kosong; nilainya diisi otomatis oleh `php artisan key:generate` di langkah 6 (baris ini harus ada, kalau tidak muncul error *No APP_KEY variable was found*).
@@ -130,12 +130,12 @@ Catatan: di cPanel `DB_HOST` hampir selalu `localhost`. Kata sandi yang mengandu
 cd ~/bsc-blu
 php artisan key:generate --force
 php artisan migrate --seed --force
-php artisan rucibsc:create-admin
+php artisan bscblu:create-admin
 php artisan optimize
-php artisan rucibsc:doctor
+php artisan bscblu:doctor
 ```
 
-`migrate --seed` di produksi hanya membuat izin, peran, dan pertanyaan kematangan. Satker BLU contoh hanya dimuat bila `RUCI_SEED_DEMO=true`.
+`migrate --seed` di produksi hanya membuat izin, peran, dan pertanyaan kematangan. Satker BLU contoh hanya dimuat bila `BSCBLU_SEED_DEMO=true`.
 
 ### Tanpa Terminal (memakai Cron Jobs sekali jalan)
 
@@ -143,7 +143,7 @@ Buka **Cron Jobs**, tambahkan perintah berikut satu per satu dengan jadwal *Once
 
 1. `cd /home/userku/bsc-blu && php artisan key:generate --force > storage/logs/setup-1.txt 2>&1`
 2. `cd /home/userku/bsc-blu && php artisan migrate --seed --force > storage/logs/setup-2.txt 2>&1`
-3. `cd /home/userku/bsc-blu && php artisan rucibsc:create-admin --name="Super Admin" --email=admin@domainanda.com --password='SandiSementara2026' > storage/logs/setup-3.txt 2>&1`
+3. `cd /home/userku/bsc-blu && php artisan bscblu:create-admin --name="Super Admin" --email=admin@domainanda.com --password='SandiSementara2026' > storage/logs/setup-3.txt 2>&1`
 4. `cd /home/userku/bsc-blu && php artisan optimize > storage/logs/setup-4.txt 2>&1`
 
 Periksa hasil tiap langkah di File Manager: `bsc-blu/storage/logs/setup-*.txt`. Setelah login pertama, **ganti kata sandi Super Admin** di menu profil karena kata sandi sementara tadi sempat tersimpan di daftar cron.
@@ -176,34 +176,34 @@ Tersedia satu demo lengkap: **UINSUKA** (UIN Sunan Kalijaga Yogyakarta, BLU pend
 
 ```bash
 cd ~/bsc-blu
-php artisan rucibsc:demo UINSUKA
+php artisan bscblu:demo UINSUKA
 ```
 
 Perintah ini membuat satker dengan perioda 2025 (ditutup) dan 2026 (berjalan, proyeksi), lengkap dengan peta strategi, 25 Indikator Kinerja beserta Definisi Operasional, **Kontrak Kinerja** (awal, adendum 2025, usulan perubahan 2026), capaian & syarat insentif, inisiatif, ekosistem, tinjauan, temuan, dan kematangan, serta akun `uinsuka.*` (@contoh.local). Kata sandi akun tersebut dibuat acak dan ditampilkan di layar; untuk menentukannya sendiri tambahkan `--password=SandiAnda123`.
 
-Bila satker itu sudah punya perioda 2025 atau 2026 (misalnya dari import Excel sebelumnya), perintah menolak berjalan. Tambahkan `--reset --force` untuk menghapus data kedua perioda itu dan menggantinya dengan data demo. Lewat cron sekali jalan (seperti bagian 6): `cd /home/userku/bsc-blu && php artisan rucibsc:demo UINSUKA --force --password=SandiAnda123 > storage/logs/demo.txt 2>&1`, lalu jalankan `php artisan optimize` dengan cara yang sama.
+Bila satker itu sudah punya perioda 2025 atau 2026 (misalnya dari import Excel sebelumnya), perintah menolak berjalan. Tambahkan `--reset --force` untuk menghapus data kedua perioda itu dan menggantinya dengan data demo. Lewat cron sekali jalan (seperti bagian 6): `cd /home/userku/bsc-blu && php artisan bscblu:demo UINSUKA --force --password=SandiAnda123 > storage/logs/demo.txt 2>&1`, lalu jalankan `php artisan optimize` dengan cara yang sama.
 
-Sebelum dipakai sungguhan, hapus semua data contoh dengan `php artisan rucibsc:hapus-contoh --force`.
+Sebelum dipakai sungguhan, hapus semua data contoh dengan `php artisan bscblu:hapus-contoh --force`.
 
 ### Situs demo untuk pengunjung (akses Tamu)
 
 Untuk situs promosi seperti bsc.rucisoft.id, tambahkan baris ini di `.env`, lalu jalankan `php artisan optimize`:
 
 ```
-RUCI_GUEST_LOGIN=true
+BSCBLU_GUEST_LOGIN=true
 ```
 
 Alamat utama (`https://domain-anda/`) lalu menjadi **halaman depan** seperti situs promosi: kenapa perlu Ruci BSC BLU, lima fase, kartu **data demo tahun berjalan** (klik untuk langsung masuk sebagai Tamu), panduan per peran dengan ritme bulanan, workshop, dan tanya jawab. Halaman login juga menampilkan **pilihan satker BLU contoh tahun berjalan**, tombol **Masuk sebagai Tamu (lihat-lihat)**, serta tautan *Kenapa perlu Ruci BSC?* dan *Panduan Ruci BSC*. Bila akses Tamu mati, alamat utama langsung ke halaman login seperti biasa. Pengunjung masuk tanpa kata sandi, bisa membuka semua menu (Beranda, Pusat Kendali, Peta Strategi, Indikator Kinerja, Kontrak Kinerja, Capaian & Insentif, inisiatif, ekosistem, tinjauan, laporan) dan berganti ke perioda 2025 lewat kotak konteks di kiri atas.
 
-Akun Tamu hanya bisa melihat: tombol Buat, Ubah, Hapus, Impor, dan Ekspor tidak muncul, halaman administrasi (pengguna, peran, log audit, profil) tertutup, dan setiap upaya menyimpan data ditolak oleh sistem. Pilihan satker/perioda disimpan per sesi, jadi pengunjung yang bersamaan tidak saling mengganggu. Akun `tamu@demo.rucisoft.id` dan perannya dibuat otomatis saat tombol pertama kali diklik (alamat bisa diganti dengan `RUCI_GUEST_EMAIL`). Untuk mematikan, ubah menjadi `RUCI_GUEST_LOGIN=false` lalu `php artisan optimize`.
+Akun Tamu hanya bisa melihat: tombol Buat, Ubah, Hapus, Impor, dan Ekspor tidak muncul, halaman administrasi (pengguna, peran, log audit, profil) tertutup, dan setiap upaya menyimpan data ditolak oleh sistem. Pilihan satker/perioda disimpan per sesi, jadi pengunjung yang bersamaan tidak saling mengganggu. Akun `tamu@demo.rucisoft.id` dan perannya dibuat otomatis saat tombol pertama kali diklik (alamat bisa diganti dengan `BSCBLU_GUEST_EMAIL`). Untuk mematikan, ubah menjadi `BSCBLU_GUEST_LOGIN=false` lalu `php artisan optimize`.
 
 Grup menu **Panduan** berisi **Kenali Ruci BSC**, **Panduan Pengguna** (langkah per peran dengan tangkapan layar), **Panduan Implementasi** (rencana proyek implementasi, bisa dicetak/simpan PDF), dan **Workshop Ruci BSC** (rundown dan materi workshop sehari; jadwal Minggu pertama setiap bulan tampil otomatis). Menu **Kenali Ruci BSC** menjelaskan Ruci BSC BLU untuk Pemimpin BLU, Pejabat Pengelola, dan Dewan Pengawas, lengkap dengan diagram, tangkapan layar, dan ajakan ikut Workshop. Bagikan tautan `https://domain-anda/kenali` kepada calon peserta: bila akses Tamu aktif, pembaca langsung masuk ke halaman itu tanpa login. Tombol pendaftaran dan kontak Workshop diatur di `.env`:
 
 ```
-RUCI_WORKSHOP_URL=https://rucisoft.id/workshop
-RUCI_WORKSHOP_CONTACT="WhatsApp 08xx-xxxx-xxxx · workshop@rucisoft.id"
+BSCBLU_WORKSHOP_URL=https://rucisoft.id/workshop
+BSCBLU_WORKSHOP_CONTACT="WhatsApp 08xx-xxxx-xxxx · workshop@rucisoft.id"
 # opsional: nama narasumber tamu edisi Dewan Pengawas & Pejabat Pengelola BLU
-# RUCI_WORKSHOP_SPECIAL_SPEAKER="Nama Narasumber, jabatan"
+# BSCBLU_WORKSHOP_SPECIAL_SPEAKER="Nama Narasumber, jabatan"
 ```
 
 ## 9. Memperbarui program
@@ -238,5 +238,5 @@ Selalu **backup database** dulu (*phpMyAdmin* › Export, atau *Backup* di cPane
 | Semua halaman selain beranda 404 | File `.htaccess` dari `public` belum ikut tersalin (aktifkan *Show Hidden Files*). |
 | `Permission denied` di `storage` | Atur izin folder `storage` dan `bootstrap/cache` menjadi 755 (File Manager › Change Permissions). |
 | `419 Page Expired` saat login | `APP_URL` harus sama persis dengan alamat yang dibuka (https dan subdomainnya). Bila belum memakai SSL, hapus `SESSION_SECURE_COOKIE=true`. |
-| Pengingat tidak terkirim | Pastikan cron `schedule:run` (bagian 7) aktif; coba `php artisan rucibsc:reminders`. |
+| Pengingat tidak terkirim | Pastikan cron `schedule:run` (bagian 7) aktif; coba `php artisan bscblu:reminders`. |
 | Perubahan `.env` tidak berlaku | Jalankan `php artisan optimize:clear` lalu `php artisan optimize`. |

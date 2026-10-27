@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Notification;
  */
 class SendReminders extends Command
 {
-    protected $signature = 'rucibsc:reminders {--date= : Simulasikan tanggal (Y-m-d)}';
+    protected $signature = 'bscblu:reminders {--date= : Simulasikan tanggal (Y-m-d)}';
 
     protected $description = 'Kirim pengingat siklus Ruci BSC (realisasi, verifikasi, persetujuan, milestone, tindakan korektif)';
 

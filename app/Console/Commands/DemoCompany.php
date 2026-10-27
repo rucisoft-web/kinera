@@ -22,7 +22,7 @@ class DemoCompany extends Command
     /** @var array<string,class-string<ShowcaseSeeder>> */
     public const DEMOS = ['UINSUKA' => UinSukaSeeder::class];
 
-    protected $signature = 'rucibsc:demo
+    protected $signature = 'bscblu:demo
         {perusahaan=UINSUKA : Kode demo satker BLU: UINSUKA (UIN Sunan Kalijaga Yogyakarta)}
         {--password= : Kata sandi akun contoh satker BLU itu (bila kosong dibuat acak dan ditampilkan)}
         {--reset : Hapus dulu data satker BLU itu untuk perioda 2025 & 2026 yang sudah ada}
@@ -30,7 +30,7 @@ class DemoCompany extends Command
 
     protected $description = 'Muat demo lengkap satker BLU UIN Sunan Kalijaga (Strategy Map, Indikator Kinerja, Kontrak Kinerja, inisiatif, tinjauan) perioda 2025 & 2026';
 
-    protected $aliases = ['rucibsc:demo-uin'];
+    protected $aliases = ['bscblu:demo-uin'];
 
     public function handle(): int
     {
@@ -74,7 +74,7 @@ class DemoCompany extends Command
         if (! $this->option('password')) {
             $this->warn('Kata sandi akun contoh: '.$password);
         }
-        $this->line('Hapus semua data contoh sebelum go-live dengan: php artisan rucibsc:hapus-contoh');
+        $this->line('Hapus semua data contoh sebelum go-live dengan: php artisan bscblu:hapus-contoh');
 
         return self::SUCCESS;
     }

@@ -22,9 +22,9 @@ class ShowcaseDemoTest extends TestCase
     #[\PHPUnit\Framework\Attributes\DataProvider('demos')]
     public function test_demo_command_builds_two_periods_with_a_full_strategy_map(string $code, int $objectives, int $initiatives): void
     {
-        $this->assertSame(0, $this->artisan('rucibsc:demo', ['perusahaan' => $code, '--password' => 'Contoh-2026!', '--force' => true]));
-        $this->assertSame(1, $this->artisan('rucibsc:demo', ['perusahaan' => $code, '--force' => true])); // data ada, tanpa --reset
-        $this->assertSame(0, $this->artisan('rucibsc:demo', ['perusahaan' => $code, '--reset' => true, '--force' => true]));
+        $this->assertSame(0, $this->artisan('bscblu:demo', ['perusahaan' => $code, '--password' => 'Contoh-2026!', '--force' => true]));
+        $this->assertSame(1, $this->artisan('bscblu:demo', ['perusahaan' => $code, '--force' => true])); // data ada, tanpa --reset
+        $this->assertSame(0, $this->artisan('bscblu:demo', ['perusahaan' => $code, '--reset' => true, '--force' => true]));
 
         $company = Company::where('code', $code)->firstOrFail();
         $this->assertTrue((bool) $company->is_demo);
@@ -52,9 +52,9 @@ class ShowcaseDemoTest extends TestCase
 
     public function test_alias_command_works_and_unknown_code_is_rejected(): void
     {
-        $this->assertSame(0, $this->artisan('rucibsc:demo-uin', ['--password' => 'Contoh-2026!', '--force' => true]));
+        $this->assertSame(0, $this->artisan('bscblu:demo-uin', ['--password' => 'Contoh-2026!', '--force' => true]));
         $this->assertTrue(Company::where('code', 'UINSUKA')->exists());
-        $this->assertSame(1, $this->artisan('rucibsc:demo', ['perusahaan' => 'XYZ', '--force' => true]));
+        $this->assertSame(1, $this->artisan('bscblu:demo', ['perusahaan' => 'XYZ', '--force' => true]));
     }
 
     public function test_kpi_is_only_expected_in_its_reporting_months(): void

@@ -32,7 +32,7 @@ cd C:\laragon\www\bsc-blu
 setup-laragon.bat
 ```
 
-Skrip melakukan: cek PHP & ekstensi → `.env` → `composer install` (bila perlu) → `key:generate` → membuat database `ruci_bsc` (utf8mb4) → `migrate:fresh --seed` dengan data contoh → `filament:assets` → `optimize:clear` → `rucibsc:doctor`.
+Skrip melakukan: cek PHP & ekstensi → `.env` → `composer install` (bila perlu) → `key:generate` → membuat database `bsc_blu` (utf8mb4) → `migrate:fresh --seed` dengan data contoh → `filament:assets` → `optimize:clear` → `bscblu:doctor`.
 
 ### Cara B: manual
 
@@ -41,14 +41,14 @@ cd C:\laragon\www\bsc-blu
 copy .env.example .env
 composer install
 php artisan key:generate
-mysql -u root -e "CREATE DATABASE ruci_bsc CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci"
+mysql -u root -e "CREATE DATABASE bsc_blu CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci"
 php artisan migrate --seed
 php artisan filament:assets
 php artisan optimize:clear
-php artisan rucibsc:doctor
+php artisan bscblu:doctor
 ```
 
-Data contoh dimuat bila `APP_ENV` bukan `production` atau `RUCI_SEED_DEMO=true` di `.env`.
+Data contoh dimuat bila `APP_ENV` bukan `production` atau `BSCBLU_SEED_DEMO=true` di `.env`.
 
 > Menjalankan ulang Cara A mengembalikan database ke data contoh (**semua perubahan hilang**).
 
@@ -58,7 +58,7 @@ Buka **http://bsc-blu.test/admin**
 
 | Akun | Email | Kata sandi |
 |---|---|---|
-| Super Admin | `admin@rucibsc.local` | `Ruci@BSC2026` (atau nilai `RUCI_ADMIN_PASSWORD`) |
+| Super Admin | `admin@bscblu.local` | `Ruci@BSC2026` (atau nilai `BSCBLU_ADMIN_PASSWORD`) |
 | Admin Satker UIN Sunan Kalijaga (contoh) | `uinsuka.admin@contoh.local` | `Contoh-2026!` |
 | Rektor / Pemimpin BLU (contoh) | `uinsuka.rektor@contoh.local` | `Contoh-2026!` |
 | Admin NLP / KSB (fiktif) | `nlp.admin@contoh.local`, `ksb.admin@contoh.local` | `Contoh-2026!` |
@@ -72,23 +72,23 @@ Daftar lengkap akun contoh ada di README.md. Kata sandi baru minimal 10 karakter
 3. **Administrasi › Import Data** › unduh template › isi di Excel › **Pratinjau** › **Proses Import**.
 4. Tambahkan admin satker di **Pengguna** dengan peran *Admin Satker* untuk satker itu. Admin tersebut bisa menambah pengguna lain di satkernya sendiri.
 
-Bila data contoh tidak dibutuhkan lagi: `php artisan rucibsc:hapus-contoh`.
+Bila data contoh tidak dibutuhkan lagi: `php artisan bscblu:hapus-contoh`.
 
 ## 6. Pengingat otomatis (opsional di komputer lokal)
 
 - Saat uji coba: `php artisan schedule:work` (biarkan jendela terbuka).
 - Permanen di Windows: Task Scheduler › Create Task › Trigger tiap 1 menit › Action: `C:\laragon\bin\php\php-8.3.x\php.exe` dengan argumen `C:\laragon\www\bsc-blu\artisan schedule:run`.
-- Uji manual: `php artisan rucibsc:reminders --date=2026-11-03`.
+- Uji manual: `php artisan bscblu:reminders --date=2026-11-03`.
 
 ## 7. Perintah penting
 
 | Perintah | Fungsi |
 |---|---|
-| `php artisan rucibsc:doctor` | Pemeriksaan PHP, ekstensi, database, izin & peran |
-| `php artisan rucibsc:create-admin` | Membuat Super Admin baru |
+| `php artisan bscblu:doctor` | Pemeriksaan PHP, ekstensi, database, izin & peran |
+| `php artisan bscblu:create-admin` | Membuat Super Admin baru |
 | `php artisan db:seed --class=BscRolePermissionSeeder` | Memperbarui izin & peran (aman diulang) |
-| `php artisan rucibsc:hapus-contoh` | Menghapus satker BLU & akun contoh |
-| `php artisan rucibsc:reminders` | Kirim pengingat siklus hari ini |
+| `php artisan bscblu:hapus-contoh` | Menghapus satker BLU & akun contoh |
+| `php artisan bscblu:reminders` | Kirim pengingat siklus hari ini |
 
 ## 8. Masalah umum
 
@@ -97,7 +97,7 @@ Bila data contoh tidak dibutuhkan lagi: `php artisan rucibsc:hapus-contoh`.
 | `Your PHP version (8.1…) does not satisfy…` / halaman putih | Ganti PHP ke 8.3+ (lihat Prasyarat). |
 | `Class "Collator" not found` / error `intl` | Aktifkan ekstensi **intl**, restart Laragon. |
 | Upload Excel gagal / error `ZipArchive` | Aktifkan ekstensi **zip**. |
-| `SQLSTATE[HY000] [1049] Unknown database 'ruci_bsc'` | Buat database dulu (langkah 3). |
+| `SQLSTATE[HY000] [1049] Unknown database 'bsc_blu'` | Buat database dulu (langkah 3). |
 | `SQLSTATE[HY000] [2002]` | MySQL belum jalan — klik **Start All**. |
 | `bsc-blu.test` tidak terbuka | Klik **Reload** di Laragon; pastikan *Menu › Preferences › Auto virtual hosts* aktif. Alternatif: `php artisan serve` lalu buka http://127.0.0.1:8000/admin. |
 | Tampilan tanpa gaya | Jalankan `php artisan filament:assets`. |

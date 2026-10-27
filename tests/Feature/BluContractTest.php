@@ -25,7 +25,7 @@ class BluContractTest extends TestCase
     {
         parent::setUp();
         $this->seed(\Database\Seeders\MaturityQuestionSeeder::class);
-        $this->artisan('rucibsc:demo', ['perusahaan' => 'UINSUKA', '--password' => 'Contoh-2026!', '--force' => true]);
+        $this->artisan('bscblu:demo', ['perusahaan' => 'UINSUKA', '--password' => 'Contoh-2026!', '--force' => true]);
         $this->company = Company::where('code', 'UINSUKA')->firstOrFail();
         $this->p = AnalysisPeriod::where('company_id', $this->company->id)->get()->keyBy('year')->all();
     }

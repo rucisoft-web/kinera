@@ -5,27 +5,27 @@ return [
     |--------------------------------------------------------------------------
     | Ruci BSC BLU — edisi Badan Layanan Umum (Kontrak Kinerja Pemimpin BLU, PER-6/PB/2025)
     |--------------------------------------------------------------------------
-    | RUCI_TERMS=blu   -> istilah BLU (perspektif sektor publik: Pemangku Kepentingan, Proses Layanan Internal, ...)
-    | RUCI_TERMS=umum  -> istilah umum bahasa Indonesia (Ekosistem, Jati Diri, ...)
+    | BSCBLU_TERMS=blu   -> istilah BLU (perspektif sektor publik: Pemangku Kepentingan, Proses Layanan Internal, ...)
+    | BSCBLU_TERMS=umum  -> istilah umum bahasa Indonesia (Ekosistem, Jati Diri, ...)
     */
-    'terms' => env('RUCI_TERMS', 'blu'),
-    'brand_name' => env('RUCI_BRAND_NAME', 'Ruci BSC BLU'),
-    'brand_tagline' => env('RUCI_BRAND_TAGLINE', 'Balanced Scorecard & Kontrak Kinerja Pemimpin BLU'),
+    'terms' => env('BSCBLU_TERMS', 'blu'),
+    'brand_name' => env('BSCBLU_BRAND_NAME', 'Ruci BSC BLU'),
+    'brand_tagline' => env('BSCBLU_BRAND_TAGLINE', 'Balanced Scorecard & Kontrak Kinerja Pemimpin BLU'),
 
     // Dibaca lewat config() supaya tetap berlaku setelah `php artisan optimize` (config cache) di produksi
-    'notify_mail' => (bool) env('RUCI_NOTIFY_MAIL', false),
-    'mfa_required' => (bool) env('RUCI_MFA_REQUIRED', false),
-    'seed_demo' => (bool) env('RUCI_SEED_DEMO', false),
-    'demo_admin_password' => env('RUCI_ADMIN_PASSWORD', 'Ruci@BSC2026'),
-    'demo_enabled' => (bool) env('RUCI_DEMO_ENABLED', false),
+    'notify_mail' => (bool) env('BSCBLU_NOTIFY_MAIL', false),
+    'mfa_required' => (bool) env('BSCBLU_MFA_REQUIRED', false),
+    'seed_demo' => (bool) env('BSCBLU_SEED_DEMO', false),
+    'demo_admin_password' => env('BSCBLU_ADMIN_PASSWORD', 'Ruci@BSC2026'),
+    'demo_enabled' => (bool) env('BSCBLU_DEMO_ENABLED', false),
     // Situs demo/promosi: tombol "Masuk sebagai Tamu" (hanya lihat) di halaman login
-    'guest_login' => (bool) env('RUCI_GUEST_LOGIN', false),
-    'guest_email' => env('RUCI_GUEST_EMAIL', 'tamu@demo.rucisoft.id'),
+    'guest_login' => (bool) env('BSCBLU_GUEST_LOGIN', false),
+    'guest_email' => env('BSCBLU_GUEST_EMAIL', 'tamu@demo.rucisoft.id'),
     // Ajakan Workshop di menu "Kenali Ruci BSC": tautan pendaftaran & kontak (mis. WhatsApp/email)
-    'workshop_url' => env('RUCI_WORKSHOP_URL', 'https://rucisoft.id'),
-    'workshop_contact' => env('RUCI_WORKSHOP_CONTACT'),
-    'workshop_special_speaker' => env('RUCI_WORKSHOP_SPECIAL_SPEAKER'),
-    'audit_enabled' => (bool) env('RUCI_AUDIT_ENABLED', true),
+    'workshop_url' => env('BSCBLU_WORKSHOP_URL', 'https://rucisoft.id'),
+    'workshop_contact' => env('BSCBLU_WORKSHOP_CONTACT'),
+    'workshop_special_speaker' => env('BSCBLU_WORKSHOP_SPECIAL_SPEAKER'),
+    'audit_enabled' => (bool) env('BSCBLU_AUDIT_ENABLED', true),
 
     // Ambang status KPI (skor dalam persen)
     'score_green' => 100,

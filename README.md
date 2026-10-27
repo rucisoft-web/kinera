@@ -11,10 +11,10 @@ Satu instalasi melayani banyak satker BLU; setiap satker punya data, perioda, ad
 | Pasal 5: Indikator Kinerja, trajektori, target, aspek layanan & keuangan (+ kebijakan/penugasan), Definisi Operasional | Menu **Indikator Kinerja**: aspek, wajib (mandatory), capaian maksimum, peran insentif (PNBP/EBITDA/opini), Definisi Operasional (definisi, rumus, sumber data, cara pengambilan data, metode pengujian, dokumen pendukung); trajektori bawaan triwulanan |
 | Pasal 6–9: usulan (hari kerja terakhir Desember), kesepakatan & Berita Acara (25 Januari), penandatanganan (31 Januari) | Menu **Kontrak Kinerja**: versi, status draf → diusulkan → disepakati → ditandatangani; potret indikator & target trajektori; cetak **Lampiran I** (Kontrak Kinerja) dan **Lampiran II** (Berita Acara) |
 | Pasal 10: laporan capaian ≤ 15 hari kerja setelah periode trajektori | Halaman **Capaian & Insentif**: perhitungan per triwulan (format **Lampiran VI**), kalender tenggat dengan status tepat waktu/terlambat/lewat tenggat |
-| Pasal 14 ayat (4): syarat insentif a–h | Uji otomatis: total capaian > target, indikator wajib tercapai, tidak ada IK < 65% (`RUCI_SCORE_FLOOR`), PNBP tercapai, surplus EBITDA, opini WTP, bebas kasus hukum, persyaratan lain; cetak **Lampiran IV** (surat pernyataan) |
+| Pasal 14 ayat (4): syarat insentif a–h | Uji otomatis: total capaian > target, indikator wajib tercapai, tidak ada IK < 65% (`BSCBLU_SCORE_FLOOR`), PNBP tercapai, surplus EBITDA, opini WTP, bebas kasus hukum, persyaratan lain; cetak **Lampiran IV** (surat pernyataan) |
 | Pasal 19 & 21: perubahan (dasar huruf a/b/c, usul ≤ 30 September, tanda tangan ≤ 1 Desember) dan adendum 2025 | Versi perubahan/adendum menandai IK baru, diubah, dan **target turun**; IK yang targetnya turun dibatasi capaian maksimum 100% (Pasal 19 ayat 8); versi lama otomatis berstatus "digantikan" |
 
-Kode inti: `App\Services\BluContractService`, `App\Models\PerformanceContract`, `App\Filament\Pages\CapaianKinerjaBlu`, `App\Http\Controllers\BluPrintController`, `resources/views/blu/`. Istilah tampilan (perspektif, menu) diatur kamus `terms.blu` di `config/bsc.php` (`RUCI_TERMS=blu`).
+Kode inti: `App\Services\BluContractService`, `App\Models\PerformanceContract`, `App\Filament\Pages\CapaianKinerjaBlu`, `App\Http\Controllers\BluPrintController`, `resources/views/blu/`. Istilah tampilan (perspektif, menu) diatur kamus `terms.blu` di `config/bsc.php` (`BSCBLU_TERMS=blu`).
 
 **Instalasi di Laragon → [PANDUAN-LARAGON.md](PANDUAN-LARAGON.md)** · **Instalasi di cPanel → [PANDUAN-CPANEL.md](PANDUAN-CPANEL.md)**
 
@@ -27,8 +27,8 @@ Kode inti: `App\Services\BluContractService`, `App\Models\PerformanceContract`, 
 | Basis data | **MySQL 8 / MariaDB 10.6+** (SQLite untuk test) |
 | Konteks | `BscContext` (sesi + tabel `user_contexts`) & global scope `BelongsToBscContext` menyaring setiap query per satker BLU/perioda |
 | Excel | OpenSpout: import, template kosong, dan ekspor data perioda |
-| Audit | `audit_logs` mencatat buat/ubah/hapus (`RUCI_AUDIT_ENABLED`) |
-| Jadwal | `rucibsc:reminders` harian (pengingat siklus input → verifikasi → persetujuan) |
+| Audit | `audit_logs` mencatat buat/ubah/hapus (`BSCBLU_AUDIT_ENABLED`) |
+| Jadwal | `bscblu:reminders` harian (pengingat siklus input → verifikasi → persetujuan) |
 
 ## Multi-satker BLU
 
@@ -63,33 +63,33 @@ Capaian IK: polaritas naik = realisasi ÷ target × 100, turun = target ÷ reali
 
 ## Data contoh
 
-Di luar produksi (atau bila `RUCI_SEED_DEMO=true`) seeder memuat satu satker BLU contoh:
+Di luar produksi (atau bila `BSCBLU_SEED_DEMO=true`) seeder memuat satu satker BLU contoh:
 
 | Kode | Satker BLU | Isi |
 |---|---|---|
 | UINSUKA | UIN Sunan Kalijaga Yogyakarta (BLU pendidikan, Pembina Teknis Ditjen Pendidikan Islam Kemenag) | Perioda 2025 (ditutup): angka keuangan dari LK BLU Audited TA 2025 (PNBP Rp219,5 M = 99,48% target, EBITDA ±Rp71,9 M, opini WTP), target layanan dari Perjanjian Kinerja 2025, gambaran kelembagaan dari RSB 2020–2024; Kontrak Kinerja awal + adendum Pasal 21. Perioda 2026 (berjalan): proyeksi Triwulan I–III, Kontrak Kinerja 2026 dan usulan perubahan (Pasal 19 ayat 1 huruf c). 12 sasaran, 25 Indikator Kinerja (13 layanan, 10 keuangan, 2 penugasan), 6 inisiatif |
 
-Akun: Super Admin `admin@rucibsc.local` / `Ruci@BSC2026` (ubah lewat `RUCI_ADMIN_PASSWORD`). Akun contoh, kata sandi `Contoh-2026!`:
+Akun: Super Admin `admin@bscblu.local` / `Ruci@BSC2026` (ubah lewat `BSCBLU_ADMIN_PASSWORD`). Akun contoh, kata sandi `Contoh-2026!`:
 `uinsuka.rektor` (Pemimpin BLU), `uinsuka.wr2` (keuangan), `uinsuka.wr1`, `uinsuka.wr3`, `uinsuka.lppm`, `uinsuka.lpm`, `uinsuka.bisnis`, `uinsuka.sdm`, `uinsuka.ti`, `uinsuka.perencanaan` (strategy office), `uinsuka.dewas` (Dewan Pengawas), `uinsuka.analis`, `uinsuka.admin` (@contoh.local). Nama dan NIP pejabat sebenarnya sengaja tidak dipakai; semua penandatangan bertanda "(contoh)".
 
 **Peringatan data demo.** Data contoh adalah DATA DEMO, hanya untuk keperluan memaksimalkan penyajian fitur-fitur perangkat lunak. Angka 2025 sebagian mengacu pada dokumen publik UIN Sunan Kalijaga (kolom `companies.demo_source`); rincian triwulanan, Kontrak Kinerja, realisasi indikator layanan, dan seluruh data 2026 (proyeksi) adalah simulasi, bukan data resmi UIN Sunan Kalijaga, Kementerian Agama, maupun Kementerian Keuangan. Peringatan tampil sebagai pita di setiap halaman (`App\Support\DemoNotice`), di halaman depan & login, di setiap cetakan Kontrak Kinerja (tanda air DATA DEMO), dan di sheet Petunjuk template Excel.
 
-Memuat demo di server yang sudah berjalan: `php artisan rucibsc:demo UINSUKA` (alias `rucibsc:demo-uin`). Kata sandi akun contoh dibuat acak dan ditampilkan (atau tentukan dengan `--password=`). Bila satker itu sudah punya perioda 2025/2026, tambahkan `--reset`.
+Memuat demo di server yang sudah berjalan: `php artisan bscblu:demo UINSUKA` (alias `bscblu:demo-uin`). Kata sandi akun contoh dibuat acak dan ditampilkan (atau tentukan dengan `--password=`). Bila satker itu sudah punya perioda 2025/2026, tambahkan `--reset`.
 
-Situs demo/promosi: `RUCI_GUEST_LOGIN=true` menampilkan tombol **Masuk sebagai Tamu (lihat-lihat)** di halaman login (rute `/masuk-tamu`, menerima `?perusahaan=KODE` dan `?ke=kenali|panduan|implementasi|workshop`). Rute `/` menjadi halaman depan promosi (`LandingController`, `resources/views/landing.blade.php`) dengan daftar data demo dari `App\Support\DemoCatalog`; bila akses Tamu mati, `/` diarahkan ke `/admin`. Akun Tamu hanya punya izin lihat.
+Situs demo/promosi: `BSCBLU_GUEST_LOGIN=true` menampilkan tombol **Masuk sebagai Tamu (lihat-lihat)** di halaman login (rute `/masuk-tamu`, menerima `?perusahaan=KODE` dan `?ke=kenali|panduan|implementasi|workshop`). Rute `/` menjadi halaman depan promosi (`LandingController`, `resources/views/landing.blade.php`) dengan daftar data demo dari `App\Support\DemoCatalog`; bila akses Tamu mati, `/` diarahkan ke `/admin`. Akun Tamu hanya punya izin lihat.
 
-Sebelum dipakai sungguhan: `php artisan rucibsc:hapus-contoh` menghapus semua satker BLU dan akun contoh, lalu ganti sandi Super Admin.
+Sebelum dipakai sungguhan: `php artisan bscblu:hapus-contoh` menghapus semua satker BLU dan akun contoh, lalu ganti sandi Super Admin.
 
 ## Perintah penting
 
 | Perintah | Fungsi |
 |---|---|
-| `php artisan rucibsc:doctor` | Cek PHP, ekstensi, database, izin, peran, data contoh |
-| `php artisan rucibsc:create-admin` | Membuat Super Admin baru |
+| `php artisan bscblu:doctor` | Cek PHP, ekstensi, database, izin, peran, data contoh |
+| `php artisan bscblu:create-admin` | Membuat Super Admin baru |
 | `php artisan db:seed --class=BscRolePermissionSeeder` | Memperbarui izin & peran (aman diulang) |
-| `php artisan rucibsc:demo UINSUKA [--reset]` | Memuat demo UIN Sunan Kalijaga (2025 + proyeksi 2026) |
-| `php artisan rucibsc:hapus-contoh` | Menghapus satker BLU & akun contoh |
-| `php artisan rucibsc:reminders --date=2026-11-03` | Uji pengingat |
+| `php artisan bscblu:demo UINSUKA [--reset]` | Memuat demo UIN Sunan Kalijaga (2025 + proyeksi 2026) |
+| `php artisan bscblu:hapus-contoh` | Menghapus satker BLU & akun contoh |
+| `php artisan bscblu:reminders --date=2026-11-03` | Uji pengingat |
 | `php vendor/bin/phpunit` | Menjalankan test otomatis |
 
 ## Produksi (cPanel / VPS)
@@ -97,6 +97,6 @@ Sebelum dipakai sungguhan: `php artisan rucibsc:hapus-contoh` menghapus semua sa
 Langkah lengkap untuk cPanel (dengan atau tanpa Terminal) ada di [PANDUAN-CPANEL.md](PANDUAN-CPANEL.md).
 
 
-`APP_ENV=production`, `APP_DEBUG=false`, `SESSION_SECURE_COOKIE=true`; document root ke `public/`; cron `* * * * * php /path/ruci-bsc/artisan schedule:run`.
-Di produksi `DatabaseSeeder` hanya membuat izin, peran, dan pertanyaan kematangan. Buat Super Admin dengan `rucibsc:create-admin`, tambahkan satker BLU (isi identitas BLU & penandatangan), lalu upload datanya lewat Import Data.
-Rilis: `composer install --no-dev --optimize-autoloader` → `php artisan migrate --force` → `php artisan optimize` → `php artisan rucibsc:doctor`.
+`APP_ENV=production`, `APP_DEBUG=false`, `SESSION_SECURE_COOKIE=true`; document root ke `public/`; cron `* * * * * php /path/bsc-blu/artisan schedule:run`.
+Di produksi `DatabaseSeeder` hanya membuat izin, peran, dan pertanyaan kematangan. Buat Super Admin dengan `bscblu:create-admin`, tambahkan satker BLU (isi identitas BLU & penandatangan), lalu upload datanya lewat Import Data.
+Rilis: `composer install --no-dev --optimize-autoloader` → `php artisan migrate --force` → `php artisan optimize` → `php artisan bscblu:doctor`.

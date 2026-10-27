@@ -12,7 +12,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
 /**
- * Satker BLU contoh untuk demo & pelatihan (is_demo = true, hapus dengan `php artisan rucibsc:hapus-contoh`).
+ * Satker BLU contoh untuk demo & pelatihan (is_demo = true, hapus dengan `php artisan bscblu:hapus-contoh`).
  *
  * - UINSUKA: UIN Sunan Kalijaga Yogyakarta — demo lengkap 2025 (LK Audited & Perjanjian Kinerja 2025) + proyeksi 2026,
  *   termasuk Kontrak Kinerja Pemimpin BLU beserta adendum & usulan perubahannya. Lihat UinSukaSeeder.
@@ -23,7 +23,7 @@ class DemoSeeder extends Seeder
 {
     public const PASSWORD = 'Contoh-2026!';
 
-    public const ADMIN_EMAIL = 'admin@rucibsc.local';
+    public const ADMIN_EMAIL = 'admin@bscblu.local';
 
     public function run(): void
     {
