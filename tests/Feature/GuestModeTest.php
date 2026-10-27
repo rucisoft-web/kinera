@@ -84,9 +84,9 @@ class GuestModeTest extends TestCase
         \Illuminate\Support\Facades\Cache::flush();
 
         $this->get('/')->assertOk()
-            ->assertSee('Kenapa perlu Ruci BSC BLU')
+            ->assertSee('Kenapa perlu Kinera')
             ->assertSee('Data demo tahun berjalan 2026')
-            ->assertSee('Panduan Ruci BSC')
+            ->assertSee('Panduan Kinera')
             ->assertSee('UIN Sunan Kalijaga Yogyakarta')
             ->assertSee('memaksimalkan penyajian fitur')
             ->assertSee(route('arah.guest', ['perusahaan' => 'UINSUKA']), false);
@@ -112,10 +112,10 @@ class GuestModeTest extends TestCase
         $this->company('UINSUKA');
 
         $this->get('/kenali')->assertRedirect(route('arah.guest', ['ke' => 'kenali']));
-        $this->get(route('arah.guest', ['ke' => 'kenali']))->assertRedirect(\App\Filament\Pages\KenaliRuciBsc::getUrl());
-        $this->get(\App\Filament\Pages\KenaliRuciBsc::getUrl())->assertOk()
+        $this->get(route('arah.guest', ['ke' => 'kenali']))->assertRedirect(\App\Filament\Pages\KenaliKinera::getUrl());
+        $this->get(\App\Filament\Pages\KenaliKinera::getUrl())->assertOk()
             ->assertSee('Strategi yang dipahami semua orang')
-            ->assertSee('Workshop Ruci BSC');
+            ->assertSee('Workshop Kinera');
 
         auth()->logout();
         config(['bsc.guest_login' => false]);
@@ -132,14 +132,14 @@ class GuestModeTest extends TestCase
             ->assertSee('Dewan Pengawas')->assertSee('Menyetujui realisasi IK')->assertSee('images/panduan/kepala-input.jpg', false);
         $this->get(\App\Filament\Pages\PanduanImplementasi::getUrl())->assertOk()
             ->assertSee('Manajemen risiko')->assertSee('Gerbang mutu')->assertSee('Steering Committee');
-        $this->get(\App\Filament\Pages\WorkshopRuciBsc::getUrl())->assertOk()
+        $this->get(\App\Filament\Pages\WorkshopKinera::getUrl())->assertOk()
             ->assertSee('Rundown')->assertSee('Yang Anda peroleh')->assertSee('Sesi 6');
     }
 
     public function test_workshop_runs_on_the_first_sunday_of_each_month(): void
     {
         $dates = fn (string $today) => array_map(fn ($d) => $d->toDateString(),
-            \App\Filament\Pages\WorkshopRuciBsc::nextDates(3, \Carbon\CarbonImmutable::parse($today)));
+            \App\Filament\Pages\WorkshopKinera::nextDates(3, \Carbon\CarbonImmutable::parse($today)));
 
         $this->assertSame(['2026-11-01', '2026-12-06', '2027-01-03'], $dates('2026-10-22'));
         $this->assertSame(['2026-11-01', '2026-12-06', '2027-01-03'], $dates('2026-11-01'));

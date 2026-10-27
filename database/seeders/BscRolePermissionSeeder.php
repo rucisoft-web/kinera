@@ -7,7 +7,7 @@ use App\Models\Role;
 use App\Support\PermissionCatalog;
 use Illuminate\Database\Seeder;
 
-/** Izin & peran sistem Ruci BSC + peran per jabatan (aman dijalankan berulang). */
+/** Izin & peran sistem Kinera + peran per jabatan (aman dijalankan berulang). */
 class BscRolePermissionSeeder extends Seeder
 {
     public const PERMISSIONS = PermissionCatalog::PERMISSIONS;
@@ -22,8 +22,8 @@ class BscRolePermissionSeeder extends Seeder
         $except = fn (array $ex) => array_values(array_diff($all, $ex));
 
         $roles = [
-            // ---- peran sistem bawaan Ruci BSC
-            'super-admin' => ['Super Admin', 'Konsultan / vendor Ruci BSC — semua izin', $all],
+            // ---- peran sistem bawaan Kinera
+            'super-admin' => ['Super Admin', 'Konsultan / vendor Kinera — semua izin', $all],
             'company-admin' => ['Admin Satker', 'Admin satker BLU klien: semua izin di satkernya, termasuk pengguna & penugasan peran', $all],
             'strategy-office' => ['Strategy Office', 'Koordinator Manajemen Strategi: semua kecuali system.admin, kpi.approve_actual dan kpi.verify_finance',
                 $except(['system.admin', 'kpi.approve_actual', 'kpi.verify_finance'])],

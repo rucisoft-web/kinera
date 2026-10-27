@@ -23,9 +23,9 @@ use Illuminate\Support\Facades\Notification;
  */
 class SendReminders extends Command
 {
-    protected $signature = 'bscblu:reminders {--date= : Simulasikan tanggal (Y-m-d)}';
+    protected $signature = 'kinera:reminders {--date= : Simulasikan tanggal (Y-m-d)}';
 
-    protected $description = 'Kirim pengingat siklus Ruci BSC (realisasi, verifikasi, persetujuan, milestone, tindakan korektif)';
+    protected $description = 'Kirim pengingat siklus Kinera (realisasi, verifikasi, persetujuan, milestone, tindakan korektif)';
 
     public function handle(BscContext $ctx): int
     {

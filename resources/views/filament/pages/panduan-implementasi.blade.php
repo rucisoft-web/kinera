@@ -32,7 +32,7 @@
         ['Data historis tidak tersedia atau tidak konsisten', 'T', 'S', 'Inventarisasi data di Fase 1; baseline boleh estimasi bertanda; perbaikan sumber data menjadi inisiatif.', 'Keuangan & TI'],
         ['Penanggung jawab IK tidak disiplin mengisi realisasi', 'T', 'T', 'Pengingat otomatis tanggal 3; status kelengkapan dibahas di rapat; kepatuhan siklus menjadi IK unit.', 'Pejabat Pengelola'],
         ['Penolakan karena dianggap alat penilaian individu', 'S', 'S', 'Komunikasikan BSC sebagai alat belajar dan koreksi; town hall; champion per divisi.', 'PM klien'],
-        ['Personel kunci klien berganti', 'S', 'S', 'Dokumentasi di Ruci BSC; minimal dua orang terlatih per peran kunci; serah terima tertulis.', 'PM klien'],
+        ['Personel kunci klien berganti', 'S', 'S', 'Dokumentasi di Kinera; minimal dua orang terlatih per peran kunci; serah terima tertulis.', 'PM klien'],
         ['Kendala infrastruktur (server, jaringan, email)', 'R', 'S', 'Prasyarat teknis diperiksa di Fase 0; opsi hosting cloud; uji email & cron sebelum UAT.', 'TI klien'],
         ['Lingkup melebar (permintaan fitur/integrasi baru)', 'S', 'S', 'Kendali perubahan lewat formulir & persetujuan Steering Committee; tampung sebagai fase lanjutan.', 'PM Rucisoft'],
         ['Keamanan & kerahasiaan data strategis', 'R', 'T', 'Hak akses per peran, HTTPS, MFA untuk pimpinan, log audit, perjanjian kerahasiaan, backup harian.', 'TI klien'],
@@ -53,7 +53,7 @@
         {{-- 1. Ringkasan --}}
         <section id="ringkasan">
             <h2><span class="n">{{ $num('ringkasan') }}.</span> Ringkasan proyek</h2>
-            <p>Implementasi Ruci BSC bukan sekadar memasang perangkat lunak. Tujuannya adalah membuat satker BLU memiliki <b>strategi yang tertulis, terukur, dan dijalankan dalam ritme bulanan</b>: Peta Strategi yang disepakati, kamus Indikator Kinerja dengan target bulanan, portofolio inisiatif beranggaran, serta tata kelola tinjauan dari unit sampai Dewan Pengawas, semuanya berjalan di Ruci BSC.</p>
+            <p>Implementasi Kinera bukan sekadar memasang perangkat lunak. Tujuannya adalah membuat satker BLU memiliki <b>strategi yang tertulis, terukur, dan dijalankan dalam ritme bulanan</b>: Peta Strategi yang disepakati, kamus Indikator Kinerja dengan target bulanan, portofolio inisiatif beranggaran, serta tata kelola tinjauan dari unit sampai Dewan Pengawas, semuanya berjalan di Kinera.</p>
             <div class="impl-kv">
                 <div class="arah-card arah-stat"><span class="label">Durasi implementasi</span><span class="value">12 minggu</span><span class="sub">ditambah 3 bulan pendampingan</span></div>
                 <div class="arah-card arah-stat"><span class="label">Hasil utama</span><span class="value">6 milestone</span><span class="sub">dari kick-off sampai serah terima</span></div>
@@ -107,10 +107,10 @@
                     <thead><tr><th>Fase</th><th>Kegiatan utama</th><th>Keluaran</th></tr></thead>
                     <tbody>
                         <tr><td><b>0 · Persiapan</b></td><td>Kick-off dengan Pejabat Pengelola, pembentukan tim, rencana proyek rinci, pemeriksaan prasyarat teknis.</td><td>Piagam proyek, rencana kerja, SK tim</td></tr>
-                        <tr><td><b>1 · Diagnosa</b></td><td>Kajian dokumen strategi, wawancara Pejabat Pengelola & kepala divisi, analisis PESTEL, industri, pesaing, SWOT.</td><td>Laporan diagnosa, daftar isu strategis, data Ekosistem di Ruci BSC</td></tr>
+                        <tr><td><b>1 · Diagnosa</b></td><td>Kajian dokumen strategi, wawancara Pejabat Pengelola & kepala divisi, analisis PESTEL, industri, pesaing, SWOT.</td><td>Laporan diagnosa, daftar isu strategis, data Ekosistem di Kinera</td></tr>
                         <tr><td><b>2 · Workshop strategi</b></td><td>Penegasan visi-misi & nilai, TOWS, pemilihan tema, perumusan sasaran 4 perspektif dan hubungan sebab-akibat.</td><td>Peta Strategi disahkan Pejabat Pengelola (M2)</td></tr>
                         <tr><td><b>3 · IK, target, inisiatif</b></td><td>Kamus Indikator Kinerja (definisi, rumus, sumber data, pemilik), baseline, target tahunan & bulanan, pemilihan inisiatif, anggaran, milestone.</td><td>Kamus Indikator Kinerja & target disahkan (M3), portofolio inisiatif</td></tr>
-                        <tr><td><b>4 · Instalasi & data</b></td><td>Instalasi atau penyiapan hosting, konfigurasi satker BLU & perioda, akun & peran, import data melalui template Excel.</td><td>Ruci BSC berisi data satker BLU, siap UAT (M4)</td></tr>
+                        <tr><td><b>4 · Instalasi & data</b></td><td>Instalasi atau penyiapan hosting, konfigurasi satker BLU & perioda, akun & peran, import data melalui template Excel.</td><td>Kinera berisi data satker BLU, siap UAT (M4)</td></tr>
                         <tr><td><b>5 · Pelatihan & UAT</b></td><td>Pelatihan per peran (Pejabat Pengelola, Dewan Pengawas, Kantor Strategi, Keuangan, Kepala Unit, Admin), uji terima pengguna dengan skenario siklus bulanan.</td><td>Berita acara UAT, daftar hadir & materi pelatihan</td></tr>
                         <tr><td><b>6 · Go-live</b></td><td>Realisasi bulan pertama diisi, diverifikasi, disetujui; rapat manajemen pertama dipimpin dari Pusat Kendali.</td><td>Siklus bulanan pertama selesai (M5)</td></tr>
                         <tr><td><b>7 · Pendampingan</b></td><td>Pendampingan tiga siklus bulanan, penyempurnaan IK/target, rapat Dewan Pengawas, penilaian kematangan awal.</td><td>Laporan penutupan, serah terima (M6)</td></tr>
@@ -241,7 +241,7 @@
                 <div class="arah-card">
                     <h3>Ukuran mutu proyek</h3>
                     <ul>
-                        <li>100% IK terdefinisi lengkap di Ruci BSC saat M3.</li>
+                        <li>100% IK terdefinisi lengkap di Kinera saat M3.</li>
                         <li>≥ 90% realisasi terisi tepat waktu pada siklus ke-3.</li>
                         <li>100% IK aspek keuangan terverifikasi sebelum persetujuan.</li>
                         <li>≥ 85% peserta pelatihan lulus uji praktik perannya.</li>
@@ -275,13 +275,13 @@
                     <tbody>
                         @foreach ([
                             ['Kick-off & penjelasan tujuan', 'Pejabat Pengelola, kepala divisi', 'Sekali (M1)', 'Rapat tatap muka', 'Sponsor'],
-                            ['Rapat Steering Committee', 'Steering Committee', 'Bulanan + di setiap gerbang', 'Rapat, menu Kenali Ruci BSC', 'PM klien'],
+                            ['Rapat Steering Committee', 'Steering Committee', 'Bulanan + di setiap gerbang', 'Rapat, menu Kenali Kinera', 'PM klien'],
                             ['Rapat kemajuan proyek', 'Tim inti', 'Mingguan', 'Rapat singkat 30–45 menit', 'PM Rucisoft'],
                             ['Laporan status proyek', 'Sponsor, Steering', 'Dua mingguan', 'Laporan 1 halaman', 'PM Rucisoft'],
                             ['Town hall pengenalan BSC', 'Seluruh pejabat & pegawai kunci', 'Sekali sebelum go-live', 'Pertemuan + Peta Strategi', 'Direktur Utama'],
                             ['Sosialisasi IK ke unit', 'Penanggung jawab IK, staf unit', 'Fase 3', 'Rapat divisi oleh champion', 'BSC Champions'],
                             ['Pengumuman go-live & jadwal siklus', 'Semua pengguna', 'Sekali (M5)', 'Email, surat edaran', 'PM klien'],
-                            ['Pengingat siklus bulanan', 'Penanggung jawab IK, Keuangan, Pimpinan', 'Bulanan', 'Notifikasi & email Ruci BSC', 'Otomatis'],
+                            ['Pengingat siklus bulanan', 'Penanggung jawab IK, Keuangan, Pimpinan', 'Bulanan', 'Notifikasi & email Kinera', 'Otomatis'],
                             ['Laporan kinerja ke Dewan Pengawas', 'Dewan Pengawas', 'Bulanan/kuartalan', 'Pusat Kendali, Laporan', 'Pejabat Pengelola'],
                         ] as $row)
                             <tr>@foreach ($row as $i => $cell)<td>{!! $i ? e($cell) : '<b>'.e($cell).'</b>' !!}</td>@endforeach</tr>
@@ -339,7 +339,7 @@
                 <table class="arah-table impl-table">
                     <thead><tr><th>Komponen</th><th>Isi</th><th>Pilihan skema</th></tr></thead>
                     <tbody>
-                        <tr><td><b>Perangkat lunak Ruci BSC</b></td><td>Hak pakai aplikasi untuk satker BLU/grup, pembaruan versi</td><td>Langganan tahunan (cloud) atau lisensi instalasi di server sendiri</td></tr>
+                        <tr><td><b>Perangkat lunak Kinera</b></td><td>Hak pakai aplikasi untuk satker BLU/grup, pembaruan versi</td><td>Langganan tahunan (cloud) atau lisensi instalasi di server sendiri</td></tr>
                         <tr><td><b>Infrastruktur</b></td><td>Hosting/server, domain, sertifikat HTTPS, backup</td><td>Disediakan Rucisoft (cloud) atau oleh TI satker BLU</td></tr>
                         <tr><td><b>Jasa konsultansi & workshop</b></td><td>Diagnosa, workshop strategi, kamus Indikator Kinerja, inisiatif</td><td>Kontrak lumpsum berbasis keluaran per fase</td></tr>
                         <tr><td><b>Implementasi & pelatihan</b></td><td>Instalasi, konfigurasi, import data, pelatihan per peran, UAT</td><td>Satu paket dengan konsultansi</td></tr>
@@ -387,7 +387,7 @@
                 <div class="arah-card">
                     <h3>Daftar periksa go-live</h3>
                     <ul>
-                        <li>Peta Strategi, IK, target, dan inisiatif sudah di Ruci BSC.</li>
+                        <li>Peta Strategi, IK, target, dan inisiatif sudah di Kinera.</li>
                         <li>Setiap pengguna punya akun dan peran sesuai matriks.</li>
                         <li>Jadwal siklus bulanan diumumkan dan tercantum di kalender rapat.</li>
                         <li>Backup harian dan email notifikasi teruji.</li>
@@ -407,16 +407,16 @@
             </div>
             <div class="arah-card" style="margin-top:1rem">
                 <h3>Setelah serah terima</h3>
-                <p style="margin:0">Kantor Strategi menjalankan siklus secara mandiri. Setiap akhir tahun dilakukan penilaian kematangan di Ruci BSC, pembaruan Ekosistem, dan penyusunan perioda baru (sasaran, target, inisiatif). Rucisoft tetap tersedia untuk dukungan teknis, pembaruan versi, dan penyegaran workshop.</p>
+                <p style="margin:0">Kantor Strategi menjalankan siklus secara mandiri. Setiap akhir tahun dilakukan penilaian kematangan di Kinera, pembaruan Ekosistem, dan penyusunan perioda baru (sasaran, target, inisiatif). Rucisoft tetap tersedia untuk dukungan teknis, pembaruan versi, dan penyegaran workshop.</p>
             </div>
             @if ($workshopUrl)
                 <div class="kenali-workshop" style="margin-top:1.2rem; grid-template-columns: minmax(0,1fr)">
                     <div>
-                        <span class="kenali-eyebrow">Mulai dari Workshop Ruci BSC</span>
+                        <span class="kenali-eyebrow">Mulai dari Workshop Kinera</span>
                         <h2 style="display:block">Ingin menjalankan rencana ini di satker BLU Anda?</h2>
-                        <p>Workshop Ruci BSC adalah langkah pertama: Pejabat Pengelola menyusun Peta Strategi bersama, lalu tim Rucisoft membantu menyiapkan rencana implementasi yang sesuai skala satker BLU.</p>
+                        <p>Workshop Kinera adalah langkah pertama: Pejabat Pengelola menyusun Peta Strategi bersama, lalu tim Rucisoft membantu menyiapkan rencana implementasi yang sesuai skala satker BLU.</p>
                         <div class="kenali-actions">
-                            <a href="{{ $workshopUrl }}" target="_blank" rel="noopener" class="arah-btn arah-btn-primary kenali-btn-lg">Daftar Workshop Ruci BSC</a>
+                            <a href="{{ $workshopUrl }}" target="_blank" rel="noopener" class="arah-btn arah-btn-primary kenali-btn-lg">Daftar Workshop Kinera</a>
                         </div>
                         @if ($workshopContact)<div class="kenali-contact">Informasi &amp; pendaftaran: <b>{{ $workshopContact }}</b></div>@endif
                     </div>

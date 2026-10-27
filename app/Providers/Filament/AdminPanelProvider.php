@@ -44,8 +44,8 @@ class AdminPanelProvider extends PanelProvider
                     && (bool) auth()->user()?->roles->pluck('slug')->intersect(['super-admin', 'admin-sistem', 'pimpinan', 'pengawas'])->isNotEmpty(),
             )
             ->brandName(config('bsc.brand_name'))
-            ->brandLogo(asset('images/rucisoft-logo.svg'))
-            ->darkModeBrandLogo(asset('images/rucisoft-logo-dark.svg'))
+            ->brandLogo(asset('images/kinera-logo.svg'))
+            ->darkModeBrandLogo(asset('images/kinera-logo-dark.svg'))
             ->brandLogoHeight('2.4rem')
             ->favicon(asset('images/favicon.svg'))
             ->colors([

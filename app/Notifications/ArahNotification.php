@@ -8,7 +8,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-/** Notifikasi umum Ruci BSC: tampil di lonceng Filament (database) dan dikirim via email bila diaktifkan. */
+/** Notifikasi umum Kinera: tampil di lonceng Filament (database) dan dikirim via email bila diaktifkan. */
 class ArahNotification extends Notification
 {
     use Queueable;
@@ -37,11 +37,11 @@ class ArahNotification extends Notification
 
     public function toMail(object $notifiable): MailMessage
     {
-        $m = (new MailMessage)->subject('[Ruci BSC] '.$this->title)->greeting('Yth. '.$notifiable->name)->line($this->body);
+        $m = (new MailMessage)->subject('[Kinera] '.$this->title)->greeting('Yth. '.$notifiable->name)->line($this->body);
         if ($this->url) {
-            $m->action('Buka Ruci BSC', $this->url);
+            $m->action('Buka Kinera', $this->url);
         }
 
-        return $m->salutation('Salam, Ruci BSC Professional');
+        return $m->salutation('Salam, Kinera');
     }
 }

@@ -27,12 +27,12 @@ class AppServiceProvider extends ServiceProvider
         \Filament\Forms\Components\DateTimePicker::configureUsing(fn ($c) => $c->native(false)->displayFormat('d/m/Y H:i'));
         \Filament\Tables\Table::configureUsing(fn ($t) => $t->defaultPaginationPageOption(25)->striped());
 
-        FilamentAsset::register([Css::make('bsc-blu', asset('css/arah.css').'?v=6')]);
+        FilamentAsset::register([Css::make('kinera', asset('css/arah.css').'?v=6')]);
 
         // Kebijakan kata sandi: minimal 10 karakter, huruf & angka
         Password::defaults(fn () => Password::min(10)->letters()->numbers());
 
-        // Izin Ruci BSC dapat dipakai lewat Gate/@can: Gate::allows('kpi.approve_actual')
+        // Izin Kinera dapat dipakai lewat Gate/@can: Gate::allows('kpi.approve_actual')
         Gate::before(function (User $user, string $ability) {
             if (str_contains($ability, '.') && array_key_exists($ability, \App\Support\PermissionCatalog::PERMISSIONS)) {
                 return $user->hasPermission($ability);

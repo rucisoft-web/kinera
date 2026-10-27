@@ -5,12 +5,12 @@ namespace App\Filament\Pages;
 use Carbon\CarbonImmutable;
 use Filament\Pages\Page;
 
-/** Rundown dan materi Workshop Ruci BSC sehari, setiap hari Minggu pertama awal bulan. */
-class WorkshopRuciBsc extends Page
+/** Rundown dan materi Workshop Kinera sehari, setiap hari Minggu pertama awal bulan. */
+class WorkshopKinera extends Page
 {
-    protected static ?string $title = 'Workshop Ruci BSC';
+    protected static ?string $title = 'Workshop Kinera';
 
-    protected static ?string $navigationLabel = 'Workshop Ruci BSC';
+    protected static ?string $navigationLabel = 'Workshop Kinera';
 
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-academic-cap';
 
@@ -18,9 +18,9 @@ class WorkshopRuciBsc extends Page
 
     protected static ?int $navigationSort = 4;
 
-    protected static ?string $slug = 'workshop-ruci-bsc';
+    protected static ?string $slug = 'workshop-kinera';
 
-    protected string $view = 'filament.pages.workshop-ruci-bsc';
+    protected string $view = 'filament.pages.workshop-kinera';
 
     public static function canAccess(): bool
     {

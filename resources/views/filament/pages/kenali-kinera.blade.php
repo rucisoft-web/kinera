@@ -1,5 +1,5 @@
 @php
-    $img = fn (string $n) => asset('images/kenali/'.$n.'.jpg').'?v=2';
+    $img = fn (string $n) => asset('images/kenali/'.$n.'.jpg').'?v=3';
     $p = $perspectives;
 
     // Diagram peta strategi: 4 lapis perspektif, panah sebab-akibat dari bawah ke atas
@@ -26,23 +26,23 @@
         <div class="kenali-hero-text">
             <span class="kenali-eyebrow">Untuk Pemimpin BLU, Pejabat Pengelola, dan Dewan Pengawas</span>
             <h1>Strategi yang dipahami semua orang, dijalankan setiap bulan.</h1>
-            <p>Ruci BSC adalah perangkat manajemen strategi berbasis <b>Balanced Scorecard</b>. Ruci BSC membantu pimpinan <b>mengomunikasikan strategi</b> ke seluruh organisasi dan <b>menerjemahkannya menjadi rencana aksi operasional</b>: sasaran, IK, target bulanan, inisiatif, anggaran, dan penanggung jawab yang dipantau dalam satu tempat.</p>
+            <p>Kinera adalah perangkat manajemen strategi berbasis <b>Balanced Scorecard</b>. Kinera membantu pimpinan <b>mengomunikasikan strategi</b> ke seluruh organisasi dan <b>menerjemahkannya menjadi rencana aksi operasional</b>: sasaran, IK, target bulanan, inisiatif, anggaran, dan penanggung jawab yang dipantau dalam satu tempat.</p>
             <div class="kenali-actions">
                 @if ($workshopUrl)
-                    <a href="{{ $workshopUrl }}" target="_blank" rel="noopener" class="arah-btn arah-btn-primary kenali-btn-lg">Daftar Workshop Ruci BSC</a>
+                    <a href="{{ $workshopUrl }}" target="_blank" rel="noopener" class="arah-btn arah-btn-primary kenali-btn-lg">Daftar Workshop Kinera</a>
                 @endif
                 <a href="#lihat-langsung" class="arah-btn kenali-btn-lg">Lihat tampilannya</a>
             </div>
         </div>
         <a class="kenali-shot kenali-hero-shot" href="{{ $img('peta-strategi') }}" target="_blank" rel="noopener">
-            <img src="{{ $img('peta-strategi') }}" alt="Peta Strategi UIN Sunan Kalijaga (data demo) di Ruci BSC BLU" loading="eager">
+            <img src="{{ $img('peta-strategi') }}" alt="Peta Strategi UIN Sunan Kalijaga (data demo) di Kinera" loading="eager">
         </a>
     </section>
 
     {{-- ===== Masalah ===== --}}
     <section class="kenali-section">
         <h2>Mengapa strategi yang baik sering tidak sampai ke lapangan?</h2>
-        <p class="kenali-lead">Kaplan &amp; Norton, perancang Balanced Scorecard, menemukan empat hambatan klasik pelaksanaan strategi. Ruci BSC dirancang untuk menjawab keempatnya.</p>
+        <p class="kenali-lead">Kaplan &amp; Norton, perancang Balanced Scorecard, menemukan empat hambatan klasik pelaksanaan strategi. Kinera dirancang untuk menjawab keempatnya.</p>
         <div class="arah-grid arah-grid-4">
             @foreach ([
                 ['95%', 'pegawai tidak memahami strategi perusahaannya', 'Hambatan visi', 'Peta Strategi satu halaman yang bisa dibaca semua orang, dari Dewan Pengawas sampai kepala unit.'],
@@ -54,7 +54,7 @@
                     <div class="kenali-num">{{ $num }}</div>
                     <div class="kenali-fact">{{ $fact }}</div>
                     <span class="arah-badge arah-merah">{{ $label }}</span>
-                    <div class="kenali-answer"><b>Jawaban Ruci BSC:</b> {{ $answer }}</div>
+                    <div class="kenali-answer"><b>Jawaban Kinera:</b> {{ $answer }}</div>
                 </div>
             @endforeach
         </div>
@@ -64,7 +64,7 @@
     {{-- ===== Diagram 1: strategi ke aksi ===== --}}
     <section class="kenali-section">
         <h2>Dari strategi menjadi rencana aksi</h2>
-        <p class="kenali-lead">Ruci BSC menurunkan arah besar satker BLU, selangkah demi selangkah, sampai menjadi pekerjaan nyata yang punya tanggal, anggaran, dan penanggung jawab.</p>
+        <p class="kenali-lead">Kinera menurunkan arah besar satker BLU, selangkah demi selangkah, sampai menjadi pekerjaan nyata yang punya tanggal, anggaran, dan penanggung jawab.</p>
         <div class="kenali-cascade">
             @foreach ([
                 ['Visi & Misi', 'Arah besar satker BLU', 'Jati Diri'],
@@ -121,7 +121,7 @@
                     <li><span class="arah-dot" style="background: {{ $p['proses']['color'] }}"></span><b>{{ $p['proses']['label'] }}</b>: proses yang harus unggul.</li>
                     <li><span class="arah-dot" style="background: {{ $p['sdm']['color'] }}"></span><b>{{ $p['sdm']['label'] }}</b>: orang, sistem, dan budaya penggerak.</li>
                 </ul>
-                <p>Di Ruci BSC, setiap kotak berwarna sesuai skor terbarunya. Rapat cukup dimulai dari satu gambar: <b>sasaran mana yang merah, dan mengapa</b>.</p>
+                <p>Di Kinera, setiap kotak berwarna sesuai skor terbarunya. Rapat cukup dimulai dari satu gambar: <b>sasaran mana yang merah, dan mengapa</b>.</p>
             </div>
         </div>
     </section>
@@ -131,7 +131,7 @@
         <h2>Ritme bulanan yang menjaga strategi tetap hidup</h2>
         <div class="arah-grid arah-grid-2">
             <div class="arah-card kenali-center">
-                <svg class="kenali-svg kenali-cycle" viewBox="0 0 420 400" role="img" aria-label="Siklus bulanan Ruci BSC">
+                <svg class="kenali-svg kenali-cycle" viewBox="0 0 420 400" role="img" aria-label="Siklus bulanan Kinera">
                     <defs>
                         <marker id="kn-arrow2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" class="kn-arrowhead"/></marker>
                     </defs>
@@ -153,7 +153,7 @@
                 </svg>
             </div>
             <div class="kenali-explain">
-                <p>Ruci BSC menetapkan <b>tanggal yang sama setiap bulan</b> untuk semua unit, sehingga angka selalu siap sebelum rapat dan tidak ada lagi rapat yang habis untuk mengumpulkan data.</p>
+                <p>Kinera menetapkan <b>tanggal yang sama setiap bulan</b> untuk semua unit, sehingga angka selalu siap sebelum rapat dan tidak ada lagi rapat yang habis untuk mengumpulkan data.</p>
                 <ol class="kenali-cycle-list">
                     @foreach ($cycle as [$day, $label, $desc])
                         <li><b>{{ $day }} · {{ $label }}.</b> {{ $desc }}</li>
@@ -234,7 +234,7 @@
     {{-- ===== Lima fase ===== --}}
     <section class="kenali-section">
         <h2>Kerangka lengkap, bukan sekadar dasbor</h2>
-        <p class="kenali-lead">Ruci BSC mengikuti siklus manajemen strategi utuh, dari membaca lingkungan sampai melembagakan perubahan.</p>
+        <p class="kenali-lead">Kinera mengikuti siklus manajemen strategi utuh, dari membaca lingkungan sampai melembagakan perubahan.</p>
         <div class="kenali-phases">
             @foreach ([
                 'Membaca lingkungan: PESTEL, kekuatan industri, pasar, pesaing, regulasi, SWOT dan TOWS.',
@@ -256,35 +256,35 @@
     <section class="kenali-section kenali-workshop" id="workshop">
         <div>
             <span class="kenali-eyebrow">Workshop sehari · setiap Minggu pertama awal bulan</span>
-            <h2>Kenali Ruci BSC dalam satu hari</h2>
-            <p>Kelas praktis 08.00–16.30 WIB untuk Pemimpin BLU, Pejabat Pengelola, Dewan Pengawas, dan tim perencanaan. Workshop berikutnya: <b style="color:#fff">{{ \App\Filament\Pages\WorkshopRuciBsc::nextDates(1)[0]->locale('id')->translatedFormat('l, j F Y') }}</b>.</p>
+            <h2>Kenali Kinera dalam satu hari</h2>
+            <p>Kelas praktis 08.00–16.30 WIB untuk Pemimpin BLU, Pejabat Pengelola, Dewan Pengawas, dan tim perencanaan. Workshop berikutnya: <b style="color:#fff">{{ \App\Filament\Pages\WorkshopKinera::nextDates(1)[0]->locale('id')->translatedFormat('l, j F Y') }}</b>.</p>
             <div class="kenali-take">
                 <b>Yang Anda bawa pulang</b>
                 <ul>
                     <li>Pemahaman utuh konsep Balanced Scorecard dan siklus kinerja bulanan</li>
                     <li>Draf Peta Strategi dan contoh kamus Indikator Kinerja hasil latihan kelompok</li>
                     <li>Daftar inisiatif prioritas di matriks nilai–upaya</li>
-                    <li>Pengalaman memakai Ruci BSC dan simulasi rapat bulanan</li>
+                    <li>Pengalaman memakai Kinera dan simulasi rapat bulanan</li>
                     <li>Paket materi, template Excel, rencana aksi 30 hari, dan sertifikat</li>
                 </ul>
             </div>
             <div class="kenali-actions">
                 @if ($workshopUrl)
-                    <a href="{{ $workshopUrl }}" target="_blank" rel="noopener" class="arah-btn arah-btn-primary kenali-btn-lg">Daftar Workshop Ruci BSC</a>
+                    <a href="{{ $workshopUrl }}" target="_blank" rel="noopener" class="arah-btn arah-btn-primary kenali-btn-lg">Daftar Workshop Kinera</a>
                 @endif
-                <a href="{{ \App\Filament\Pages\WorkshopRuciBsc::getUrl() }}" class="arah-btn kenali-btn-lg">Lihat rundown &amp; materi</a>
+                <a href="{{ \App\Filament\Pages\WorkshopKinera::getUrl() }}" class="arah-btn kenali-btn-lg">Lihat rundown &amp; materi</a>
             </div>
             @if ($workshopContact)
                 <div class="kenali-contact">Informasi &amp; pendaftaran: <b>{{ $workshopContact }}</b></div>
             @endif
         </div>
         <ol class="kenali-agenda">
-            <li><b>Mengapa strategi gagal dijalankan</b><span>Konsep Balanced Scorecard dan lima fase Ruci BSC</span></li>
+            <li><b>Mengapa strategi gagal dijalankan</b><span>Konsep Balanced Scorecard dan lima fase Kinera</span></li>
             <li><b>Membaca lingkungan &amp; jati diri</b><span>PESTEL, SWOT, TOWS, tema strategis</span></li>
             <li><b>Menyusun Peta Strategi</b><span>Sasaran empat perspektif dan hubungan sebab-akibat</span></li>
             <li><b>IK &amp; target yang baik</b><span>SMART, kamus Indikator Kinerja, target bulanan, skor</span></li>
             <li><b>Dari strategi ke aksi</b><span>Inisiatif, anggaran, portofolio nilai–upaya</span></li>
-            <li><b>Praktik Ruci BSC</b><span>Pusat Kendali dan simulasi rapat bulanan</span></li>
+            <li><b>Praktik Kinera</b><span>Pusat Kendali dan simulasi rapat bulanan</span></li>
         </ol>
     </section>
 </div>

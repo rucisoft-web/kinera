@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Ruci BSC Professional'),
+    'name' => env('APP_NAME', 'Kinera'),
 
     /*
     |--------------------------------------------------------------------------

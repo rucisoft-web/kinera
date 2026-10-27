@@ -14,9 +14,9 @@ use Throwable;
 
 class Doctor extends Command
 {
-    protected $signature = 'bscblu:doctor';
+    protected $signature = 'kinera:doctor';
 
-    protected $description = 'Pemeriksaan konfigurasi, basis data, izin & peran Ruci BSC';
+    protected $description = 'Pemeriksaan konfigurasi, basis data, izin & peran Kinera';
 
     public function handle(): int
     {
@@ -33,7 +33,7 @@ class Doctor extends Command
         $add('Mode demo mati', ! config('bsc.demo_enabled'));
         $add('Zona waktu Asia/Jakarta', config('app.timezone') === 'Asia/Jakarta', config('app.timezone'));
         $add('Locale id', config('app.locale') === 'id', config('app.locale'));
-        $add('Istilah (BSCBLU_TERMS)', in_array(config('bsc.terms'), ['blu', 'umum'], true), config('bsc.terms'));
+        $add('Istilah (KINERA_TERMS)', in_array(config('bsc.terms'), ['blu', 'umum'], true), config('bsc.terms'));
         try {
             DB::connection()->getPdo();
             $add('Koneksi basis data', true, config('database.default').' / '.DB::connection()->getDatabaseName());
@@ -52,14 +52,14 @@ class Doctor extends Command
             $r = Role::where('slug', $slug)->withCount('permissions')->first();
             $add('Peran '.$slug, (bool) $r, $r ? $r->permissions_count.' izin' : 'belum ada');
         }
-        $add('Super Admin tersedia', User::whereHas('roles', fn ($q) => $q->where('slug', 'super-admin'))->exists(), 'php artisan bscblu:create-admin');
+        $add('Super Admin tersedia', User::whereHas('roles', fn ($q) => $q->where('slug', 'super-admin'))->exists(), 'php artisan kinera:create-admin');
         $companies = Company::count();
         $add('Satker BLU', $companies >= 1, $companies.' satker BLU ('.Company::pluck('code')->join(', ').')');
         $add('Perioda aktif', AnalysisPeriod::where('is_active', true)->exists(), AnalysisPeriod::where('is_active', true)->pluck('name')->join(', '));
         $noRole = User::where('is_active', true)->whereDoesntHave('roles')->pluck('email');
         $add('Pengguna aktif punya peran', $noRole->isEmpty(), $noRole->join(', '));
         $demo = Company::where('is_demo', true)->count() + User::where('email', 'like', '%@contoh.local')->count();
-        $add('Tidak ada data contoh (wajib di produksi)', $demo === 0 || ! app()->isProduction(), $demo ? 'ada satker BLU/akun contoh → php artisan bscblu:hapus-contoh' : '');
+        $add('Tidak ada data contoh (wajib di produksi)', $demo === 0 || ! app()->isProduction(), $demo ? 'ada satker BLU/akun contoh → php artisan kinera:hapus-contoh' : '');
         $add('Jadwal (cron) untuk pengingat', true, '* * * * * php artisan schedule:run');
         $this->table(['Status', 'Pemeriksaan', 'Keterangan'], $rows);
 

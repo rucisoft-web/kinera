@@ -6,7 +6,7 @@ use App\Support\DemoCatalog;
 use App\Support\GuestMode;
 use Illuminate\Support\Facades\Cache;
 
-/** Halaman depan situs demo/promosi: kenapa perlu Ruci BSC, data contoh tahun berjalan, dan panduan. */
+/** Halaman depan situs demo/promosi: kenapa perlu Kinera, data contoh tahun berjalan, dan panduan. */
 class LandingController extends Controller
 {
     public function __invoke()

@@ -101,7 +101,7 @@ class UinSukaSeeder extends ShowcaseSeeder
     protected function userDefs(): array
     {
         return [
-            'admin' => ['Admin Ruci BSC UIN (contoh)', 'uinsuka.admin', 'Admin Sistem', 'Pusat Teknologi Informasi dan Pangkalan Data', ['company-admin']],
+            'admin' => ['Admin Kinera UIN (contoh)', 'uinsuka.admin', 'Admin Sistem', 'Pusat Teknologi Informasi dan Pangkalan Data', ['company-admin']],
             'dirut' => ['Rektor (contoh)', 'uinsuka.rektor', 'Rektor / Pemimpin BLU', 'Pimpinan Universitas', ['pimpinan']],
             'cfo' => ['Wakil Rektor II (contoh)', 'uinsuka.wr2', 'Wakil Rektor Bidang Administrasi Umum, Perencanaan & Keuangan', 'Pejabat Pengelola Keuangan BLU', ['keuangan']],
             'akademik' => ['Wakil Rektor I (contoh)', 'uinsuka.wr1', 'Wakil Rektor Bidang Akademik & Pengembangan Lembaga', 'Pimpinan Universitas', ['kepala-unit']],
@@ -147,7 +147,7 @@ class UinSukaSeeder extends ShowcaseSeeder
             ['Layanan inklusi & difabel', 'Kompetensi', 'Layanan pendamping mahasiswa berkebutuhan khusus; target PK 2025 7% mahasiswa afirmasi/berkebutuhan khusus.', 4, 5, true, 'Perluas layanan aksesibilitas di Kampus 2.'],
             ['SDM dosen & tendik', 'Sumber daya manusia', '1.218 pegawai (463 dosen, 755 tendik) per 2025 menurut LK.', 3, 4, true, 'Sertifikasi kompetensi dosen & tendik; manajemen talenta.'],
             ['Aset & unit bisnis BLU', 'Sumber daya fisik', 'Total aset Rp2,08 T; unit bisnis hotel, convention hall, air minum kemasan (Suka Water) menurut RSB.', 2 + $lvl, 4, false, 'Optimalisasi aset & tata kelola unit bisnis untuk pendapatan non-UKT.'],
-            ['Sistem informasi akademik & keuangan', 'Sistem', 'SIA, sistem keuangan BLU, dan pangkalan data kinerja.', 2 + $lvl, 4, false, 'Integrasi data kinerja dengan Ruci BSC & pelaporan Kontrak Kinerja.'],
+            ['Sistem informasi akademik & keuangan', 'Sistem', 'SIA, sistem keuangan BLU, dan pangkalan data kinerja.', 2 + $lvl, 4, false, 'Integrasi data kinerja dengan Kinera & pelaporan Kontrak Kinerja.'],
             ['Tata kelola BLU & penjaminan mutu', 'Sistem', 'Dewan Pengawas, SPI, LPM; opini WTP atas LK BLU 2025.', 3, 5, false, 'SPMI terpadu & pelaporan capaian berbasis bukti.'],
         ] as [$name, $cat, $desc, $cur, $tgt, $core, $gap]) {
             Capability::create(['name' => $name, 'category' => $cat, 'description' => $desc, 'current_level' => $cur, 'target_level' => $tgt, 'is_core' => $core, 'gap_action' => $gap]);
@@ -162,7 +162,7 @@ class UinSukaSeeder extends ShowcaseSeeder
         foreach ([
             ['PER-6/PB/2025 tentang Kontrak Kinerja Pemimpin BLU', '2025-03-24', 'eksternal', 'PER-6/PB/2025 (ditetapkan 18 Maret 2025)',
                 'Kontrak Kinerja memuat indikator aspek layanan & keuangan dengan trajektori, Definisi Operasional, dan laporan capaian paling lambat 15 hari kerja setelah periode trajektori. Insentif kelebihan capaian mensyaratkan, antara lain, tidak ada indikator di bawah 65%, target PNBP tercapai, surplus EBITDA, dan opini WTP.',
-                'Kontrak 2025 di-adendum (Pasal 21); siklus pelaporan triwulanan di Ruci BSC.'],
+                'Kontrak 2025 di-adendum (Pasal 21); siklus pelaporan triwulanan di Kinera.'],
             ['Kinerja keuangan BLU 2025 (LK audited)', '2026-05-05', 'internal', self::LK,
                 'Pendapatan operasional Rp399,9 M; surplus operasional Rp39,7 M (2024: defisit Rp2,3 M); EBITDA ±Rp71,9 M; PNBP Rp219,5 M atau 99,48% dari anggaran Rp220,7 M; penyerapan belanja 94,31%; opini WTP.',
                 'Target PNBP belum tercapai sehingga syarat insentif huruf d tidak terpenuhi; pendapatan kerja sama baru 29% dari estimasi.'],
@@ -605,7 +605,7 @@ class UinSukaSeeder extends ShowcaseSeeder
                 'aset' => ['UIN-26-02', 'Optimalisasi aset: convention hall, penginapan & Suka Water', 'Pengelolaan profesional & pemasaran paket MICE.', 'T3', 'bisnis', '2026-01-01', '2026-12-31', 'berjalan', 5, 4, 3, 3, ['P4', 'F1'], 'Utilisasi 60%, pendapatan aset Rp8 M.'],
                 'kampus2' => ['UIN-26-03', 'Masterplan & DED Kampus 2 Pajangan', 'Perencanaan kampus hijau dan skema pendanaan.', 'T4', 'cfo', '2026-02-01', '2027-06-30', 'berjalan', 4, 3, 4, 4, ['P1', 'C1'], 'DED disetujui & pendanaan teridentifikasi.'],
                 'sertifikasi' => ['UIN-26-04', 'Sertifikasi kompetensi lulusan, dosen & tendik', 'Kerja sama LSP, microcredential terintegrasi kurikulum.', 'T1', 'akademik', '2026-01-15', '2026-12-15', 'berjalan', 4, 4, 2, 2, ['C2', 'L1'], '3% lulusan & 24% tendik bersertifikat.'],
-                'kontrak' => ['UIN-26-05', 'Siklus Kontrak Kinerja & SPMI terintegrasi di Ruci BSC', 'Input realisasi, verifikasi SPI, persetujuan Rektor, cetak lampiran PER-6.', 'T4', 'strategi', '2026-01-05', '2026-12-31', 'berjalan', 5, 5, 2, 1, ['P3', 'P1'], 'Laporan triwulanan tepat waktu.'],
+                'kontrak' => ['UIN-26-05', 'Siklus Kontrak Kinerja & SPMI terintegrasi di Kinera', 'Input realisasi, verifikasi SPI, persetujuan Rektor, cetak lampiran PER-6.', 'T4', 'strategi', '2026-01-05', '2026-12-31', 'berjalan', 5, 5, 2, 1, ['P3', 'P1'], 'Laporan triwulanan tepat waktu.'],
                 'ptnbh' => ['UIN-26-06', 'Kajian kesiapan PTNBH', 'Analisis tata kelola, keuangan, dan aset menuju PTNBH.', 'T4', 'dirut', '2026-06-01', '2027-06-30', 'direncanakan', 4, 2, 3, 2, ['F2', 'P3'], 'Naskah kajian & peta jalan.'],
             ],
             'activities' => [
@@ -629,7 +629,7 @@ class UinSukaSeeder extends ShowcaseSeeder
                 ['aset', 'Renovasi penginapan & convention hall', 'capex', 7_500_000_000, 5_200_000_000, null, 'PNBP BLU'],
                 ['kampus2', 'Masterplan & DED Kampus 2', 'capex', 9_000_000_000, 3_100_000_000, null, 'PNBP BLU & SBSN (rencana)'],
                 ['sertifikasi', 'Uji kompetensi lulusan & tendik', 'opex', 2_800_000_000, 1_250_000_000, null, 'PNBP BLU'],
-                ['kontrak', 'Implementasi Ruci BSC & pelatihan', 'opex', 450_000_000, 380_000_000, null, 'PNBP BLU'],
+                ['kontrak', 'Implementasi Kinera & pelatihan', 'opex', 450_000_000, 380_000_000, null, 'PNBP BLU'],
                 ['ptnbh', 'Kajian kesiapan PTNBH', 'opex', 600_000_000, 90_000_000, null, 'PNBP BLU'],
             ],
         ];
@@ -641,7 +641,7 @@ class UinSukaSeeder extends ShowcaseSeeder
     {
         return $year === 2025 ? [
             ['Target PNBP 2025 tidak tercapai (99,48%)', 'PNBP Rp219,5 M dari target Rp220,7 M; syarat insentif Pasal 14 (4) d tidak terpenuhi.', 'tinjauan', 'tahunan', 'keuangan', 'tinggi', 1152608324, 'F1.1', null, 'komisaris', '2026-01-14',
-                [['Pemantauan PNBP per triwulan & proyeksi akhir tahun', 'cfo', '2026-03-31', 'selesai', 100]], ['2026-04-10', 'Pemantauan PNBP triwulanan berjalan di Ruci BSC.']],
+                [['Pemantauan PNBP per triwulan & proyeksi akhir tahun', 'cfo', '2026-03-31', 'selesai', 100]], ['2026-04-10', 'Pemantauan PNBP triwulanan berjalan di Kinera.']],
             ['Pendapatan kerja sama di bawah 65% target', 'Rp0,77 M dari estimasi Rp2,65 M; indikator F1.3 di bawah ambang Pasal 14 (4) c.', 'tinjauan', 'tahunan', 'keuangan', 'tinggi', 1882966201, 'F1.3', 'aset', 'cfo', '2026-01-14',
                 [['Pusat kerja sama satu pintu', 'kemahasiswaan', '2026-06-30', 'berjalan', 70]], null],
         ] : [
@@ -667,7 +667,7 @@ class UinSukaSeeder extends ShowcaseSeeder
                 ['Pendanaan Kampus 2', 'eksternal', 'kampus2', 'P1', 'Kementerian Agama & skema SBSN', 'Pembangunan bergantung pada persetujuan pendanaan.', 'cfo', 'tinggi', 'Pentahapan & pendanaan PNBP untuk DED.'],
             ],
             'institutionalizations' => [
-                ['Siklus laporan capaian Kontrak Kinerja di Ruci BSC', 'sistem', 'Input realisasi tanggal 5 → verifikasi SPI/Keuangan tanggal 7 → persetujuan Rektor tanggal 8 → kirim ke DJPb & Pendis ≤ 15 hari kerja.', 'Triwulanan', 'strategi', $year === 2025 ? 'berjalan' : 'melembaga'],
+                ['Siklus laporan capaian Kontrak Kinerja di Kinera', 'sistem', 'Input realisasi tanggal 5 → verifikasi SPI/Keuangan tanggal 7 → persetujuan Rektor tanggal 8 → kirim ke DJPb & Pendis ≤ 15 hari kerja.', 'Triwulanan', 'strategi', $year === 2025 ? 'berjalan' : 'melembaga'],
                 ['Rapat Dewan Pengawas', 'rapat', 'Pengawasan capaian kinerja dan syarat insentif.', 'Triwulanan', 'dirut', 'melembaga'],
                 ['Audit Mutu Internal (SPMI)', 'sop', 'Siklus PPEPP di seluruh prodi & lembaga.', 'Tahunan', 'lpm', 'melembaga'],
                 ['Tracer study lulusan', 'sop', 'Survei lulusan untuk indikator C2.1.', 'Tahunan', 'kemahasiswaan', 'berjalan'],

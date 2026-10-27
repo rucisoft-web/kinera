@@ -415,12 +415,12 @@ abstract class ShowcaseSeeder
     {
         $a = MaturityAssessment::create(['title' => 'Penilaian Kematangan Manajemen Strategi '.$year, 'assessment_date' => $year === 2025 ? '2025-12-15' : '2026-09-30',
             'assessor_id' => $this->id('strategi'), 'status' => 'final',
-            'notes' => $year === 2025 ? 'Baseline sebelum memakai Ruci BSC.' : 'Penilaian ulang setelah 9 bulan memakai Ruci BSC (ilustrasi).']);
+            'notes' => $year === 2025 ? 'Baseline sebelum memakai Kinera.' : 'Penilaian ulang setelah 9 bulan memakai Kinera (ilustrasi).']);
         $bump = $year === 2025 ? 0 : 1;
         $pattern = $this->maturityPattern();
         foreach (MaturityQuestion::orderBy('sort')->get() as $i => $q) {
             $score = min(5, max(1, $pattern[$i % count($pattern)] + $bump - ($i % 7 === 0 ? 1 : 0)));
-            MaturityAnswer::create(['maturity_assessment_id' => $a->id, 'maturity_question_id' => $q->id, 'score' => $score, 'evidence' => $i % 4 === 0 ? 'Bukti: notulen rapat & laporan Ruci BSC.' : null]);
+            MaturityAnswer::create(['maturity_assessment_id' => $a->id, 'maturity_question_id' => $q->id, 'score' => $score, 'evidence' => $i % 4 === 0 ? 'Bukti: notulen rapat & laporan Kinera.' : null]);
         }
         app(MaturityScoringService::class)->recalculate($a);
 
@@ -431,7 +431,7 @@ abstract class ShowcaseSeeder
         }
         foreach ($data['institutionalizations'] as [$title, $type, $desc, $freq, $owner, $status]) {
             Institutionalization::create(['title' => $title, 'mechanism_type' => $type, 'description' => $desc, 'frequency' => $freq, 'owner_id' => $this->id($owner),
-                'status' => $status, 'evidence' => $status === 'rencana' ? null : 'Notulen & laporan Ruci BSC.', 'started_at' => $year.'-01-15',
+                'status' => $status, 'evidence' => $status === 'rencana' ? null : 'Notulen & laporan Kinera.', 'started_at' => $year.'-01-15',
                 'next_review_date' => $year === 2025 ? '2026-01-15' : '2026-12-15']);
         }
     }

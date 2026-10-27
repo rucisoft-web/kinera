@@ -6,7 +6,7 @@ use App\Models\AnalysisPeriod;
 use App\Models\Company;
 use Illuminate\Support\Facades\DB;
 
-/** Daftar satker BLU contoh (studi kasus) yang dipakai di halaman depan, login, dan Kenali Ruci BSC. */
+/** Daftar satker BLU contoh (studi kasus) yang dipakai di halaman depan, login, dan Kenali Kinera. */
 class DemoCatalog
 {
     /** [kode, nama, sektor, pelajaran utama] */

@@ -13,9 +13,9 @@ use function Laravel\Prompts\text;
 
 class CreateAdmin extends Command
 {
-    protected $signature = 'bscblu:create-admin {--name=} {--email=} {--password=}';
+    protected $signature = 'kinera:create-admin {--name=} {--email=} {--password=}';
 
-    protected $description = 'Membuat akun Super Admin pertama Ruci BSC';
+    protected $description = 'Membuat akun Super Admin pertama Kinera';
 
     public function handle(): int
     {

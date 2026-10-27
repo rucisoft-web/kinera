@@ -5,12 +5,12 @@ namespace App\Filament\Pages;
 use App\Support\Terms;
 use Filament\Pages\Page;
 
-/** Penjelasan Ruci BSC BLU untuk Pemimpin BLU, Pejabat Pengelola, dan Dewan Pengawas, dengan ajakan ikut Workshop. */
-class KenaliRuciBsc extends Page
+/** Penjelasan Kinera untuk Pemimpin BLU, Pejabat Pengelola, dan Dewan Pengawas, dengan ajakan ikut Workshop. */
+class KenaliKinera extends Page
 {
-    protected static ?string $title = 'Kenali Ruci BSC';
+    protected static ?string $title = 'Kenali Kinera';
 
-    protected static ?string $navigationLabel = 'Kenali Ruci BSC';
+    protected static ?string $navigationLabel = 'Kenali Kinera';
 
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-light-bulb';
 
@@ -18,9 +18,9 @@ class KenaliRuciBsc extends Page
 
     protected static ?int $navigationSort = 1;
 
-    protected static ?string $slug = 'kenali-ruci-bsc';
+    protected static ?string $slug = 'kenali-kinera';
 
-    protected string $view = 'filament.pages.kenali-ruci-bsc';
+    protected string $view = 'filament.pages.kenali-kinera';
 
     public static function canAccess(): bool
     {

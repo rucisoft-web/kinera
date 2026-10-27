@@ -1,5 +1,5 @@
 /*
- | Tema Rucisoft — Ruci BSC Professional
+ | Tema Rucisoft — Kinera
  | biru #1F4E8C · navy #0F2A4A · aksen garis merah #D32F2F · latar #F4F7FB
  | Stylesheet statis (tanpa build Node) — dimuat lewat FilamentAsset.
  */
@@ -174,7 +174,7 @@ html:not(.dark) .fi-sidebar { border-inline-end: 1px solid var(--k-garis); }
 .arah-guest-login p.arah-demo-note { color: #7A1F1F; background: #FDECEC; border-radius: .4rem; padding: .45rem .6rem; text-align: left; }
 .dark .arah-guest-login p.arah-demo-note { color: #F7C1BC; background: rgba(180,35,24,.16); }
 .dark .arah-guest-banner { background: rgba(200,138,18,.14); color: #F0D79A; border-color: rgba(200,138,18,.35); }
-/* ---- Kenali Ruci BSC (penjelasan untuk pimpinan) */
+/* ---- Kenali Kinera (penjelasan untuk pimpinan) */
 .kenali { display: flex; flex-direction: column; gap: 2.5rem; }
 .kenali h2 { font-size: 1.3rem; font-weight: 700; margin: 0 0 .4rem; color: var(--k-tinta); line-height: 1.3; }
 .kenali-lead { color: var(--k-tinta-2); font-size: .92rem; margin: 0 0 1rem; max-width: 52rem; line-height: 1.6; }
@@ -366,7 +366,7 @@ html:not(.dark) .kenali-svg .kn-node { fill: #fff; }
     .impl { grid-template-columns: minmax(0, 1fr); }
     .arah-card { box-shadow: none; break-inside: avoid; }
 }
-/* ---- Workshop Ruci BSC */
+/* ---- Workshop Kinera */
 .ws-hero { align-items: center; }
 .ws-dates { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16); border-radius: .8rem; padding: 1rem 1.1rem; font-size: .85rem; align-self: center; }
 .ws-dates b { color: #fff; }

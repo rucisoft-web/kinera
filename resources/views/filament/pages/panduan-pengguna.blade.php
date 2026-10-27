@@ -1,5 +1,5 @@
 @php
-    $src = fn (string $ref) => asset('images/'.(str_starts_with($ref, 'k:') ? 'kenali/' : 'panduan/').substr($ref, 2).'.jpg').'?v=2';
+    $src = fn (string $ref) => asset('images/'.(str_starts_with($ref, 'k:') ? 'kenali/' : 'panduan/').substr($ref, 2).'.jpg').'?v=3';
 @endphp
 <x-filament-panels::page>
 <div class="arah panduan" x-data="{ tab: (location.hash || '#semua').slice(1) }" x-init="if (! @js(array_keys($roles)).includes(tab)) tab = 'semua'">

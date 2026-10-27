@@ -16,7 +16,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
  * Akses Tamu untuk situs demo/promosi: pengunjung masuk dengan satu klik dan hanya bisa melihat.
- * Aktif bila BSCBLU_GUEST_LOGIN=true. Peran `tamu` hanya berisi izin lihat; selain itu setiap
+ * Aktif bila KINERA_GUEST_LOGIN=true. Peran `tamu` hanya berisi izin lihat; selain itu setiap
  * penyimpanan/penghapusan model oleh Tamu ditolak di sini sebagai pengaman terakhir.
  */
 class GuestMode

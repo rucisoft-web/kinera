@@ -4,9 +4,9 @@
     $speaker = config('bsc.workshop_special_speaker') ?: 'narasumber tamu, praktisi tata kelola dan pencegahan korupsi';
 
     $rundown = [
-        ['07.30', '08.00', 'Registrasi & kopi pagi', 'Pembagian kelompok dan akses demo Ruci BSC', 'break'],
+        ['07.30', '08.00', 'Registrasi & kopi pagi', 'Pembagian kelompok dan akses demo Kinera', 'break'],
         ['08.00', '08.20', 'Pembukaan', 'Perkenalan dan harapan peserta', 'open'],
-        ['08.20', '09.20', 'Sesi 1 · Mengapa strategi gagal dijalankan', 'Konsep Balanced Scorecard dan lima fase Ruci BSC', 'talk'],
+        ['08.20', '09.20', 'Sesi 1 · Mengapa strategi gagal dijalankan', 'Konsep Balanced Scorecard dan lima fase Kinera', 'talk'],
         ['09.20', '09.35', 'Rehat pagi', '', 'break'],
         ['09.35', '10.45', 'Sesi 2 · Membaca lingkungan & jati diri', 'PESTEL, SWOT, TOWS, tema strategis · latihan kelompok', 'work'],
         ['10.45', '12.00', 'Sesi 3 · Menyusun Peta Strategi', 'Sasaran 4 perspektif dan hubungan sebab-akibat · latihan kelompok', 'work'],
@@ -14,7 +14,7 @@
         ['13.00', '14.15', 'Sesi 4 · IK dan target yang baik', 'SMART, kamus Indikator Kinerja, target bulanan, skor · latihan kelompok', 'work'],
         ['14.15', '15.00', 'Sesi 5 · Dari strategi ke aksi', 'Inisiatif, anggaran, portofolio nilai–upaya · latihan', 'work'],
         ['15.00', '15.15', 'Rehat sore', '', 'break'],
-        ['15.15', '16.00', 'Sesi 6 · Praktik Ruci BSC', 'Pusat Kendali dan simulasi rapat bulanan di laptop', 'app'],
+        ['15.15', '16.00', 'Sesi 6 · Praktik Kinera', 'Pusat Kendali dan simulasi rapat bulanan di laptop', 'app'],
         ['16.00', '16.30', 'Presentasi & penutupan', 'Hasil kelompok, rencana aksi 30 hari, sertifikat', 'open'],
     ];
     $kinds = ['talk' => ['Paparan', '#1F4E8C'], 'work' => ['Latihan kelompok', '#2A8C9E'], 'app' => ['Praktik aplikasi', '#2E7D4F'], 'open' => ['Pleno', '#C88A12'], 'break' => ['Rehat', '#8A99AE']];
@@ -24,8 +24,8 @@
             'Empat hambatan pelaksanaan strategi (Kaplan & Norton): visi, manusia, sumber daya, manajemen.',
             'Balanced Scorecard sebagai sistem manajemen strategi, bukan sekadar daftar IK.',
             'Empat perspektif: Keuangan, Kepuasan Pelanggan, Proses Internal, SDM & Pembelajaran.',
-            'Lima fase Ruci BSC: Ekosistem, Jati Diri, Kinerja, Perbaikan, Kesinambungan.',
-        ], 'Diskusi: hambatan mana yang paling terasa di satker BLU Anda?', [['Kenali Ruci BSC', Pages\KenaliRuciBsc::getUrl()]]],
+            'Lima fase Kinera: Ekosistem, Jati Diri, Kinerja, Perbaikan, Kesinambungan.',
+        ], 'Diskusi: hambatan mana yang paling terasa di satker BLU Anda?', [['Kenali Kinera', Pages\KenaliKinera::getUrl()]]],
         ['2', 'Membaca lingkungan & jati diri', '70 menit', [
             'PESTEL, kekuatan industri, segmen pasar, pesaing, dan regulasi.',
             'SWOT berbobot dan strategi TOWS (SO, ST, WO, WT) sampai isu strategis.',
@@ -46,7 +46,7 @@
             'Portofolio nilai–upaya: Quick Win, Prioritas Strategis, Pengisi, Tinjau Ulang.',
             'Progres inisiatif (70% aktivitas, 30% milestone) dan tanda terlambat.',
         ], 'Memilih 3 inisiatif dan menempatkannya di matriks nilai–upaya.', [['Portofolio Inisiatif', Pages\PortofolioInisiatif::getUrl()]]],
-        ['6', 'Praktik Ruci BSC & simulasi rapat', '45 menit', [
+        ['6', 'Praktik Kinera & simulasi rapat', '45 menit', [
             'Masuk sebagai Tamu ke satker BLU contoh (data demo): Kontrak Kinerja, Capaian & Insentif, cetak Lampiran I/II/IV/VI.',
             'Membaca Pusat Kendali, Peta Strategi, Portofolio Inisiatif, dan Laporan.',
             'Siklus: tanggal 3 pengingat, 5 input, 7 verifikasi, 8 persetujuan, 10 rapat; laporan capaian ≤ 15 hari kerja setelah triwulan.',
@@ -58,15 +58,15 @@
         ['Draf Peta Strategi', '8–12 sasaran dalam empat perspektif, bisa memakai satker BLU Anda sendiri.'],
         ['Contoh kamus Indikator Kinerja', 'Dua IK per sasaran lengkap dengan definisi, rumus, pemilik, baseline, dan target.'],
         ['Daftar inisiatif prioritas', 'Dipetakan menurut nilai dan upaya, siap dibahas di kantor.'],
-        ['Pengalaman memakai Ruci BSC', 'Pusat Kendali, Peta Strategi, realisasi IK, inisiatif, dan simulasi rapat.'],
-        ['Paket materi', 'Salinan paparan (PDF), lembar kerja, template Excel Ruci BSC, akses Panduan.'],
+        ['Pengalaman memakai Kinera', 'Pusat Kendali, Peta Strategi, realisasi IK, inisiatif, dan simulasi rapat.'],
+        ['Paket materi', 'Salinan paparan (PDF), lembar kerja, template Excel Kinera, akses Panduan.'],
         ['Rencana aksi 30 hari', 'Langkah konkret memulai BSC di satker BLU masing-masing.'],
-        ['Sertifikat', 'Sertifikat keikutsertaan Workshop Ruci BSC.'],
+        ['Sertifikat', 'Sertifikat keikutsertaan Workshop Kinera.'],
     ];
 
     // Edisi khusus setengah hari untuk Dewan Pengawas dan Pejabat Pengelola BLU, dengan narasumber tamu tata kelola.
     $special = [
-        ['07.30', '08.00', 'Registrasi & kopi pagi', 'Akses demo Ruci BSC dan pembagian meja (Dewan Pengawas dan Pejabat Pengelola dicampur)', 'break'],
+        ['07.30', '08.00', 'Registrasi & kopi pagi', 'Akses demo Kinera dan pembagian meja (Dewan Pengawas dan Pejabat Pengelola dicampur)', 'break'],
         ['08.00', '08.15', 'Pembukaan', 'Tujuan forum: dari laporan kinerja ke pengawasan yang terukur', 'open'],
         ['08.15', '09.15', 'Sesi tamu · Tata kelola dan pencegahan', 'Mengapa kinerja harus terukur dan tercatat · '.$speaker, 'talk'],
         ['09.15', '09.45', 'Sesi 2 · BSC sebagai alat pengawasan', 'Dari Renstra, RBA, dan Kontrak Kinerja Pemimpin BLU ke Peta Strategi; peran Dewan Pengawas dan Pejabat Pengelola', 'talk'],
@@ -87,7 +87,7 @@
         ['2', 'BSC sebagai alat pengawasan', '30 menit', [
             'Menurunkan Renstra, RBA, dan Indikator Kinerja Kontrak Kinerja ke sasaran dan IK empat perspektif.',
             'Pembagian peran: Pejabat Pengelola menjalankan dan melaporkan, Dewan Pengawas mengawasi dan memberi nasihat.',
-            'Siklus bulanan Ruci BSC: input, verifikasi, persetujuan, rapat, temuan, tindak lanjut, jejak audit.',
+            'Siklus bulanan Kinera: input, verifikasi, persetujuan, rapat, temuan, tindak lanjut, jejak audit.',
         ], 'Memetakan tiga IK Kontrak Kinerja satker BLU sendiri ke perspektif BSC.', [['Peta Strategi', Pages\PetaStrategi::getUrl()]]],
         ['3', 'Studi kasus UIN Sunan Kalijaga (data demo)', '75 menit', [
             'Konteks: PNBP 99,48% dari target dan pendapatan kerja sama di bawah 65% menggugurkan syarat insentif 2025.',
@@ -106,8 +106,8 @@
     <section class="kenali-workshop ws-hero">
         <div>
             <span class="kenali-eyebrow">Workshop sehari · setiap Minggu pertama awal bulan</span>
-            <h2>Mengenal Ruci BSC: dari strategi menjadi rencana aksi dalam satu hari</h2>
-            <p>Kelas praktis 08.00–16.30 WIB untuk Pemimpin BLU, Pejabat Pengelola, Dewan Pengawas, dan tim perencanaan. Peserta belajar konsep Balanced Scorecard, menyusun Peta Strategi dan IK dalam kelompok, lalu langsung mencoba Ruci BSC BLU dengan studi kasus data demo UIN Sunan Kalijaga, termasuk menyusun Kontrak Kinerja dan membaca syarat insentif PER-6/PB/2025.</p>
+            <h2>Mengenal Kinera: dari strategi menjadi rencana aksi dalam satu hari</h2>
+            <p>Kelas praktis 08.00–16.30 WIB untuk Pemimpin BLU, Pejabat Pengelola, Dewan Pengawas, dan tim perencanaan. Peserta belajar konsep Balanced Scorecard, menyusun Peta Strategi dan IK dalam kelompok, lalu langsung mencoba Kinera dengan studi kasus data demo UIN Sunan Kalijaga, termasuk menyusun Kontrak Kinerja dan membaca syarat insentif PER-6/PB/2025.</p>
             <div class="kenali-actions">
                 @if ($workshopUrl)
                     <a href="{{ $workshopUrl }}" target="_blank" rel="noopener" class="arah-btn arah-btn-primary kenali-btn-lg">Daftar Workshop</a>
@@ -163,7 +163,7 @@
 
     <section class="kenali-section">
         <h2>Materi per sesi</h2>
-        <p class="kenali-lead">Setiap sesi memadukan paparan singkat, latihan kelompok, dan contoh nyata di Ruci BSC. Tautan di bawah setiap sesi membuka menu yang dipakai saat praktik.</p>
+        <p class="kenali-lead">Setiap sesi memadukan paparan singkat, latihan kelompok, dan contoh nyata di Kinera. Tautan di bawah setiap sesi membuka menu yang dipakai saat praktik.</p>
         <div class="arah-grid arah-grid-2">
             @foreach ($sessions as [$no, $title, $dur, $points, $exercise, $links])
                 <div class="arah-card ws-session">
@@ -217,7 +217,7 @@
         <div class="arah-grid arah-grid-3">
             <div class="arah-card"><h3>Siapa yang cocok ikut</h3><div class="arah-muted" style="font-size:.85rem; line-height:1.6">Pemilik usaha, Dewan Pengawas, Pejabat Pengelola, manajer perencanaan/strategi, kepala divisi, dan konsultan. Paling efektif bila 2–3 orang dari satker BLU yang sama hadir bersama.</div></div>
             <div class="arah-card"><h3>Yang perlu dibawa</h3><div class="arah-muted" style="font-size:.85rem; line-height:1.6">Laptop atau tablet dengan peramban. Bila ingin berlatih dengan satker BLU sendiri, bawa visi-misi dan rencana kerja tahun ini.</div></div>
-            <div class="arah-card"><h3>Setelah workshop</h3><div class="arah-muted" style="font-size:.85rem; line-height:1.6">Dalam tiga hari peserta menerima materi PDF, foto hasil kelompok, template Excel Ruci BSC, sertifikat, dan tawaran sesi konsultasi implementasi (lihat <a href="{{ Pages\PanduanImplementasi::getUrl() }}" style="color:var(--k-taum); font-weight:600">Panduan Implementasi</a>).</div></div>
+            <div class="arah-card"><h3>Setelah workshop</h3><div class="arah-muted" style="font-size:.85rem; line-height:1.6">Dalam tiga hari peserta menerima materi PDF, foto hasil kelompok, template Excel Kinera, sertifikat, dan tawaran sesi konsultasi implementasi (lihat <a href="{{ Pages\PanduanImplementasi::getUrl() }}" style="color:var(--k-taum); font-weight:600">Panduan Implementasi</a>).</div></div>
         </div>
     </section>
 </div>

@@ -12,8 +12,8 @@
             <button type="submit" class="arah-guest-btn">Masuk sebagai Tamu (lihat-lihat)</button>
         </form>
         <div class="arah-guest-links">
-            <a href="{{ url('/#kenapa') }}">Kenapa perlu Ruci BSC?</a>
-            <a href="{{ url('/#panduan') }}">Panduan Ruci BSC</a>
+            <a href="{{ url('/#kenapa') }}">Kenapa perlu Kinera?</a>
+            <a href="{{ url('/#panduan') }}">Panduan Kinera</a>
             <a href="{{ url('/#data-contoh') }}">Semua data contoh</a>
         </div>
         <p class="arah-demo-note"><b>Data demo:</b> hanya untuk keperluan memaksimalkan penyajian fitur-fitur perangkat lunak. Angka 2025 sebagian mengacu pada laporan keuangan audited dan Perjanjian Kinerja satker BLU contoh; rincian triwulanan, Kontrak Kinerja, dan data 2026 (proyeksi) adalah simulasi, bukan data resmi. Mode Tamu hanya melihat, data tidak bisa diubah.</p>

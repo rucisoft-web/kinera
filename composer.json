@@ -1,8 +1,8 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "rucisoft/bsc-blu",
+    "name": "rucisoft/kinera",
     "type": "project",
-    "description": "Ruci BSC BLU - Balanced Scorecard & Kontrak Kinerja Pemimpin BLU (PER-6/PB/2025)",
+    "description": "Kinera - Balanced Scorecard & Kontrak Kinerja Pemimpin BLU (PER-6/PB/2025)",
     "keywords": [
         "laravel",
         "filament",

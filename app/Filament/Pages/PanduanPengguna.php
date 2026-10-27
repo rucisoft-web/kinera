@@ -5,7 +5,7 @@ namespace App\Filament\Pages;
 use App\Support\Terms;
 use Filament\Pages\Page;
 
-/** Panduan pemakaian Ruci BSC per peran, dengan tangkapan layar. */
+/** Panduan pemakaian Kinera per peran, dengan tangkapan layar. */
 class PanduanPengguna extends Page
 {
     protected static ?string $title = 'Panduan Pengguna';
@@ -39,7 +39,7 @@ class PanduanPengguna extends Page
                 'who' => 'Dasar-dasar yang perlu dikuasai setiap pengguna sebelum masuk ke tugas perannya.',
                 'rhythm' => [],
                 'steps' => [
-                    ['Masuk dan mengganti kata sandi', 'Buka alamat Ruci BSC satker BLU Anda, masukkan email dan kata sandi dari Admin Sistem. Pada login pertama Anda diminta mengganti kata sandi (minimal 10 karakter, huruf dan angka). Ganti kata sandi atau nomor telepon kapan saja lewat menu Profil di pojok kanan atas.', null],
+                    ['Masuk dan mengganti kata sandi', 'Buka alamat Kinera satker BLU Anda, masukkan email dan kata sandi dari Admin Sistem. Pada login pertama Anda diminta mengganti kata sandi (minimal 10 karakter, huruf dan angka). Ganti kata sandi atau nomor telepon kapan saja lewat menu Profil di pojok kanan atas.', null],
                     ['Memilih satker BLU dan perioda', 'Kotak di kiri atas (misalnya "UINSUKA · Tahun 2026") menunjukkan satker BLU dan perioda yang sedang Anda lihat. Klik kotak itu untuk berpindah. Semua menu, angka, dan laporan selalu mengikuti pilihan ini. Perioda berwarna hijau sedang berjalan; perioda kuning sudah ditutup.', 'p:adm-konteks'],
                     ['Membaca Beranda', 'Beranda adalah halaman pertama setiap orang: skor strategis, jumlah IK merah, inisiatif terlambat, temuan terbuka, dan bagian "Tugas saya" yang berisi realisasi yang harus diisi, persetujuan yang menunggu, aktivitas jatuh tempo, serta tindakan korektif milik Anda.', 'p:kepala-beranda'],
                     ['Memahami warna status', 'Hijau berarti skor ≥ 100 (target tercapai), kuning 80–99 (perlu perhatian), merah di bawah 80 (kritis), abu-abu belum ada realisasi. Skor dihitung otomatis dari realisasi dibanding target, memperhitungkan arah IK (makin besar atau makin kecil makin baik).', null],

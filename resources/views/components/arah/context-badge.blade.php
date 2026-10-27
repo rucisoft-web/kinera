@@ -4,7 +4,7 @@
     $period = $ctx->period();
 @endphp
 <a href="{{ url('/admin') }}" class="arah-mobile-mark" aria-label="{{ config('bsc.brand_name') }}">
-    <img src="{{ asset('images/favicon.svg') }}" alt="Rucisoft" width="30" height="30">
+    <img src="{{ asset('images/favicon.svg') }}" alt="Kinera" width="30" height="30">
 </a>
 @if ($company && $period)
     <a href="{{ \App\Filament\Pages\PilihKonteks::getUrl() }}" class="arah-context" title="{{ $company->name }} · {{ $period->name }} — pilih satker BLU & perioda">

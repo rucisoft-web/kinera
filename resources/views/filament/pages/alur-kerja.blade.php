@@ -31,11 +31,11 @@
     </div>
 
     <div class="arah-card" style="margin-top:1rem">
-        <h3>Ritme kerja Ruci BSC</h3>
+        <h3>Ritme kerja Kinera</h3>
         <div class="arah-kamasan"></div>
         <div class="arah-scroll">
         <table class="arah-table">
-            <thead><tr><th>Ritme</th><th>Kegiatan di Ruci BSC</th><th>Pelaku</th><th>Batas waktu</th></tr></thead>
+            <thead><tr><th>Ritme</th><th>Kegiatan di Kinera</th><th>Pelaku</th><th>Batas waktu</th></tr></thead>
             <tbody>
             @foreach ($rhythm as $r)
                 <tr><td><span class="arah-badge arah-biru">{{ $r['ritme'] }}</span></td><td>{{ $r['kegiatan'] }}</td><td>{{ $r['pelaku'] }}</td><td>{{ $r['batas'] }}</td></tr>

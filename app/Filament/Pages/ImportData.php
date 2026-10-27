@@ -52,9 +52,9 @@ class ImportData extends Page
 
     public function downloadTemplate(): BinaryFileResponse
     {
-        $file = app(BscTemplate::class)->blank(storage_path('app/private/exports/template-bsc-blu-'.Str::random(6).'.xlsx'));
+        $file = app(BscTemplate::class)->blank(storage_path('app/private/exports/template-kinera-'.Str::random(6).'.xlsx'));
 
-        return response()->download($file, 'template-bsc-blu.xlsx')->deleteFileAfterSend();
+        return response()->download($file, 'template-kinera.xlsx')->deleteFileAfterSend();
     }
 
     public function downloadCurrent(): BinaryFileResponse

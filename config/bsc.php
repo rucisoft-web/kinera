@@ -3,29 +3,29 @@
 return [
     /*
     |--------------------------------------------------------------------------
-    | Ruci BSC BLU — edisi Badan Layanan Umum (Kontrak Kinerja Pemimpin BLU, PER-6/PB/2025)
+    | Kinera — edisi Badan Layanan Umum (Kontrak Kinerja Pemimpin BLU, PER-6/PB/2025)
     |--------------------------------------------------------------------------
-    | BSCBLU_TERMS=blu   -> istilah BLU (perspektif sektor publik: Pemangku Kepentingan, Proses Layanan Internal, ...)
-    | BSCBLU_TERMS=umum  -> istilah umum bahasa Indonesia (Ekosistem, Jati Diri, ...)
+    | KINERA_TERMS=blu   -> istilah BLU (perspektif sektor publik: Pemangku Kepentingan, Proses Layanan Internal, ...)
+    | KINERA_TERMS=umum  -> istilah umum bahasa Indonesia (Ekosistem, Jati Diri, ...)
     */
-    'terms' => env('BSCBLU_TERMS', 'blu'),
-    'brand_name' => env('BSCBLU_BRAND_NAME', 'Ruci BSC BLU'),
-    'brand_tagline' => env('BSCBLU_BRAND_TAGLINE', 'Balanced Scorecard & Kontrak Kinerja Pemimpin BLU'),
+    'terms' => env('KINERA_TERMS', 'blu'),
+    'brand_name' => env('KINERA_BRAND_NAME', 'Kinera'),
+    'brand_tagline' => env('KINERA_BRAND_TAGLINE', 'Balanced Scorecard & Kontrak Kinerja Pemimpin BLU'),
 
     // Dibaca lewat config() supaya tetap berlaku setelah `php artisan optimize` (config cache) di produksi
-    'notify_mail' => (bool) env('BSCBLU_NOTIFY_MAIL', false),
-    'mfa_required' => (bool) env('BSCBLU_MFA_REQUIRED', false),
-    'seed_demo' => (bool) env('BSCBLU_SEED_DEMO', false),
-    'demo_admin_password' => env('BSCBLU_ADMIN_PASSWORD', 'Ruci@BSC2026'),
-    'demo_enabled' => (bool) env('BSCBLU_DEMO_ENABLED', false),
+    'notify_mail' => (bool) env('KINERA_NOTIFY_MAIL', false),
+    'mfa_required' => (bool) env('KINERA_MFA_REQUIRED', false),
+    'seed_demo' => (bool) env('KINERA_SEED_DEMO', false),
+    'demo_admin_password' => env('KINERA_ADMIN_PASSWORD', 'Kinera@2026'),
+    'demo_enabled' => (bool) env('KINERA_DEMO_ENABLED', false),
     // Situs demo/promosi: tombol "Masuk sebagai Tamu" (hanya lihat) di halaman login
-    'guest_login' => (bool) env('BSCBLU_GUEST_LOGIN', false),
-    'guest_email' => env('BSCBLU_GUEST_EMAIL', 'tamu@demo.rucisoft.id'),
-    // Ajakan Workshop di menu "Kenali Ruci BSC": tautan pendaftaran & kontak (mis. WhatsApp/email)
-    'workshop_url' => env('BSCBLU_WORKSHOP_URL', 'https://rucisoft.id'),
-    'workshop_contact' => env('BSCBLU_WORKSHOP_CONTACT'),
-    'workshop_special_speaker' => env('BSCBLU_WORKSHOP_SPECIAL_SPEAKER'),
-    'audit_enabled' => (bool) env('BSCBLU_AUDIT_ENABLED', true),
+    'guest_login' => (bool) env('KINERA_GUEST_LOGIN', false),
+    'guest_email' => env('KINERA_GUEST_EMAIL', 'tamu@demo.rucisoft.id'),
+    // Ajakan Workshop di menu "Kenali Kinera": tautan pendaftaran & kontak (mis. WhatsApp/email)
+    'workshop_url' => env('KINERA_WORKSHOP_URL', 'https://rucisoft.id'),
+    'workshop_contact' => env('KINERA_WORKSHOP_CONTACT'),
+    'workshop_special_speaker' => env('KINERA_WORKSHOP_SPECIAL_SPEAKER'),
+    'audit_enabled' => (bool) env('KINERA_AUDIT_ENABLED', true),
 
     // Ambang status KPI (skor dalam persen)
     'score_green' => 100,
@@ -68,14 +68,14 @@ return [
             'punarbhawa' => 'Perbaikan', 'moksa' => 'Kesinambungan',
             'keuangan' => 'Keuangan', 'pelanggan' => 'Pemangku Kepentingan',
             'proses' => 'Proses Layanan Internal', 'sdm' => 'Pembelajaran & Pertumbuhan',
-            'app' => 'Ruci BSC BLU', 'method' => 'Manajemen Kinerja BLU',
+            'app' => 'Kinera', 'method' => 'Manajemen Kinerja BLU',
         ],
         'umum' => [
             'brahman' => 'Ekosistem', 'atman' => 'Jati Diri', 'karma_phala' => 'Kinerja',
             'punarbhawa' => 'Perbaikan', 'moksa' => 'Kesinambungan',
             'keuangan' => 'Keuangan', 'pelanggan' => 'Kepuasan Pelanggan',
             'proses' => 'Proses Internal', 'sdm' => 'SDM & Pembelajaran',
-            'app' => 'Ruci BSC', 'method' => 'Manajemen Strategi',
+            'app' => 'Kinera', 'method' => 'Manajemen Strategi',
         ],
     ],
 ];

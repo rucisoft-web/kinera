@@ -1,5 +1,5 @@
 @php
-    $img = fn (string $n) => asset('images/kenali/'.$n.'.jpg').'?v=2';
+    $img = fn (string $n) => asset('images/kenali/'.$n.'.jpg').'?v=3';
     $guest = fn (array $q = []) => route('arah.guest', $q);
     $year = collect($cases)->pluck('year')->filter()->max() ?? now()->year;
 @endphp
@@ -8,15 +8,15 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ruci BSC BLU · Kontrak Kinerja Pemimpin BLU yang terpantau setiap triwulan</title>
-    <meta name="description" content="Ruci BSC BLU: Balanced Scorecard dan Kontrak Kinerja Pemimpin BLU sesuai PER-6/PB/2025 untuk satker Badan Layanan Umum. Coba data demo tanpa akun.">
+    <title>Kinera · Kontrak Kinerja Pemimpin BLU yang terpantau setiap triwulan</title>
+    <meta name="description" content="Kinera: Balanced Scorecard dan Kontrak Kinerja Pemimpin BLU sesuai PER-6/PB/2025 untuk satker Badan Layanan Umum. Coba data demo tanpa akun.">
     <link rel="icon" href="{{ asset('images/favicon.svg') }}" type="image/svg+xml">
     <link rel="stylesheet" href="{{ asset('css/landing.css') }}?v=1">
 </head>
 <body>
 <header class="l-top">
     <div class="l-wrap l-top-in">
-        <a href="{{ url('/') }}" class="l-brand"><picture><source srcset="{{ asset('images/rucisoft-logo-dark.svg') }}" media="(prefers-color-scheme: dark)"><img src="{{ asset('images/rucisoft-logo.svg') }}" alt="Rucisoft BSC Professional" class="l-logo"></picture></a>
+        <a href="{{ url('/') }}" class="l-brand"><picture><source srcset="{{ asset('images/kinera-logo-dark.svg') }}" media="(prefers-color-scheme: dark)"><img src="{{ asset('images/kinera-logo.svg') }}" alt="Kinera" class="l-logo"></picture></a>
         <nav class="l-nav" aria-label="Navigasi utama">
             <a href="#kenapa">Kenapa perlu</a>
             <a href="#fitur">Fitur</a>
@@ -35,7 +35,7 @@
             <div>
                 <span class="l-eyebrow">Untuk Pemimpin BLU, Pejabat Pengelola, dan Dewan Pengawas</span>
                 <h1>Kontrak Kinerja BLU yang terpantau, terbukti, dan tepat waktu.</h1>
-                <p class="l-lead">Ruci BSC BLU memadukan <b>Balanced Scorecard</b> dengan <b>Kontrak Kinerja Pemimpin BLU</b> menurut PER-6/PB/2025: Indikator Kinerja aspek layanan & keuangan, target trajektori triwulanan, Definisi Operasional, laporan capaian, uji syarat insentif, dan versi perubahan kontrak, semua dalam satu tempat.</p>
+                <p class="l-lead">Kinera memadukan <b>Balanced Scorecard</b> dengan <b>Kontrak Kinerja Pemimpin BLU</b> menurut PER-6/PB/2025: Indikator Kinerja aspek layanan & keuangan, target trajektori triwulanan, Definisi Operasional, laporan capaian, uji syarat insentif, dan versi perubahan kontrak, semua dalam satu tempat.</p>
                 <div class="l-actions">
                     <a href="#data-contoh" class="l-btn l-btn-primary">Coba data demo {{ $year }}</a>
                     <a href="#panduan" class="l-btn">Baca panduannya</a>
@@ -44,7 +44,7 @@
             </div>
             <figure class="l-shot">
                 <span class="l-tag">Data demo</span>
-                <img src="{{ $img('pusat-kendali') }}" alt="Pusat Kendali Ruci BSC BLU dengan data contoh" loading="eager">
+                <img src="{{ $img('pusat-kendali') }}" alt="Pusat Kendali Kinera dengan data contoh" loading="eager">
             </figure>
         </div>
     </section>
@@ -52,9 +52,9 @@
     {{-- ===== Kenapa perlu ===== --}}
     <section class="l-section" id="kenapa">
         <div class="l-wrap">
-            <span class="l-eyebrow">Kenapa perlu Ruci BSC BLU</span>
+            <span class="l-eyebrow">Kenapa perlu Kinera</span>
             <h2>Kontrak Kinerja ditandatangani setahun sekali, tetapi dinilai setiap triwulan.</h2>
-            <p class="l-lead">PER-6/PB/2025 menuntut laporan capaian paling lambat 15 hari kerja setelah setiap periode trajektori, lengkap dengan hasil verifikasi internal, perhitungan, dan dokumen pendukung. Ruci BSC BLU menjawab empat hambatan klasik pelaksanaan strategi (Kaplan &amp; Norton) dalam bahasa BLU.</p>
+            <p class="l-lead">PER-6/PB/2025 menuntut laporan capaian paling lambat 15 hari kerja setelah setiap periode trajektori, lengkap dengan hasil verifikasi internal, perhitungan, dan dokumen pendukung. Kinera menjawab empat hambatan klasik pelaksanaan strategi (Kaplan &amp; Norton) dalam bahasa BLU.</p>
             <div class="l-grid l-grid-4">
                 @foreach ([
                     ['95%', 'pegawai tidak memahami strategi organisasinya', 'Hambatan visi', 'Peta Strategi satu halaman yang bisa dibaca semua orang, dari Dewan Pengawas sampai unit kerja.'],
@@ -66,7 +66,7 @@
                         <div class="l-num">{{ $num }}</div>
                         <p>{{ $fact }}</p>
                         <span class="l-chip">{{ $label }}</span>
-                        <p class="l-answer"><b>Jawaban Ruci BSC:</b> {{ $answer }}</p>
+                        <p class="l-answer"><b>Jawaban Kinera:</b> {{ $answer }}</p>
                     </div>
                 @endforeach
             </div>
@@ -102,7 +102,7 @@
                 @foreach ([['peta-strategi', 'Peta Strategi'], ['portofolio', 'Portofolio inisiatif'], ['laporan', 'Laporan untuk pimpinan']] as [$f, $cap])
                     <figure class="l-shot l-shot-sm">
                         <span class="l-tag">Data demo</span>
-                        <img src="{{ $img($f) }}" alt="{{ $cap }} di Ruci BSC BLU" loading="lazy">
+                        <img src="{{ $img($f) }}" alt="{{ $cap }} di Kinera" loading="lazy">
                         <figcaption>{{ $cap }}</figcaption>
                     </figure>
                 @endforeach
@@ -139,9 +139,9 @@
     {{-- ===== Panduan ===== --}}
     <section class="l-section l-alt" id="panduan">
         <div class="l-wrap">
-            <span class="l-eyebrow">Panduan Ruci BSC</span>
+            <span class="l-eyebrow">Panduan Kinera</span>
             <h2>Siapa mengerjakan apa, dan kapan.</h2>
-            <p class="l-lead">Ruci BSC BLU berjalan dengan ritme yang sederhana: bulanan untuk pemantauan internal, triwulanan untuk laporan capaian Kontrak Kinerja. Setiap peran hanya melihat menu yang menjadi tugasnya.</p>
+            <p class="l-lead">Kinera berjalan dengan ritme yang sederhana: bulanan untuk pemantauan internal, triwulanan untuk laporan capaian Kontrak Kinerja. Setiap peran hanya melihat menu yang menjadi tugasnya.</p>
             <ol class="l-cycle">
                 @foreach ([
                     [$cycle['reminder_day'] ?? 3, 'Pengingat', 'Sistem mengingatkan PIC yang belum mengisi realisasi.'],
@@ -171,7 +171,7 @@
             <div class="l-actions l-gap-top">
                 <a href="{{ $guest(['ke' => 'panduan']) }}" class="l-btn l-btn-primary">Buka Panduan Pengguna lengkap</a>
                 <a href="{{ $guest(['ke' => 'implementasi']) }}" class="l-btn">Panduan Implementasi</a>
-                <a href="{{ $guest(['ke' => 'kenali']) }}" class="l-btn">Kenali Ruci BSC BLU</a>
+                <a href="{{ $guest(['ke' => 'kenali']) }}" class="l-btn">Kenali Kinera</a>
             </div>
             <p class="l-note">Panduan lengkap dengan tangkapan layar terbuka di dalam aplikasi sebagai Tamu.</p>
         </div>
@@ -183,7 +183,7 @@
             <div class="l-cta">
                 <div>
                     <span class="l-eyebrow">Workshop</span>
-                    <h2>Kenali Ruci BSC BLU dalam satu hari.</h2>
+                    <h2>Kenali Kinera dalam satu hari.</h2>
                     <p>Workshop untuk Pemimpin BLU, Pejabat Pengelola, Dewan Pengawas, dan tim perencanaan: dari Peta Strategi sampai Kontrak Kinerja dan laporan capaian, memakai studi kasus di atas.</p>
                 </div>
                 <div class="l-actions">
@@ -205,7 +205,7 @@
                 ['Apa yang bisa dilakukan sebagai Tamu?', 'Melihat semua menu, Kontrak Kinerja, dan laporan, serta berpindah perioda. Tamu tidak bisa mengubah atau menghapus data.'],
                 ['Apakah cocok untuk BLU rumah sakit atau BLU lainnya?', 'Bisa. Aspek layanan, keuangan, dan kebijakan/penugasan berlaku untuk semua rumpun BLU. Satu instalasi menampung banyak satker dengan hak akses per satker dan per peran, termasuk Dewan Pengawas.'],
                 ['Bagaimana memulai dengan data sendiri?', 'Admin membuat satker BLU dan perioda, lalu Perencanaan mengisi atau mengimpor sasaran, Indikator Kinerja, dan target dari Excel, kemudian menyusun Kontrak Kinerja. Ikuti Panduan Implementasi.'],
-                ['Di mana Ruci BSC BLU dipasang?', 'Di server atau hosting milik satker sendiri (misalnya cPanel), sehingga data tetap berada di bawah kendali BLU.'],
+                ['Di mana Kinera dipasang?', 'Di server atau hosting milik satker sendiri (misalnya cPanel), sehingga data tetap berada di bawah kendali BLU.'],
             ] as [$q, $a])
                 <details class="l-faq"><summary>{{ $q }}</summary><p>{{ $a }}</p></details>
             @endforeach
@@ -225,7 +225,7 @@
 
 <footer class="l-foot">
     <div class="l-wrap">
-        <p><b>Ruci BSC BLU</b> · Rucisoft</p>
+        <p><b>Kinera</b> · Rucisoft</p>
         <p class="l-foot-warn"><b>DATA DEMO:</b> hanya untuk keperluan memaksimalkan penyajian fitur-fitur perangkat lunak. Sebagian angka 2025 mengacu pada dokumen publik UIN Sunan Kalijaga (LK BLU Audited 2025, Perjanjian Kinerja 2025, RSB 2020–2024); selebihnya simulasi dan proyeksi. Nama satker dipakai sebagai studi kasus, bukan kerja sama atau dukungan, dan bukan data resmi UIN Sunan Kalijaga, Kementerian Agama, maupun Kementerian Keuangan.</p>
     </div>
 </footer>

@@ -9,7 +9,7 @@ use Illuminate\Console\Command;
 /** Menghapus satker BLU contoh (is_demo) beserta seluruh datanya dan akun @contoh.local, sebelum go-live. */
 class HapusContoh extends Command
 {
-    protected $signature = 'bscblu:hapus-contoh {--force : Lewati konfirmasi}';
+    protected $signature = 'kinera:hapus-contoh {--force : Lewati konfirmasi}';
 
     protected $description = 'Hapus satker BLU contoh (UIN Sunan Kalijaga — data demo) dan akun contoh sebelum dipakai produksi';
 

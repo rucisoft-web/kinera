@@ -17,10 +17,10 @@ use Illuminate\Support\Facades\Auth;
 class GuestLoginController extends Controller
 {
     protected const PAGES = [
-        'kenali' => \App\Filament\Pages\KenaliRuciBsc::class,
+        'kenali' => \App\Filament\Pages\KenaliKinera::class,
         'panduan' => \App\Filament\Pages\PanduanPengguna::class,
         'implementasi' => \App\Filament\Pages\PanduanImplementasi::class,
-        'workshop' => \App\Filament\Pages\WorkshopRuciBsc::class,
+        'workshop' => \App\Filament\Pages\WorkshopKinera::class,
     ];
 
     public function __invoke(Request $request)
