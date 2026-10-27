@@ -42,7 +42,7 @@ class PerformanceContractResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Kontrak Kinerja';
 
-    protected static ?string $navigationLabel = 'Perjanjian & Kontrak Kinerja';
+    protected static ?string $navigationLabel = 'Kontrak Kinerja BLU';
 
     protected static ?string $navigationGroupKey = 'karma_phala';
 
@@ -51,6 +51,11 @@ class PerformanceContractResource extends Resource
     protected static ?string $editPermission = 'kpi.edit';
 
     protected static ?string $recordTitleAttribute = 'number';
+
+    public static function canViewAny(): bool
+    {
+        return static::allows(static::$viewPermission) && \App\Support\BluModule::enabled();
+    }
 
     public static function form(Schema $schema): Schema
     {

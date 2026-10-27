@@ -93,7 +93,7 @@ class KpiResource extends Resource
                 Toggle::make('is_active')->label('Aktif')->default(true),
                 Textarea::make('description')->label('Keterangan')->rows(2)->columnSpanFull(),
             ]),
-            Section::make('Perjanjian / Kontrak Kinerja')->columns(4)->description('Atribut Indikator Kinerja dalam Perjanjian Kinerja; aspek dan capaian maksimum mengikuti Kontrak Kinerja Pemimpin BLU (PER-6/PB/2025) bagi instansi berpola BLU.')->schema([
+            Section::make('Perjanjian / Kontrak Kinerja')->columns(4)->visible(fn () => \App\Support\BluModule::enabled())->description('Atribut Indikator Kinerja dalam Perjanjian Kinerja; aspek dan capaian maksimum mengikuti Kontrak Kinerja Pemimpin BLU (PER-6/PB/2025) bagi instansi berpola BLU.')->schema([
                 Select::make('aspect')->label('Aspek')->options(Models\Kpi::ASPECTS)->default('layanan')->required()->native(false)->live(),
                 Toggle::make('is_mandatory')->label('Wajib dicapai (mandatory)')->helperText('Pasal 14 ayat (4) huruf b')->inline(false),
                 TextInput::make('max_achievement')->label('Capaian maksimum (%)')->numeric()->placeholder((string) config('bsc.score_cap'))->helperText('Sesuai KMK remunerasi BLU'),
@@ -101,7 +101,9 @@ class KpiResource extends Resource
                     ->helperText('Dipakai uji Pasal 14 ayat (4) huruf d–f'),
             ]),
             Section::make('Definisi Operasional Indikator Kinerja')->columns(2)
-                ->description(fn (Get $get) => 'Disusun Pemimpin BLU bersama '.(Models\Kpi::DO_PARTNERS[$get('aspect') ?? 'layanan'] ?? 'Pembina Teknis').' (Pasal 5 ayat 9) dan dilampirkan pada usulan Kontrak Kinerja.')
+                ->description(fn (Get $get) => \App\Support\BluModule::enabled()
+                    ? 'Disusun pimpinan bersama '.(Models\Kpi::DO_PARTNERS[$get('aspect') ?? 'layanan'] ?? 'Pembina Teknis').' (Pasal 5 ayat 9 PER-6/PB/2025) dan dilampirkan pada usulan Kontrak Kinerja.'
+                    : 'Batasan, rumus, sumber data, dan cara uji yang dipakai pada Perjanjian Kinerja dan LKjIP.')
                 ->schema([
                     Textarea::make('operational_definition')->label('Definisi / batasan indikator')->rows(3)->columnSpanFull(),
                     Textarea::make('formula')->label('Formula perhitungan')->rows(2),

@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Hash;
  *   termasuk Kontrak Kinerja Pemimpin BLU beserta adendum & usulan perubahannya. Lihat UinSukaSeeder.
  * - UINRF: UIN Raden Fatah Palembang — LKjIP 2025 & Renstra 2020–2024; pelajaran target PK terlalu rendah. Lihat UinRadenFatahSeeder.
  * - UINSUSKA: UIN Suska Riau — Laporan Kinerja 2025 (PK & Kontrak Kinerja), PK 2026, RIP 2014–2034; pelajaran PK vs Kontrak Kinerja belum selaras. Lihat UinSuskaRiauSeeder.
+ * - UNJ: Universitas Negeri Jakarta — PTN Badan Hukum (bukan BLU), Renstra 2025–2029 & Program Kerja 2026; tanpa modul Kontrak Kinerja BLU. Lihat UnjSeeder.
  * - Demo bertanda is_demo dan menampilkan peringatan "data demo" (App\Support\DemoNotice): hanya untuk keperluan
  *   memaksimalkan penyajian fitur-fitur perangkat lunak, bukan data resmi.
  */
@@ -36,7 +37,7 @@ class DemoSeeder extends Seeder
         $this->assign($admin, 'super-admin', null);
 
         // demo yang sudah terpasang dilewati, sehingga seeder aman dijalankan ulang untuk menambah demo baru
-        foreach ([UinSukaSeeder::class, UinRadenFatahSeeder::class, UinSuskaRiauSeeder::class] as $seeder) {
+        foreach ([UinSukaSeeder::class, UinRadenFatahSeeder::class, UinSuskaRiauSeeder::class, UnjSeeder::class] as $seeder) {
             $installed = AnalysisPeriod::whereHas('company', fn ($q) => $q->where('code', $seeder::CODE))->whereIn('code', ['2025', '2026'])->exists();
             if (! $installed) {
                 (new $seeder(self::PASSWORD))->run();

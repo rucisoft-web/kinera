@@ -20,6 +20,7 @@ class ShowcaseDemoTest extends TestCase
             'UIN Sunan Kalijaga' => ['UINSUKA', 12, 6, 'Audited TA 2025'],
             'UIN Raden Fatah' => ['UINRF', 12, 6, 'LKjIP 2025'],
             'UIN Suska Riau' => ['UINSUSKA', 12, 6, 'Kontrak Kinerja'],
+            'Universitas Negeri Jakarta' => ['UNJ', 12, 6, 'Program Kerja UNJ'],
         ];
     }
 
@@ -70,8 +71,24 @@ class ShowcaseDemoTest extends TestCase
         $this->seed(\Database\Seeders\DemoSeeder::class);
         $this->seed(\Database\Seeders\DemoSeeder::class);
 
-        $this->assertSame(['UINRF', 'UINSUKA', 'UINSUSKA'], Company::orderBy('code')->pluck('code')->all());
-        $this->assertSame(6, AnalysisPeriod::count());
+        $this->assertSame(['UINRF', 'UINSUKA', 'UINSUSKA', 'UNJ'], Company::orderBy('code')->pluck('code')->all());
+        $this->assertSame(8, AnalysisPeriod::count());
+    }
+
+    public function test_blu_module_is_hidden_for_non_blu_instansi(): void
+    {
+        $this->seed(\Database\Seeders\BscRolePermissionSeeder::class);
+        $this->artisan('kinera:demo', ['perusahaan' => 'UNJ', '--password' => 'Contoh-2026!', '--force' => true]);
+        $this->artisan('kinera:demo', ['perusahaan' => 'UINRF', '--password' => 'Contoh-2026!', '--force' => true]);
+
+        foreach (['UNJ' => false, 'UINRF' => true] as $code => $blu) {
+            $company = Company::where('code', $code)->firstOrFail();
+            $this->actingAs(\App\Models\User::where('email', strtolower($code).'.rektor@contoh.local')->firstOrFail());
+            app(BscContext::class)->set($company->id, AnalysisPeriod::where('company_id', $company->id)->where('is_active', true)->value('id'));
+            $this->assertSame($blu, \App\Support\BluModule::enabled(), $code);
+            $this->assertSame($blu, \App\Filament\Pages\CapaianKinerjaBlu::canAccess(), $code);
+            $this->assertSame($blu, \App\Filament\Resources\PerformanceContracts\PerformanceContractResource::canViewAny(), $code);
+        }
     }
 
     public function test_kpi_is_only_expected_in_its_reporting_months(): void

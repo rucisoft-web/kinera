@@ -67,11 +67,14 @@ Capaian IK: polaritas naik = realisasi ÷ target × 100, turun = target ÷ reali
 
 ## Data contoh
 
-Di luar produksi (atau bila `KINERA_SEED_DEMO=true`) seeder memuat satu instansi contoh:
+Di luar produksi (atau bila `KINERA_SEED_DEMO=true`) seeder memuat empat instansi contoh (UINSUKA, UINRF, UINSUSKA berpola BLU; UNJ PTN Badan Hukum tanpa modul BLU):
 
 | Kode | Instansi | Isi |
 |---|---|---|
 | UINSUKA | UIN Sunan Kalijaga Yogyakarta (BLU pendidikan, Pembina Teknis Ditjen Pendidikan Islam Kemenag) | Perioda 2025 (ditutup): angka keuangan dari LK BLU Audited TA 2025 (PNBP Rp219,5 M = 99,48% target, EBITDA ±Rp71,9 M, opini WTP), target layanan dari Perjanjian Kinerja 2025, gambaran kelembagaan dari RSB 2020–2024; Kontrak Kinerja awal + adendum Pasal 21. Perioda 2026 (berjalan): proyeksi Triwulan I–III, Kontrak Kinerja 2026 dan usulan perubahan (Pasal 19 ayat 1 huruf c). 12 sasaran, 25 Indikator Kinerja (13 layanan, 10 keuangan, 2 penugasan), 6 inisiatif |
+| UINRF | UIN Raden Fatah Palembang (BLU) | LKjIP 2025 & Renstra 2020–2024; target PK terlalu rendah, belanja modal 72,55%. |
+| UINSUSKA | UIN Sultan Syarif Kasim Riau (BLU) | Kontrak Kinerja 2025, PK 2025/2026, Laporan Kinerja 2025, RIP 2014–2034. |
+| UNJ | Universitas Negeri Jakarta (PTN Badan Hukum, bukan BLU) | Renstra 2025–2029 & Program Kerja 2026 (13 program, Rp51,58 M) sebagai inisiatif; IKU PTN; angka indikator ilustrasi. Menu Kontrak Kinerja BLU tidak tampil. |
 
 Akun: Super Admin `admin@kinera.local` / `Kinera@2026` (ubah lewat `KINERA_ADMIN_PASSWORD`). Akun contoh, kata sandi `Contoh-2026!`:
 `uinsuka.rektor` (pimpinan), `uinsuka.wr2` (keuangan), `uinsuka.wr1`, `uinsuka.wr3`, `uinsuka.lppm`, `uinsuka.lpm`, `uinsuka.bisnis`, `uinsuka.sdm`, `uinsuka.ti`, `uinsuka.perencanaan` (strategy office), `uinsuka.dewas` (Dewan Pengawas), `uinsuka.analis`, `uinsuka.admin` (@contoh.local). Nama dan NIP pejabat sebenarnya sengaja tidak dipakai; semua penandatangan bertanda "(contoh)".

@@ -13,6 +13,10 @@ class DemoNotice
             return null;
         }
 
+        if ($company->demo_source && ! $company->isBlu()) {
+            return 'DATA DEMO, hanya untuk keperluan memaksimalkan penyajian fitur-fitur perangkat lunak. Profil, sasaran, dan program sebagian mengacu pada '.$company->demo_source.'; seluruh angka indikator, realisasi anggaran, dan data 2026 (proyeksi) adalah simulasi. Bukan data resmi instansi tersebut maupun kementerian.';
+        }
+
         return $company->demo_source
             ? 'DATA DEMO, hanya untuk keperluan memaksimalkan penyajian fitur-fitur perangkat lunak. Angka 2025 sebagian mengacu pada '.$company->demo_source.'; rincian triwulanan, Kontrak Kinerja, sebagian realisasi indikator layanan, dan seluruh data 2026 (proyeksi) adalah simulasi. Bukan data resmi instansi tersebut, Pembina Teknis, maupun Kementerian Keuangan.'
             : 'DATA DEMO, hanya untuk keperluan memaksimalkan penyajian fitur-fitur perangkat lunak. Instansi dan seluruh angkanya fiktif (rekaan).';

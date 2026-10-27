@@ -20,6 +20,12 @@ class Company extends Model
         ];
     }
 
+    /** Instansi berpola BLU: modul Kontrak Kinerja PER-6/PB/2025 ditampilkan. */
+    public function isBlu(): bool
+    {
+        return filled($this->blu_field) || $this->blu_since !== null;
+    }
+
     public function periods(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(AnalysisPeriod::class);

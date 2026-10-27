@@ -170,7 +170,9 @@ Cron ini menjalankan pengingat harian (07.30 WIB), antrian notifikasi, dan pembe
 
 ### Memuat data demo (untuk presentasi)
 
-Tersedia tiga demo lengkap, semuanya PTKIN berpola BLU di bawah Kementerian Agama sehingga modul Kontrak Kinerja BLU ikut terisi: **UINSUKA** (UIN Sunan Kalijaga Yogyakarta), **UINRF** (UIN Raden Fatah Palembang), dan **UINSUSKA** (UIN Sultan Syarif Kasim Riau). Fitur inti pengukuran kinerja (Renstra, Peta Strategi, Perjanjian Kinerja, IKU, realisasi, LKjIP) berlaku sama untuk instansi pemerintah yang bukan BLU.
+Tersedia empat demo lengkap. Tiga di antaranya PTKIN berpola BLU di bawah Kementerian Agama sehingga modul Kontrak Kinerja BLU ikut terisi: **UINSUKA** (UIN Sunan Kalijaga Yogyakarta), **UINRF** (UIN Raden Fatah Palembang), dan **UINSUSKA** (UIN Sultan Syarif Kasim Riau). Demo keempat, **UNJ** (Universitas Negeri Jakarta, PTN Badan Hukum), bukan BLU: menu Kontrak Kinerja BLU dan Capaian & Insentif tidak tampil, dan pengukuran kinerja memakai IKU, Perjanjian Kinerja, serta 13 Program Kerja 2026 sebagai inisiatif.
+
+Menu khusus BLU hanya tampil untuk instansi yang mengisi *Bidang layanan (khusus BLU)* atau *Menerapkan PK-BLU sejak* di data instansi.
 
 > **Peringatan:** isinya DATA DEMO, hanya untuk keperluan memaksimalkan penyajian fitur-fitur perangkat lunak. Angka 2025 sebagian mengacu pada Laporan Keuangan BLU Audited TA 2025, Perjanjian Kinerja 2025, dan RSB 2020–2024 UIN Sunan Kalijaga; rincian triwulanan, Kontrak Kinerja, realisasi indikator layanan, dan seluruh data 2026 (proyeksi) adalah simulasi. Bukan data resmi UIN Sunan Kalijaga, Kementerian Agama, maupun Kementerian Keuangan. Peringatan ini tampil otomatis di setiap halaman dan setiap cetakan.
 
@@ -179,6 +181,7 @@ cd ~/kinera
 php artisan kinera:demo UINSUKA
 php artisan kinera:demo UINRF
 php artisan kinera:demo UINSUSKA
+php artisan kinera:demo UNJ
 ```
 
 Atau sekaligus: `php artisan db:seed --class=DemoSeeder --force` (demo yang sudah terpasang dilewati).

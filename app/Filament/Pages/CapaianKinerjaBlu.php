@@ -32,7 +32,7 @@ class CapaianKinerjaBlu extends Page
 
     public static function canAccess(): bool
     {
-        return (bool) auth()->user()?->hasPermission('kpi.view');
+        return (bool) auth()->user()?->hasPermission('kpi.view') && \App\Support\BluModule::enabled();
     }
 
     public function setUpto(int $month): void

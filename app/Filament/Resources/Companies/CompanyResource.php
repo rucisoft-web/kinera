@@ -91,7 +91,7 @@ class CompanyResource extends Resource
             Section::make('Pimpinan & penandatangan Perjanjian Kinerja')->columns(2)->collapsible()
                 ->description('Dipakai pada cetakan Perjanjian/Kontrak Kinerja, Berita Acara, dan Surat Pernyataan. Isian bertanda "khusus BLU" hanya untuk instansi berpola BLU (PER-6/PB/2025). Kosongkan bila belum ada; cetakan menampilkan titik-titik.')
                 ->schema([
-                    Select::make('blu_field')->label('Bidang layanan (khusus BLU)')->options(['kesehatan' => 'Layanan kesehatan', 'pendidikan' => 'Layanan pendidikan', 'lainnya' => 'Layanan lainnya'])->native(false),
+                    Select::make('blu_field')->label('Bidang layanan (khusus BLU)')->helperText('Isi bila instansi berpola BLU; menu Kontrak Kinerja dan Capaian & Insentif hanya tampil untuk instansi BLU.')->options(['kesehatan' => 'Layanan kesehatan', 'pendidikan' => 'Layanan pendidikan', 'lainnya' => 'Layanan lainnya'])->native(false),
                     TextInput::make('ministry')->label('Kementerian Negara/Lembaga'),
                     TextInput::make('technical_supervisor')->label('Pembina Teknis / unit eselon I atasan'),
                     DatePicker::make('blu_since')->label('Menerapkan PK-BLU sejak (khusus BLU)'),

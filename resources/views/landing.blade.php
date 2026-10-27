@@ -213,8 +213,8 @@
         <div class="l-wrap">
             <span class="l-eyebrow">Coba sendiri, tanpa akun</span>
             <h2>Data demo tahun berjalan {{ $year }}</h2>
-            <p class="l-lead">Masuk sebagai Tamu pada perioda {{ $year }} (proyeksi). Contoh juga berisi perioda tahun sebelumnya yang sudah ditutup, lengkap dengan capaian indikator dan, karena ketiga kampus contoh berpola BLU, Kontrak Kinerja beserta adendumnya.</p>
-            <div class="l-demo-warn" role="note"><span class="l-tag l-tag-inline">Data demo</span><span>Hanya data demo untuk keperluan memaksimalkan penyajian fitur-fitur perangkat lunak. Angka 2025 sebagian mengacu pada dokumen publik masing-masing kampus (laporan keuangan, Perjanjian Kinerja, LKjIP/Laporan Kinerja, dan Renstra); rincian triwulanan, Kontrak Kinerja, sebagian realisasi indikator, dan seluruh data {{ $year }} (proyeksi) adalah simulasi. Bukan data resmi kampus tersebut, Kementerian Agama, maupun Kementerian Keuangan.</span></div>
+            <p class="l-lead">Masuk sebagai Tamu pada perioda {{ $year }} (proyeksi). Contoh juga berisi perioda tahun sebelumnya yang sudah ditutup, lengkap dengan capaian indikator. Tiga kampus contoh berpola BLU sehingga Kontrak Kinerja beserta adendumnya ikut tampil; Universitas Negeri Jakarta (PTN Badan Hukum) menunjukkan pengukuran kinerja tanpa modul BLU.</p>
+            <div class="l-demo-warn" role="note"><span class="l-tag l-tag-inline">Data demo</span><span>Hanya data demo untuk keperluan memaksimalkan penyajian fitur-fitur perangkat lunak. Angka 2025 sebagian mengacu pada dokumen publik masing-masing kampus (laporan keuangan, Perjanjian Kinerja, LKjIP/Laporan Kinerja, dan Renstra); rincian triwulanan, Kontrak Kinerja, sebagian realisasi indikator, dan seluruh data {{ $year }} (proyeksi) adalah simulasi. Bukan data resmi kampus tersebut maupun kementerian terkait.</span></div>
             @if ($cases === [])
                 <p class="l-card">Data contoh belum dipasang. Jalankan <code>php artisan kinera:demo</code> di server.</p>
             @else
