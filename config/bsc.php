@@ -22,9 +22,13 @@ return [
     'guest_login' => (bool) env('KINERA_GUEST_LOGIN', false),
     'guest_email' => env('KINERA_GUEST_EMAIL', 'tamu@demo.rucisoft.id'),
     // Ajakan Workshop di menu "Kenali Kinera": tautan pendaftaran & kontak (mis. WhatsApp/email)
-    'workshop_url' => env('KINERA_WORKSHOP_URL', 'https://rucisoft.id'),
+    // Kosongkan KINERA_WORKSHOP_URL agar tombol Daftar membuka WhatsApp KINERA_CONTACT_WHATSAPP
+    'workshop_url' => env('KINERA_WORKSHOP_URL'),
     'workshop_contact' => env('KINERA_WORKSHOP_CONTACT'),
-    'workshop_special_speaker' => env('KINERA_WORKSHOP_SPECIAL_SPEAKER'),
+    // Tempat, tanggal, dan biaya Workshop 2 hari; bila kosong tampil "diumumkan menyusul"
+    'workshop_place' => env('KINERA_WORKSHOP_TEMPAT'),
+    'workshop_date' => env('KINERA_WORKSHOP_TANGGAL'),
+    'workshop_fee' => env('KINERA_WORKSHOP_BIAYA'),
     // Kontak di halaman depan (tombol WhatsApp & email)
     'contact_whatsapp' => env('KINERA_CONTACT_WHATSAPP', '6281199892939'),
     'contact_email' => env('KINERA_CONTACT_EMAIL', 'rucisoft@gmail.com'),

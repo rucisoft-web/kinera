@@ -255,23 +255,21 @@
     {{-- ===== Workshop ===== --}}
     <section class="kenali-section kenali-workshop" id="workshop">
         <div>
-            <span class="kenali-eyebrow">Workshop sehari · setiap Minggu pertama awal bulan</span>
-            <h2>Kenali Kinera dalam satu hari</h2>
-            <p>Kelas praktis 08.00–16.30 WIB untuk Pemimpin BLU, Pejabat Pengelola, Dewan Pengawas, dan tim perencanaan. Workshop berikutnya: <b style="color:#fff">{{ \App\Filament\Pages\WorkshopKinera::nextDates(1)[0]->locale('id')->translatedFormat('l, j F Y') }}</b>.</p>
+            <span class="kenali-eyebrow">Workshop 2 hari · bersama PSMPT UIN Sunan Kalijaga</span>
+            <h2>Dari strategi ke Kontrak Kinerja dalam dua hari</h2>
+            <p>Kelas praktis 08.00–16.30 WIB untuk rektor dan wakil rektor, Pejabat Pengelola BLU, Satuan Pengawas Internal, serta tim perencanaan dan keuangan, diselenggarakan bersama Pusat Studi Manajemen Perguruan Tinggi UIN Sunan Kalijaga.</p>
             <div class="kenali-take">
                 <b>Yang Anda bawa pulang</b>
                 <ul>
-                    <li>Pemahaman utuh konsep Balanced Scorecard dan siklus kinerja bulanan</li>
-                    <li>Draf Peta Strategi dan contoh kamus Indikator Kinerja hasil latihan kelompok</li>
-                    <li>Daftar inisiatif prioritas di matriks nilai–upaya</li>
-                    <li>Pengalaman memakai Kinera dan simulasi rapat bulanan</li>
-                    <li>Paket materi, template Excel, rencana aksi 30 hari, dan sertifikat</li>
+                    <li>Draf Peta Strategi empat perspektif</li>
+                    <li>Daftar Indikator Kinerja dan definisi operasionalnya</li>
+                    <li>Draf Kontrak Kinerja Pemimpin BLU sesuai PER-6/PB/2025</li>
+                    <li>Pengalaman memakai Kinera: alur realisasi, capaian, dan syarat insentif</li>
+                    <li>Rencana aksi 90 hari, materi PDF, dan sertifikat</li>
                 </ul>
             </div>
             <div class="kenali-actions">
-                @if ($workshopUrl)
-                    <a href="{{ $workshopUrl }}" target="_blank" rel="noopener" class="arah-btn arah-btn-primary kenali-btn-lg">Daftar Workshop Kinera</a>
-                @endif
+                <a href="{{ \App\Filament\Pages\WorkshopKinera::registerUrl() }}" target="_blank" rel="noopener" class="arah-btn arah-btn-primary kenali-btn-lg">Daftar Workshop Kinera</a>
                 <a href="{{ \App\Filament\Pages\WorkshopKinera::getUrl() }}" class="arah-btn kenali-btn-lg">Lihat rundown &amp; materi</a>
             </div>
             @if ($workshopContact)
@@ -279,12 +277,12 @@
             @endif
         </div>
         <ol class="kenali-agenda">
-            <li><b>Mengapa strategi gagal dijalankan</b><span>Konsep Balanced Scorecard dan lima fase Kinera</span></li>
-            <li><b>Membaca lingkungan &amp; jati diri</b><span>PESTEL, SWOT, TOWS, tema strategis</span></li>
-            <li><b>Menyusun Peta Strategi</b><span>Sasaran empat perspektif dan hubungan sebab-akibat</span></li>
-            <li><b>IK &amp; target yang baik</b><span>SMART, kamus Indikator Kinerja, target bulanan, skor</span></li>
-            <li><b>Dari strategi ke aksi</b><span>Inisiatif, anggaran, portofolio nilai–upaya</span></li>
-            <li><b>Praktik Kinera</b><span>Pusat Kendali dan simulasi rapat bulanan</span></li>
+            <li><b>Hari 1 · Balanced Scorecard untuk BLU</b><span>Pembukaan oleh Kepala PSMPT, empat perspektif sektor publik</span></li>
+            <li><b>Hari 1 · Kebijakan BLU dan Kontrak Kinerja</b><span>PER-6/PB/2025 dan syarat insentif Pemimpin BLU</span></li>
+            <li><b>Hari 1 · Peta Strategi dan Indikator Kinerja</b><span>Diagnosis kinerja, sasaran strategis, latihan kelompok</span></li>
+            <li><b>Hari 2 · Definisi operasional dan target</b><span>Rumus, sumber data, trajektori triwulanan</span></li>
+            <li><b>Hari 2 · Simulasi Kontrak Kinerja</b><span>Kontrak awal, perubahan, dan adendum di Kinera</span></li>
+            <li><b>Hari 2 · Praktik Kinera dan rencana aksi</b><span>Realisasi, capaian, temuan, rencana aksi 90 hari</span></li>
         </ol>
     </section>
 </div>

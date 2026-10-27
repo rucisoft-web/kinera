@@ -139,17 +139,18 @@ class GuestModeTest extends TestCase
         $this->get(\App\Filament\Pages\PanduanImplementasi::getUrl())->assertOk()
             ->assertSee('Manajemen risiko')->assertSee('Gerbang mutu')->assertSee('Steering Committee');
         $this->get(\App\Filament\Pages\WorkshopKinera::getUrl())->assertOk()
-            ->assertSee('Rundown')->assertSee('Yang Anda peroleh')->assertSee('Sesi 6');
+            ->assertSee('Rundown')->assertSee('Hari 1')->assertSee('Hari 2')->assertSee('Sesi 8')
+            ->assertSee('sambutan Kepala PSMPT UIN Sunan Kalijaga')->assertSee('files/brosur-kinera-workshop-2-hari.pdf', false)
+            ->assertSee('https://wa.me/6281199892939', false)->assertDontSee('Minggu pertama');
     }
 
-    public function test_workshop_runs_on_the_first_sunday_of_each_month(): void
+    public function test_workshop_register_button_prefers_configured_url(): void
     {
-        $dates = fn (string $today) => array_map(fn ($d) => $d->toDateString(),
-            \App\Filament\Pages\WorkshopKinera::nextDates(3, \Carbon\CarbonImmutable::parse($today)));
+        config(['bsc.workshop_url' => null, 'bsc.contact_whatsapp' => '6281199892939']);
+        $this->assertStringStartsWith('https://wa.me/6281199892939?text=', \App\Filament\Pages\WorkshopKinera::registerUrl());
 
-        $this->assertSame(['2026-11-01', '2026-12-06', '2027-01-03'], $dates('2026-10-22'));
-        $this->assertSame(['2026-11-01', '2026-12-06', '2027-01-03'], $dates('2026-11-01'));
-        $this->assertSame(['2026-12-06', '2027-01-03', '2027-02-07'], $dates('2026-11-02'));
+        config(['bsc.workshop_url' => 'https://rucisoft.id/daftar']);
+        $this->assertSame('https://rucisoft.id/daftar', \App\Filament\Pages\WorkshopKinera::registerUrl());
     }
 
     public function test_regular_users_are_not_affected(): void

@@ -2,10 +2,9 @@
 
 namespace App\Filament\Pages;
 
-use Carbon\CarbonImmutable;
 use Filament\Pages\Page;
 
-/** Rundown dan materi Workshop Kinera sehari, setiap hari Minggu pertama awal bulan. */
+/** Rundown dan materi Workshop Kinera 2 hari bersama PSMPT UIN Sunan Kalijaga, sama dengan brosur. */
 class WorkshopKinera extends Page
 {
     protected static ?string $title = 'Workshop Kinera';
@@ -22,32 +21,31 @@ class WorkshopKinera extends Page
 
     protected string $view = 'filament.pages.workshop-kinera';
 
+    public const BROCHURE = 'files/brosur-kinera-workshop-2-hari.pdf';
+
     public static function canAccess(): bool
     {
         return auth()->check();
     }
 
-    /** Minggu pertama tiap bulan, mulai dari bulan berjalan bila tanggalnya belum lewat. */
-    public static function nextDates(int $count = 4, ?CarbonImmutable $today = null): array
+    /** Tautan pendaftaran: KINERA_WORKSHOP_URL bila diisi, selain itu WhatsApp kontak dengan pesan siap kirim. */
+    public static function registerUrl(): string
     {
-        $today ??= CarbonImmutable::now('Asia/Jakarta')->startOfDay();
-        $dates = [];
-        for ($month = $today->startOfMonth(); count($dates) < $count; $month = $month->addMonth()) {
-            $sunday = $month->dayOfWeek === 0 ? $month : $month->next(CarbonImmutable::SUNDAY);
-            if ($sunday->gte($today)) {
-                $dates[] = $sunday;
-            }
-        }
-
-        return $dates;
+        return config('bsc.workshop_url') ?: 'https://wa.me/'.config('bsc.contact_whatsapp').'?text='
+            .rawurlencode('Halo Rucisoft, saya ingin mendaftar Workshop Kinera 2 hari bersama PSMPT UIN Sunan Kalijaga.');
     }
 
     protected function getViewData(): array
     {
         return [
-            'dates' => static::nextDates(),
-            'workshopUrl' => config('bsc.workshop_url'),
+            'registerUrl' => static::registerUrl(),
+            'brochureUrl' => asset(static::BROCHURE),
             'workshopContact' => config('bsc.workshop_contact'),
+            'whatsapp' => preg_replace('/^0(\d{3})(\d{4})(\d+)$/', '0$1-$2-$3', preg_replace('/^62/', '0', (string) config('bsc.contact_whatsapp'))),
+            'email' => config('bsc.contact_email'),
+            'place' => config('bsc.workshop_place'),
+            'date' => config('bsc.workshop_date'),
+            'fee' => config('bsc.workshop_fee'),
         ];
     }
 }

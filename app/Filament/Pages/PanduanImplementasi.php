@@ -29,7 +29,7 @@ class PanduanImplementasi extends Page
     protected function getViewData(): array
     {
         return [
-            'workshopUrl' => config('bsc.workshop_url'),
+            'workshopUrl' => \App\Filament\Pages\WorkshopKinera::registerUrl(),
             'workshopContact' => config('bsc.workshop_contact'),
         ];
     }

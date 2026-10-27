@@ -32,7 +32,7 @@ class KenaliKinera extends Page
         $c = config('bsc.cycle');
 
         return [
-            'workshopUrl' => config('bsc.workshop_url'),
+            'workshopUrl' => \App\Filament\Pages\WorkshopKinera::registerUrl(),
             'workshopContact' => config('bsc.workshop_contact'),
             'cycle' => [
                 ['Tgl '.$c['reminder_day'], 'Pengingat', 'Sistem mengingatkan setiap penanggung jawab IK yang realisasinya belum masuk.'],
