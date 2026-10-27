@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Models\Concerns\Auditable;
-use App\Models\Concerns\BelongsToDhastramContext;
+use App\Models\Concerns\BelongsToBscContext;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class StrategicInitiative extends Model
 {
-    use Auditable, BelongsToDhastramContext;
+    use Auditable, BelongsToBscContext;
 
     public const STATUSES = [
         'direncanakan' => 'Direncanakan',

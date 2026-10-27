@@ -4,7 +4,7 @@ namespace App\Filament\Resources\AuditLogs;
 
 use App\Filament\Resources\AuditLogs\Pages\ListAuditLogs;
 use App\Filament\Resources\AuditLogs\Pages\ViewAuditLog;
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Support\F;
 use App\Support\Fmt;
 use App\Support\Terms;
@@ -48,7 +48,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AuditLogResource extends Resource
 {
-    use HasDhastramPermissions;
+    use HasBscPermissions;
 
     protected static ?string $model = Models\AuditLog::class;
 
@@ -137,7 +137,7 @@ class AuditLogResource extends Resource
     public static function getEloquentQuery(): Builder
     {
         $q = parent::getEloquentQuery();
-        $ctx = app(\App\Support\DhastramContext::class);
+        $ctx = app(\App\Support\BscContext::class);
 
         return Auth::user()?->isSuperAdmin() ? $q : $q->where(fn ($w) => $w->whereNull('company_id')->orWhere('company_id', $ctx->companyId()));
     }

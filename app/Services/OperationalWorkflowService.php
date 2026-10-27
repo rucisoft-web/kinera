@@ -7,17 +7,17 @@ use App\Models\InitiativeActivity;
 use App\Models\Kpi;
 use App\Models\KpiActual;
 use App\Models\PerformanceReview;
-use App\Support\DhastramContext;
+use App\Support\BscContext;
 use App\Support\Terms;
 
 /** Panduan alur kerja: ritme harian/mingguan/bulanan dan status siklus bulan berjalan. */
 class OperationalWorkflowService
 {
-    public function __construct(protected DhastramContext $ctx) {}
+    public function __construct(protected BscContext $ctx) {}
 
     public function rhythm(): array
     {
-        $c = config('dhastram.cycle');
+        $c = config('bsc.cycle');
 
         return [
             ['ritme' => 'Harian', 'kegiatan' => 'Cek Beranda dan Pusat Kendali; perbarui aktivitas inisiatif yang bergerak', 'pelaku' => 'Pimpinan, kepala unit', 'batas' => '—'],

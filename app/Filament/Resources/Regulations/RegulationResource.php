@@ -6,7 +6,7 @@ use App\Filament\Resources\Regulations\Pages\ListRegulations;
 use App\Filament\Resources\Regulations\Pages\CreateRegulation;
 use App\Filament\Resources\Regulations\Pages\ViewRegulation;
 use App\Filament\Resources\Regulations\Pages\EditRegulation;
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Support\F;
 use App\Support\Fmt;
 use App\Support\Terms;
@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Auth;
 
 class RegulationResource extends Resource
 {
-    use HasDhastramPermissions;
+    use HasBscPermissions;
 
     protected static ?string $model = Models\Regulation::class;
 

@@ -5,7 +5,7 @@ namespace App\Filament\Resources\ObjectiveRelations;
 use App\Filament\Resources\ObjectiveRelations\Pages\ListObjectiveRelations;
 use App\Filament\Resources\ObjectiveRelations\Pages\CreateObjectiveRelation;
 use App\Filament\Resources\ObjectiveRelations\Pages\EditObjectiveRelation;
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Support\F;
 use App\Support\Fmt;
 use App\Support\Terms;
@@ -49,7 +49,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ObjectiveRelationResource extends Resource
 {
-    use HasDhastramPermissions;
+    use HasBscPermissions;
 
     protected static ?string $model = Models\ObjectiveRelation::class;
 

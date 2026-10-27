@@ -6,7 +6,7 @@ use App\Filament\Resources\TowsStrategies\Pages\ListTowsStrategies;
 use App\Filament\Resources\TowsStrategies\Pages\CreateTowsStrategy;
 use App\Filament\Resources\TowsStrategies\Pages\ViewTowsStrategy;
 use App\Filament\Resources\TowsStrategies\Pages\EditTowsStrategy;
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Support\F;
 use App\Support\Fmt;
 use App\Support\Terms;
@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Auth;
 
 class TowsStrategyResource extends Resource
 {
-    use HasDhastramPermissions;
+    use HasBscPermissions;
 
     protected static ?string $model = Models\TowsStrategy::class;
 

@@ -6,7 +6,7 @@ use App\Filament\Resources\Kpis\Pages\ListKpis;
 use App\Filament\Resources\Kpis\Pages\CreateKpi;
 use App\Filament\Resources\Kpis\Pages\ViewKpi;
 use App\Filament\Resources\Kpis\Pages\EditKpi;
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Support\F;
 use App\Support\Fmt;
 use App\Support\Terms;
@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Auth;
 
 class KpiResource extends Resource
 {
-    use HasDhastramPermissions;
+    use HasBscPermissions;
 
     protected static ?string $model = Models\Kpi::class;
 
@@ -96,7 +96,7 @@ class KpiResource extends Resource
             Section::make('Kontrak Kinerja BLU')->columns(4)->description('Atribut Indikator Kinerja dalam Kontrak Kinerja Pemimpin BLU (PER-6/PB/2025).')->schema([
                 Select::make('aspect')->label('Aspek')->options(Models\Kpi::ASPECTS)->default('layanan')->required()->native(false)->live(),
                 Toggle::make('is_mandatory')->label('Wajib dicapai (mandatory)')->helperText('Pasal 14 ayat (4) huruf b')->inline(false),
-                TextInput::make('max_achievement')->label('Capaian maksimum (%)')->numeric()->placeholder((string) config('dhastram.score_cap'))->helperText('Sesuai KMK remunerasi BLU'),
+                TextInput::make('max_achievement')->label('Capaian maksimum (%)')->numeric()->placeholder((string) config('bsc.score_cap'))->helperText('Sesuai KMK remunerasi BLU'),
                 Select::make('incentive_role')->label('Penanda syarat insentif')->options(Models\Kpi::INCENTIVE_ROLES)->native(false)->placeholder('—')
                     ->helperText('Dipakai uji Pasal 14 ayat (4) huruf d–f'),
             ]),

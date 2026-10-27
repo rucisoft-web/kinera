@@ -6,12 +6,12 @@ use Illuminate\Support\Facades\Route;
 // Halaman depan situs demo (RUCI_GUEST_LOGIN=true); selain itu langsung ke panel
 Route::middleware('web')->get('/', \App\Http\Controllers\LandingController::class)->name('arah.landing');
 
-Route::middleware(['web', 'auth', \App\Http\Middleware\SetDhastramContext::class])
+Route::middleware(['web', 'auth', \App\Http\Middleware\SetBscContext::class])
     ->get('/admin/laporan/ekspor/{report}', ReportExportController::class)
     ->name('arah.report.export');
 
 // Edisi BLU: cetak Kontrak Kinerja & lampiran PER-6/PB/2025
-Route::middleware(['web', 'auth', \App\Http\Middleware\SetDhastramContext::class])
+Route::middleware(['web', 'auth', \App\Http\Middleware\SetBscContext::class])
     ->get('/admin/kontrak-kinerja/cetak/{doc}/{contract}', \App\Http\Controllers\BluPrintController::class)
     ->name('blu.print');
 

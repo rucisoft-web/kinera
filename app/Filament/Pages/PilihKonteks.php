@@ -4,7 +4,7 @@ namespace App\Filament\Pages;
 
 use App\Models\AnalysisPeriod;
 use App\Models\Company;
-use App\Support\DhastramContext;
+use App\Support\BscContext;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 
@@ -34,7 +34,7 @@ class PilihKonteks extends Page
         $user = auth()->user();
         $period = AnalysisPeriod::findOrFail($periodId);
         abort_unless(in_array((int) $period->company_id, $user->accessibleCompanyIds(), true), 403);
-        app(DhastramContext::class)->switch($period->company_id, $period->id);
+        app(BscContext::class)->switch($period->company_id, $period->id);
         Notification::make()->title('Konteks aktif: '.$period->company->code.' · '.$period->name)->success()->send();
         $this->redirect(Beranda::getUrl());
     }
@@ -42,7 +42,7 @@ class PilihKonteks extends Page
     protected function getViewData(): array
     {
         $ids = auth()->user()->accessibleCompanyIds();
-        $ctx = app(DhastramContext::class);
+        $ctx = app(BscContext::class);
 
         return [
             'companies' => Company::with(['periods' => fn ($q) => $q->orderBy('year')])->whereIn('id', $ids)->get(),

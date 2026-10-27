@@ -20,6 +20,6 @@ class DemoNotice
 
     public static function current(): ?string
     {
-        return self::for(app(DhastramContext::class)->company());
+        return self::for(app(BscContext::class)->company());
     }
 }

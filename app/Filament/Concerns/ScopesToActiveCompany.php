@@ -3,7 +3,7 @@
 namespace App\Filament\Concerns;
 
 use App\Models;
-use App\Support\DhastramContext;
+use App\Support\BscContext;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -19,7 +19,7 @@ trait ScopesToActiveCompany
 
     protected static function activeCompanyId(): ?int
     {
-        return app(DhastramContext::class)->companyId();
+        return app(BscContext::class)->companyId();
     }
 
     /**

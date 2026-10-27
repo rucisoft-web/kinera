@@ -5,7 +5,7 @@ namespace App\Providers\Filament;
 use App\Filament\Pages\Auth\EditProfile;
 use App\Filament\Pages\Beranda;
 use App\Http\Middleware\EnsurePasswordChanged;
-use App\Http\Middleware\SetDhastramContext;
+use App\Http\Middleware\SetBscContext;
 use App\Support\Terms;
 use Filament\Auth\MultiFactor\App\AppAuthentication;
 use Filament\Http\Middleware\Authenticate;
@@ -38,12 +38,12 @@ class AdminPanelProvider extends PanelProvider
             ->profile(EditProfile::class, isSimple: false)
             ->userMenuItems(['profile' => fn (\Filament\Actions\Action $action) => $action->visible(fn (): bool => ! auth()->user()?->isGuestVisitor())])
             ->multiFactorAuthentication(
-                [AppAuthentication::make()->recoverable()->brandName(config('dhastram.brand_name'))],
-                isRequired: fn (): bool => (bool) config('dhastram.mfa_required')
+                [AppAuthentication::make()->recoverable()->brandName(config('bsc.brand_name'))],
+                isRequired: fn (): bool => (bool) config('bsc.mfa_required')
                     && ! auth()->user()?->isGuestVisitor()
                     && (bool) auth()->user()?->roles->pluck('slug')->intersect(['super-admin', 'admin-sistem', 'pimpinan', 'pengawas'])->isNotEmpty(),
             )
-            ->brandName(config('dhastram.brand_name'))
+            ->brandName(config('bsc.brand_name'))
             ->brandLogo(asset('images/rucisoft-logo.svg'))
             ->darkModeBrandLogo(asset('images/rucisoft-logo-dark.svg'))
             ->brandLogoHeight('2.4rem')
@@ -92,7 +92,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-                SetDhastramContext::class,
+                SetBscContext::class,
                 EnsurePasswordChanged::class,
             ]);
     }

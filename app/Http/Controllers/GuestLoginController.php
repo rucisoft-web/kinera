@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use App\Support\DemoCatalog;
-use App\Support\DhastramContext;
+use App\Support\BscContext;
 use App\Support\GuestMode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,7 +33,7 @@ class GuestLoginController extends Controller
         Auth::login(GuestMode::user());
         $request->session()->regenerate();
 
-        $context = app(DhastramContext::class);
+        $context = app(BscContext::class);
         $code = strtoupper((string) $request->query('perusahaan', ''));
         $company = $context->withoutScope(fn () => $code !== ''
             ? Company::where('code', $code)->where('is_demo', true)->first()

@@ -2,7 +2,7 @@
 
 namespace App\Support;
 
-/** Daftar izin (slug) Ruci BSC: 25 izin DHASTRAM + izin tambahan (termasuk import.manage). */
+/** Daftar izin (slug) Ruci BSC: 25 izin inti + izin tambahan (termasuk import.manage). */
 class PermissionCatalog
 {
     public const PERMISSIONS = [

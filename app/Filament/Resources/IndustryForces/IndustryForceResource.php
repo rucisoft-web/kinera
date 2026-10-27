@@ -6,7 +6,7 @@ use App\Filament\Resources\IndustryForces\Pages\ListIndustryForces;
 use App\Filament\Resources\IndustryForces\Pages\CreateIndustryForce;
 use App\Filament\Resources\IndustryForces\Pages\ViewIndustryForce;
 use App\Filament\Resources\IndustryForces\Pages\EditIndustryForce;
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Support\F;
 use App\Support\Fmt;
 use App\Support\Terms;
@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Auth;
 
 class IndustryForceResource extends Resource
 {
-    use HasDhastramPermissions;
+    use HasBscPermissions;
 
     protected static ?string $model = Models\IndustryForce::class;
 

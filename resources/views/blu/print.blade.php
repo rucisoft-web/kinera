@@ -146,7 +146,7 @@
         </tbody>
     </table>
     <p>Capaian Kinerja yang diusulkan: <strong>{{ Fmt::pct($a['average'], 2) }}</strong></p>
-    @if (count($a['below_floor']))<p class="muted">* Capaian di bawah {{ config('dhastram.score_floor', 65) }}% dari target (Pasal 14 ayat 4 huruf c).</p>@endif
+    @if (count($a['below_floor']))<p class="muted">* Capaian di bawah {{ config('bsc.score_floor', 65) }}% dari target (Pasal 14 ayat 4 huruf c).</p>@endif
     <p class="muted">Capaian per indikator = realisasi ÷ target × 100% (indikator makin kecil makin baik: target ÷ realisasi × 100%). Capaian maksimum mengikuti KMK remunerasi BLU{{ $company?->remuneration_decree ? ' ('.$company->remuneration_decree.')' : '' }}; indikator yang targetnya diturunkan lewat perubahan kontrak dihitung paling tinggi 100%.</p>
 
 @elseif ($doc === 'pernyataan')
@@ -169,7 +169,7 @@
     <div class="sign"><div></div><div>{{ $company?->city ?: '……………' }}, ……………………<br>{{ $leaderTitle }} {{ $satker }}<div class="space"></div><u>{{ $company?->leader_name ?: '……………………' }}</u><br>NIP {{ $company?->leader_nip ?: '……………………' }}</div></div>
 @endif
 
-    <p class="muted" style="margin-top:1.5rem; border-top:1px solid #ccc; padding-top:.4rem">Dicetak dari {{ config('dhastram.brand_name') }} · {{ now()->translatedFormat('d F Y H:i') }} · Format mengacu PER-6/PB/2025. Penyampaian resmi tetap melalui Sistem Aplikasi BLU terintegrasi DJPb.</p>
+    <p class="muted" style="margin-top:1.5rem; border-top:1px solid #ccc; padding-top:.4rem">Dicetak dari {{ config('bsc.brand_name') }} · {{ now()->translatedFormat('d F Y H:i') }} · Format mengacu PER-6/PB/2025. Penyampaian resmi tetap melalui Sistem Aplikasi BLU terintegrasi DJPb.</p>
 </div>
 </body>
 </html>

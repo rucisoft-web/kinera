@@ -2,7 +2,7 @@
 
 namespace App\Filament\Pages;
 
-use App\Services\DhastramReportService;
+use App\Services\BscReportService;
 use Filament\Pages\Page;
 use Livewire\Attributes\Url;
 
@@ -32,16 +32,16 @@ class Laporan extends Page
 
     public function setReport(string $r): void
     {
-        $this->r = array_key_exists($r, DhastramReportService::REPORTS) ? $r : 'scorecard';
+        $this->r = array_key_exists($r, BscReportService::REPORTS) ? $r : 'scorecard';
     }
 
     protected function getViewData(): array
     {
-        $svc = app(DhastramReportService::class);
-        $r = array_key_exists($this->r, DhastramReportService::REPORTS) ? $this->r : 'scorecard';
+        $svc = app(BscReportService::class);
+        $r = array_key_exists($this->r, BscReportService::REPORTS) ? $this->r : 'scorecard';
 
         return [
-            'reports' => DhastramReportService::REPORTS,
+            'reports' => BscReportService::REPORTS,
             'current' => $r,
             'data' => match ($r) {
                 'scorecard' => $svc->scorecard(),

@@ -4,7 +4,7 @@ namespace App\Filament\Pages;
 
 use App\Services\ExecutiveDashboardService;
 use App\Services\HomeDashboardService;
-use App\Support\DhastramContext;
+use App\Support\BscContext;
 use App\Support\Terms;
 use Filament\Pages\Dashboard;
 
@@ -35,7 +35,7 @@ class Beranda extends Dashboard
     protected function getViewData(): array
     {
         $user = auth()->user();
-        $ctx = app(DhastramContext::class);
+        $ctx = app(BscContext::class);
         $canDash = $user->hasPermission('dashboard.view');
 
         return [

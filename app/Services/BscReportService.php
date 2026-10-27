@@ -4,14 +4,14 @@ namespace App\Services;
 
 use App\Models\Finding;
 use App\Models\StrategicInitiative;
-use App\Support\DhastramContext;
+use App\Support\BscContext;
 use App\Support\Terms;
 use OpenSpout\Common\Entity\Row;
 use OpenSpout\Common\Entity\Style\Style;
 use OpenSpout\Writer\XLSX\Writer;
 
 /** Laporan manajemen strategi & ekspor ke Excel. */
-class DhastramReportService
+class BscReportService
 {
     public const REPORTS = [
         'scorecard' => 'Kartu Skor Indikator Kinerja (bulanan & YTD)',
@@ -24,7 +24,7 @@ class DhastramReportService
         protected StrategicScoreService $score,
         protected KpiScoringService $kpiScoring,
         protected InitiativePortfolioService $portfolio,
-        protected DhastramContext $ctx,
+        protected BscContext $ctx,
     ) {}
 
     public function scorecard(): array

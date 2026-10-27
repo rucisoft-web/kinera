@@ -6,7 +6,7 @@ use App\Filament\Resources\StrategicThemes\Pages\ListStrategicThemes;
 use App\Filament\Resources\StrategicThemes\Pages\CreateStrategicTheme;
 use App\Filament\Resources\StrategicThemes\Pages\ViewStrategicTheme;
 use App\Filament\Resources\StrategicThemes\Pages\EditStrategicTheme;
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Support\F;
 use App\Support\Fmt;
 use App\Support\Terms;
@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Auth;
 
 class StrategicThemeResource extends Resource
 {
-    use HasDhastramPermissions;
+    use HasBscPermissions;
 
     protected static ?string $model = Models\StrategicTheme::class;
 

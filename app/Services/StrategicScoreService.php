@@ -62,7 +62,7 @@ class StrategicScoreService
     public function overall(?array $perspectives = null): array
     {
         $perspectives ??= $this->perspectives();
-        $weights = config('dhastram.perspective_weights');
+        $weights = config('bsc.perspective_weights');
         $sum = 0;
         $w = 0;
         foreach ($perspectives as $key => $p) {

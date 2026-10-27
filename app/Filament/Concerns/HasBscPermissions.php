@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
  * Hak akses resource berbasis izin (slug).
  * Resource menetapkan: $viewPermission, $editPermission, $navigationGroupKey (kunci Terms atau label).
  */
-trait HasDhastramPermissions
+trait HasBscPermissions
 {
     protected static function user(): ?\App\Models\User
     {

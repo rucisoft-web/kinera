@@ -6,7 +6,7 @@ use App\Models\DataImport;
 use App\Services\Import\BscImporter;
 use App\Services\Import\BscTemplate;
 use App\Services\Import\ImportResult;
-use App\Support\DhastramContext;
+use App\Support\BscContext;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Illuminate\Support\Str;
@@ -59,7 +59,7 @@ class ImportData extends Page
 
     public function downloadCurrent(): BinaryFileResponse
     {
-        $period = app(DhastramContext::class)->period();
+        $period = app(BscContext::class)->period();
         abort_unless($period, 404);
         $name = Str::slug($period->company->code.'-'.$period->name).'.xlsx';
         $file = app(BscTemplate::class)->export(storage_path('app/private/exports/'.Str::random(8).'-'.$name), $period);
@@ -87,7 +87,7 @@ class ImportData extends Page
 
     public function rollback(int $importId): void
     {
-        $import = DataImport::where('company_id', app(DhastramContext::class)->companyId())->findOrFail($importId);
+        $import = DataImport::where('company_id', app(BscContext::class)->companyId())->findOrFail($importId);
         if (! $import->canRollback()) {
             Notification::make()->title('Hanya import terakhir yang belum dibatalkan yang bisa dibatalkan.')->danger()->send();
 
@@ -104,7 +104,7 @@ class ImportData extends Page
             'file.required' => 'Pilih file Excel (.xlsx) terlebih dulu.',
             'file.mimes' => 'File harus berformat Excel .xlsx (unduh template di atas).',
         ]);
-        $period = app(DhastramContext::class)->period();
+        $period = app(BscContext::class)->period();
         if (! $period) {
             Notification::make()->title('Belum ada perioda aktif untuk satker BLU ini. Buat perioda di menu Satker BLU.')->danger()->send();
 
@@ -127,7 +127,7 @@ class ImportData extends Page
 
     protected function getViewData(): array
     {
-        $ctx = app(DhastramContext::class);
+        $ctx = app(BscContext::class);
 
         return [
             'company' => $ctx->company(),

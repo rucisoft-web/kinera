@@ -3,14 +3,14 @@
 namespace App\Models;
 
 use App\Models\Concerns\Auditable;
-use App\Models\Concerns\BelongsToDhastramContext;
+use App\Models\Concerns\BelongsToBscContext;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Kpi extends Model
 {
-    use Auditable, BelongsToDhastramContext;
+    use Auditable, BelongsToBscContext;
 
     protected $guarded = ['id'];
 
@@ -96,7 +96,7 @@ class Kpi extends Model
     /** Capaian maksimum yang diakui (KMK remunerasi BLU); bila kosong memakai batas umum aplikasi. */
     public function achievementCap(): float
     {
-        return (float) ($this->max_achievement ?: config('dhastram.score_cap', 120));
+        return (float) ($this->max_achievement ?: config('bsc.score_cap', 120));
     }
 
     public function getAspectLabelAttribute(): string

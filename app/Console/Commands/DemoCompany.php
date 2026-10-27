@@ -7,8 +7,8 @@ use App\Models\Company;
 use App\Models\MaturityQuestion;
 use App\Models\Role;
 use App\Models\User;
-use App\Support\DhastramContext;
-use Database\Seeders\DhastramRolePermissionSeeder;
+use App\Support\BscContext;
+use Database\Seeders\BscRolePermissionSeeder;
 use Database\Seeders\MaturityQuestionSeeder;
 use Database\Seeders\ShowcaseSeeder;
 use Database\Seeders\UinSukaSeeder;
@@ -35,7 +35,7 @@ class DemoCompany extends Command
     public function handle(): int
     {
         if (! Role::exists()) {
-            $this->call('db:seed', ['--class' => DhastramRolePermissionSeeder::class, '--force' => true]);
+            $this->call('db:seed', ['--class' => BscRolePermissionSeeder::class, '--force' => true]);
         }
         if (! MaturityQuestion::exists()) {
             $this->call('db:seed', ['--class' => MaturityQuestionSeeder::class, '--force' => true]);
@@ -67,7 +67,7 @@ class DemoCompany extends Command
 
             return (new $seeder($password))->run();
         });
-        app(DhastramContext::class)->clear();
+        app(BscContext::class)->clear();
 
         $this->info('Demo '.$company->name.' siap: perioda 2025 (ditutup) & 2026 (berjalan, bawaan).');
         $this->line('Akun contoh: '.User::where('email', 'like', strtolower($code).'.%@contoh.local')->orderBy('id')->pluck('email')->join(', '));

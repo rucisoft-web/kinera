@@ -7,7 +7,7 @@ use App\Models\Company;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\UserContext;
-use App\Support\DhastramContext;
+use App\Support\BscContext;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -29,7 +29,7 @@ class DemoSeeder extends Seeder
     {
         $admin = User::updateOrCreate(['email' => self::ADMIN_EMAIL], [
             'name' => 'Super Admin Rucisoft', 'job_title' => 'Konsultan Rucisoft', 'department' => 'Rucisoft', 'is_active' => true,
-            'password' => Hash::make(config('dhastram.demo_admin_password')), 'must_change_password' => false, 'email_verified_at' => now(),
+            'password' => Hash::make(config('bsc.demo_admin_password')), 'must_change_password' => false, 'email_verified_at' => now(),
         ]);
         $this->assign($admin, 'super-admin', null);
 
@@ -39,7 +39,7 @@ class DemoSeeder extends Seeder
             'company_id' => Company::where('code', 'UINSUKA')->value('id'),
             'analysis_period_id' => AnalysisPeriod::whereHas('company', fn ($q) => $q->where('code', 'UINSUKA'))->where('is_active', true)->value('id'),
         ]);
-        app(DhastramContext::class)->clear();
+        app(BscContext::class)->clear();
     }
 
     protected function assign(User $user, string $slug, ?int $companyId): void

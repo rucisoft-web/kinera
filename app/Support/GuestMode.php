@@ -30,12 +30,12 @@ class GuestMode
 
     public static function enabled(): bool
     {
-        return (bool) config('dhastram.guest_login');
+        return (bool) config('bsc.guest_login');
     }
 
     public static function email(): string
     {
-        return (string) config('dhastram.guest_email');
+        return (string) config('bsc.guest_email');
     }
 
     public static function isGuest(?User $user = null): bool
@@ -50,7 +50,7 @@ class GuestMode
     {
         $role = Role::where('slug', self::ROLE)->first();
         if (! $role) {
-            (new \Database\Seeders\DhastramRolePermissionSeeder)->run();
+            (new \Database\Seeders\BscRolePermissionSeeder)->run();
             $role = Role::where('slug', self::ROLE)->firstOrFail();
         }
         $user = User::where('email', self::email())->first() ?? User::forceCreate([

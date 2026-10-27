@@ -1,7 +1,7 @@
 @php
     use App\Filament\Pages;
 
-    $speaker = config('dhastram.workshop_special_speaker') ?: 'narasumber tamu, praktisi tata kelola dan pencegahan korupsi';
+    $speaker = config('bsc.workshop_special_speaker') ?: 'narasumber tamu, praktisi tata kelola dan pencegahan korupsi';
 
     $rundown = [
         ['07.30', '08.00', 'Registrasi & kopi pagi', 'Pembagian kelompok dan akses demo Ruci BSC', 'break'],

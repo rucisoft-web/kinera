@@ -9,7 +9,7 @@ use App\Models\ObjectiveRelation;
 use App\Models\StrategicInitiative;
 use App\Models\StrategicObjective;
 use App\Services\KpiScoringService;
-use App\Support\DhastramContext;
+use App\Support\BscContext;
 use Tests\TestCase;
 
 class ShowcaseDemoTest extends TestCase
@@ -36,7 +36,7 @@ class ShowcaseDemoTest extends TestCase
         $this->assertSame(['ditutup', 'berjalan'], $periods->pluck('status')->all());
         $this->assertTrue((bool) $periods[1]->is_active);
 
-        app(DhastramContext::class)->set($company->id, $periods[1]->id);
+        app(BscContext::class)->set($company->id, $periods[1]->id);
         $this->assertSame($objectives, StrategicObjective::count());
         $this->assertSame(['C', 'F', 'L', 'P'], StrategicObjective::pluck('code')->map(fn ($c) => $c[0])->unique()->sort()->values()->all());
         $this->assertGreaterThanOrEqual(15, ObjectiveRelation::count());

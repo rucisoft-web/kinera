@@ -28,7 +28,7 @@ class DemoCatalog
      */
     public static function installed(): array
     {
-        return app(DhastramContext::class)->withoutScope(function () {
+        return app(BscContext::class)->withoutScope(function () {
             $companies = Company::whereIn('code', array_column(self::CASES, 0))->get()->keyBy('code');
             $out = [];
             foreach (self::CASES as [$code, $name, $sector, $lesson]) {

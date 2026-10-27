@@ -6,7 +6,7 @@ use App\Filament\Resources\MaturityAssessments\Pages\ListMaturityAssessments;
 use App\Filament\Resources\MaturityAssessments\Pages\CreateMaturityAssessment;
 use App\Filament\Resources\MaturityAssessments\Pages\ViewMaturityAssessment;
 use App\Filament\Resources\MaturityAssessments\Pages\EditMaturityAssessment;
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Support\F;
 use App\Support\Fmt;
 use App\Support\Terms;
@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Auth;
 
 class MaturityAssessmentResource extends Resource
 {
-    use HasDhastramPermissions;
+    use HasBscPermissions;
 
     protected static ?string $model = Models\MaturityAssessment::class;
 

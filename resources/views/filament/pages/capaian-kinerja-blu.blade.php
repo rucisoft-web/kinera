@@ -5,7 +5,7 @@
     $badge = fn ($s) => match ($s) { 'hijau' => 'arah-hijau', 'kuning' => 'arah-kuning', 'merah' => 'arah-merah', default => 'arah-abu' };
     $check = ['ok' => ['✓ Terpenuhi', 'arah-hijau'], 'gagal' => ['✗ Tidak terpenuhi', 'arah-merah'], 'belum' => ['… Belum dapat dinilai', 'arah-abu']];
     $dl = ['tepat waktu' => 'arah-hijau', 'terlambat' => 'arah-merah', 'lewat tenggat' => 'arah-merah', 'segera' => 'arah-kuning', 'akan datang' => 'arah-abu', 'tidak ada perubahan' => 'arah-abu', 'tidak diajukan' => 'arah-abu'];
-    $floor = config('dhastram.score_floor', 65);
+    $floor = config('bsc.score_floor', 65);
     $contract = $a['contract'];
     $groups = collect($a['rows'])->groupBy(fn ($r) => $r['kpi']->aspect);
 @endphp

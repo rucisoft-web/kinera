@@ -6,7 +6,7 @@ use App\Filament\Resources\StrategicObjectives\Pages\ListStrategicObjectives;
 use App\Filament\Resources\StrategicObjectives\Pages\CreateStrategicObjective;
 use App\Filament\Resources\StrategicObjectives\Pages\ViewStrategicObjective;
 use App\Filament\Resources\StrategicObjectives\Pages\EditStrategicObjective;
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Support\F;
 use App\Support\Fmt;
 use App\Support\Terms;
@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Auth;
 
 class StrategicObjectiveResource extends Resource
 {
-    use HasDhastramPermissions;
+    use HasBscPermissions;
 
     protected static ?string $model = Models\StrategicObjective::class;
 

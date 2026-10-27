@@ -6,7 +6,7 @@ use App\Filament\Resources\Competitors\Pages\ListCompetitors;
 use App\Filament\Resources\Competitors\Pages\CreateCompetitor;
 use App\Filament\Resources\Competitors\Pages\ViewCompetitor;
 use App\Filament\Resources\Competitors\Pages\EditCompetitor;
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Support\F;
 use App\Support\Fmt;
 use App\Support\Terms;
@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CompetitorResource extends Resource
 {
-    use HasDhastramPermissions;
+    use HasBscPermissions;
 
     protected static ?string $model = Models\Competitor::class;
 

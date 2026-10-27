@@ -6,7 +6,7 @@ use App\Models\AnalysisPeriod;
 use App\Models\Kpi;
 use App\Models\KpiActual;
 use App\Models\PerformanceContract;
-use App\Support\DhastramContext;
+use App\Support\BscContext;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Collection;
 
@@ -18,7 +18,7 @@ class BluContractService
 {
     public const QUARTERS = [3 => 'Triwulan I', 6 => 'Triwulan II', 9 => 'Triwulan III', 12 => 'Triwulan IV'];
 
-    public function __construct(protected KpiScoringService $scoring, protected DhastramContext $ctx) {}
+    public function __construct(protected KpiScoringService $scoring, protected BscContext $ctx) {}
 
     /** @return Collection<int,Kpi> Indikator Kinerja aktif perioda berjalan, urut aspek lalu kode. */
     public function indicators(): Collection
@@ -123,7 +123,7 @@ class BluContractService
                 'kpi' => $k, 'target' => $ytd['target'], 'actual' => $ytd['actual'], 'raw' => $raw, 'cap' => $cap, 'recognized' => $recognized,
                 'status' => $this->scoring->status($recognized), 'last_month' => $ytd['last_month'],
                 'lowered' => in_array($k->code, $lowered, true),
-                'below_floor' => $recognized !== null && $recognized < (float) config('dhastram.score_floor', 65),
+                'below_floor' => $recognized !== null && $recognized < (float) config('bsc.score_floor', 65),
                 'mandatory_unmet' => $k->is_mandatory && $raw !== null && $raw < 100,
                 'pending' => $k->actuals->where('month', '<=', $upto)->whereIn('status', ['draf', 'terverifikasi'])->count(),
             ];
@@ -189,7 +189,7 @@ class BluContractService
             ['key' => 'b', 'label' => 'Seluruh indikator wajib (mandatory) tercapai', 'ref' => 'Pasal 14 (4) b',
                 'status' => $flag(collect($a['rows'])->where('kpi.is_mandatory', true)->isEmpty() ? null : $a['mandatory_unmet'] === []),
                 'note' => $a['mandatory_unmet'] === [] ? 'Semua indikator wajib ≥ 100%.' : 'Belum tercapai: '.$codes($a['mandatory_unmet']).'.'],
-            ['key' => 'c', 'label' => 'Tidak ada indikator dengan capaian di bawah '.config('dhastram.score_floor', 65).'%', 'ref' => 'Pasal 14 (4) c',
+            ['key' => 'c', 'label' => 'Tidak ada indikator dengan capaian di bawah '.config('bsc.score_floor', 65).'%', 'ref' => 'Pasal 14 (4) c',
                 'status' => $flag($a['count'] === 0 ? null : $a['below_floor'] === []),
                 'note' => $a['below_floor'] === [] ? 'Tidak ada indikator di bawah ambang.' : 'Di bawah ambang: '.$codes($a['below_floor']).'.'],
             ['key' => 'd', 'label' => 'Target penerimaan negara bukan pajak (PNBP) tercapai', 'ref' => 'Pasal 14 (4) d',
@@ -224,7 +224,7 @@ class BluContractService
         }
         $year = (int) $period->year;
         $today ??= CarbonImmutable::now()->startOfDay();
-        $cfg = config('dhastram.blu');
+        $cfg = config('bsc.blu');
         $date = fn (int $y, string $md) => CarbonImmutable::parse($y.'-'.$md);
         $contracts = PerformanceContract::withoutGlobalScopes()->where('analysis_period_id', $period->id)->orderBy('version')->get();
         $first = $contracts->firstWhere('version', 0);

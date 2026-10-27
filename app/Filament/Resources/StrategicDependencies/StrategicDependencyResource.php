@@ -6,7 +6,7 @@ use App\Filament\Resources\StrategicDependencies\Pages\ListStrategicDependencies
 use App\Filament\Resources\StrategicDependencies\Pages\CreateStrategicDependency;
 use App\Filament\Resources\StrategicDependencies\Pages\ViewStrategicDependency;
 use App\Filament\Resources\StrategicDependencies\Pages\EditStrategicDependency;
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Support\F;
 use App\Support\Fmt;
 use App\Support\Terms;
@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Auth;
 
 class StrategicDependencyResource extends Resource
 {
-    use HasDhastramPermissions;
+    use HasBscPermissions;
 
     protected static ?string $model = Models\StrategicDependency::class;
 

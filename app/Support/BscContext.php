@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Schema;
  * Menyimpan konteks satker BLU & perioda aktif di sesi dan tabel user_contexts.
  * Ketika tidak ada pengguna (console/seeder) konteks bisa di-set manual lewat set().
  */
-class DhastramContext
+class BscContext
 {
     protected ?int $companyId = null;
 
@@ -33,7 +33,7 @@ class DhastramContext
     {
         $this->set($companyId, $periodId);
         if (app()->bound('session') && session()->isStarted()) {
-            session(['dhastram.company_id' => $companyId, 'dhastram.period_id' => $periodId]);
+            session(['bsc.company_id' => $companyId, 'bsc.period_id' => $periodId]);
         }
         // Akun Tamu dipakai bersama banyak pengunjung: konteks cukup di sesi masing-masing
         if (($user = Auth::user()) && ! $user->isGuestVisitor()) {
@@ -77,8 +77,8 @@ class DhastramContext
         if (! $user) {
             return;
         }
-        $companyId = session('dhastram.company_id');
-        $periodId = session('dhastram.period_id');
+        $companyId = session('bsc.company_id');
+        $periodId = session('bsc.period_id');
         if ((! $companyId || ! $periodId) && ! $user->isGuestVisitor()) {
             $ctx = UserContext::where('user_id', $user->id)->first();
             $companyId ??= $ctx?->company_id;

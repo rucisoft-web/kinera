@@ -2,14 +2,14 @@
 
 namespace App\Filament\Resources\PerformanceContracts;
 
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Resources\PerformanceContracts\Pages\CreatePerformanceContract;
 use App\Filament\Resources\PerformanceContracts\Pages\EditPerformanceContract;
 use App\Filament\Resources\PerformanceContracts\Pages\ListPerformanceContracts;
 use App\Filament\Resources\PerformanceContracts\Pages\ViewPerformanceContract;
 use App\Models\PerformanceContract;
 use App\Services\BluContractService;
-use App\Support\DhastramContext;
+use App\Support\BscContext;
 use Filament\Actions\Action;
 use Filament\Actions\ViewAction;
 use Filament\Actions\EditAction;
@@ -30,7 +30,7 @@ use Illuminate\Support\HtmlString;
 /** Kontrak Kinerja Pemimpin BLU beserta perubahannya (PER-6/PB/2025 Bab II & Bab V). */
 class PerformanceContractResource extends Resource
 {
-    use HasDhastramPermissions;
+    use HasBscPermissions;
 
     protected static ?string $model = PerformanceContract::class;
 
@@ -144,7 +144,7 @@ class PerformanceContractResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        if (! app(DhastramContext::class)->periodId()) {
+        if (! app(BscContext::class)->periodId()) {
             return null;
         }
         $open = PerformanceContract::whereIn('status', ['draf', 'diusulkan', 'disepakati'])->count();

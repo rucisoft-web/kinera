@@ -3,14 +3,14 @@
 namespace App\Models;
 
 use App\Models\Concerns\Auditable;
-use App\Models\Concerns\BelongsToDhastramContext;
+use App\Models\Concerns\BelongsToBscContext;
 use App\Services\KpiScoringService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class KpiActual extends Model
 {
-    use Auditable, BelongsToDhastramContext;
+    use Auditable, BelongsToBscContext;
 
     public const STATUSES = [
         'draf' => 'Draf',

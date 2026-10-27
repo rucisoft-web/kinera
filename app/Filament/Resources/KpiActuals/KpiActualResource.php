@@ -6,7 +6,7 @@ use App\Filament\Resources\KpiActuals\Pages\ListKpiActuals;
 use App\Filament\Resources\KpiActuals\Pages\CreateKpiActual;
 use App\Filament\Resources\KpiActuals\Pages\ViewKpiActual;
 use App\Filament\Resources\KpiActuals\Pages\EditKpiActual;
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Support\F;
 use App\Support\Fmt;
 use App\Support\Terms;
@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Auth;
 
 class KpiActualResource extends Resource
 {
-    use HasDhastramPermissions;
+    use HasBscPermissions;
 
     protected static ?string $model = Models\KpiActual::class;
 

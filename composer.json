@@ -1,12 +1,11 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "rucisoft/ruci-bsc",
+    "name": "rucisoft/bsc-blu",
     "type": "project",
-    "description": "Ruci BSC Professional - Balanced Scorecard & manajemen strategi multi-perusahaan (edisi DHASTRAM)",
+    "description": "Ruci BSC BLU - Balanced Scorecard & Kontrak Kinerja Pemimpin BLU (PER-6/PB/2025)",
     "keywords": [
         "laravel",
         "filament",
-        "dhastram",
         "strategic-management",
         "balanced-scorecard"
     ],

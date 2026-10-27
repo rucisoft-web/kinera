@@ -6,7 +6,7 @@ use App\Filament\Resources\StrategicInitiatives\Pages\ListStrategicInitiatives;
 use App\Filament\Resources\StrategicInitiatives\Pages\CreateStrategicInitiative;
 use App\Filament\Resources\StrategicInitiatives\Pages\ViewStrategicInitiative;
 use App\Filament\Resources\StrategicInitiatives\Pages\EditStrategicInitiative;
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Support\F;
 use App\Support\Fmt;
 use App\Support\Terms;
@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Auth;
 
 class StrategicInitiativeResource extends Resource
 {
-    use HasDhastramPermissions;
+    use HasBscPermissions;
 
     protected static ?string $model = Models\StrategicInitiative::class;
 

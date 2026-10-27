@@ -5,7 +5,7 @@ namespace App\Filament\Resources\RoleAssignments;
 use App\Filament\Resources\RoleAssignments\Pages\ListRoleAssignments;
 use App\Filament\Resources\RoleAssignments\Pages\CreateRoleAssignment;
 use App\Filament\Resources\RoleAssignments\Pages\EditRoleAssignment;
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Concerns\ScopesToActiveCompany;
 use App\Filament\Support\F;
 use App\Support\Fmt;
@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Auth;
 
 class RoleAssignmentResource extends Resource
 {
-    use HasDhastramPermissions, ScopesToActiveCompany;
+    use HasBscPermissions, ScopesToActiveCompany;
 
     protected static ?string $model = Models\RoleAssignment::class;
 

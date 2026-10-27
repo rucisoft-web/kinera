@@ -2,14 +2,14 @@
 
 namespace App\Http\Middleware;
 
-use App\Support\DhastramContext;
+use App\Support\BscContext;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 /** Menyiapkan konteks satker BLU & perioda; menolak akun nonaktif. */
-class SetDhastramContext
+class SetBscContext
 {
     public function handle(Request $request, Closure $next): Response
     {
@@ -19,9 +19,9 @@ class SetDhastramContext
 
             return redirect()->route('filament.admin.auth.login');
         }
-        $ctx = app(DhastramContext::class);
+        $ctx = app(BscContext::class);
         if ($user && $ctx->companyId() && $ctx->periodId()) {
-            session(['dhastram.company_id' => $ctx->companyId(), 'dhastram.period_id' => $ctx->periodId()]);
+            session(['bsc.company_id' => $ctx->companyId(), 'bsc.period_id' => $ctx->periodId()]);
         }
 
         return $next($request);

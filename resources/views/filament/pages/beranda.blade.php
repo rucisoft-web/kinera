@@ -44,7 +44,7 @@
     <div class="arah-grid arah-grid-2">
         @if ($user->hasPermission('kpi.input_actual'))
         <div class="arah-card">
-            <h3>Realisasi IK belum diisi <small>{{ $t['month'] ? Terms::months()[$t['month']] : '' }} · batas tanggal {{ config('dhastram.cycle.input_day') }}</small></h3>
+            <h3>Realisasi IK belum diisi <small>{{ $t['month'] ? Terms::months()[$t['month']] : '' }} · batas tanggal {{ config('bsc.cycle.input_day') }}</small></h3>
             @forelse ($t['missing']->take(10) as $k)
                 <ul class="arah-list"><li>
                     <span><a href="{{ \App\Filament\Resources\KpiActuals\KpiActualResource::getUrl('create', ['kpi' => $k->id, 'month' => $t['month']]) }}">{{ $k->short_code }}</a> {{ $k->name }}</span>
@@ -67,7 +67,7 @@
 
         @if ($user->hasPermission('kpi.verify_finance') || $user->hasPermission('kpi.approve_actual'))
         <div class="arah-card">
-            <h3>Persetujuan realisasi <small>verifikasi tgl {{ config('dhastram.cycle.verify_day') }} · persetujuan tgl {{ config('dhastram.cycle.approve_day') }}</small></h3>
+            <h3>Persetujuan realisasi <small>verifikasi tgl {{ config('bsc.cycle.verify_day') }} · persetujuan tgl {{ config('bsc.cycle.approve_day') }}</small></h3>
             <ul class="arah-list">
                 @if ($user->hasPermission('kpi.verify_finance'))
                 <li><span>IK yang wajib verifikasi Keuangan menunggu verifikasi</span><a href="{{ \App\Filament\Resources\KpiActuals\KpiActualResource::getUrl('index', ['tableFilters' => ['status' => ['value' => 'draf']]]) }}">{{ $t['toVerify']->count() }} baris</a></li>

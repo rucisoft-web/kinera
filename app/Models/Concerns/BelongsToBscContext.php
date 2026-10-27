@@ -4,7 +4,7 @@ namespace App\Models\Concerns;
 
 use App\Models\AnalysisPeriod;
 use App\Models\Company;
-use App\Support\DhastramContext;
+use App\Support\BscContext;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -12,12 +12,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * Menyaring setiap query berdasarkan satker BLU & perioda aktif,
  * dan mengisi company_id / analysis_period_id otomatis saat membuat data.
  */
-trait BelongsToDhastramContext
+trait BelongsToBscContext
 {
-    public static function bootBelongsToDhastramContext(): void
+    public static function bootBelongsToBscContext(): void
     {
-        static::addGlobalScope('dhastram_context', function (Builder $builder) {
-            $ctx = app(DhastramContext::class);
+        static::addGlobalScope('bsc_context', function (Builder $builder) {
+            $ctx = app(BscContext::class);
             if ($ctx->isDisabled()) {
                 return;
             }
@@ -31,11 +31,11 @@ trait BelongsToDhastramContext
         });
 
         static::creating(function ($model) {
-            $ctx = app(DhastramContext::class);
+            $ctx = app(BscContext::class);
             $model->company_id ??= $ctx->companyId();
             $model->analysis_period_id ??= $ctx->periodId();
             if (property_exists($model, 'sequencePrefix') && static::$sequencePrefix && empty($model->code)) {
-                $model->code = \App\Support\DhastramSequence::next(static::$sequencePrefix, $model->company_id, $model->analysis_period_id);
+                $model->code = \App\Support\BscSequence::next(static::$sequencePrefix, $model->company_id, $model->analysis_period_id);
             }
         });
     }

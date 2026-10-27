@@ -22,7 +22,7 @@ class ArahNotification extends Notification
 
     public function via(object $notifiable): array
     {
-        return config('dhastram.notify_mail') ? ['database', 'mail'] : ['database'];
+        return config('bsc.notify_mail') ? ['database', 'mail'] : ['database'];
     }
 
     public function toDatabase(object $notifiable): array

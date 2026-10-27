@@ -6,7 +6,7 @@ use App\Filament\Resources\Capabilities\Pages\ListCapabilities;
 use App\Filament\Resources\Capabilities\Pages\CreateCapability;
 use App\Filament\Resources\Capabilities\Pages\ViewCapability;
 use App\Filament\Resources\Capabilities\Pages\EditCapability;
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Support\F;
 use App\Support\Fmt;
 use App\Support\Terms;
@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CapabilityResource extends Resource
 {
-    use HasDhastramPermissions;
+    use HasBscPermissions;
 
     protected static ?string $model = Models\Capability::class;
 

@@ -4,7 +4,7 @@ namespace App\Filament\Pages;
 
 use App\Services\ExecutiveDashboardService;
 use App\Services\StrategicScoreService;
-use App\Support\DhastramContext;
+use App\Support\BscContext;
 use Filament\Pages\Page;
 
 class PusatKendali extends Page
@@ -31,7 +31,7 @@ class PusatKendali extends Page
     protected function getViewData(): array
     {
         $data = app(ExecutiveDashboardService::class)->data();
-        $last = app(DhastramContext::class)->lastClosedMonth();
+        $last = app(BscContext::class)->lastClosedMonth();
         $data['trend'] = $last > 0 ? app(StrategicScoreService::class)->trend($last) : [];
 
         return $data;

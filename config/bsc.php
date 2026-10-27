@@ -5,20 +5,19 @@ return [
     |--------------------------------------------------------------------------
     | Ruci BSC BLU — edisi Badan Layanan Umum (Kontrak Kinerja Pemimpin BLU, PER-6/PB/2025)
     |--------------------------------------------------------------------------
-    | DHASTRAM_TERMS=blu   -> istilah BLU (perspektif sektor publik: Pemangku Kepentingan, Proses Layanan Internal, ...)
-    | DHASTRAM_TERMS=umum  -> istilah umum bahasa Indonesia (Ekosistem, Jati Diri, ...)
-    | DHASTRAM_TERMS=dharma -> istilah asli DHASTRAM (Brahman, Atman, ...)
+    | RUCI_TERMS=blu   -> istilah BLU (perspektif sektor publik: Pemangku Kepentingan, Proses Layanan Internal, ...)
+    | RUCI_TERMS=umum  -> istilah umum bahasa Indonesia (Ekosistem, Jati Diri, ...)
     */
-    'terms' => env('DHASTRAM_TERMS', 'blu'),
-    'brand_name' => env('DHASTRAM_BRAND_NAME', 'Ruci BSC BLU'),
-    'brand_tagline' => env('DHASTRAM_BRAND_TAGLINE', 'Balanced Scorecard & Kontrak Kinerja Pemimpin BLU'),
+    'terms' => env('RUCI_TERMS', 'blu'),
+    'brand_name' => env('RUCI_BRAND_NAME', 'Ruci BSC BLU'),
+    'brand_tagline' => env('RUCI_BRAND_TAGLINE', 'Balanced Scorecard & Kontrak Kinerja Pemimpin BLU'),
 
     // Dibaca lewat config() supaya tetap berlaku setelah `php artisan optimize` (config cache) di produksi
-    'notify_mail' => (bool) env('ARAH_NOTIFY_MAIL', false),
-    'mfa_required' => (bool) env('ARAH_MFA_REQUIRED', false),
+    'notify_mail' => (bool) env('RUCI_NOTIFY_MAIL', false),
+    'mfa_required' => (bool) env('RUCI_MFA_REQUIRED', false),
     'seed_demo' => (bool) env('RUCI_SEED_DEMO', false),
     'demo_admin_password' => env('RUCI_ADMIN_PASSWORD', 'Ruci@BSC2026'),
-    'demo_enabled' => (bool) env('DHASTRAM_DEMO_ENABLED', false),
+    'demo_enabled' => (bool) env('RUCI_DEMO_ENABLED', false),
     // Situs demo/promosi: tombol "Masuk sebagai Tamu" (hanya lihat) di halaman login
     'guest_login' => (bool) env('RUCI_GUEST_LOGIN', false),
     'guest_email' => env('RUCI_GUEST_EMAIL', 'tamu@demo.rucisoft.id'),
@@ -26,7 +25,7 @@ return [
     'workshop_url' => env('RUCI_WORKSHOP_URL', 'https://rucisoft.id'),
     'workshop_contact' => env('RUCI_WORKSHOP_CONTACT'),
     'workshop_special_speaker' => env('RUCI_WORKSHOP_SPECIAL_SPEAKER'),
-    'audit_enabled' => (bool) env('DHASTRAM_AUDIT_ENABLED', true),
+    'audit_enabled' => (bool) env('RUCI_AUDIT_ENABLED', true),
 
     // Ambang status KPI (skor dalam persen)
     'score_green' => 100,
@@ -77,13 +76,6 @@ return [
             'keuangan' => 'Keuangan', 'pelanggan' => 'Kepuasan Pelanggan',
             'proses' => 'Proses Internal', 'sdm' => 'SDM & Pembelajaran',
             'app' => 'Ruci BSC', 'method' => 'Manajemen Strategi',
-        ],
-        'dharma' => [
-            'brahman' => 'Brahman', 'atman' => 'Atman', 'karma_phala' => 'Karma Phala',
-            'punarbhawa' => 'Punarbhawa', 'moksa' => 'Moksa',
-            'keuangan' => 'Artha', 'pelanggan' => 'Kama',
-            'proses' => 'Dharma', 'sdm' => 'Swadharma',
-            'app' => 'DHASTRAM', 'method' => 'DSM',
         ],
     ],
 ];

@@ -29,8 +29,8 @@ class PanduanImplementasi extends Page
     protected function getViewData(): array
     {
         return [
-            'workshopUrl' => config('dhastram.workshop_url'),
-            'workshopContact' => config('dhastram.workshop_contact'),
+            'workshopUrl' => config('bsc.workshop_url'),
+            'workshopContact' => config('bsc.workshop_contact'),
         ];
     }
 }

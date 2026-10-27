@@ -6,7 +6,7 @@ use App\Filament\Resources\InitiativeBudgets\Pages\ListInitiativeBudgets;
 use App\Filament\Resources\InitiativeBudgets\Pages\CreateInitiativeBudget;
 use App\Filament\Resources\InitiativeBudgets\Pages\ViewInitiativeBudget;
 use App\Filament\Resources\InitiativeBudgets\Pages\EditInitiativeBudget;
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Support\F;
 use App\Support\Fmt;
 use App\Support\Terms;
@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Auth;
 
 class InitiativeBudgetResource extends Resource
 {
-    use HasDhastramPermissions;
+    use HasBscPermissions;
 
     protected static ?string $model = Models\InitiativeBudget::class;
 

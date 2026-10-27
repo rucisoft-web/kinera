@@ -40,8 +40,8 @@ class KpiScoringService
         }
 
         return match (true) {
-            $score >= config('dhastram.score_green', 100) => 'hijau',
-            $score >= config('dhastram.score_yellow', 80) => 'kuning',
+            $score >= config('bsc.score_green', 100) => 'hijau',
+            $score >= config('bsc.score_yellow', 80) => 'kuning',
             default => 'merah',
         };
     }

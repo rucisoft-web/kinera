@@ -79,7 +79,7 @@ class User extends Authenticatable implements FilamentUser, HasAppAuthentication
     /** @return array<int,string> */
     public function permissionSlugs(?int $companyId = null): array
     {
-        $companyId ??= app(\App\Support\DhastramContext::class)->companyId();
+        $companyId ??= app(\App\Support\BscContext::class)->companyId();
         $key = (string) $companyId;
         if (! isset($this->permissionCache[$key])) {
             $this->loadMissing('roles.permissions');

@@ -9,7 +9,7 @@ use App\Models\Kpi;
 use App\Models\KpiActual;
 use App\Models\User;
 use App\Notifications\ArahNotification;
-use App\Support\DhastramContext;
+use App\Support\BscContext;
 use App\Support\Terms;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Notification;
@@ -27,10 +27,10 @@ class SendReminders extends Command
 
     protected $description = 'Kirim pengingat siklus Ruci BSC (realisasi, verifikasi, persetujuan, milestone, tindakan korektif)';
 
-    public function handle(DhastramContext $ctx): int
+    public function handle(BscContext $ctx): int
     {
         $today = $this->option('date') ? \Carbon\Carbon::parse($this->option('date')) : today();
-        $cycle = config('dhastram.cycle');
+        $cycle = config('bsc.cycle');
         $sent = 0;
         foreach (AnalysisPeriod::where('status', 'berjalan')->get() as $period) {
             $ctx->set($period->company_id, $period->id);

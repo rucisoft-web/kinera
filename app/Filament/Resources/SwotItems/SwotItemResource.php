@@ -6,7 +6,7 @@ use App\Filament\Resources\SwotItems\Pages\ListSwotItems;
 use App\Filament\Resources\SwotItems\Pages\CreateSwotItem;
 use App\Filament\Resources\SwotItems\Pages\ViewSwotItem;
 use App\Filament\Resources\SwotItems\Pages\EditSwotItem;
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Support\F;
 use App\Support\Fmt;
 use App\Support\Terms;
@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Auth;
 
 class SwotItemResource extends Resource
 {
-    use HasDhastramPermissions;
+    use HasBscPermissions;
 
     protected static ?string $model = Models\SwotItem::class;
 

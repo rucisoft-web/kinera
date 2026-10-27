@@ -10,7 +10,7 @@ use App\Models\ObjectiveRelation;
 use App\Models\StrategicInitiative;
 use App\Models\StrategicObjective;
 use App\Models\StrategicTheme;
-use App\Support\DhastramContext;
+use App\Support\BscContext;
 use App\Support\Terms;
 use OpenSpout\Common\Entity\Row;
 use OpenSpout\Common\Entity\Style\Color;
@@ -20,7 +20,7 @@ use OpenSpout\Writer\XLSX\Writer;
 /** Menulis workbook dengan format BscWorkbook: template kosong, atau data perusahaan/perioda yang ada (untuk diubah lalu diupload ulang). */
 class BscTemplate
 {
-    public function __construct(protected DhastramContext $ctx) {}
+    public function __construct(protected BscContext $ctx) {}
 
     /** Template kosong: sheet Petunjuk + header setiap sheet. */
     public function blank(string $file): string
@@ -62,7 +62,7 @@ class BscTemplate
 
         $sheet = $w->getCurrentSheet();
         $sheet->setName('Petunjuk');
-        $w->addRow(Row::fromValues([config('dhastram.brand_name').' — template data perusahaan'], $bold));
+        $w->addRow(Row::fromValues([config('bsc.brand_name').' — template data perusahaan'], $bold));
         if ($period) {
             $w->addRow(Row::fromValues(['Perusahaan', $period->company?->name]));
             $w->addRow(Row::fromValues(['Perioda', $period->name]));

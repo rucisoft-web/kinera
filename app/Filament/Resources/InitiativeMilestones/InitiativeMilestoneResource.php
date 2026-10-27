@@ -6,7 +6,7 @@ use App\Filament\Resources\InitiativeMilestones\Pages\ListInitiativeMilestones;
 use App\Filament\Resources\InitiativeMilestones\Pages\CreateInitiativeMilestone;
 use App\Filament\Resources\InitiativeMilestones\Pages\ViewInitiativeMilestone;
 use App\Filament\Resources\InitiativeMilestones\Pages\EditInitiativeMilestone;
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Support\F;
 use App\Support\Fmt;
 use App\Support\Terms;
@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Auth;
 
 class InitiativeMilestoneResource extends Resource
 {
-    use HasDhastramPermissions;
+    use HasBscPermissions;
 
     protected static ?string $model = Models\InitiativeMilestone::class;
 

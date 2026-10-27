@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PerformanceContract;
 use App\Services\BluContractService;
 use App\Support\DemoNotice;
-use App\Support\DhastramContext;
+use App\Support\BscContext;
 use Illuminate\Http\Request;
 
 /** Dokumen cetak Kontrak Kinerja BLU sesuai format lampiran PER-6/PB/2025 (dicetak/disimpan PDF dari peramban). */
@@ -19,7 +19,7 @@ class BluPrintController extends Controller
         'pernyataan' => 'Surat Pernyataan Kebenaran Perhitungan Kelebihan Capaian Kinerja (Lampiran IV)',
     ];
 
-    public function __invoke(Request $request, string $doc, PerformanceContract $contract, BluContractService $svc, DhastramContext $ctx)
+    public function __invoke(Request $request, string $doc, PerformanceContract $contract, BluContractService $svc, BscContext $ctx)
     {
         abort_unless($request->user()?->hasPermission('kpi.view'), 403);
         abort_unless(array_key_exists($doc, self::DOCS), 404);

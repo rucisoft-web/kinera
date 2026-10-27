@@ -29,11 +29,11 @@ class KenaliRuciBsc extends Page
 
     protected function getViewData(): array
     {
-        $c = config('dhastram.cycle');
+        $c = config('bsc.cycle');
 
         return [
-            'workshopUrl' => config('dhastram.workshop_url'),
-            'workshopContact' => config('dhastram.workshop_contact'),
+            'workshopUrl' => config('bsc.workshop_url'),
+            'workshopContact' => config('bsc.workshop_contact'),
             'cycle' => [
                 ['Tgl '.$c['reminder_day'], 'Pengingat', 'Sistem mengingatkan setiap penanggung jawab IK yang realisasinya belum masuk.'],
                 ['Tgl '.$c['input_day'], 'Input', 'Penanggung jawab IK mengisi realisasi bulan lalu beserta bukti dan penjelasannya.'],

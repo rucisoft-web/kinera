@@ -3,7 +3,7 @@
 namespace App\Filament\Resources\Users\RelationManagers;
 
 use App\Filament\Concerns\ScopesToActiveCompany;
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Support\F;
 use App\Support\Fmt;
 use App\Support\Terms;

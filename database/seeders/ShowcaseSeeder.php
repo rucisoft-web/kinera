@@ -26,7 +26,7 @@ use App\Models\StrategicTheme;
 use App\Models\User;
 use App\Models\UserContext;
 use App\Services\MaturityScoringService;
-use App\Support\DhastramContext;
+use App\Support\BscContext;
 use Illuminate\Support\Facades\Hash;
 
 /**
@@ -144,7 +144,7 @@ abstract class ShowcaseSeeder
         ]);
         AnalysisPeriod::where('company_id', $this->company->id)->whereNotIn('id', [$p2025->id, $p2026->id])->update(['is_active' => false]);
 
-        $ctx = app(DhastramContext::class);
+        $ctx = app(BscContext::class);
         foreach ([$p2025, $p2026] as $period) {
             $ctx->set($this->company->id, $period->id);
             $this->period($period->year);

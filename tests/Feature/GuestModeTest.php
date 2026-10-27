@@ -14,7 +14,7 @@ class GuestModeTest extends TestCase
 {
     public function test_guest_entry_is_hidden_when_disabled(): void
     {
-        config(['dhastram.guest_login' => false]);
+        config(['bsc.guest_login' => false]);
 
         $this->get('/masuk-tamu')->assertNotFound();
         $this->get('/admin/login')->assertOk()->assertDontSee('Masuk sebagai Tamu');
@@ -23,7 +23,7 @@ class GuestModeTest extends TestCase
 
     public function test_one_click_guest_login_opens_the_demo_read_only(): void
     {
-        config(['dhastram.guest_login' => true]);
+        config(['bsc.guest_login' => true]);
         [$other] = $this->company('AAA');
         [$dfi, $period] = $this->company('UINSUKA');
 
@@ -33,8 +33,8 @@ class GuestModeTest extends TestCase
         $guest = User::where('email', GuestMode::email())->firstOrFail();
         $this->assertAuthenticatedAs($guest);
         $this->assertTrue($guest->isGuestVisitor());
-        $this->assertSame($dfi->id, session('dhastram.company_id'));
-        $this->assertSame($period->id, session('dhastram.period_id'));
+        $this->assertSame($dfi->id, session('bsc.company_id'));
+        $this->assertSame($period->id, session('bsc.period_id'));
         $this->assertSame(0, UserContext::where('user_id', $guest->id)->count(), 'konteks Tamu hanya di sesi');
         $this->assertEqualsCanonicalizing([$other->id, $dfi->id], $guest->accessibleCompanyIds());
 
@@ -48,7 +48,7 @@ class GuestModeTest extends TestCase
 
     public function test_guest_can_view_but_never_change_data(): void
     {
-        config(['dhastram.guest_login' => true]);
+        config(['bsc.guest_login' => true]);
         [$company, $period] = $this->company('UINSUKA');
         $guest = GuestMode::user();
         $this->actingAs($guest);
@@ -75,7 +75,7 @@ class GuestModeTest extends TestCase
 
     public function test_landing_page_offers_current_year_demos_and_guides(): void
     {
-        config(['dhastram.guest_login' => true]);
+        config(['bsc.guest_login' => true]);
         [$other] = $this->company('AAA');
         [$uin, $uinNow] = $this->company('UINSUKA');
         $uin->forceFill(['is_demo' => true])->save();
@@ -93,22 +93,22 @@ class GuestModeTest extends TestCase
         $this->get('/admin/login')->assertOk()->assertSee('Pilih satker BLU contoh')->assertSee('UIN Sunan Kalijaga Yogyakarta (UINSUKA)');
 
         $this->get(route('arah.guest', ['perusahaan' => 'uinsuka']))->assertRedirect('/admin');
-        $this->assertSame($uin->id, session('dhastram.company_id'));
-        $this->assertSame($uinNow->id, session('dhastram.period_id'));
+        $this->assertSame($uin->id, session('bsc.company_id'));
+        $this->assertSame($uinNow->id, session('bsc.period_id'));
 
         // kode yang bukan satker BLU contoh kembali ke satker pembuka
         $this->get(route('arah.guest', ['perusahaan' => 'XYZ', 'ke' => 'panduan']))
             ->assertRedirect(\App\Filament\Pages\PanduanPengguna::getUrl());
-        $this->assertSame($uin->id, session('dhastram.company_id'));
+        $this->assertSame($uin->id, session('bsc.company_id'));
 
         auth()->logout();
-        config(['dhastram.guest_login' => false]);
+        config(['bsc.guest_login' => false]);
         $this->get('/')->assertRedirect('/admin');
     }
 
     public function test_kenali_link_opens_the_introduction_page(): void
     {
-        config(['dhastram.guest_login' => true]);
+        config(['bsc.guest_login' => true]);
         $this->company('UINSUKA');
 
         $this->get('/kenali')->assertRedirect(route('arah.guest', ['ke' => 'kenali']));
@@ -118,13 +118,13 @@ class GuestModeTest extends TestCase
             ->assertSee('Workshop Ruci BSC');
 
         auth()->logout();
-        config(['dhastram.guest_login' => false]);
+        config(['bsc.guest_login' => false]);
         $this->get('/kenali')->assertRedirect(route('filament.admin.auth.login'));
     }
 
     public function test_guide_pages_are_open_to_every_user(): void
     {
-        config(['dhastram.guest_login' => true]);
+        config(['bsc.guest_login' => true]);
         $this->company('UINSUKA');
         $this->get('/masuk-tamu');
 

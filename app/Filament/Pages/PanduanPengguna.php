@@ -29,7 +29,7 @@ class PanduanPengguna extends Page
 
     protected function getViewData(): array
     {
-        $c = config('dhastram.cycle');
+        $c = config('bsc.cycle');
         $eko = Terms::get('brahman');
         $jati = Terms::get('atman');
 

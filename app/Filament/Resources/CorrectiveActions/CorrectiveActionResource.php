@@ -6,7 +6,7 @@ use App\Filament\Resources\CorrectiveActions\Pages\ListCorrectiveActions;
 use App\Filament\Resources\CorrectiveActions\Pages\CreateCorrectiveAction;
 use App\Filament\Resources\CorrectiveActions\Pages\ViewCorrectiveAction;
 use App\Filament\Resources\CorrectiveActions\Pages\EditCorrectiveAction;
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Support\F;
 use App\Support\Fmt;
 use App\Support\Terms;
@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CorrectiveActionResource extends Resource
 {
-    use HasDhastramPermissions;
+    use HasBscPermissions;
 
     protected static ?string $model = Models\CorrectiveAction::class;
 

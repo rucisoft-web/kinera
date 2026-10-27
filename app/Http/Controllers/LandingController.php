@@ -17,8 +17,8 @@ class LandingController extends Controller
 
         return view('landing', [
             'cases' => Cache::remember('arah.landing.cases', 600, fn () => DemoCatalog::installed()),
-            'cycle' => config('dhastram.cycle'),
-            'workshopUrl' => config('dhastram.workshop_url'),
+            'cycle' => config('bsc.cycle'),
+            'workshopUrl' => config('bsc.workshop_url'),
         ]);
     }
 }

@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Models\User;
-use App\Support\DhastramContext;
+use App\Support\BscContext;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Support\Facades\Event;
@@ -18,7 +18,7 @@ class AppServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->app->scoped(DhastramContext::class);
+        $this->app->scoped(BscContext::class);
     }
 
     public function boot(): void
@@ -32,7 +32,7 @@ class AppServiceProvider extends ServiceProvider
         // Kebijakan kata sandi: minimal 10 karakter, huruf & angka
         Password::defaults(fn () => Password::min(10)->letters()->numbers());
 
-        // Izin DHASTRAM dapat dipakai lewat Gate/@can: Gate::allows('kpi.approve_actual')
+        // Izin Ruci BSC dapat dipakai lewat Gate/@can: Gate::allows('kpi.approve_actual')
         Gate::before(function (User $user, string $ability) {
             if (str_contains($ability, '.') && array_key_exists($ability, \App\Support\PermissionCatalog::PERMISSIONS)) {
                 return $user->hasPermission($ability);

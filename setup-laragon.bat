@@ -48,7 +48,7 @@ echo [6/7] Membersihkan cache...
 php artisan optimize:clear
 
 echo [7/7] Pemeriksaan konfigurasi...
-php artisan dhastram:doctor
+php artisan rucibsc:doctor
 
 echo.
 echo ============================================================

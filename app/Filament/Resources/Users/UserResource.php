@@ -6,7 +6,7 @@ use App\Filament\Resources\Users\Pages\ListUsers;
 use App\Filament\Resources\Users\Pages\CreateUser;
 use App\Filament\Resources\Users\Pages\ViewUser;
 use App\Filament\Resources\Users\Pages\EditUser;
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Concerns\ScopesToActiveCompany;
 use App\Filament\Support\F;
 use App\Support\Fmt;
@@ -51,9 +51,9 @@ use Illuminate\Support\Facades\Auth;
 
 class UserResource extends Resource
 {
-    use HasDhastramPermissions, ScopesToActiveCompany {
-        HasDhastramPermissions::canEdit as canEditByPermission;
-        HasDhastramPermissions::canDelete as canDeleteByPermission;
+    use HasBscPermissions, ScopesToActiveCompany {
+        HasBscPermissions::canEdit as canEditByPermission;
+        HasBscPermissions::canDelete as canDeleteByPermission;
     }
 
     protected static ?string $model = Models\User::class;

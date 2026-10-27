@@ -3,7 +3,7 @@
 namespace App\Filament\Pages;
 
 use App\Services\BluContractService;
-use App\Support\DhastramContext;
+use App\Support\BscContext;
 use Filament\Pages\Page;
 use Livewire\Attributes\Url;
 
@@ -43,7 +43,7 @@ class CapaianKinerjaBlu extends Page
     /** Bawaan: triwulan terakhir yang sudah berakhir pada perioda berjalan, atau Triwulan IV untuk perioda yang sudah ditutup. */
     protected function defaultUpto(): int
     {
-        $last = app(DhastramContext::class)->lastClosedMonth();
+        $last = app(BscContext::class)->lastClosedMonth();
 
         return max(3, intdiv(max(3, min(12, $last)), 3) * 3);
     }
@@ -60,8 +60,8 @@ class CapaianKinerjaBlu extends Page
             'checks' => $svc->incentiveChecks($upto === 12 ? $a : $svc->achievements(12)),
             'quarterly' => $svc->quarterly(),
             'deadlines' => $svc->deadlines(),
-            'company' => app(DhastramContext::class)->company(),
-            'period' => app(DhastramContext::class)->period(),
+            'company' => app(BscContext::class)->company(),
+            'period' => app(BscContext::class)->period(),
         ];
     }
 }

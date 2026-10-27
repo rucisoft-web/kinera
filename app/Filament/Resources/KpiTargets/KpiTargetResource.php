@@ -5,7 +5,7 @@ namespace App\Filament\Resources\KpiTargets;
 use App\Filament\Resources\KpiTargets\Pages\ListKpiTargets;
 use App\Filament\Resources\KpiTargets\Pages\CreateKpiTarget;
 use App\Filament\Resources\KpiTargets\Pages\EditKpiTarget;
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Support\F;
 use App\Support\Fmt;
 use App\Support\Terms;
@@ -49,7 +49,7 @@ use Illuminate\Support\Facades\Auth;
 
 class KpiTargetResource extends Resource
 {
-    use HasDhastramPermissions;
+    use HasBscPermissions;
 
     protected static ?string $model = Models\KpiTarget::class;
 

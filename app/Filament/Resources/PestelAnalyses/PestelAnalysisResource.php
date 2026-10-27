@@ -6,7 +6,7 @@ use App\Filament\Resources\PestelAnalyses\Pages\ListPestelAnalyses;
 use App\Filament\Resources\PestelAnalyses\Pages\CreatePestelAnalysis;
 use App\Filament\Resources\PestelAnalyses\Pages\ViewPestelAnalysis;
 use App\Filament\Resources\PestelAnalyses\Pages\EditPestelAnalysis;
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Support\F;
 use App\Support\Fmt;
 use App\Support\Terms;
@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Auth;
 
 class PestelAnalysisResource extends Resource
 {
-    use HasDhastramPermissions;
+    use HasBscPermissions;
 
     protected static ?string $model = Models\PestelAnalysis::class;
 

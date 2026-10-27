@@ -32,7 +32,7 @@ cd C:\laragon\www\bsc-blu
 setup-laragon.bat
 ```
 
-Skrip melakukan: cek PHP & ekstensi → `.env` → `composer install` (bila perlu) → `key:generate` → membuat database `ruci_bsc` (utf8mb4) → `migrate:fresh --seed` dengan data contoh → `filament:assets` → `optimize:clear` → `dhastram:doctor`.
+Skrip melakukan: cek PHP & ekstensi → `.env` → `composer install` (bila perlu) → `key:generate` → membuat database `ruci_bsc` (utf8mb4) → `migrate:fresh --seed` dengan data contoh → `filament:assets` → `optimize:clear` → `rucibsc:doctor`.
 
 ### Cara B: manual
 
@@ -45,7 +45,7 @@ mysql -u root -e "CREATE DATABASE ruci_bsc CHARACTER SET utf8mb4 COLLATE utf8mb4
 php artisan migrate --seed
 php artisan filament:assets
 php artisan optimize:clear
-php artisan dhastram:doctor
+php artisan rucibsc:doctor
 ```
 
 Data contoh dimuat bila `APP_ENV` bukan `production` atau `RUCI_SEED_DEMO=true` di `.env`.
@@ -84,9 +84,9 @@ Bila data contoh tidak dibutuhkan lagi: `php artisan rucibsc:hapus-contoh`.
 
 | Perintah | Fungsi |
 |---|---|
-| `php artisan dhastram:doctor` | Pemeriksaan PHP, ekstensi, database, izin & peran |
-| `php artisan dhastram:create-admin` | Membuat Super Admin baru |
-| `php artisan db:seed --class=DhastramRolePermissionSeeder` | Memperbarui izin & peran (aman diulang) |
+| `php artisan rucibsc:doctor` | Pemeriksaan PHP, ekstensi, database, izin & peran |
+| `php artisan rucibsc:create-admin` | Membuat Super Admin baru |
+| `php artisan db:seed --class=BscRolePermissionSeeder` | Memperbarui izin & peran (aman diulang) |
 | `php artisan rucibsc:hapus-contoh` | Menghapus satker BLU & akun contoh |
 | `php artisan rucibsc:reminders` | Kirim pengingat siklus hari ini |
 

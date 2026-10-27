@@ -110,7 +110,7 @@ MAIL_SCHEME=smtps
 MAIL_USERNAME=bsc@domainanda.com
 MAIL_PASSWORD="kata-sandi-email"
 MAIL_FROM_ADDRESS="bsc@domainanda.com"
-ARAH_NOTIFY_MAIL=true
+RUCI_NOTIFY_MAIL=true
 
 # data contoh (UIN Sunan Kalijaga, data demo): biarkan false untuk pemakaian sungguhan
 RUCI_SEED_DEMO=false
@@ -130,9 +130,9 @@ Catatan: di cPanel `DB_HOST` hampir selalu `localhost`. Kata sandi yang mengandu
 cd ~/bsc-blu
 php artisan key:generate --force
 php artisan migrate --seed --force
-php artisan dhastram:create-admin
+php artisan rucibsc:create-admin
 php artisan optimize
-php artisan dhastram:doctor
+php artisan rucibsc:doctor
 ```
 
 `migrate --seed` di produksi hanya membuat izin, peran, dan pertanyaan kematangan. Satker BLU contoh hanya dimuat bila `RUCI_SEED_DEMO=true`.
@@ -143,7 +143,7 @@ Buka **Cron Jobs**, tambahkan perintah berikut satu per satu dengan jadwal *Once
 
 1. `cd /home/userku/bsc-blu && php artisan key:generate --force > storage/logs/setup-1.txt 2>&1`
 2. `cd /home/userku/bsc-blu && php artisan migrate --seed --force > storage/logs/setup-2.txt 2>&1`
-3. `cd /home/userku/bsc-blu && php artisan dhastram:create-admin --name="Super Admin" --email=admin@domainanda.com --password='SandiSementara2026' > storage/logs/setup-3.txt 2>&1`
+3. `cd /home/userku/bsc-blu && php artisan rucibsc:create-admin --name="Super Admin" --email=admin@domainanda.com --password='SandiSementara2026' > storage/logs/setup-3.txt 2>&1`
 4. `cd /home/userku/bsc-blu && php artisan optimize > storage/logs/setup-4.txt 2>&1`
 
 Periksa hasil tiap langkah di File Manager: `bsc-blu/storage/logs/setup-*.txt`. Setelah login pertama, **ganti kata sandi Super Admin** di menu profil karena kata sandi sementara tadi sempat tersimpan di daftar cron.

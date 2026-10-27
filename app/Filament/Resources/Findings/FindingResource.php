@@ -6,7 +6,7 @@ use App\Filament\Resources\Findings\Pages\ListFindings;
 use App\Filament\Resources\Findings\Pages\CreateFinding;
 use App\Filament\Resources\Findings\Pages\ViewFinding;
 use App\Filament\Resources\Findings\Pages\EditFinding;
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Support\F;
 use App\Support\Fmt;
 use App\Support\Terms;
@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Auth;
 
 class FindingResource extends Resource
 {
-    use HasDhastramPermissions;
+    use HasBscPermissions;
 
     protected static ?string $model = Models\Finding::class;
 

@@ -11,10 +11,10 @@ Satu instalasi melayani banyak satker BLU; setiap satker punya data, perioda, ad
 | Pasal 5: Indikator Kinerja, trajektori, target, aspek layanan & keuangan (+ kebijakan/penugasan), Definisi Operasional | Menu **Indikator Kinerja**: aspek, wajib (mandatory), capaian maksimum, peran insentif (PNBP/EBITDA/opini), Definisi Operasional (definisi, rumus, sumber data, cara pengambilan data, metode pengujian, dokumen pendukung); trajektori bawaan triwulanan |
 | Pasal 6–9: usulan (hari kerja terakhir Desember), kesepakatan & Berita Acara (25 Januari), penandatanganan (31 Januari) | Menu **Kontrak Kinerja**: versi, status draf → diusulkan → disepakati → ditandatangani; potret indikator & target trajektori; cetak **Lampiran I** (Kontrak Kinerja) dan **Lampiran II** (Berita Acara) |
 | Pasal 10: laporan capaian ≤ 15 hari kerja setelah periode trajektori | Halaman **Capaian & Insentif**: perhitungan per triwulan (format **Lampiran VI**), kalender tenggat dengan status tepat waktu/terlambat/lewat tenggat |
-| Pasal 14 ayat (4): syarat insentif a–h | Uji otomatis: total capaian > target, indikator wajib tercapai, tidak ada IK < 65% (`DHASTRAM_SCORE_FLOOR`), PNBP tercapai, surplus EBITDA, opini WTP, bebas kasus hukum, persyaratan lain; cetak **Lampiran IV** (surat pernyataan) |
+| Pasal 14 ayat (4): syarat insentif a–h | Uji otomatis: total capaian > target, indikator wajib tercapai, tidak ada IK < 65% (`RUCI_SCORE_FLOOR`), PNBP tercapai, surplus EBITDA, opini WTP, bebas kasus hukum, persyaratan lain; cetak **Lampiran IV** (surat pernyataan) |
 | Pasal 19 & 21: perubahan (dasar huruf a/b/c, usul ≤ 30 September, tanda tangan ≤ 1 Desember) dan adendum 2025 | Versi perubahan/adendum menandai IK baru, diubah, dan **target turun**; IK yang targetnya turun dibatasi capaian maksimum 100% (Pasal 19 ayat 8); versi lama otomatis berstatus "digantikan" |
 
-Kode inti: `App\Services\BluContractService`, `App\Models\PerformanceContract`, `App\Filament\Pages\CapaianKinerjaBlu`, `App\Http\Controllers\BluPrintController`, `resources/views/blu/`. Istilah tampilan (perspektif, menu) diatur kamus `terms.blu` di `config/dhastram.php` (`DHASTRAM_TERMS=blu`).
+Kode inti: `App\Services\BluContractService`, `App\Models\PerformanceContract`, `App\Filament\Pages\CapaianKinerjaBlu`, `App\Http\Controllers\BluPrintController`, `resources/views/blu/`. Istilah tampilan (perspektif, menu) diatur kamus `terms.blu` di `config/bsc.php` (`RUCI_TERMS=blu`).
 
 **Instalasi di Laragon → [PANDUAN-LARAGON.md](PANDUAN-LARAGON.md)** · **Instalasi di cPanel → [PANDUAN-CPANEL.md](PANDUAN-CPANEL.md)**
 
@@ -25,9 +25,9 @@ Kode inti: `App\Services\BluContractService`, `App\Models\PerformanceContract`, 
 | Runtime | PHP 8.3+, **Laravel 13**, Livewire 4 |
 | Antarmuka | **Filament v5** (panel `/admin`), stylesheet statis `public/css/arah.css` (tanpa Node.js) |
 | Basis data | **MySQL 8 / MariaDB 10.6+** (SQLite untuk test) |
-| Konteks | `DhastramContext` (sesi + tabel `user_contexts`) & global scope `BelongsToDhastramContext` menyaring setiap query per satker BLU/perioda |
+| Konteks | `BscContext` (sesi + tabel `user_contexts`) & global scope `BelongsToBscContext` menyaring setiap query per satker BLU/perioda |
 | Excel | OpenSpout: import, template kosong, dan ekspor data perioda |
-| Audit | `audit_logs` mencatat buat/ubah/hapus (`DHASTRAM_AUDIT_ENABLED`) |
+| Audit | `audit_logs` mencatat buat/ubah/hapus (`RUCI_AUDIT_ENABLED`) |
 | Jadwal | `rucibsc:reminders` harian (pengingat siklus input → verifikasi → persetujuan) |
 
 ## Multi-satker BLU
@@ -84,9 +84,9 @@ Sebelum dipakai sungguhan: `php artisan rucibsc:hapus-contoh` menghapus semua sa
 
 | Perintah | Fungsi |
 |---|---|
-| `php artisan dhastram:doctor` | Cek PHP, ekstensi, database, izin, peran, data contoh |
-| `php artisan dhastram:create-admin` | Membuat Super Admin baru |
-| `php artisan db:seed --class=DhastramRolePermissionSeeder` | Memperbarui izin & peran (aman diulang) |
+| `php artisan rucibsc:doctor` | Cek PHP, ekstensi, database, izin, peran, data contoh |
+| `php artisan rucibsc:create-admin` | Membuat Super Admin baru |
+| `php artisan db:seed --class=BscRolePermissionSeeder` | Memperbarui izin & peran (aman diulang) |
 | `php artisan rucibsc:demo UINSUKA [--reset]` | Memuat demo UIN Sunan Kalijaga (2025 + proyeksi 2026) |
 | `php artisan rucibsc:hapus-contoh` | Menghapus satker BLU & akun contoh |
 | `php artisan rucibsc:reminders --date=2026-11-03` | Uji pengingat |
@@ -98,5 +98,5 @@ Langkah lengkap untuk cPanel (dengan atau tanpa Terminal) ada di [PANDUAN-CPANEL
 
 
 `APP_ENV=production`, `APP_DEBUG=false`, `SESSION_SECURE_COOKIE=true`; document root ke `public/`; cron `* * * * * php /path/ruci-bsc/artisan schedule:run`.
-Di produksi `DatabaseSeeder` hanya membuat izin, peran, dan pertanyaan kematangan. Buat Super Admin dengan `dhastram:create-admin`, tambahkan satker BLU (isi identitas BLU & penandatangan), lalu upload datanya lewat Import Data.
-Rilis: `composer install --no-dev --optimize-autoloader` → `php artisan migrate --force` → `php artisan optimize` → `php artisan dhastram:doctor`.
+Di produksi `DatabaseSeeder` hanya membuat izin, peran, dan pertanyaan kematangan. Buat Super Admin dengan `rucibsc:create-admin`, tambahkan satker BLU (isi identitas BLU & penandatangan), lalu upload datanya lewat Import Data.
+Rilis: `composer install --no-dev --optimize-autoloader` → `php artisan migrate --force` → `php artisan optimize` → `php artisan rucibsc:doctor`.
