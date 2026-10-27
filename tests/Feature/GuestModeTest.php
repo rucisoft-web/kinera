@@ -84,7 +84,13 @@ class GuestModeTest extends TestCase
         \Illuminate\Support\Facades\Cache::flush();
 
         $this->get('/')->assertOk()
-            ->assertSee('Kenapa perlu Kinera')
+            ->assertSee('Masalah yang sering dihadapi')
+            ->assertSee('Solusi Kinera')
+            ->assertSee('Cara memperoleh Kinera')
+            ->assertSee('Workshop 2 hari')
+            ->assertSee('Pusat Studi Manajemen Perguruan Tinggi')
+            ->assertSee('files/brosur-kinera-workshop-2-hari.pdf', false)
+            ->assertSee('https://wa.me/6281199892939', false)
             ->assertSee('Data demo tahun berjalan 2026')
             ->assertSee('Panduan Kinera')
             ->assertSee('UIN Sunan Kalijaga Yogyakarta')

@@ -25,6 +25,9 @@ return [
     'workshop_url' => env('KINERA_WORKSHOP_URL', 'https://rucisoft.id'),
     'workshop_contact' => env('KINERA_WORKSHOP_CONTACT'),
     'workshop_special_speaker' => env('KINERA_WORKSHOP_SPECIAL_SPEAKER'),
+    // Kontak di halaman depan (tombol WhatsApp & email)
+    'contact_whatsapp' => env('KINERA_CONTACT_WHATSAPP', '6281199892939'),
+    'contact_email' => env('KINERA_CONTACT_EMAIL', 'rucisoft@gmail.com'),
     'audit_enabled' => (bool) env('KINERA_AUDIT_ENABLED', true),
 
     // Ambang status KPI (skor dalam persen)

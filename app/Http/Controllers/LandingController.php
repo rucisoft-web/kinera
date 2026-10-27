@@ -19,6 +19,8 @@ class LandingController extends Controller
             'cases' => Cache::remember('arah.landing.cases', 600, fn () => DemoCatalog::installed()),
             'cycle' => config('bsc.cycle'),
             'workshopUrl' => config('bsc.workshop_url'),
+            'whatsapp' => config('bsc.contact_whatsapp'),
+            'email' => config('bsc.contact_email'),
         ]);
     }
 }
