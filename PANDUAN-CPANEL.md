@@ -135,7 +135,7 @@ php artisan optimize
 php artisan kinera:doctor
 ```
 
-`migrate --seed` di produksi hanya membuat izin, peran, dan pertanyaan kematangan. Satker BLU contoh hanya dimuat bila `KINERA_SEED_DEMO=true`.
+`migrate --seed` di produksi hanya membuat izin, peran, dan pertanyaan kematangan. Instansi contoh hanya dimuat bila `KINERA_SEED_DEMO=true`.
 
 ### Tanpa Terminal (memakai Cron Jobs sekali jalan)
 
@@ -163,25 +163,29 @@ Cron ini menjalankan pengingat harian (07.30 WIB), antrian notifikasi, dan pembe
 ## 8. Mulai memakai
 
 1. Buka `https://bsc.domainanda.com/admin`, login sebagai Super Admin.
-2. **Administrasi › Satker BLU** › tambah satker BLU (isi juga bagian *Identitas BLU & penandatangan Kontrak Kinerja*) dan perioda (misalnya Tahun 2026).
-3. **Pilih Satker BLU & Perioda** › pilih satker tersebut.
+2. **Administrasi › Instansi** › tambah instansi (isi juga bagian *Pimpinan & penandatangan Perjanjian Kinerja*; isian bertanda khusus BLU hanya untuk instansi berpola BLU) dan perioda (misalnya Tahun 2026).
+3. **Pilih Instansi & Perioda** › pilih instansi tersebut.
 4. **Administrasi › Import Data** › unduh template › isi di Excel › **Pratinjau** › **Proses Import**.
-5. **Administrasi › Pengguna** › buat admin satker (peran *Admin Satker* untuk satker itu). Admin tersebut bisa menambah pengguna lain di satkernya.
+5. **Administrasi › Pengguna** › buat admin instansi (peran *Admin Instansi* untuk instansi itu). Admin tersebut bisa menambah pengguna lain di instansinya.
 
 ### Memuat data demo (untuk presentasi)
 
-Tersedia satu demo lengkap: **UINSUKA** (UIN Sunan Kalijaga Yogyakarta, BLU pendidikan tinggi di bawah Kementerian Agama).
+Tersedia tiga demo lengkap, semuanya PTKIN berpola BLU di bawah Kementerian Agama sehingga modul Kontrak Kinerja BLU ikut terisi: **UINSUKA** (UIN Sunan Kalijaga Yogyakarta), **UINRF** (UIN Raden Fatah Palembang), dan **UINSUSKA** (UIN Sultan Syarif Kasim Riau). Fitur inti pengukuran kinerja (Renstra, Peta Strategi, Perjanjian Kinerja, IKU, realisasi, LKjIP) berlaku sama untuk instansi pemerintah yang bukan BLU.
 
 > **Peringatan:** isinya DATA DEMO, hanya untuk keperluan memaksimalkan penyajian fitur-fitur perangkat lunak. Angka 2025 sebagian mengacu pada Laporan Keuangan BLU Audited TA 2025, Perjanjian Kinerja 2025, dan RSB 2020–2024 UIN Sunan Kalijaga; rincian triwulanan, Kontrak Kinerja, realisasi indikator layanan, dan seluruh data 2026 (proyeksi) adalah simulasi. Bukan data resmi UIN Sunan Kalijaga, Kementerian Agama, maupun Kementerian Keuangan. Peringatan ini tampil otomatis di setiap halaman dan setiap cetakan.
 
 ```bash
 cd ~/kinera
 php artisan kinera:demo UINSUKA
+php artisan kinera:demo UINRF
+php artisan kinera:demo UINSUSKA
 ```
 
-Perintah ini membuat satker dengan perioda 2025 (ditutup) dan 2026 (berjalan, proyeksi), lengkap dengan peta strategi, 25 Indikator Kinerja beserta Definisi Operasional, **Kontrak Kinerja** (awal, adendum 2025, usulan perubahan 2026), capaian & syarat insentif, inisiatif, ekosistem, tinjauan, temuan, dan kematangan, serta akun `uinsuka.*` (@contoh.local). Kata sandi akun tersebut dibuat acak dan ditampilkan di layar; untuk menentukannya sendiri tambahkan `--password=SandiAnda123`.
+Atau sekaligus: `php artisan db:seed --class=DemoSeeder --force` (demo yang sudah terpasang dilewati).
 
-Bila satker itu sudah punya perioda 2025 atau 2026 (misalnya dari import Excel sebelumnya), perintah menolak berjalan. Tambahkan `--reset --force` untuk menghapus data kedua perioda itu dan menggantinya dengan data demo. Lewat cron sekali jalan (seperti bagian 6): `cd /home/userku/kinera && php artisan kinera:demo UINSUKA --force --password=SandiAnda123 > storage/logs/demo.txt 2>&1`, lalu jalankan `php artisan optimize` dengan cara yang sama.
+Setiap perintah membuat instansi dengan perioda 2025 (ditutup) dan 2026 (berjalan, proyeksi), lengkap dengan peta strategi, 25 Indikator Kinerja beserta Definisi Operasional, **Kontrak Kinerja** (awal, adendum 2025, usulan perubahan 2026), capaian & syarat insentif, inisiatif, ekosistem, tinjauan, temuan, dan kematangan, serta akun `uinsuka.*` (@contoh.local). Kata sandi akun tersebut dibuat acak dan ditampilkan di layar; untuk menentukannya sendiri tambahkan `--password=SandiAnda123`.
+
+Bila instansi itu sudah punya perioda 2025 atau 2026 (misalnya dari import Excel sebelumnya), perintah menolak berjalan. Tambahkan `--reset --force` untuk menghapus data kedua perioda itu dan menggantinya dengan data demo. Lewat cron sekali jalan (seperti bagian 6): `cd /home/userku/kinera && php artisan kinera:demo UINSUKA --force --password=SandiAnda123 > storage/logs/demo.txt 2>&1`, lalu jalankan `php artisan optimize` dengan cara yang sama.
 
 Sebelum dipakai sungguhan, hapus semua data contoh dengan `php artisan kinera:hapus-contoh --force`.
 
@@ -193,9 +197,9 @@ Untuk situs promosi seperti bsc.rucisoft.id, tambahkan baris ini di `.env`, lalu
 KINERA_GUEST_LOGIN=true
 ```
 
-Alamat utama (`https://domain-anda/`) lalu menjadi **halaman depan** seperti situs promosi (contoh: kinera.rucisoft.id): masalah yang sering dihadapi, penyebabnya, solusi Kinera bergambar, cara memperoleh, mitra PSMPT UIN Sunan Kalijaga, lima fase, kartu **data demo tahun berjalan** (klik untuk langsung masuk sebagai Tamu), panduan per peran dengan ritme bulanan, rundown workshop 2 hari dengan tombol unduh brosur PDF (`public/files/brosur-kinera-workshop-2-hari.pdf`), dan tanya jawab. Tombol WhatsApp dan email di halaman depan memakai `KINERA_CONTACT_WHATSAPP` (format 62…) dan `KINERA_CONTACT_EMAIL`. Halaman login juga menampilkan **pilihan satker BLU contoh tahun berjalan**, tombol **Masuk sebagai Tamu (lihat-lihat)**, serta tautan *Kenapa perlu Kinera?* dan *Panduan Kinera*. Bila akses Tamu mati, alamat utama langsung ke halaman login seperti biasa. Pengunjung masuk tanpa kata sandi, bisa membuka semua menu (Beranda, Pusat Kendali, Peta Strategi, Indikator Kinerja, Kontrak Kinerja, Capaian & Insentif, inisiatif, ekosistem, tinjauan, laporan) dan berganti ke perioda 2025 lewat kotak konteks di kiri atas.
+Alamat utama (`https://domain-anda/`) lalu menjadi **halaman depan** seperti situs promosi (contoh: kinera.rucisoft.id): masalah yang sering dihadapi, penyebabnya, solusi Kinera bergambar, cara memperoleh, mitra PSMPT UIN Sunan Kalijaga, lima fase, kartu **data demo tahun berjalan** (klik untuk langsung masuk sebagai Tamu), panduan per peran dengan ritme bulanan, rundown workshop 2 hari dengan tombol unduh brosur PDF (`public/files/brosur-kinera-workshop-2-hari.pdf`), dan tanya jawab. Tombol WhatsApp dan email di halaman depan memakai `KINERA_CONTACT_WHATSAPP` (format 62…) dan `KINERA_CONTACT_EMAIL`. Halaman login juga menampilkan **pilihan instansi contoh tahun berjalan**, tombol **Masuk sebagai Tamu (lihat-lihat)**, serta tautan *Kenapa perlu Kinera?* dan *Panduan Kinera*. Bila akses Tamu mati, alamat utama langsung ke halaman login seperti biasa. Pengunjung masuk tanpa kata sandi, bisa membuka semua menu (Beranda, Pusat Kendali, Peta Strategi, Indikator Kinerja, Kontrak Kinerja, Capaian & Insentif, inisiatif, ekosistem, tinjauan, laporan) dan berganti ke perioda 2025 lewat kotak konteks di kiri atas.
 
-Akun Tamu hanya bisa melihat: tombol Buat, Ubah, Hapus, Impor, dan Ekspor tidak muncul, halaman administrasi (pengguna, peran, log audit, profil) tertutup, dan setiap upaya menyimpan data ditolak oleh sistem. Pilihan satker/perioda disimpan per sesi, jadi pengunjung yang bersamaan tidak saling mengganggu. Akun `tamu@demo.rucisoft.id` dan perannya dibuat otomatis saat tombol pertama kali diklik (alamat bisa diganti dengan `KINERA_GUEST_EMAIL`). Untuk mematikan, ubah menjadi `KINERA_GUEST_LOGIN=false` lalu `php artisan optimize`.
+Akun Tamu hanya bisa melihat: tombol Buat, Ubah, Hapus, Impor, dan Ekspor tidak muncul, halaman administrasi (pengguna, peran, log audit, profil) tertutup, dan setiap upaya menyimpan data ditolak oleh sistem. Pilihan instansi/perioda disimpan per sesi, jadi pengunjung yang bersamaan tidak saling mengganggu. Akun `tamu@demo.rucisoft.id` dan perannya dibuat otomatis saat tombol pertama kali diklik (alamat bisa diganti dengan `KINERA_GUEST_EMAIL`). Untuk mematikan, ubah menjadi `KINERA_GUEST_LOGIN=false` lalu `php artisan optimize`.
 
 Grup menu **Panduan** berisi **Kenali Kinera**, **Panduan Pengguna** (langkah per peran dengan tangkapan layar), **Panduan Implementasi** (rencana proyek implementasi, bisa dicetak/simpan PDF), dan **Workshop Kinera** (rundown dan materi Workshop 2 hari bersama PSMPT UIN Sunan Kalijaga, sama dengan brosur). Menu **Kenali Kinera** menjelaskan Kinera untuk Pemimpin BLU, Pejabat Pengelola, dan Dewan Pengawas, lengkap dengan diagram, tangkapan layar, dan ajakan ikut Workshop. Bagikan tautan `https://domain-anda/kenali` kepada calon peserta: bila akses Tamu aktif, pembaca langsung masuk ke halaman itu tanpa login. Tombol pendaftaran, kontak, serta tempat, tanggal, dan biaya Workshop diatur di `.env` (lalu `php artisan optimize`). Bila `KINERA_WORKSHOP_URL` kosong, tombol **Daftar Workshop** membuka WhatsApp `KINERA_CONTACT_WHATSAPP` dengan pesan siap kirim; tempat, tanggal, dan biaya yang kosong tampil "Diumumkan menyusul" / "Hubungi kami":
 

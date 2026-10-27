@@ -10,9 +10,9 @@ use Filament\Pages\Page;
 
 class PilihKonteks extends Page
 {
-    protected static ?string $title = 'Pilih Satker BLU & Perioda';
+    protected static ?string $title = 'Pilih Instansi & Perioda';
 
-    protected static ?string $navigationLabel = 'Pilih Satker BLU & Perioda';
+    protected static ?string $navigationLabel = 'Pilih Instansi & Perioda';
 
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-calendar-days';
 

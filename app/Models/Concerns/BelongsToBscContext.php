@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * Menyaring setiap query berdasarkan satker BLU & perioda aktif,
+ * Menyaring setiap query berdasarkan instansi & perioda aktif,
  * dan mengisi company_id / analysis_period_id otomatis saat membuat data.
  */
 trait BelongsToBscContext

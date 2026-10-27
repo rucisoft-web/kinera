@@ -13,12 +13,12 @@ use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
-/** Upload workbook Excel untuk mengisi data satker BLU & perioda yang sedang aktif. */
+/** Upload workbook Excel untuk mengisi data instansi & perioda yang sedang aktif. */
 class ImportData extends Page
 {
     use WithFileUploads;
 
-    protected static ?string $title = 'Import Data Satker BLU';
+    protected static ?string $title = 'Import Data Instansi';
 
     protected static ?string $navigationLabel = 'Import Data';
 
@@ -106,7 +106,7 @@ class ImportData extends Page
         ]);
         $period = app(BscContext::class)->period();
         if (! $period) {
-            Notification::make()->title('Belum ada perioda aktif untuk satker BLU ini. Buat perioda di menu Satker BLU.')->danger()->send();
+            Notification::make()->title('Belum ada perioda aktif untuk instansi ini. Buat perioda di menu Instansi.')->danger()->send();
 
             return null;
         }

@@ -5,7 +5,7 @@ namespace App\Filament\Pages;
 use App\Support\Terms;
 use Filament\Pages\Page;
 
-/** Penjelasan Kinera untuk Pemimpin BLU, Pejabat Pengelola, dan Dewan Pengawas, dengan ajakan ikut Workshop. */
+/** Penjelasan Kinera untuk pimpinan instansi pemerintah dan perguruan tinggi negeri, dengan ajakan ikut Workshop. */
 class KenaliKinera extends Page
 {
     protected static ?string $title = 'Kenali Kinera';

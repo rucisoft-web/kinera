@@ -5,7 +5,7 @@ namespace App\Support;
 use App\Models\Company;
 use Illuminate\Support\Facades\DB;
 
-/** Membuat kode dokumen per satker BLU/perioda, mis. OBJ/UINSUKA/2026/001 */
+/** Membuat kode dokumen per instansi/perioda, mis. OBJ/UINSUKA/2026/001 */
 class BscSequence
 {
     public static function next(string $prefix, ?int $companyId = null, ?int $periodId = null, ?int $year = null): string

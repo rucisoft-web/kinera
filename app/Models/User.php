@@ -23,7 +23,7 @@ class User extends Authenticatable implements FilamentUser, HasAppAuthentication
 
     protected $hidden = ['password', 'remember_token', 'app_authentication_secret', 'app_authentication_recovery_codes'];
 
-    /** @var array<string,array<int,string>> cache izin per satker BLU */
+    /** @var array<string,array<int,string>> cache izin per instansi */
     protected array $permissionCache = [];
 
     protected function casts(): array
@@ -70,7 +70,7 @@ class User extends Authenticatable implements FilamentUser, HasAppAuthentication
         return $this->name;
     }
 
-    /** Peran yang berlaku untuk satker BLU tertentu (global + khusus satker BLU). */
+    /** Peran yang berlaku untuk instansi tertentu (global + khusus instansi). */
     public function rolesFor(?int $companyId)
     {
         return $this->roles->filter(fn ($r) => $r->pivot->company_id === null || (int) $r->pivot->company_id === (int) $companyId);

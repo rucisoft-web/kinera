@@ -12,7 +12,7 @@ class CapaianKinerjaBlu extends Page
 {
     protected static ?string $title = 'Capaian Kinerja & Insentif BLU';
 
-    protected static ?string $navigationLabel = 'Capaian & Insentif';
+    protected static ?string $navigationLabel = 'Capaian & Insentif (BLU)';
 
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-scale';
 

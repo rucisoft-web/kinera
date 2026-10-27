@@ -7,9 +7,9 @@ class PermissionCatalog
 {
     public const PERMISSIONS = [
         // system
-        'system.admin' => ['system', 'Administrasi sistem (satker BLU, pengguna, peran)'],
+        'system.admin' => ['system', 'Administrasi sistem (instansi, pengguna, peran)'],
         'audit.view' => ['system', 'Melihat log audit'],
-        'context.switch' => ['system', 'Memilih satker BLU & perioda'],
+        'context.switch' => ['system', 'Memilih instansi & perioda'],
         'report.view' => ['system', 'Melihat laporan'],
         'report.export' => ['system', 'Mengunduh/ekspor laporan'],
         // brahman / atman
@@ -45,7 +45,7 @@ class PermissionCatalog
         'maturity.assess' => ['maturity', 'Menilai kematangan & mengubah Kesinambungan'],
         'dashboard.view' => ['dashboard', 'Melihat Beranda & Pusat Kendali'],
         // pengelola
-        'import.manage' => ['system', 'Mengupload workbook Excel untuk mengisi data satker BLU (baru)'],
+        'import.manage' => ['system', 'Mengupload workbook Excel untuk mengisi data instansi (baru)'],
         'data.manage_all' => ['system', 'Mengelola semua data tanpa batas "miliknya" (pengelola)'],
     ];
 }

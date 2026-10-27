@@ -4,7 +4,7 @@ namespace App\Filament\Pages;
 
 use Filament\Pages\Page;
 
-/** Panduan implementasi Kinera di sebuah satker BLU: rencana proyek lengkap dari prasyarat sampai serah terima. */
+/** Panduan implementasi Kinera di sebuah instansi: rencana proyek lengkap dari prasyarat sampai serah terima. */
 class PanduanImplementasi extends Page
 {
     protected static ?string $title = 'Panduan Implementasi';

@@ -6,17 +6,17 @@ use App\Models\AnalysisPeriod;
 use App\Models\Company;
 use Illuminate\Support\Facades\DB;
 
-/** Daftar satker BLU contoh (studi kasus) yang dipakai di halaman depan, login, dan Kenali Kinera. */
+/** Daftar instansi contoh (studi kasus) yang dipakai di halaman depan, login, dan Kenali Kinera. */
 class DemoCatalog
 {
     /** [kode, nama, sektor, pelajaran utama] */
     public const CASES = [
-        ['UINSUKA', 'UIN Sunan Kalijaga Yogyakarta', 'BLU pendidikan tinggi (Kementerian Agama)', 'Kontrak Kinerja Pemimpin BLU: PNBP 99,48% & pendapatan kerja sama di bawah 65% menggugurkan syarat insentif; adendum 2025 dan usulan perubahan 2026.'],
-        ['UINRF', 'UIN Raden Fatah Palembang', 'BLU pendidikan tinggi (Kementerian Agama)', 'Target Perjanjian Kinerja terlalu rendah (capaian sampai 553%, dibatasi capaian maksimum), PNBP bergantung UKT, dan belanja modal 72,55%; usulan perubahan target akreditasi 2026.'],
-        ['UINSUSKA', 'UIN Sultan Syarif Kasim Riau', 'BLU pendidikan tinggi (Kementerian Agama)', 'Perjanjian Kinerja dan Kontrak Kinerja belum selaras (pertumbuhan mahasiswa 6,70% vs 1%), dana BLU terserap 87,76%, pendapatan aset di bawah 65%; usulan perubahan target dosen bersertifikat pendidik mengikuti PK 2026.'],
+        ['UINSUKA', 'UIN Sunan Kalijaga Yogyakarta', 'PTKIN berpola BLU (Kementerian Agama)', 'Kontrak Kinerja Pemimpin BLU: PNBP 99,48% & pendapatan kerja sama di bawah 65% menggugurkan syarat insentif; adendum 2025 dan usulan perubahan 2026.'],
+        ['UINRF', 'UIN Raden Fatah Palembang', 'PTKIN berpola BLU (Kementerian Agama)', 'Target Perjanjian Kinerja terlalu rendah (capaian sampai 553%, dibatasi capaian maksimum), PNBP bergantung UKT, dan belanja modal 72,55%; usulan perubahan target akreditasi 2026.'],
+        ['UINSUSKA', 'UIN Sultan Syarif Kasim Riau', 'PTKIN berpola BLU (Kementerian Agama)', 'Perjanjian Kinerja dan Kontrak Kinerja belum selaras (pertumbuhan mahasiswa 6,70% vs 1%), dana BLU terserap 87,76%, pendapatan aset di bawah 65%; usulan perubahan target dosen bersertifikat pendidik mengikuti PK 2026.'],
     ];
 
-    /** Perioda pembuka sebuah satker BLU: tahun berjalan (aktif) lebih dulu, lalu tahun terbaru. */
+    /** Perioda pembuka sebuah instansi: tahun berjalan (aktif) lebih dulu, lalu tahun terbaru. */
     public static function startPeriodId(int $companyId): ?int
     {
         return AnalysisPeriod::where('company_id', $companyId)
@@ -24,7 +24,7 @@ class DemoCatalog
     }
 
     /**
-     * Satker BLU contoh yang terpasang, dengan perioda tahun berjalan dan jumlah sasaran/IK/inisiatifnya.
+     * Instansi contoh yang terpasang, dengan perioda tahun berjalan dan jumlah sasaran/IK/inisiatifnya.
      *
      * @return list<array{code:string,name:string,sector:string,lesson:string,year:?int,objectives:int,kpis:int,initiatives:int}>
      */

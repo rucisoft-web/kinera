@@ -96,13 +96,13 @@ class GuestModeTest extends TestCase
             ->assertSee('UIN Sunan Kalijaga Yogyakarta')
             ->assertSee('memaksimalkan penyajian fitur')
             ->assertSee(route('arah.guest', ['perusahaan' => 'UINSUKA']), false);
-        $this->get('/admin/login')->assertOk()->assertSee('Pilih satker BLU contoh')->assertSee('UIN Sunan Kalijaga Yogyakarta (UINSUKA)');
+        $this->get('/admin/login')->assertOk()->assertSee('Pilih instansi contoh')->assertSee('UIN Sunan Kalijaga Yogyakarta (UINSUKA)');
 
         $this->get(route('arah.guest', ['perusahaan' => 'uinsuka']))->assertRedirect('/admin');
         $this->assertSame($uin->id, session('bsc.company_id'));
         $this->assertSame($uinNow->id, session('bsc.period_id'));
 
-        // kode yang bukan satker BLU contoh kembali ke satker pembuka
+        // kode yang bukan instansi contoh kembali ke satker pembuka
         $this->get(route('arah.guest', ['perusahaan' => 'XYZ', 'ke' => 'panduan']))
             ->assertRedirect(\App\Filament\Pages\PanduanPengguna::getUrl());
         $this->assertSame($uin->id, session('bsc.company_id'));

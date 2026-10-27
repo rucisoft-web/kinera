@@ -58,11 +58,11 @@ class CompanyResource extends Resource
 
     protected static ?int $navigationSort = 1;
 
-    protected static ?string $modelLabel = 'Satker BLU';
+    protected static ?string $modelLabel = 'Instansi';
 
-    protected static ?string $pluralModelLabel = 'Satker BLU';
+    protected static ?string $pluralModelLabel = 'Instansi';
 
-    protected static ?string $navigationLabel = 'Satker BLU';
+    protected static ?string $navigationLabel = 'Instansi';
 
     protected static ?string $navigationGroupKey = 'Administrasi';
 
@@ -88,19 +88,19 @@ class CompanyResource extends Resource
                 Toggle::make('is_active')->label('Aktif')->default(true),
                 Textarea::make('description')->label('Deskripsi')->rows(3)->columnSpanFull(),
             ]),
-            Section::make('Identitas BLU & penandatangan Kontrak Kinerja')->columns(2)->collapsible()
-                ->description('Dipakai pada cetakan Kontrak Kinerja, Berita Acara, dan Surat Pernyataan (PER-6/PB/2025). Kosongkan bila belum ada; cetakan menampilkan titik-titik.')
+            Section::make('Pimpinan & penandatangan Perjanjian Kinerja')->columns(2)->collapsible()
+                ->description('Dipakai pada cetakan Perjanjian/Kontrak Kinerja, Berita Acara, dan Surat Pernyataan. Isian bertanda "khusus BLU" hanya untuk instansi berpola BLU (PER-6/PB/2025). Kosongkan bila belum ada; cetakan menampilkan titik-titik.')
                 ->schema([
-                    Select::make('blu_field')->label('Bidang layanan BLU')->options(['kesehatan' => 'Layanan kesehatan', 'pendidikan' => 'Layanan pendidikan', 'lainnya' => 'Layanan lainnya'])->native(false),
+                    Select::make('blu_field')->label('Bidang layanan (khusus BLU)')->options(['kesehatan' => 'Layanan kesehatan', 'pendidikan' => 'Layanan pendidikan', 'lainnya' => 'Layanan lainnya'])->native(false),
                     TextInput::make('ministry')->label('Kementerian Negara/Lembaga'),
-                    TextInput::make('technical_supervisor')->label('Pembina Teknis (unit eselon I)'),
-                    DatePicker::make('blu_since')->label('Menerapkan PK-BLU sejak'),
-                    TextInput::make('leader_title')->label('Jabatan Pemimpin BLU')->placeholder('Rektor / Direktur Utama / Kepala'),
-                    TextInput::make('leader_name')->label('Nama Pemimpin BLU'),
-                    TextInput::make('leader_nip')->label('NIP Pemimpin BLU'),
-                    TextInput::make('remuneration_decree')->label('Keputusan remunerasi'),
-                    TextInput::make('dg_name')->label('Nama Direktur Jenderal Perbendaharaan'),
-                    TextInput::make('dg_nip')->label('NIP Direktur Jenderal Perbendaharaan'),
+                    TextInput::make('technical_supervisor')->label('Pembina Teknis / unit eselon I atasan'),
+                    DatePicker::make('blu_since')->label('Menerapkan PK-BLU sejak (khusus BLU)'),
+                    TextInput::make('leader_title')->label('Jabatan pimpinan instansi')->placeholder('Rektor / Kepala / Direktur / Bupati'),
+                    TextInput::make('leader_name')->label('Nama pimpinan instansi'),
+                    TextInput::make('leader_nip')->label('NIP pimpinan instansi'),
+                    TextInput::make('remuneration_decree')->label('Keputusan remunerasi (khusus BLU)'),
+                    TextInput::make('dg_name')->label('Nama Direktur Jenderal Perbendaharaan (khusus BLU)'),
+                    TextInput::make('dg_nip')->label('NIP Direktur Jenderal Perbendaharaan (khusus BLU)'),
                 ]),
         ]);
     }
@@ -145,7 +145,7 @@ class CompanyResource extends Resource
             'edit' => EditCompany::route('/{record}/edit'),
         ];
     }
-    /** Satker BLU (klien) dibuat dan dikelola oleh Super Admin. */
+    /** Instansi (klien) dibuat dan dikelola oleh Super Admin. */
     public static function shouldRegisterNavigation(): bool
     {
         return (bool) Auth::user()?->isSuperAdmin();

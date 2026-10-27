@@ -37,7 +37,7 @@ class BscRolePermissionSeeder extends Seeder
             // ---- peran per jabatan (dipakai di setiap satker BLU)
             'admin-sistem' => ['Admin Sistem', 'IT / EDP: akun pengguna, peran, reset kata sandi',
                 array_merge(['system.admin', 'audit.view', 'dashboard.view', 'report.view', 'context.switch', 'strategy.map', 'initiative.update_progress'], $views)],
-            'pengawas' => ['Pengawas', 'Dewan Pengawas BLU: baca semua, catatan pengawasan & membuat temuan',
+            'pengawas' => ['Pengawas', 'APIP atau Dewan Pengawas: baca semua, catatan pengawasan & membuat temuan',
                 array_merge($views, ['strategy.map', 'report.view', 'report.export', 'audit.view', 'review.note', 'finding.create', 'context.switch'])],
             'pimpinan' => ['Pimpinan', 'Direktur / General Manager: semua kecuali system.admin; menyetujui realisasi & menutup temuan', $except(['system.admin'])],
             'keuangan' => ['Keuangan', 'Kepala Keuangan / Chief Accountant: KPI keuangan, verifikasi, realisasi anggaran',

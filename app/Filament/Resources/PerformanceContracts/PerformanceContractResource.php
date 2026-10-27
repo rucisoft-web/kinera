@@ -42,7 +42,7 @@ class PerformanceContractResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Kontrak Kinerja';
 
-    protected static ?string $navigationLabel = 'Kontrak Kinerja';
+    protected static ?string $navigationLabel = 'Perjanjian & Kontrak Kinerja';
 
     protected static ?string $navigationGroupKey = 'karma_phala';
 
@@ -70,7 +70,7 @@ class PerformanceContractResource extends Resource
                 DatePicker::make('discussed_at')->label('Tanggal pembahasan (BA)'),
                 TextInput::make('ba_number')->label('Nomor Berita Acara pembahasan'),
                 TextInput::make('signed_place')->label('Tempat penandatanganan')->default('Jakarta'),
-                DatePicker::make('leader_signed_at')->label('Ditandatangani Pemimpin BLU'),
+                DatePicker::make('leader_signed_at')->label('Ditandatangani pimpinan'),
                 DatePicker::make('dg_signed_at')->label('Ditandatangani Dirjen Perbendaharaan'),
                 Textarea::make('notes')->label('Catatan')->rows(2)->columnSpanFull(),
             ]),

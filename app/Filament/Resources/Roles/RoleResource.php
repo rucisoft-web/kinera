@@ -123,7 +123,7 @@ class RoleResource extends Resource
     }
     public static function canEdit(Model $record): bool
     {
-        // Peran berlaku untuk semua satker BLU, jadi hanya Super Admin yang boleh mengubah isinya.
+        // Peran berlaku untuk semua instansi, jadi hanya Super Admin yang boleh mengubah isinya.
         return (bool) Auth::user()?->isSuperAdmin();
     }
 

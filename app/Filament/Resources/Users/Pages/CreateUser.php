@@ -10,7 +10,7 @@ class CreateUser extends CreateRecord
 {
     protected static string $resource = UserResource::class;
 
-    /** Pengguna yang dibuat admin satker BLU langsung terdaftar di satker BLU aktif. */
+    /** Pengguna yang dibuat admin instansi langsung terdaftar di instansi aktif. */
     protected function afterCreate(): void
     {
         if (! auth()->user()?->isSuperAdmin() && ($companyId = app(BscContext::class)->companyId())) {

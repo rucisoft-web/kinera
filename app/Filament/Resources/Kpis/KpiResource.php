@@ -93,7 +93,7 @@ class KpiResource extends Resource
                 Toggle::make('is_active')->label('Aktif')->default(true),
                 Textarea::make('description')->label('Keterangan')->rows(2)->columnSpanFull(),
             ]),
-            Section::make('Kontrak Kinerja BLU')->columns(4)->description('Atribut Indikator Kinerja dalam Kontrak Kinerja Pemimpin BLU (PER-6/PB/2025).')->schema([
+            Section::make('Perjanjian / Kontrak Kinerja')->columns(4)->description('Atribut Indikator Kinerja dalam Perjanjian Kinerja; aspek dan capaian maksimum mengikuti Kontrak Kinerja Pemimpin BLU (PER-6/PB/2025) bagi instansi berpola BLU.')->schema([
                 Select::make('aspect')->label('Aspek')->options(Models\Kpi::ASPECTS)->default('layanan')->required()->native(false)->live(),
                 Toggle::make('is_mandatory')->label('Wajib dicapai (mandatory)')->helperText('Pasal 14 ayat (4) huruf b')->inline(false),
                 TextInput::make('max_achievement')->label('Capaian maksimum (%)')->numeric()->placeholder((string) config('bsc.score_cap'))->helperText('Sesuai KMK remunerasi BLU'),

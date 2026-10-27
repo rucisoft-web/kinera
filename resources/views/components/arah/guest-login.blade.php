@@ -3,7 +3,7 @@
     <div class="arah-guest-login">
         <div class="arah-guest-or"><span>atau coba data demo</span></div>
         <form method="GET" action="{{ route('arah.guest') }}" class="arah-guest-pick">
-            <label for="arah-guest-company">Pilih satker BLU contoh, tahun berjalan</label>
+            <label for="arah-guest-company">Pilih instansi contoh, tahun berjalan</label>
             <select id="arah-guest-company" name="perusahaan">
                 @foreach ($cases as $c)
                     <option value="{{ $c['code'] }}">{{ $c['name'] }} ({{ $c['code'] }}) · {{ $c['year'] ?? '-' }}</option>
@@ -16,6 +16,6 @@
             <a href="{{ url('/#panduan') }}">Panduan Kinera</a>
             <a href="{{ url('/#data-contoh') }}">Semua data contoh</a>
         </div>
-        <p class="arah-demo-note"><b>Data demo:</b> hanya untuk keperluan memaksimalkan penyajian fitur-fitur perangkat lunak. Angka 2025 sebagian mengacu pada laporan keuangan audited dan Perjanjian Kinerja satker BLU contoh; rincian triwulanan, Kontrak Kinerja, dan data 2026 (proyeksi) adalah simulasi, bukan data resmi. Mode Tamu hanya melihat, data tidak bisa diubah.</p>
+        <p class="arah-demo-note"><b>Data demo:</b> hanya untuk keperluan memaksimalkan penyajian fitur-fitur perangkat lunak. Angka 2025 sebagian mengacu pada laporan keuangan audited dan Perjanjian Kinerja instansi contoh; rincian triwulanan, Kontrak Kinerja, dan data 2026 (proyeksi) adalah simulasi, bukan data resmi. Mode Tamu hanya melihat, data tidak bisa diubah.</p>
     </div>
 @endif

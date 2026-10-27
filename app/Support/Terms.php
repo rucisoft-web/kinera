@@ -10,7 +10,7 @@ class Terms
 
     public static function get(string $key): string
     {
-        $dict = config('bsc.dictionaries.'.config('bsc.terms', 'blu'), []);
+        $dict = config('bsc.dictionaries.'.config('bsc.terms', 'instansi'), []);
 
         return $dict[$key] ?? $key;
     }

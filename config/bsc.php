@@ -3,14 +3,16 @@
 return [
     /*
     |--------------------------------------------------------------------------
-    | Kinera — edisi Badan Layanan Umum (Kontrak Kinerja Pemimpin BLU, PER-6/PB/2025)
+    | Kinera — pengukuran kinerja instansi pemerintah (Balanced Scorecard, Perjanjian Kinerja, IKU, SAKIP),
+    | termasuk PTN/PTKIN. Modul Kontrak Kinerja Pemimpin BLU (PER-6/PB/2025) untuk instansi berpola BLU.
     |--------------------------------------------------------------------------
-    | KINERA_TERMS=blu   -> istilah BLU (perspektif sektor publik: Pemangku Kepentingan, Proses Layanan Internal, ...)
+    | KINERA_TERMS=instansi -> istilah sektor publik (bawaan): Pemangku Kepentingan, Proses Layanan Internal, ...
+    | KINERA_TERMS=blu   -> sama, dengan sebutan khas BLU (Jati Diri BLU, Manajemen Kinerja BLU)
     | KINERA_TERMS=umum  -> istilah umum bahasa Indonesia (Ekosistem, Jati Diri, ...)
     */
-    'terms' => env('KINERA_TERMS', 'blu'),
+    'terms' => env('KINERA_TERMS', 'instansi'),
     'brand_name' => env('KINERA_BRAND_NAME', 'Kinera'),
-    'brand_tagline' => env('KINERA_BRAND_TAGLINE', 'Balanced Scorecard & Kontrak Kinerja Pemimpin BLU'),
+    'brand_tagline' => env('KINERA_BRAND_TAGLINE', 'Pengukuran Kinerja Instansi Pemerintah'),
 
     // Dibaca lewat config() supaya tetap berlaku setelah `php artisan optimize` (config cache) di produksi
     'notify_mail' => (bool) env('KINERA_NOTIFY_MAIL', false),
@@ -70,6 +72,13 @@ return [
     ],
 
     'dictionaries' => [
+        'instansi' => [
+            'brahman' => 'Lingkungan Strategis', 'atman' => 'Jati Diri Instansi', 'karma_phala' => 'Kinerja & Akuntabilitas',
+            'punarbhawa' => 'Perbaikan', 'moksa' => 'Kesinambungan',
+            'keuangan' => 'Keuangan', 'pelanggan' => 'Pemangku Kepentingan',
+            'proses' => 'Proses Layanan Internal', 'sdm' => 'Pembelajaran & Pertumbuhan',
+            'app' => 'Kinera', 'method' => 'Manajemen Kinerja Instansi Pemerintah',
+        ],
         'blu' => [
             'brahman' => 'Lingkungan Strategis', 'atman' => 'Jati Diri BLU', 'karma_phala' => 'Kinerja & Kontrak',
             'punarbhawa' => 'Perbaikan', 'moksa' => 'Kesinambungan',

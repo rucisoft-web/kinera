@@ -6,10 +6,10 @@
     $lanes = ['keuangan', 'pelanggan', 'proses', 'sdm'];
     $cy = fn (int $lane) => 10 + $lane * 100 + 46;
     $nodes = [
-        'f1' => [0, 390, 'Pendapatan tumbuh'], 'f2' => [0, 690, 'Laba & arus kas sehat'],
-        'c1' => [1, 390, 'Pelanggan puas & setia'], 'c2' => [1, 690, 'Pangsa pasar naik'],
-        'p1' => [2, 290, 'Mutu layanan andal'], 'p2' => [2, 540, 'Inovasi produk/layanan'], 'p3' => [2, 790, 'Operasi efisien'],
-        'l1' => [3, 290, 'Talenta kunci siap'], 'l2' => [3, 540, 'Sistem informasi terpadu'], 'l3' => [3, 790, 'Budaya kinerja'],
+        'f1' => [0, 390, 'Anggaran tepat sasaran'], 'f2' => [0, 690, 'Akuntabilitas keuangan'],
+        'c1' => [1, 390, 'Layanan memuaskan'], 'c2' => [1, 690, 'Kepercayaan publik naik'],
+        'p1' => [2, 290, 'Mutu layanan andal'], 'p2' => [2, 540, 'Inovasi layanan'], 'p3' => [2, 790, 'Operasi efisien'],
+        'l1' => [3, 290, 'ASN kompeten'], 'l2' => [3, 540, 'Sistem informasi terpadu'], 'l3' => [3, 790, 'Budaya kinerja'],
     ];
     $links = [['l1', 'p1'], ['l2', 'p2'], ['l2', 'p3'], ['l3', 'p3'], ['p1', 'c1'], ['p2', 'c2'], ['p3', 'f2'], ['c1', 'f1'], ['c2', 'f1']];
 
@@ -24,9 +24,9 @@
     {{-- ===== Pembuka ===== --}}
     <section class="kenali-hero">
         <div class="kenali-hero-text">
-            <span class="kenali-eyebrow">Untuk Pemimpin BLU, Pejabat Pengelola, dan Dewan Pengawas</span>
+            <span class="kenali-eyebrow">Untuk pimpinan instansi pemerintah dan perguruan tinggi negeri</span>
             <h1>Strategi yang dipahami semua orang, dijalankan setiap bulan.</h1>
-            <p>Kinera adalah perangkat manajemen strategi berbasis <b>Balanced Scorecard</b>. Kinera membantu pimpinan <b>mengomunikasikan strategi</b> ke seluruh organisasi dan <b>menerjemahkannya menjadi rencana aksi operasional</b>: sasaran, IK, target bulanan, inisiatif, anggaran, dan penanggung jawab yang dipantau dalam satu tempat.</p>
+            <p>Kinera adalah perangkat pengukuran dan manajemen kinerja berbasis <b>Balanced Scorecard</b> untuk instansi pemerintah: kementerian/lembaga, pemerintah daerah, dan perguruan tinggi negeri. Kinera membantu pimpinan <b>mengomunikasikan strategi</b> ke seluruh organisasi dan <b>menerjemahkannya menjadi rencana aksi operasional</b>: sasaran, Indikator Kinerja Utama, target, inisiatif, anggaran, dan penanggung jawab yang dipantau dalam satu tempat, sampai menjadi bahan Perjanjian Kinerja dan LKjIP.</p>
             <div class="kenali-actions">
                 @if ($workshopUrl)
                     <a href="{{ $workshopUrl }}" target="_blank" rel="noopener" class="arah-btn arah-btn-primary kenali-btn-lg">Daftar Workshop Kinera</a>
@@ -35,7 +35,7 @@
             </div>
         </div>
         <a class="kenali-shot kenali-hero-shot" href="{{ $img('peta-strategi') }}" target="_blank" rel="noopener">
-            <img src="{{ $img('peta-strategi') }}" alt="Peta Strategi UIN Sunan Kalijaga (data demo) di Kinera" loading="eager">
+            <img src="{{ $img('peta-strategi') }}" alt="Peta Strategi instansi contoh (data demo) di Kinera" loading="eager">
         </a>
     </section>
 
@@ -45,7 +45,7 @@
         <p class="kenali-lead">Kaplan &amp; Norton, perancang Balanced Scorecard, menemukan empat hambatan klasik pelaksanaan strategi. Kinera dirancang untuk menjawab keempatnya.</p>
         <div class="arah-grid arah-grid-4">
             @foreach ([
-                ['95%', 'pegawai tidak memahami strategi perusahaannya', 'Hambatan visi', 'Peta Strategi satu halaman yang bisa dibaca semua orang, dari Dewan Pengawas sampai kepala unit.'],
+                ['95%', 'pegawai tidak memahami strategi organisasinya', 'Hambatan visi', 'Peta Strategi satu halaman yang bisa dibaca semua orang, dari pimpinan sampai kepala unit.'],
                 ['75%', 'manajer tidak memiliki insentif yang terkait dengan strategi', 'Hambatan manusia', 'Setiap IK punya pemilik, target bulanan, dan skor yang terlihat jelas.'],
                 ['60%', 'organisasi tidak mengaitkan anggaran dengan strategi', 'Hambatan sumber daya', 'Setiap inisiatif terhubung ke sasaran, lengkap dengan anggaran dan serapannya.'],
                 ['85%', 'tim eksekutif membahas strategi kurang dari 1 jam per bulan', 'Hambatan manajemen', 'Pusat Kendali dan ritme rapat bulanan membuat strategi selalu masuk agenda.'],
@@ -64,10 +64,10 @@
     {{-- ===== Diagram 1: strategi ke aksi ===== --}}
     <section class="kenali-section">
         <h2>Dari strategi menjadi rencana aksi</h2>
-        <p class="kenali-lead">Kinera menurunkan arah besar satker BLU, selangkah demi selangkah, sampai menjadi pekerjaan nyata yang punya tanggal, anggaran, dan penanggung jawab.</p>
+        <p class="kenali-lead">Kinera menurunkan arah besar instansi, selangkah demi selangkah, sampai menjadi pekerjaan nyata yang punya tanggal, anggaran, dan penanggung jawab.</p>
         <div class="kenali-cascade">
             @foreach ([
-                ['Visi & Misi', 'Arah besar satker BLU', 'Jati Diri'],
+                ['Visi & Misi', 'Arah besar instansi', 'Jati Diri'],
                 ['Tema strategis', '3–5 fokus utama', 'Tema Strategis'],
                 ['Sasaran strategis', 'Dalam 4 perspektif BSC', 'Peta Strategi'],
                 ['IK & target', 'Ukuran, pemilik, target bulanan', 'IK'],
@@ -114,10 +114,10 @@
                 </svg>
             </div>
             <div class="kenali-explain">
-                <p>Peta Strategi menunjukkan <b>hubungan sebab-akibat</b>: SDM dan sistem yang kuat memperbaiki proses, proses yang baik memuaskan pelanggan, dan pelanggan yang setia menghasilkan kinerja keuangan.</p>
+                <p>Peta Strategi menunjukkan <b>hubungan sebab-akibat</b>: SDM dan sistem yang kuat memperbaiki proses, proses yang baik menghasilkan layanan yang memuaskan masyarakat, dan layanan yang baik menjadi bukti anggaran dipakai tepat sasaran.</p>
                 <ul>
-                    <li><span class="arah-dot" style="background: {{ $p['keuangan']['color'] }}"></span><b>{{ $p['keuangan']['label'] }}</b>: hasil yang diharapkan pemangku kepentingan.</li>
-                    <li><span class="arah-dot" style="background: {{ $p['pelanggan']['color'] }}"></span><b>{{ $p['pelanggan']['label'] }}</b>: nilai yang dijanjikan kepada pelanggan.</li>
+                    <li><span class="arah-dot" style="background: {{ $p['keuangan']['color'] }}"></span><b>{{ $p['keuangan']['label'] }}</b>: anggaran yang efektif, efisien, dan akuntabel.</li>
+                    <li><span class="arah-dot" style="background: {{ $p['pelanggan']['color'] }}"></span><b>{{ $p['pelanggan']['label'] }}</b>: manfaat yang dijanjikan kepada masyarakat dan pengguna layanan.</li>
                     <li><span class="arah-dot" style="background: {{ $p['proses']['color'] }}"></span><b>{{ $p['proses']['label'] }}</b>: proses yang harus unggul.</li>
                     <li><span class="arah-dot" style="background: {{ $p['sdm']['color'] }}"></span><b>{{ $p['sdm']['label'] }}</b>: orang, sistem, dan budaya penggerak.</li>
                 </ul>
@@ -159,7 +159,7 @@
                         <li><b>{{ $day }} · {{ $label }}.</b> {{ $desc }}</li>
                     @endforeach
                 </ol>
-                <p>Setiap perubahan setelah disetujui tercatat di <b>log audit</b>. Dewan Pengawas bisa memberi <b>catatan pengawasan</b> dan membuat temuan langsung dari hasil tinjauan.</p>
+                <p>Setiap perubahan setelah disetujui tercatat di <b>log audit</b>. Pengawas (APIP atau Dewan Pengawas) bisa memberi <b>catatan pengawasan</b> dan membuat temuan langsung dari hasil tinjauan.</p>
             </div>
         </div>
     </section>
@@ -169,12 +169,12 @@
         <h2>Satu sumber kebenaran, sesuai peran masing-masing</h2>
         <div class="arah-grid arah-grid-3">
             @foreach ([
-                ['Dewan Pengawas', 'Mengawasi tanpa menunggu laporan tebal', ['Skor strategis dan status setiap sasaran kapan saja', 'Catatan pengawasan dan temuan pada setiap tinjauan', 'Jejak audit atas setiap koreksi angka']],
-                ['Pejabat Pengelola', 'Mengarahkan dengan data yang sama', ['Pusat Kendali: IK merah, inisiatif terlambat, temuan terbuka', 'Persetujuan realisasi bulanan dalam beberapa klik', 'Portofolio inisiatif: mana dipercepat, mana ditinjau ulang']],
-                ['Pembina Teknis & DJPb', 'Menerima laporan capaian yang lengkap dan tepat waktu', ['Kontrak Kinerja format Lampiran I beserta Definisi Operasional', 'Perhitungan capaian format Lampiran VI setiap triwulan', 'Uji syarat insentif Pasal 14 ayat (4) yang transparan']],
-                ['Kantor Strategi / Corporate Planning', 'Mengelola siklus tanpa spreadsheet berserakan', ['Impor & ekspor Excel untuk seluruh perangkat BSC', 'Pengingat otomatis dan status kelengkapan data', 'Laporan siap cetak untuk rapat']],
-                ['Kepala Divisi & Unit', 'Tahu persis kontribusinya', ['Daftar IK dan aktivitas miliknya di Beranda', 'Input realisasi dengan bukti dan penjelasan', 'Tindakan korektif dengan tenggat yang jelas']],
-                ['Seluruh Pegawai', 'Memahami ke mana satker BLU bergerak', ['Peta strategi yang mudah dibaca', 'Bahasa yang sama dari rapat pimpinan sampai lapangan', 'Kerja harian yang terhubung ke sasaran satker BLU']],
+                ['Pengawas (APIP / Dewan Pengawas)', 'Mengawasi tanpa menunggu laporan tebal', ['Skor strategis dan status setiap sasaran kapan saja', 'Catatan pengawasan dan temuan pada setiap tinjauan', 'Jejak audit atas setiap koreksi angka']],
+                ['Pimpinan instansi', 'Mengarahkan dengan data yang sama', ['Pusat Kendali: IK merah, inisiatif terlambat, temuan terbuka', 'Persetujuan realisasi bulanan dalam beberapa klik', 'Portofolio inisiatif: mana dipercepat, mana ditinjau ulang']],
+                ['Kementerian, evaluator SAKIP & pembina', 'Menerima laporan capaian yang lengkap dan tepat waktu', ['Perjanjian Kinerja & IKU beserta Definisi Operasional', 'Capaian triwulanan sebagai bahan LKjIP', 'Bagi BLU: Kontrak Kinerja & lampiran PER-6/PB/2025']],
+                ['Perencanaan', 'Mengelola siklus tanpa spreadsheet berserakan', ['Impor & ekspor Excel untuk seluruh perangkat BSC', 'Pengingat otomatis dan status kelengkapan data', 'Laporan siap cetak untuk rapat']],
+                ['Kepala Unit Kerja', 'Tahu persis kontribusinya', ['Daftar IK dan aktivitas miliknya di Beranda', 'Input realisasi dengan bukti dan penjelasan', 'Tindakan korektif dengan tenggat yang jelas']],
+                ['Seluruh Pegawai', 'Memahami ke mana instansi bergerak', ['Peta strategi yang mudah dibaca', 'Bahasa yang sama dari rapat pimpinan sampai lapangan', 'Kerja harian yang terhubung ke sasaran instansi']],
             ] as [$who, $tag, $items])
                 <div class="arah-card kenali-role">
                     <h3>{{ $who }}</h3>
@@ -190,12 +190,12 @@
     {{-- ===== Tangkapan layar ===== --}}
     <section class="kenali-section" id="lihat-langsung">
         <h2>Lihat langsung</h2>
-        <p class="kenali-lead">Tampilan berikut diambil dari data demo UIN Sunan Kalijaga Yogyakarta yang tersedia di situs ini (hanya untuk keperluan memaksimalkan penyajian fitur-fitur perangkat lunak). Klik gambar untuk memperbesar.</p>
+        <p class="kenali-lead">Tampilan berikut diambil dari data demo perguruan tinggi negeri yang tersedia di situs ini (hanya untuk keperluan memaksimalkan penyajian fitur-fitur perangkat lunak). Klik gambar untuk memperbesar.</p>
         <div class="kenali-gallery">
             @foreach ([
-                ['pusat-kendali', 'Pusat Kendali Eksekutif', 'Skor strategis, status semua IK, inisiatif terlambat, dan temuan terbuka dalam satu layar. Bahan utama rapat Pejabat Pengelola.'],
-                ['kontrak-kinerja', 'Kontrak Kinerja Pemimpin BLU', 'Indikator aspek layanan & keuangan, target trajektori triwulanan, capaian maksimum, dan Definisi Operasional; versi awal, adendum, dan perubahan tercatat. Cetak format Lampiran I, II, IV, dan VI PER-6/PB/2025.'],
-                ['capaian-insentif', 'Capaian & syarat insentif', 'Perhitungan capaian per triwulan, peringatan indikator di bawah 65%, uji syarat insentif Pasal 14 ayat (4), dan kalender tenggat laporan.'],
+                ['pusat-kendali', 'Pusat Kendali Eksekutif', 'Skor strategis, status semua IK, inisiatif terlambat, dan temuan terbuka dalam satu layar. Bahan utama rapat pimpinan.'],
+                ['kontrak-kinerja', 'Modul Kontrak Kinerja (instansi BLU)', 'Indikator aspek layanan & keuangan, target trajektori triwulanan, capaian maksimum, dan Definisi Operasional; versi awal, adendum, dan perubahan tercatat. Cetak format Lampiran I, II, IV, dan VI PER-6/PB/2025.'],
+                ['capaian-insentif', 'Capaian triwulanan', 'Perhitungan capaian per triwulan, peringatan indikator yang tertinggal, dan kalender tenggat laporan; bagi BLU termasuk uji syarat insentif Pasal 14 ayat (4).'],
                 ['beranda', 'Beranda setiap pengguna', 'Setiap orang langsung melihat ringkasan kinerja dan tugasnya: realisasi yang harus diisi, persetujuan yang menunggu.'],
                 ['portofolio', 'Portofolio Inisiatif Strategis', 'Inisiatif dipetakan menurut nilai dan upaya, lengkap dengan progres, anggaran, serapan, dan tanda terlambat.'],
                 ['laporan', 'Kartu skor & laporan', 'Kartu skor Indikator Kinerja bulanan dan YTD, capaian per perspektif, status inisiatif dan temuan. Siap unduh Excel atau cetak.'],
@@ -208,7 +208,7 @@
             @endforeach
             <figure class="arah-card kenali-figure kenali-phone">
                 <a class="kenali-shot" href="{{ $img('hp-pusat-kendali') }}" target="_blank" rel="noopener"><img src="{{ $img('hp-pusat-kendali') }}" alt="Pusat Kendali di ponsel" loading="lazy"></a>
-                <figcaption><b>Di ponsel pun bisa</b><span>Dewan Pengawas dan Pejabat Pengelola dapat memantau kinerja dari mana saja, tanpa aplikasi tambahan.</span></figcaption>
+                <figcaption><b>Di ponsel pun bisa</b><span>Pimpinan dan pengawas dapat memantau kinerja dari mana saja, tanpa aplikasi tambahan.</span></figcaption>
             </figure>
         </div>
     </section>
@@ -216,9 +216,9 @@
     {{-- ===== Studi kasus ===== --}}
     <section class="kenali-section" id="studi-kasus">
         <span class="kenali-eyebrow">Bahan ajar</span>
-        <h2>Studi kasus satker BLU siap dipelajari</h2>
-        <p class="kenali-lead">Satker BLU contoh berisi perioda 2025 (ditutup) dan 2026 (berjalan, proyeksi): lingkungan strategis, SWOT–TOWS, Peta Strategi, Indikator Kinerja beserta Definisi Operasional, Kontrak Kinerja dan perubahannya, capaian & syarat insentif, inisiatif, rapat tinjauan, temuan, dan tindak lanjutnya.</p>
-        <div class="arah-demo-banner" role="note"><span class="arah-demo-tag">Data demo</span><span>Hanya data demo untuk keperluan memaksimalkan penyajian fitur-fitur perangkat lunak. Angka 2025 sebagian mengacu pada LK BLU Audited 2025, Perjanjian Kinerja 2025, dan RSB 2020–2024 UIN Sunan Kalijaga; rincian triwulanan, Kontrak Kinerja, dan data 2026 (proyeksi) adalah simulasi. Bukan data resmi UIN Sunan Kalijaga, Kementerian Agama, maupun Kementerian Keuangan.</span></div>
+        <h2>Studi kasus instansi siap dipelajari</h2>
+        <p class="kenali-lead">Instansi contoh berisi perioda 2025 (ditutup) dan 2026 (berjalan, proyeksi): lingkungan strategis, SWOT–TOWS, Peta Strategi, Indikator Kinerja beserta Definisi Operasional, Perjanjian/Kontrak Kinerja dan perubahannya, capaian triwulanan, inisiatif, rapat tinjauan, temuan, dan tindak lanjutnya.</p>
+        <div class="arah-demo-banner" role="note"><span class="arah-demo-tag">Data demo</span><span>Hanya data demo untuk keperluan memaksimalkan penyajian fitur-fitur perangkat lunak. Angka 2025 sebagian mengacu pada dokumen publik masing-masing kampus (laporan keuangan, Perjanjian Kinerja, LKjIP, Renstra); rincian triwulanan, Kontrak Kinerja, dan data 2026 (proyeksi) adalah simulasi. Bukan data resmi kampus tersebut, Kementerian Agama, maupun Kementerian Keuangan.</span></div>
         <div class="kenali-cases">
             @foreach (\App\Support\DemoCatalog::CASES as [$code, $name, $sector, $lesson])
                 <div class="arah-card kenali-case">
@@ -237,7 +237,7 @@
         <p class="kenali-lead">Kinera mengikuti siklus manajemen strategi utuh, dari membaca lingkungan sampai melembagakan perubahan.</p>
         <div class="kenali-phases">
             @foreach ([
-                'Membaca lingkungan: PESTEL, kekuatan industri, pasar, pesaing, regulasi, SWOT dan TOWS.',
+                'Membaca lingkungan: PESTEL, pemangku kepentingan, pembanding, regulasi, SWOT dan TOWS.',
                 'Menegaskan visi, misi, nilai inti, dan kapabilitas organisasi.',
                 'Menetapkan tema, sasaran, IK, target, dan memantau realisasi.',
                 'Menjalankan inisiatif, anggaran, temuan, dan tindakan korektif.',
@@ -256,15 +256,15 @@
     <section class="kenali-section kenali-workshop" id="workshop">
         <div>
             <span class="kenali-eyebrow">Workshop 2 hari · bersama PSMPT UIN Sunan Kalijaga</span>
-            <h2>Dari strategi ke Kontrak Kinerja dalam dua hari</h2>
-            <p>Kelas praktis 08.00–16.30 WIB untuk rektor dan wakil rektor, Pejabat Pengelola BLU, Satuan Pengawas Internal, serta tim perencanaan dan keuangan, diselenggarakan bersama Pusat Studi Manajemen Perguruan Tinggi UIN Sunan Kalijaga.</p>
+            <h2>Dari strategi ke pengukuran kinerja dalam dua hari</h2>
+            <p>Kelas praktis 08.00–16.30 WIB untuk pimpinan instansi pemerintah dan perguruan tinggi negeri, tim perencanaan dan keuangan, serta APIP/SPI, diselenggarakan bersama Pusat Studi Manajemen Perguruan Tinggi UIN Sunan Kalijaga.</p>
             <div class="kenali-take">
                 <b>Yang Anda bawa pulang</b>
                 <ul>
                     <li>Draf Peta Strategi empat perspektif</li>
                     <li>Daftar Indikator Kinerja dan definisi operasionalnya</li>
-                    <li>Draf Kontrak Kinerja Pemimpin BLU sesuai PER-6/PB/2025</li>
-                    <li>Pengalaman memakai Kinera: alur realisasi, capaian, dan syarat insentif</li>
+                    <li>Draf Perjanjian Kinerja (dan Kontrak Kinerja bagi instansi BLU)</li>
+                    <li>Pengalaman memakai Kinera: alur realisasi, capaian, dan laporan</li>
                     <li>Rencana aksi 90 hari, materi PDF, dan sertifikat</li>
                 </ul>
             </div>
@@ -277,11 +277,11 @@
             @endif
         </div>
         <ol class="kenali-agenda">
-            <li><b>Hari 1 · Balanced Scorecard untuk BLU</b><span>Pembukaan oleh Kepala PSMPT, empat perspektif sektor publik</span></li>
-            <li><b>Hari 1 · Kebijakan BLU dan Kontrak Kinerja</b><span>PER-6/PB/2025 dan syarat insentif Pemimpin BLU</span></li>
+            <li><b>Hari 1 · Balanced Scorecard untuk sektor publik</b><span>Pembukaan oleh Kepala PSMPT, empat perspektif sektor publik</span></li>
+            <li><b>Hari 1 · SAKIP, Perjanjian Kinerja, dan IKU</b><span>Termasuk Kontrak Kinerja Pemimpin BLU (PER-6/PB/2025)</span></li>
             <li><b>Hari 1 · Peta Strategi dan Indikator Kinerja</b><span>Diagnosis kinerja, sasaran strategis, latihan kelompok</span></li>
             <li><b>Hari 2 · Definisi operasional dan target</b><span>Rumus, sumber data, trajektori triwulanan</span></li>
-            <li><b>Hari 2 · Simulasi Kontrak Kinerja</b><span>Kontrak awal, perubahan, dan adendum di Kinera</span></li>
+            <li><b>Hari 2 · Simulasi Perjanjian Kinerja</b><span>Target, perubahan, dan Kontrak Kinerja BLU di Kinera</span></li>
             <li><b>Hari 2 · Praktik Kinera dan rencana aksi</b><span>Realisasi, capaian, temuan, rencana aksi 90 hari</span></li>
         </ol>
     </section>

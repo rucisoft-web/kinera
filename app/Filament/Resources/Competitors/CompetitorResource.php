@@ -80,7 +80,7 @@ class CompetitorResource extends Resource
                 TextInput::make('category')->label('Kategori'),
                 TextInput::make('rank')->label('Peringkat')->numeric(),
                 TextInput::make('data_period')->label('Perioda data'),
-                Toggle::make('is_self')->label('Satker BLU kita'),
+                Toggle::make('is_self')->label('Instansi kita'),
                 Textarea::make('strengths')->label('Kekuatan')->rows(2)->columnSpanFull(),
                 Textarea::make('weaknesses')->label('Kelemahan')->rows(2)->columnSpanFull(),
             ]),
@@ -118,7 +118,7 @@ class CompetitorResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('rank')->label('#')->sortable(),
-                TextColumn::make('name')->label('Pesaing')->searchable()->weight(fn ($record) => $record->is_self ? 'bold' : null)->description(fn ($record) => $record->is_self ? 'Satker BLU kita' : $record->category),
+                TextColumn::make('name')->label('Pesaing')->searchable()->weight(fn ($record) => $record->is_self ? 'bold' : null)->description(fn ($record) => $record->is_self ? 'Instansi kita' : $record->category),
                 TextColumn::make('revenue')->label('Pendapatan (Rp M)')->formatStateUsing(fn ($state) => Fmt::num($state, 0))->sortable(),
                 TextColumn::make('revenue_growth')->label('Tumbuh %')->formatStateUsing(fn ($state) => Fmt::num($state, 1))->badge()->color(fn ($state) => $state === null ? 'gray' : ($state >= 0 ? 'success' : 'danger'))->sortable(),
                 TextColumn::make('net_margin')->label('Marjin bersih %')->formatStateUsing(fn ($state) => Fmt::num($state, 2))->sortable(),

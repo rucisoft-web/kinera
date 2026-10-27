@@ -21,7 +21,7 @@ class Finding extends Model
 
     public const SEVERITIES = ['rendah' => 'Rendah', 'sedang' => 'Sedang', 'tinggi' => 'Tinggi', 'kritis' => 'Kritis'];
 
-    public const SOURCES = ['tinjauan' => 'Tinjauan kinerja', 'timwas' => 'Dewan Pengawas', 'audit' => 'Audit', 'pelanggan' => 'Ulasan pelanggan', 'internal' => 'Internal'];
+    public const SOURCES = ['tinjauan' => 'Tinjauan kinerja', 'timwas' => 'Pengawas (APIP / Dewan Pengawas)', 'audit' => 'Audit', 'pelanggan' => 'Pengaduan masyarakat', 'internal' => 'Internal'];
 
     protected $guarded = ['id'];
 

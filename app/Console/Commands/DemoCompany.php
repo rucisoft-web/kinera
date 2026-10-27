@@ -18,19 +18,19 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-/** Memuat demo lengkap satu satker BLU (perioda 2025 + 2026) ke server yang sudah berjalan. */
+/** Memuat demo lengkap satu instansi (perioda 2025 + 2026) ke server yang sudah berjalan. */
 class DemoCompany extends Command
 {
     /** @var array<string,class-string<ShowcaseSeeder>> */
     public const DEMOS = ['UINSUKA' => UinSukaSeeder::class, 'UINRF' => UinRadenFatahSeeder::class, 'UINSUSKA' => UinSuskaRiauSeeder::class];
 
     protected $signature = 'kinera:demo
-        {perusahaan=UINSUKA : Kode demo satker BLU: UINSUKA (UIN Sunan Kalijaga Yogyakarta), UINRF (UIN Raden Fatah Palembang), UINSUSKA (UIN Suska Riau)}
-        {--password= : Kata sandi akun contoh satker BLU itu (bila kosong dibuat acak dan ditampilkan)}
-        {--reset : Hapus dulu data satker BLU itu untuk perioda 2025 & 2026 yang sudah ada}
+        {perusahaan=UINSUKA : Kode demo instansi: UINSUKA (UIN Sunan Kalijaga Yogyakarta), UINRF (UIN Raden Fatah Palembang), UINSUSKA (UIN Suska Riau)}
+        {--password= : Kata sandi akun contoh instansi itu (bila kosong dibuat acak dan ditampilkan)}
+        {--reset : Hapus dulu data instansi itu untuk perioda 2025 & 2026 yang sudah ada}
         {--force : Lewati konfirmasi}';
 
-    protected $description = 'Muat demo lengkap satker BLU (UIN Sunan Kalijaga, UIN Raden Fatah, UIN Suska Riau) (Strategy Map, Indikator Kinerja, Kontrak Kinerja, inisiatif, tinjauan) perioda 2025 & 2026';
+    protected $description = 'Muat demo lengkap instansi (UIN Sunan Kalijaga, UIN Raden Fatah, UIN Suska Riau) (Strategy Map, Indikator Kinerja, Kontrak Kinerja, inisiatif, tinjauan) perioda 2025 & 2026';
 
     protected $aliases = ['kinera:demo-uin'];
 
@@ -54,7 +54,7 @@ class DemoCompany extends Command
         $periods = $company ? AnalysisPeriod::where('company_id', $company->id)->whereIn('code', ['2025', '2026'])->get() : collect();
         if ($periods->isNotEmpty()) {
             if (! $this->option('reset')) {
-                $this->error('Satker BLU '.$code.' sudah punya perioda '.$periods->pluck('code')->join(' & ').'. Jalankan ulang dengan --reset untuk menggantinya dengan data demo.');
+                $this->error('Instansi '.$code.' sudah punya perioda '.$periods->pluck('code')->join(' & ').'. Jalankan ulang dengan --reset untuk menggantinya dengan data demo.');
 
                 return self::FAILURE;
             }

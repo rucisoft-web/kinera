@@ -2,12 +2,12 @@
 <div class="arah">
     @if ($companies->isEmpty())
         <div class="arah-card">
-            <h3>Belum ada satker BLU</h3>
+            <h3>Belum ada instansi</h3>
             @if (auth()->user()?->isSuperAdmin())
-                <p class="arah-muted">Tambahkan satker BLU pertama, lalu buat perioda (misalnya Tahun 2026) di tab <b>Perioda</b> pada halaman satker BLU tersebut. Setelah itu kembali ke halaman ini untuk memilihnya, dan isi datanya lewat <b>Import Data</b>.</p>
-                <a class="arah-btn arah-btn-primary" href="{{ \App\Filament\Resources\Companies\CompanyResource::getUrl('create') }}">Tambah satker BLU</a>
+                <p class="arah-muted">Tambahkan instansi pertama, lalu buat perioda (misalnya Tahun 2026) di tab <b>Perioda</b> pada halaman instansi tersebut. Setelah itu kembali ke halaman ini untuk memilihnya, dan isi datanya lewat <b>Import Data</b>.</p>
+                <a class="arah-btn arah-btn-primary" href="{{ \App\Filament\Resources\Companies\CompanyResource::getUrl('create') }}">Tambah instansi</a>
             @else
-                <p class="arah-muted">Akun Anda belum terdaftar di satker BLU mana pun. Hubungi Super Admin.</p>
+                <p class="arah-muted">Akun Anda belum terdaftar di instansi mana pun. Hubungi Super Admin.</p>
             @endif
         </div>
     @endif
@@ -16,7 +16,7 @@
             @unless ($single)<h3>{{ $c->code }} — {{ $c->name }}</h3>@else<h3>{{ $c->name }}</h3>@endunless
             <div class="arah-muted" style="margin-bottom:.8rem">{{ collect([$c->industry, $c->city])->filter()->join(' · ') }}</div>
             @if ($c->periods->isEmpty())
-                <p class="arah-muted">Satker BLU ini belum punya perioda.
+                <p class="arah-muted">Instansi ini belum punya perioda.
                     @if (auth()->user()?->isSuperAdmin())
                         <a href="{{ \App\Filament\Resources\Companies\CompanyResource::getUrl('edit', ['record' => $c]) }}" style="text-decoration:underline">Buat perioda</a> di tab Perioda.
                     @endif

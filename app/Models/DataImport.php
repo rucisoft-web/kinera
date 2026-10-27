@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-/** Riwayat upload workbook Excel per satker BLU/perioda (lihat App\Services\Import\BscImporter). */
+/** Riwayat upload workbook Excel per instansi/perioda (lihat App\Services\Import\BscImporter). */
 class DataImport extends Model
 {
     public const STATUSES = ['selesai' => 'Selesai', 'dibatalkan' => 'Dibatalkan'];
@@ -43,7 +43,7 @@ class DataImport extends Model
         return $this->hasMany(DataImportChange::class);
     }
 
-    /** Hanya import terakhir yang masih berlaku pada satker BLU/perioda yang sama yang boleh dibatalkan. */
+    /** Hanya import terakhir yang masih berlaku pada instansi/perioda yang sama yang boleh dibatalkan. */
     public function canRollback(): bool
     {
         if ($this->rolled_back_at) {

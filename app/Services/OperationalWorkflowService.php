@@ -27,7 +27,7 @@ class OperationalWorkflowService
             ['ritme' => 'Bulanan', 'kegiatan' => 'Verifikasi angka keuangan dengan laporan keuangan', 'pelaku' => 'Keuangan', 'batas' => 'tanggal '.$c['verify_day']],
             ['ritme' => 'Bulanan', 'kegiatan' => 'Setujui realisasi; IK terkunci', 'pelaku' => 'Pimpinan', 'batas' => 'tanggal '.$c['approve_day']],
             ['ritme' => 'Bulanan', 'kegiatan' => 'Rapat manajemen: tinjau sasaran merah/kuning, tutup temuan selesai, ekspor laporan', 'pelaku' => 'Pimpinan, semua kepala unit', 'batas' => 'tanggal '.$c['meeting_day']],
-            ['ritme' => 'Bulanan / kuartalan', 'kegiatan' => 'Laporan ke Dewan Pengawas; catatan pengawasan dan temuan pengawas', 'pelaku' => 'Ketua Dewan Pengawas', 'batas' => 'setelah rapat manajemen'],
+            ['ritme' => 'Bulanan / kuartalan', 'kegiatan' => 'Laporan ke APIP/pengawas; catatan pengawasan dan temuan pengawas', 'pelaku' => 'Pengawas (APIP / Dewan Pengawas)', 'batas' => 'setelah rapat manajemen'],
             ['ritme' => 'Kuartalan', 'kegiatan' => 'Tinjau portofolio inisiatif (kuadran Tinjau Ulang), perbarui isu Ekosistem dan risiko', 'pelaku' => 'Pimpinan, Koordinator Manajemen Strategi', 'batas' => 'akhir kuartal'],
             ['ritme' => 'Tahunan', 'kegiatan' => 'Penilaian kematangan; susun perioda baru: '.Terms::get('brahman').' → '.Terms::get('atman').' → sasaran, target, inisiatif', 'pelaku' => 'Pimpinan, semua kepala unit, pengawas', 'batas' => 'Nov–Des'],
         ];

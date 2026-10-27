@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-/** Menyiapkan konteks satker BLU & perioda; menolak akun nonaktif. */
+/** Menyiapkan konteks instansi & perioda; menolak akun nonaktif. */
 class SetBscContext
 {
     public function handle(Request $request, Closure $next): Response

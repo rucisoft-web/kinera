@@ -7,8 +7,8 @@ use App\Support\BscContext;
 use Illuminate\Support\Facades\Auth;
 
 /**
- * Pembatasan multi-satker BLU untuk menu Administrasi.
- * Super Admin mengelola semua satker BLU; admin lain hanya satker BLU yang sedang aktif.
+ * Pembatasan multi-instansi untuk menu Administrasi.
+ * Super Admin mengelola semua instansi; admin lain hanya instansi yang sedang aktif.
  */
 trait ScopesToActiveCompany
 {
@@ -23,9 +23,9 @@ trait ScopesToActiveCompany
     }
 
     /**
-     * Admin satker BLU hanya boleh mengubah akun yang terdaftar di satker BLU aktif saja.
-     * Akun yang juga terdaftar di satker BLU lain (atau berperan global) hanya diubah Super Admin,
-     * supaya reset sandi tidak bisa dipakai untuk masuk ke satker BLU lain.
+     * Admin instansi hanya boleh mengubah akun yang terdaftar di instansi aktif saja.
+     * Akun yang juga terdaftar di instansi lain (atau berperan global) hanya diubah Super Admin,
+     * supaya reset sandi tidak bisa dipakai untuk masuk ke instansi lain.
      */
     protected static function ownsUserAccount(Models\User $user): bool
     {
@@ -42,7 +42,7 @@ trait ScopesToActiveCompany
         return $companies->isNotEmpty() && $companies->every(fn ($id) => $id === $active);
     }
 
-    /** Pilihan satker BLU pada formulir: semua (Super Admin) atau hanya satker BLU aktif. */
+    /** Pilihan instansi pada formulir: semua (Super Admin) atau hanya instansi aktif. */
     protected static function companyOptions(): array
     {
         $q = Models\Company::orderBy('name');

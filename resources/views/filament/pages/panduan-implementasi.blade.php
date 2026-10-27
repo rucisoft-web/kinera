@@ -26,12 +26,12 @@
     $lvl = fn (string $l) => match ($l) { 'T' => 'arah-merah', 'S' => 'arah-kuning', default => 'arah-hijau' };
     $lvlName = ['T' => 'Tinggi', 'S' => 'Sedang', 'R' => 'Rendah'];
     $risks = [
-        ['Komitmen Pejabat Pengelola menurun di tengah jalan', 'S', 'T', 'Sponsor dari Direktur Utama; Steering Committee bulanan; tampilkan hasil cepat (quick win) sejak minggu ke-6.', 'Sponsor proyek'],
+        ['Komitmen Pimpinan menurun di tengah jalan', 'S', 'T', 'Sponsor dari Pimpinan instansi; Steering Committee bulanan; tampilkan hasil cepat (quick win) sejak minggu ke-6.', 'Sponsor proyek'],
         ['Rencana strategis belum jelas atau belum disepakati', 'S', 'T', 'Fase Diagnosa memetakan dokumen RJPP/RKAP; workshop strategi difasilitasi sampai Peta Strategi disahkan (M2).', 'Konsultan utama'],
         ['IK terlalu banyak atau tidak terukur', 'T', 'S', 'Batasi 2–4 IK per sasaran; uji SMART dan ketersediaan data sebelum M3; IK tanpa sumber data ditunda.', 'Kantor Strategi'],
         ['Data historis tidak tersedia atau tidak konsisten', 'T', 'S', 'Inventarisasi data di Fase 1; baseline boleh estimasi bertanda; perbaikan sumber data menjadi inisiatif.', 'Keuangan & TI'],
-        ['Penanggung jawab IK tidak disiplin mengisi realisasi', 'T', 'T', 'Pengingat otomatis tanggal 3; status kelengkapan dibahas di rapat; kepatuhan siklus menjadi IK unit.', 'Pejabat Pengelola'],
-        ['Penolakan karena dianggap alat penilaian individu', 'S', 'S', 'Komunikasikan BSC sebagai alat belajar dan koreksi; town hall; champion per divisi.', 'PM klien'],
+        ['Penanggung jawab IK tidak disiplin mengisi realisasi', 'T', 'T', 'Pengingat otomatis tanggal 3; status kelengkapan dibahas di rapat; kepatuhan siklus menjadi IK unit.', 'Pimpinan'],
+        ['Penolakan karena dianggap alat penilaian individu', 'S', 'S', 'Komunikasikan BSC sebagai alat belajar dan koreksi; town hall; champion per unit kerja.', 'PM klien'],
         ['Personel kunci klien berganti', 'S', 'S', 'Dokumentasi di Kinera; minimal dua orang terlatih per peran kunci; serah terima tertulis.', 'PM klien'],
         ['Kendala infrastruktur (server, jaringan, email)', 'R', 'S', 'Prasyarat teknis diperiksa di Fase 0; opsi hosting cloud; uji email & cron sebelum UAT.', 'TI klien'],
         ['Lingkup melebar (permintaan fitur/integrasi baru)', 'S', 'S', 'Kendali perubahan lewat formulir & persetujuan Steering Committee; tampung sebagai fase lanjutan.', 'PM Rucisoft'],
@@ -53,14 +53,14 @@
         {{-- 1. Ringkasan --}}
         <section id="ringkasan">
             <h2><span class="n">{{ $num('ringkasan') }}.</span> Ringkasan proyek</h2>
-            <p>Implementasi Kinera bukan sekadar memasang perangkat lunak. Tujuannya adalah membuat satker BLU memiliki <b>strategi yang tertulis, terukur, dan dijalankan dalam ritme bulanan</b>: Peta Strategi yang disepakati, kamus Indikator Kinerja dengan target bulanan, portofolio inisiatif beranggaran, serta tata kelola tinjauan dari unit sampai Dewan Pengawas, semuanya berjalan di Kinera.</p>
+            <p>Implementasi Kinera bukan sekadar memasang perangkat lunak. Tujuannya adalah membuat instansi memiliki <b>strategi yang tertulis, terukur, dan dijalankan dalam ritme bulanan</b>: Peta Strategi yang disepakati, kamus Indikator Kinerja dengan target bulanan, portofolio inisiatif beranggaran, serta tata kelola tinjauan dari unit sampai APIP dan pengawas, semuanya berjalan di Kinera.</p>
             <div class="impl-kv">
                 <div class="arah-card arah-stat"><span class="label">Durasi implementasi</span><span class="value">12 minggu</span><span class="sub">ditambah 3 bulan pendampingan</span></div>
                 <div class="arah-card arah-stat"><span class="label">Hasil utama</span><span class="value">6 milestone</span><span class="sub">dari kick-off sampai serah terima</span></div>
                 <div class="arah-card arah-stat"><span class="label">Siklus bulanan</span><span class="value">3 siklus</span><span class="sub">didampingi sebelum mandiri</span></div>
-                <div class="arah-card arah-stat"><span class="label">Skala acuan</span><span class="value">5–10 divisi</span><span class="sub">± 30–60 IK satker BLU</span></div>
+                <div class="arah-card arah-stat"><span class="label">Skala acuan</span><span class="value">5–10 unit kerja</span><span class="sub">± 30–60 IK instansi</span></div>
             </div>
-            <p class="arah-muted" style="margin-top:.7rem">Angka durasi dan sumber daya di panduan ini adalah acuan untuk satker BLU berskala menengah. Untuk grup usaha dengan banyak anak satker BLU, proyek dapat dijalankan bertahap per satker BLU.</p>
+            <p class="arah-muted" style="margin-top:.7rem">Angka durasi dan sumber daya di panduan ini adalah acuan untuk instansi berskala menengah. Untuk grup usaha dengan banyak anak instansi, proyek dapat dijalankan bertahap per instansi.</p>
         </section>
 
         {{-- 2. Prasyarat --}}
@@ -70,11 +70,11 @@
                 <div class="arah-card">
                     <h3>Organisasi</h3>
                     <ul>
-                        <li><b>Sponsor</b> dari Direktur Utama yang hadir di momen kunci.</li>
+                        <li><b>Sponsor</b> dari Pimpinan instansi yang hadir di momen kunci.</li>
                         <li>Dokumen arah usaha: visi-misi, RJPP/rencana jangka panjang, RKAP/anggaran tahun berjalan.</li>
                         <li>Struktur organisasi dan daftar pejabat yang akan menjadi penanggung jawab IK.</li>
                         <li>Penunjukan <b>Project Manager</b> klien dan tim Kantor Strategi (SK/surat tugas).</li>
-                        <li>Kesediaan waktu Pejabat Pengelola untuk 2–3 sesi workshop.</li>
+                        <li>Kesediaan waktu Pimpinan untuk 2–3 sesi workshop.</li>
                     </ul>
                 </div>
                 <div class="arah-card">
@@ -89,7 +89,7 @@
                 <div class="arah-card">
                     <h3>Teknis</h3>
                     <ul>
-                        <li>Hosting cloud oleh Rucisoft, <b>atau</b> server satker BLU: PHP 8.3, MySQL 8/MariaDB 10.6+, 2 vCPU, 4 GB RAM, 40 GB SSD.</li>
+                        <li>Hosting cloud oleh Rucisoft, <b>atau</b> server instansi: PHP 8.3, MySQL 8/MariaDB 10.6+, 2 vCPU, 4 GB RAM, 40 GB SSD.</li>
                         <li>Domain/subdomain dengan sertifikat HTTPS.</li>
                         <li>Akun email SMTP untuk notifikasi, dan cron terjadwal.</li>
                         <li>Peramban modern di komputer dan ponsel pengguna.</li>
@@ -106,18 +106,18 @@
                 <table class="arah-table impl-table">
                     <thead><tr><th>Fase</th><th>Kegiatan utama</th><th>Keluaran</th></tr></thead>
                     <tbody>
-                        <tr><td><b>0 · Persiapan</b></td><td>Kick-off dengan Pejabat Pengelola, pembentukan tim, rencana proyek rinci, pemeriksaan prasyarat teknis.</td><td>Piagam proyek, rencana kerja, SK tim</td></tr>
-                        <tr><td><b>1 · Diagnosa</b></td><td>Kajian dokumen strategi, wawancara Pejabat Pengelola & kepala divisi, analisis PESTEL, industri, pesaing, SWOT.</td><td>Laporan diagnosa, daftar isu strategis, data Ekosistem di Kinera</td></tr>
-                        <tr><td><b>2 · Workshop strategi</b></td><td>Penegasan visi-misi & nilai, TOWS, pemilihan tema, perumusan sasaran 4 perspektif dan hubungan sebab-akibat.</td><td>Peta Strategi disahkan Pejabat Pengelola (M2)</td></tr>
+                        <tr><td><b>0 · Persiapan</b></td><td>Kick-off dengan pimpinan, pembentukan tim, rencana proyek rinci, pemeriksaan prasyarat teknis.</td><td>Piagam proyek, rencana kerja, SK tim</td></tr>
+                        <tr><td><b>1 · Diagnosa</b></td><td>Kajian dokumen strategi, wawancara pimpinan & kepala unit kerja, analisis PESTEL, industri, pesaing, SWOT.</td><td>Laporan diagnosa, daftar isu strategis, data Ekosistem di Kinera</td></tr>
+                        <tr><td><b>2 · Workshop strategi</b></td><td>Penegasan visi-misi & nilai, TOWS, pemilihan tema, perumusan sasaran 4 perspektif dan hubungan sebab-akibat.</td><td>Peta Strategi disahkan pimpinan (M2)</td></tr>
                         <tr><td><b>3 · IK, target, inisiatif</b></td><td>Kamus Indikator Kinerja (definisi, rumus, sumber data, pemilik), baseline, target tahunan & bulanan, pemilihan inisiatif, anggaran, milestone.</td><td>Kamus Indikator Kinerja & target disahkan (M3), portofolio inisiatif</td></tr>
-                        <tr><td><b>4 · Instalasi & data</b></td><td>Instalasi atau penyiapan hosting, konfigurasi satker BLU & perioda, akun & peran, import data melalui template Excel.</td><td>Kinera berisi data satker BLU, siap UAT (M4)</td></tr>
-                        <tr><td><b>5 · Pelatihan & UAT</b></td><td>Pelatihan per peran (Pejabat Pengelola, Dewan Pengawas, Kantor Strategi, Keuangan, Kepala Unit, Admin), uji terima pengguna dengan skenario siklus bulanan.</td><td>Berita acara UAT, daftar hadir & materi pelatihan</td></tr>
+                        <tr><td><b>4 · Instalasi & data</b></td><td>Instalasi atau penyiapan hosting, konfigurasi instansi & perioda, akun & peran, import data melalui template Excel.</td><td>Kinera berisi data instansi, siap UAT (M4)</td></tr>
+                        <tr><td><b>5 · Pelatihan & UAT</b></td><td>Pelatihan per peran (Pimpinan, APIP/Pengawas, Kantor Strategi, Keuangan, Kepala Unit, Admin), uji terima pengguna dengan skenario siklus bulanan.</td><td>Berita acara UAT, daftar hadir & materi pelatihan</td></tr>
                         <tr><td><b>6 · Go-live</b></td><td>Realisasi bulan pertama diisi, diverifikasi, disetujui; rapat manajemen pertama dipimpin dari Pusat Kendali.</td><td>Siklus bulanan pertama selesai (M5)</td></tr>
-                        <tr><td><b>7 · Pendampingan</b></td><td>Pendampingan tiga siklus bulanan, penyempurnaan IK/target, rapat Dewan Pengawas, penilaian kematangan awal.</td><td>Laporan penutupan, serah terima (M6)</td></tr>
+                        <tr><td><b>7 · Pendampingan</b></td><td>Pendampingan tiga siklus bulanan, penyempurnaan IK/target, rapat bersama APIP/pengawas, penilaian kematangan awal.</td><td>Laporan penutupan, serah terima (M6)</td></tr>
                     </tbody>
                 </table>
             </div>
-            <p style="margin-top:.7rem"><b>Di luar lingkup</b> (dapat menjadi fase lanjutan): integrasi otomatis dengan ERP/sistem lain, penyusunan ulang RJPP, desain sistem remunerasi berbasis IK, dan kustomisasi fitur khusus.</p>
+            <p style="margin-top:.7rem"><b>Di luar lingkup</b> (dapat menjadi fase lanjutan): integrasi otomatis dengan ERP/sistem lain, penyusunan ulang Renstra, desain sistem remunerasi berbasis IK, dan kustomisasi fitur khusus.</p>
         </section>
 
         {{-- 4. Jadwal --}}
@@ -166,15 +166,15 @@
                     </table>
                 </div>
                 <div class="arah-card arah-scroll">
-                    <h3>Tim satker BLU</h3>
+                    <h3>Tim instansi</h3>
                     <table class="arah-table impl-table">
                         <thead><tr><th>Peran</th><th class="num">Alokasi waktu</th></tr></thead>
                         <tbody>
-                            <tr><td><b>Sponsor (Direktur Utama)</b><br>keputusan, kick-off, pengesahan</td><td class="num">± 5%</td></tr>
-                            <tr><td><b>Pejabat Pengelola lain</b><br>workshop, pengesahan sasaran & target</td><td class="num">± 10% di Fase 2–3</td></tr>
+                            <tr><td><b>Sponsor (Pimpinan instansi)</b><br>keputusan, kick-off, pengesahan</td><td class="num">± 5%</td></tr>
+                            <tr><td><b>Pimpinan lain</b><br>workshop, pengesahan sasaran & target</td><td class="num">± 10% di Fase 2–3</td></tr>
                             <tr><td><b>Project Manager klien</b><br>koordinasi internal, jadwal, dokumen</td><td class="num">40–50%</td></tr>
                             <tr><td><b>Kantor Strategi (2–3 orang)</b><br>penyusun dan pemilik proses BSC</td><td class="num">50–70%</td></tr>
-                            <tr><td><b>BSC Champion per divisi</b><br>IK & data divisi, penghubung unit</td><td class="num">10–20%</td></tr>
+                            <tr><td><b>BSC Champion per unit kerja</b><br>IK & data unit kerja, penghubung unit</td><td class="num">10–20%</td></tr>
                             <tr><td><b>Keuangan</b><br>baseline, target & anggaran inisiatif</td><td class="num">15–20%</td></tr>
                             <tr><td><b>TI (1 orang)</b><br>server, email, akun, backup</td><td class="num">10–20%</td></tr>
                         </tbody>
@@ -189,14 +189,14 @@
             <h2><span class="n">{{ $num('organisasi') }}.</span> Struktur organisasi pelaksana proyek</h2>
             <div class="arah-card">
                 <div class="org">
-                    <div class="org-row"><div class="org-box r"><b>Steering Committee</b>Direktur Utama (ketua), Pejabat Pengelola, wakil Dewan Pengawas</div></div>
-                    <div class="org-row"><div class="org-box r"><b>Sponsor Proyek</b>Direktur Utama / Direktur Perencanaan</div><div class="org-box y"><b>Penjamin Mutu</b>Konsultan utama Rucisoft</div></div>
+                    <div class="org-row"><div class="org-box r"><b>Steering Committee</b>Pimpinan instansi (ketua), Pimpinan, wakil APIP</div></div>
+                    <div class="org-row"><div class="org-box r"><b>Sponsor Proyek</b>Pimpinan instansi / Kepala Biro Perencanaan</div><div class="org-box y"><b>Penjamin Mutu</b>Konsultan utama Rucisoft</div></div>
                     <div class="org-row"><div class="org-box"><b>Project Manager Klien</b>Kepala Kantor Strategi / Corporate Planning</div><div class="org-box"><b>Project Manager Rucisoft</b>rencana, laporan, risiko</div></div>
                     <div class="org-row">
                         <div class="org-box g"><b>Tim Metodologi</b>Kantor Strategi + Konsultan BSC</div>
                         <div class="org-box g"><b>Tim Data & Keuangan</b>Keuangan, akuntansi, data operasional</div>
                         <div class="org-box g"><b>Tim Teknis</b>TI klien + Implementer Rucisoft</div>
-                        <div class="org-box g"><b>BSC Champions</b>satu orang per divisi/unit</div>
+                        <div class="org-box g"><b>BSC Champions</b>satu orang per unit kerja</div>
                     </div>
                 </div>
                 <div class="impl-legend"><span><i style="background:#D32F2F"></i>pengarah & keputusan</span><span><i style="background:#1F4E8C"></i>pengelola proyek</span><span><i style="background:#C88A12"></i>penjamin mutu</span><span><i style="background:#2E7D4F"></i>tim pelaksana</span></div>
@@ -255,7 +255,7 @@
                     <thead><tr><th>Gerbang</th><th>Kriteria lulus</th><th>Disahkan oleh</th></tr></thead>
                     <tbody>
                         <tr><td><b>G1 · Akhir Diagnosa</b></td><td>Isu strategis dan SWOT disepakati; data yang tersedia dan kesenjangannya terpetakan.</td><td>PM klien, penjamin mutu</td></tr>
-                        <tr><td><b>G2 · Peta Strategi</b></td><td>Sasaran 4 perspektif lengkap dengan relasi; dipresentasikan dan disetujui Pejabat Pengelola.</td><td>Steering Committee</td></tr>
+                        <tr><td><b>G2 · Peta Strategi</b></td><td>Sasaran 4 perspektif lengkap dengan relasi; dipresentasikan dan disetujui pimpinan.</td><td>Steering Committee</td></tr>
                         <tr><td><b>G3 · Kamus Indikator Kinerja</b></td><td>Semua IK lolos SMART, punya pemilik dan target bulanan; inisiatif beranggaran.</td><td>Steering Committee</td></tr>
                         <tr><td><b>G4 · Siap UAT</b></td><td>Data terimport tanpa galat; akun & peran sesuai matriks; email dan cron berfungsi.</td><td>PM klien, TI</td></tr>
                         <tr><td><b>G5 · Go-live</b></td><td>Skenario UAT lulus; pelatihan selesai; backup terjadwal; rencana dukungan disetujui.</td><td>Sponsor proyek</td></tr>
@@ -274,15 +274,15 @@
                     <thead><tr><th>Komunikasi</th><th>Kepada</th><th>Frekuensi</th><th>Media</th><th>Penanggung jawab</th></tr></thead>
                     <tbody>
                         @foreach ([
-                            ['Kick-off & penjelasan tujuan', 'Pejabat Pengelola, kepala divisi', 'Sekali (M1)', 'Rapat tatap muka', 'Sponsor'],
+                            ['Kick-off & penjelasan tujuan', 'Pimpinan, kepala unit kerja', 'Sekali (M1)', 'Rapat tatap muka', 'Sponsor'],
                             ['Rapat Steering Committee', 'Steering Committee', 'Bulanan + di setiap gerbang', 'Rapat, menu Kenali Kinera', 'PM klien'],
                             ['Rapat kemajuan proyek', 'Tim inti', 'Mingguan', 'Rapat singkat 30–45 menit', 'PM Rucisoft'],
                             ['Laporan status proyek', 'Sponsor, Steering', 'Dua mingguan', 'Laporan 1 halaman', 'PM Rucisoft'],
-                            ['Town hall pengenalan BSC', 'Seluruh pejabat & pegawai kunci', 'Sekali sebelum go-live', 'Pertemuan + Peta Strategi', 'Direktur Utama'],
-                            ['Sosialisasi IK ke unit', 'Penanggung jawab IK, staf unit', 'Fase 3', 'Rapat divisi oleh champion', 'BSC Champions'],
+                            ['Town hall pengenalan BSC', 'Seluruh pejabat & pegawai kunci', 'Sekali sebelum go-live', 'Pertemuan + Peta Strategi', 'Pimpinan instansi'],
+                            ['Sosialisasi IK ke unit', 'Penanggung jawab IK, staf unit', 'Fase 3', 'Rapat unit kerja oleh champion', 'BSC Champions'],
                             ['Pengumuman go-live & jadwal siklus', 'Semua pengguna', 'Sekali (M5)', 'Email, surat edaran', 'PM klien'],
                             ['Pengingat siklus bulanan', 'Penanggung jawab IK, Keuangan, Pimpinan', 'Bulanan', 'Notifikasi & email Kinera', 'Otomatis'],
-                            ['Laporan kinerja ke Dewan Pengawas', 'Dewan Pengawas', 'Bulanan/kuartalan', 'Pusat Kendali, Laporan', 'Pejabat Pengelola'],
+                            ['Laporan kinerja ke pengawas', 'APIP / Dewan Pengawas', 'Bulanan/kuartalan', 'Pusat Kendali, Laporan', 'Pimpinan'],
                         ] as $row)
                             <tr>@foreach ($row as $i => $cell)<td>{!! $i ? e($cell) : '<b>'.e($cell).'</b>' !!}</td>@endforeach</tr>
                         @endforeach
@@ -334,13 +334,13 @@
         {{-- 10. Pengadaan --}}
         <section id="pengadaan">
             <h2><span class="n">{{ $num('pengadaan') }}.</span> Pengadaan</h2>
-            <p>Pengadaan mengikuti kebijakan pengadaan barang/jasa satker BLU (misalnya peraturan pimpinan BLU tentang pengadaan barang/jasa atau SOP internal). Komponen yang umumnya diadakan:</p>
+            <p>Pengadaan mengikuti kebijakan pengadaan barang/jasa instansi (misalnya peraturan pimpinan instansi atau Perpres tentang pengadaan barang/jasa atau SOP internal). Komponen yang umumnya diadakan:</p>
             <div class="arah-card arah-scroll">
                 <table class="arah-table impl-table">
                     <thead><tr><th>Komponen</th><th>Isi</th><th>Pilihan skema</th></tr></thead>
                     <tbody>
-                        <tr><td><b>Perangkat lunak Kinera</b></td><td>Hak pakai aplikasi untuk satker BLU/grup, pembaruan versi</td><td>Langganan tahunan (cloud) atau lisensi instalasi di server sendiri</td></tr>
-                        <tr><td><b>Infrastruktur</b></td><td>Hosting/server, domain, sertifikat HTTPS, backup</td><td>Disediakan Rucisoft (cloud) atau oleh TI satker BLU</td></tr>
+                        <tr><td><b>Perangkat lunak Kinera</b></td><td>Hak pakai aplikasi untuk instansi/grup, pembaruan versi</td><td>Langganan tahunan (cloud) atau lisensi instalasi di server sendiri</td></tr>
+                        <tr><td><b>Infrastruktur</b></td><td>Hosting/server, domain, sertifikat HTTPS, backup</td><td>Disediakan Rucisoft (cloud) atau oleh TI instansi</td></tr>
                         <tr><td><b>Jasa konsultansi & workshop</b></td><td>Diagnosa, workshop strategi, kamus Indikator Kinerja, inisiatif</td><td>Kontrak lumpsum berbasis keluaran per fase</td></tr>
                         <tr><td><b>Implementasi & pelatihan</b></td><td>Instalasi, konfigurasi, import data, pelatihan per peran, UAT</td><td>Satu paket dengan konsultansi</td></tr>
                         <tr><td><b>Pendampingan & dukungan</b></td><td>Pendampingan 3 siklus, dukungan teknis pasca go-live</td><td>Paket bulanan atau tahunan (SLA)</td></tr>
@@ -397,7 +397,7 @@
                 <div class="arah-card">
                     <h3>Faktor kunci sukses</h3>
                     <ul>
-                        <li><b>Direktur Utama memimpin</b> rapat bulanan dari Pusat Kendali.</li>
+                        <li><b>Pimpinan instansi memimpin</b> rapat bulanan dari Pusat Kendali.</li>
                         <li>IK sedikit tetapi tajam; kualitas mengalahkan jumlah.</li>
                         <li>Disiplin tanggal siklus, bukan menunggu data sempurna.</li>
                         <li>Hasil rapat menjadi temuan dan tindakan korektif yang dipantau.</li>
@@ -413,8 +413,8 @@
                 <div class="kenali-workshop" style="margin-top:1.2rem; grid-template-columns: minmax(0,1fr)">
                     <div>
                         <span class="kenali-eyebrow">Mulai dari Workshop Kinera</span>
-                        <h2 style="display:block">Ingin menjalankan rencana ini di satker BLU Anda?</h2>
-                        <p>Workshop Kinera adalah langkah pertama: Pejabat Pengelola menyusun Peta Strategi bersama, lalu tim Rucisoft membantu menyiapkan rencana implementasi yang sesuai skala satker BLU.</p>
+                        <h2 style="display:block">Ingin menjalankan rencana ini di instansi Anda?</h2>
+                        <p>Workshop Kinera adalah langkah pertama: Pimpinan menyusun Peta Strategi bersama, lalu tim Rucisoft membantu menyiapkan rencana implementasi yang sesuai skala instansi.</p>
                         <div class="kenali-actions">
                             <a href="{{ $workshopUrl }}" target="_blank" rel="noopener" class="arah-btn arah-btn-primary kenali-btn-lg">Daftar Workshop Kinera</a>
                         </div>
