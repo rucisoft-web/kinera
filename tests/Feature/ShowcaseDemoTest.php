@@ -91,6 +91,33 @@ class ShowcaseDemoTest extends TestCase
         }
     }
 
+    public function test_renstra_draft_prints_and_downloads_as_word(): void
+    {
+        $this->seed(\Database\Seeders\BscRolePermissionSeeder::class);
+        $this->artisan('kinera:demo', ['perusahaan' => 'UNJ', '--password' => 'Contoh-2026!', '--force' => true]);
+        $company = Company::where('code', 'UNJ')->firstOrFail();
+        $period = AnalysisPeriod::where('company_id', $company->id)->where('is_active', true)->firstOrFail();
+        $this->actingAs(\App\Models\User::where('email', 'unj.rektor@contoh.local')->firstOrFail());
+        app(BscContext::class)->set($company->id, $period->id);
+
+        $svc = app(\App\Services\RenstraDraftService::class);
+        $d = $svc->build($period->year - 1);
+        $this->assertSame(range($period->year - 1, $period->year + 3), $d['years']);
+        $this->assertCount(12, $d['objectives']);
+        foreach ($d['kpiRows'] as $row) {
+            $this->assertEquals(round((float) $row['kpi']->annual_target, (int) $row['kpi']->decimals), $row['targets'][$period->year], $row['kpi']->code);
+            if ($row['kpi']->unit === '%') {
+                $this->assertLessThanOrEqual(100, max(array_filter($row['targets'], 'is_numeric')));
+            }
+        }
+
+        $this->get(route('renstra.print', ['mulai' => $period->year - 1]))->assertOk()
+            ->assertSee('RENCANA STRATEGIS')->assertSee('Bab IV')->assertSee('Lampiran 2')->assertSee('DATA DEMO');
+        $this->get(route('renstra.print', ['format' => 'word']))->assertOk()
+            ->assertHeader('Content-Type', 'application/msword; charset=UTF-8')
+            ->assertDownload('Draf-Renstra-unj-'.$period->year.'-'.($period->year + 4).'.doc');
+    }
+
     public function test_kpi_is_only_expected_in_its_reporting_months(): void
     {
         $due = fn (string $freq) => collect(range(1, 12))->filter(fn ($m) => (new Kpi(['frequency' => $freq]))->isDueIn($m))->values()->all();

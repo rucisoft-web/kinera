@@ -15,6 +15,11 @@ Route::middleware(['web', 'auth', \App\Http\Middleware\SetBscContext::class])
     ->get('/admin/kontrak-kinerja/cetak/{doc}/{contract}', \App\Http\Controllers\BluPrintController::class)
     ->name('blu.print');
 
+// Draf Renstra dari isian Kinera (cetak/PDF atau unduh Word)
+Route::middleware(['web', 'auth', \App\Http\Middleware\SetBscContext::class])
+    ->get('/admin/renstra/cetak', \App\Http\Controllers\RenstraController::class)
+    ->name('renstra.print');
+
 // Situs demo: masuk sebagai Tamu (hanya lihat), aktif bila KINERA_GUEST_LOGIN=true
 Route::middleware(['web', 'throttle:20,1'])
     ->get('/masuk-tamu', \App\Http\Controllers\GuestLoginController::class)
