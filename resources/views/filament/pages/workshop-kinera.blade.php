@@ -8,16 +8,16 @@
             ['08.30', '09.00', 'Pembukaan dan sambutan Kepala PSMPT UIN Sunan Kalijaga', 'Pusat Studi Manajemen Perguruan Tinggi membuka workshop dan memperkenalkan program kerja sama', 'open'],
             ['09.00', '10.15', 'Sesi 1 · Balanced Scorecard untuk sektor publik', 'Empat perspektif sektor publik dan hubungan sebab-akibat', 'talk'],
             ['10.15', '10.30', 'Rehat pagi', '', 'break'],
-            ['10.30', '12.00', 'Sesi 2 · SAKIP, Perjanjian Kinerja, dan IKU', 'Renstra, Renja, PK, dan LKjIP; modul Kontrak Kinerja bagi instansi berpola BLU', 'talk'],
+            ['10.30', '12.00', 'Sesi 2 · Anatomi scorecard: sasaran, ukuran, target, dan inisiatif', 'Ukuran hasil dan pendorong, 1–2 IKU per sasaran, dan inisiatif yang mendorongnya', 'talk'],
             ['12.00', '13.00', 'Ishoma', '', 'break'],
-            ['13.00', '14.45', 'Sesi 3 · Diagnosis kinerja dan penyusunan sasaran strategis', 'Membaca Renstra, Renja/RKA, dan capaian tahun lalu · latihan kelompok', 'work'],
+            ['13.00', '14.45', 'Sesi 3 · Diagnosis kinerja dan penyusunan sasaran strategis', 'Membaca dokumen strategi dan capaian tahun lalu · latihan kelompok', 'work'],
             ['14.45', '15.00', 'Rehat sore', '', 'break'],
             ['15.00', '16.30', 'Sesi 4 · Menyusun Peta Strategi dan Indikator Kinerja', 'Sasaran empat perspektif dan 2–4 IK per sasaran · latihan kelompok', 'work'],
         ]],
-        ['Hari 2', 'Perjanjian Kinerja dan implementasi dengan Kinera', [
+        ['Hari 2', 'Pengukuran kinerja dan implementasi dengan Kinera', [
             ['08.00', '10.15', 'Sesi 5 · Definisi operasional, target, dan trajektori triwulanan', 'Rumus, sumber data, metode pengujian, baseline, dan target · latihan kelompok', 'work'],
             ['10.15', '10.30', 'Rehat pagi', '', 'break'],
-            ['10.30', '12.00', 'Sesi 6 · Simulasi Perjanjian Kinerja', 'Perjanjian awal, perubahan, dan adendum di Kinera (termasuk Kontrak Kinerja BLU)', 'app'],
+            ['10.30', '12.00', 'Sesi 6 · Simulasi penetapan dan perubahan target', 'Kesepakatan target pimpinan dan perubahannya di Kinera (termasuk Kontrak Kinerja BLU)', 'app'],
             ['12.00', '13.00', 'Ishoma', '', 'break'],
             ['13.00', '14.30', 'Sesi 7 · Praktik aplikasi Kinera', 'Alur realisasi, verifikasi, dan capaian kinerja', 'app'],
             ['14.30', '15.30', 'Sesi 8 · Inisiatif strategis, temuan, dan tindak lanjut', 'Simulasi rapat pimpinan bersama APIP dan pengawas', 'app'],
@@ -32,13 +32,13 @@
             'Balanced Scorecard sebagai sistem manajemen strategi, bukan sekadar daftar IK.',
             'Empat perspektif sektor publik dan hubungan sebab-akibat antarsasaran.',
         ], 'Diskusi: hambatan mana yang paling terasa di instansi Anda?', [['Kenali Kinera', Pages\KenaliKinera::getUrl()]]],
-        ['2', 'Hari 1', 'SAKIP, Perjanjian Kinerja, dan IKU', '90 menit', [
-            'Siklus SAKIP: Renstra, Renja, Perjanjian Kinerja, pengukuran, dan LKjIP.',
-            'IKU dan IK Perjanjian Kinerja; perjanjian awal, perubahan, dan adendum.',
-            'Modul khusus instansi berpola BLU: Kontrak Kinerja PER-6/PB/2025, ambang capaian, dan syarat insentif.',
-        ], 'Membaca Perjanjian Kinerja contoh UIN Sunan Kalijaga (data demo).', [['Kontrak Kinerja', url('/admin/performance-contracts')], ['Capaian & Insentif', Pages\CapaianKinerjaBlu::getUrl()]]],
+        ['2', 'Hari 1', 'Anatomi scorecard: sasaran, ukuran, target, dan inisiatif', '90 menit', [
+            'Setiap sasaran punya satu baris scorecard: ukuran (IKU), target, dan inisiatif.',
+            'Ukuran hasil (lagging) dan pendorong (leading); 1–2 IKU per sasaran.',
+            'Membaca scorecard di Kinera: dari Peta Strategi ke IKU, target, dan inisiatif.',
+        ], 'Kelompok melengkapi dua baris scorecard untuk program instansi sendiri.', [['Peta Strategi', Pages\PetaStrategi::getUrl()], ['Pusat Kendali', Pages\PusatKendali::getUrl()]]],
         ['3', 'Hari 1', 'Diagnosis kinerja dan sasaran strategis', '105 menit', [
-            'Membaca Renstra, Renja/RKA, dan capaian tahun lalu untuk menemukan kesenjangan.',
+            'Membaca dokumen strategi dan capaian tahun lalu untuk menemukan kesenjangan.',
             'SWOT dan strategi TOWS sampai isu strategis dan tema.',
             'Sasaran yang baik: kata kerja + hasil, satu gagasan per sasaran.',
         ], 'Kelompok merumuskan isu strategis dan 8–12 sasaran untuk instansi sendiri atau studi kasus UIN Sunan Kalijaga.', [['SWOT', url('/admin/swot-items')], ['TOWS', url('/admin/tows-strategies')]]],
@@ -52,15 +52,15 @@
             'Baseline, target tahunan, dan trajektori triwulanan yang realistis.',
             'Pemilik IK, frekuensi pengukuran, dan agregasi tahun berjalan.',
         ], 'Melengkapi definisi operasional dan target triwulanan untuk IK hasil Hari 1.', [['Target IK', url('/admin/kpi-targets')]]],
-        ['6', 'Hari 2', 'Simulasi Perjanjian Kinerja', '90 menit', [
-            'Menyusun perjanjian awal di Kinera dari Peta Strategi dan IK.',
-            'Mencatat perubahan dan adendum secara berurutan.',
-            'Mencetak dokumen perjanjian, berita acara, dan lampiran (format Kontrak Kinerja BLU tersedia).',
-        ], 'Setiap kelompok menyusun satu Perjanjian Kinerja lalu mengajukan satu adendum.', [['Kontrak Kinerja', url('/admin/performance-contracts')]]],
+        ['6', 'Hari 2', 'Simulasi penetapan dan perubahan target', '90 menit', [
+            'Menyepakati scorecard pimpinan di Kinera dari Peta Strategi dan IK.',
+            'Mengubah target dengan alasan yang sah; setiap versi tercatat.',
+            'Mencetak dokumen kesepakatan target; instansi BLU memakai format Kontrak Kinerja.',
+        ], 'Setiap kelompok menyepakati satu scorecard pimpinan lalu mengajukan satu perubahan target.', [['Kontrak Kinerja', url('/admin/performance-contracts')]]],
         ['7', 'Hari 2', 'Praktik aplikasi Kinera', '90 menit', [
             'Alur realisasi: unit mengisi, keuangan memverifikasi, pimpinan menyetujui.',
             'Capaian per IK dan per sasaran dihitung otomatis.',
-            'Membaca Pusat Kendali dan indikator berisiko sebagai bahan LKjIP.',
+            'Membaca Pusat Kendali dan indikator berisiko sebagai bahan rapat pimpinan.',
         ], 'Bermain peran per jabatan: mengisi, memverifikasi, dan menyetujui realisasi satu triwulan.', [['Alur Kerja', Pages\AlurKerja::getUrl()], ['Pusat Kendali', Pages\PusatKendali::getUrl()]]],
         ['8', 'Hari 2', 'Inisiatif, temuan, dan tindak lanjut', '60 menit', [
             'Inisiatif strategis: PIC, anggaran, aktivitas, dan milestone; portofolio nilai–upaya.',
@@ -72,7 +72,7 @@
     $gains = [
         ['Draf Peta Strategi', 'Sasaran empat perspektif dengan hubungan sebab-akibat, bisa memakai instansi Anda sendiri.'],
         ['Daftar IK dan definisi operasional', 'Rumus, sumber data, pemilik, baseline, dan trajektori triwulanan.'],
-        ['Draf Perjanjian Kinerja', 'Disusun langsung di Kinera lengkap dengan adendum; format Kontrak Kinerja PER-6/PB/2025 bagi instansi berpola BLU.'],
+        ['Scorecard pimpinan dan targetnya', 'Disusun langsung di Kinera lengkap dengan riwayat perubahan; format Kontrak Kinerja PER-6/PB/2025 bagi instansi berpola BLU.'],
         ['Rencana aksi 90 hari', 'Langkah konkret memulai di instansi, ditambah materi PDF dan sertifikat.'],
     ];
 @endphp
@@ -81,8 +81,8 @@
     <section class="kenali-workshop ws-hero">
         <div>
             <span class="kenali-eyebrow">Workshop 2 hari · bersama PSMPT UIN Sunan Kalijaga</span>
-            <h2>Workshop 2 hari: dari strategi ke Perjanjian Kinerja</h2>
-            <p>Diselenggarakan bersama Pusat Studi Manajemen Perguruan Tinggi (PSMPT) UIN Sunan Kalijaga untuk pimpinan instansi pemerintah, termasuk perguruan tinggi negeri, APIP, serta tim perencanaan dan keuangan. Hari pertama membangun Balanced Scorecard dan Peta Strategi instansi; hari kedua menyusun Perjanjian Kinerja dan IKU (termasuk Kontrak Kinerja bagi instansi berpola BLU) dan mempraktikkannya di Kinera dengan data demo UIN Sunan Kalijaga.</p>
+            <h2>Workshop 2 hari: dari strategi ke scorecard yang dipantau</h2>
+            <p>Diselenggarakan bersama Pusat Studi Manajemen Perguruan Tinggi (PSMPT) UIN Sunan Kalijaga untuk pimpinan instansi pemerintah, termasuk perguruan tinggi negeri, APIP, serta tim perencanaan dan keuangan. Hari pertama membangun Balanced Scorecard dan Peta Strategi instansi; hari kedua melengkapi IKU dengan definisi operasional dan target, menyepakati scorecard pimpinan (termasuk Kontrak Kinerja bagi instansi berpola BLU), dan mempraktikkannya di Kinera dengan data demo UIN Sunan Kalijaga.</p>
             <div class="kenali-actions">
                 <a href="{{ $registerUrl }}" target="_blank" rel="noopener" class="arah-btn arah-btn-primary kenali-btn-lg">Daftar Workshop</a>
                 <a href="#rundown" class="arah-btn kenali-btn-lg">Lihat rundown</a>
@@ -159,7 +159,7 @@
         <h2>Persiapan peserta</h2>
         <div class="arah-grid arah-grid-3">
             <div class="arah-card"><h3>Siapa yang cocok ikut</h3><div class="arah-muted" style="font-size:.85rem; line-height:1.6">Pimpinan instansi pemerintah (K/L, pemerintah daerah, PTN/PTKIN, rumah sakit pemerintah), APIP, serta tim perencanaan dan keuangan. Paling efektif bila 3–5 orang dari instansi yang sama hadir bersama.</div></div>
-            <div class="arah-card"><h3>Yang perlu dibawa</h3><div class="arah-muted" style="font-size:.85rem; line-height:1.6">Laptop dengan peramban. Bila ingin berlatih dengan instansi sendiri, bawa Renstra, Renja/RKA, dan Perjanjian Kinerja (atau Kontrak Kinerja BLU) tahun berjalan.</div></div>
+            <div class="arah-card"><h3>Yang perlu dibawa</h3><div class="arah-muted" style="font-size:.85rem; line-height:1.6">Laptop dengan peramban. Bila ingin berlatih dengan instansi sendiri, bawa dokumen strategi dan daftar indikator kinerja instansi tahun berjalan.</div></div>
             <div class="arah-card"><h3>Setelah workshop</h3><div class="arah-muted" style="font-size:.85rem; line-height:1.6">Peserta menerima materi PDF, hasil kerja kelompok, template impor Excel, sertifikat, dan tawaran pendampingan implementasi (lihat <a href="{{ Pages\PanduanImplementasi::getUrl() }}" style="color:var(--k-taum); font-weight:600">Panduan Implementasi</a>).</div></div>
         </div>
     </section>

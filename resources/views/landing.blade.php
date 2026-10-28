@@ -301,8 +301,8 @@
                 </div>
                 <div class="l-rundown">
                     @foreach ([
-                        ['Hari 1', 'Balanced Scorecard dan Peta Strategi instansi', [['08.00', 'Registrasi peserta'], ['08.30', 'Pembukaan dan sambutan Kepala PSMPT UIN Sunan Kalijaga'], ['09.00', 'Balanced Scorecard untuk sektor publik: empat perspektif'], ['10.30', 'SAKIP, Perjanjian Kinerja, IKU, dan Kontrak Kinerja BLU'], ['13.00', 'Diagnosis kinerja dan penyusunan sasaran strategis'], ['15.00', 'Menyusun Peta Strategi dan Indikator Kinerja per kelompok']]],
-                        ['Hari 2', 'Pengukuran kinerja dan implementasi dengan Kinera', [['08.00', 'Definisi operasional, target, dan trajektori triwulanan'], ['10.30', 'Simulasi Perjanjian Kinerja dan perubahan target (termasuk Kontrak Kinerja BLU)'], ['13.00', 'Praktik aplikasi Kinera: alur realisasi, capaian, dan laporan'], ['14.30', 'Inisiatif strategis, temuan, dan tindak lanjut pengawas'], ['15.30', 'Rencana aksi 90 hari, penutupan, dan penyerahan sertifikat']]],
+                        ['Hari 1', 'Balanced Scorecard dan Peta Strategi instansi', [['08.00', 'Registrasi peserta'], ['08.30', 'Pembukaan dan sambutan Kepala PSMPT UIN Sunan Kalijaga'], ['09.00', 'Balanced Scorecard untuk sektor publik: empat perspektif'], ['10.30', 'Anatomi scorecard: sasaran, ukuran, target, dan inisiatif'], ['13.00', 'Diagnosis kinerja dan penyusunan sasaran strategis'], ['15.00', 'Menyusun Peta Strategi dan Indikator Kinerja per kelompok']]],
+                        ['Hari 2', 'Pengukuran kinerja dan implementasi dengan Kinera', [['08.00', 'Definisi operasional, target, dan trajektori triwulanan'], ['10.30', 'Simulasi penetapan dan perubahan target (termasuk Kontrak Kinerja BLU)'], ['13.00', 'Praktik aplikasi Kinera: alur realisasi, capaian, dan laporan'], ['14.30', 'Inisiatif strategis, temuan, dan tindak lanjut pengawas'], ['15.30', 'Rencana aksi 90 hari, penutupan, dan penyerahan sertifikat']]],
                     ] as [$day, $theme, $rows])
                         <div class="l-day-card">
                             <div class="l-day-title"><span>{{ $day }}</span>{{ $theme }}</div>
@@ -314,7 +314,7 @@
                     <a href="{{ $wa('Halo Rucisoft, saya ingin mendaftar Workshop Kinera 2 hari.') }}" target="_blank" rel="noopener" class="l-btn l-btn-primary">Daftar via WhatsApp</a>
                     <a href="{{ $brosur }}" class="l-btn" download>Unduh brosur (PDF)</a>
                 </div>
-                <p class="l-cta-note">Hasil yang dibawa pulang: draf Peta Strategi, daftar indikator dan Definisi Operasional, draf Perjanjian Kinerja (atau Kontrak Kinerja bagi BLU), dan rencana aksi 90 hari.</p>
+                <p class="l-cta-note">Hasil yang dibawa pulang: draf Peta Strategi, daftar indikator dan Definisi Operasional, scorecard pimpinan beserta targetnya (format Kontrak Kinerja bagi BLU), dan rencana aksi 90 hari.</p>
             </div>
         </div>
     </section>

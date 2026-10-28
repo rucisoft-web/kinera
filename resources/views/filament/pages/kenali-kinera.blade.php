@@ -263,7 +263,7 @@
                 <ul>
                     <li>Draf Peta Strategi empat perspektif</li>
                     <li>Daftar Indikator Kinerja dan definisi operasionalnya</li>
-                    <li>Draf Perjanjian Kinerja (dan Kontrak Kinerja bagi instansi BLU)</li>
+                    <li>Scorecard pimpinan beserta targetnya (format Kontrak Kinerja bagi instansi BLU)</li>
                     <li>Pengalaman memakai Kinera: alur realisasi, capaian, dan laporan</li>
                     <li>Rencana aksi 90 hari, materi PDF, dan sertifikat</li>
                 </ul>
@@ -278,10 +278,10 @@
         </div>
         <ol class="kenali-agenda">
             <li><b>Hari 1 · Balanced Scorecard untuk sektor publik</b><span>Pembukaan oleh Kepala PSMPT, empat perspektif sektor publik</span></li>
-            <li><b>Hari 1 · SAKIP, Perjanjian Kinerja, dan IKU</b><span>Termasuk Kontrak Kinerja Pemimpin BLU (PER-6/PB/2025)</span></li>
+            <li><b>Hari 1 · Anatomi scorecard</b><span>Sasaran, ukuran hasil dan pendorong, target, dan inisiatif</span></li>
             <li><b>Hari 1 · Peta Strategi dan Indikator Kinerja</b><span>Diagnosis kinerja, sasaran strategis, latihan kelompok</span></li>
             <li><b>Hari 2 · Definisi operasional dan target</b><span>Rumus, sumber data, trajektori triwulanan</span></li>
-            <li><b>Hari 2 · Simulasi Perjanjian Kinerja</b><span>Target, perubahan, dan Kontrak Kinerja BLU di Kinera</span></li>
+            <li><b>Hari 2 · Simulasi penetapan target</b><span>Kesepakatan target, perubahan, dan Kontrak Kinerja BLU di Kinera</span></li>
             <li><b>Hari 2 · Praktik Kinera dan rencana aksi</b><span>Realisasi, capaian, temuan, rencana aksi 90 hari</span></li>
         </ol>
     </section>
