@@ -53,7 +53,7 @@ class WorkPlanService
         $profile = AtmanProfile::first();
 
         $objectives = StrategicObjective::with(['owner', 'kpis' => fn ($q) => $q->where('is_active', true)->orderBy('code')])
-            ->orderByRaw("CASE perspective WHEN 'keuangan' THEN 1 WHEN 'pelanggan' THEN 2 WHEN 'proses' THEN 3 ELSE 4 END")
+            ->orderByRaw("CASE perspective WHEN 'pelanggan' THEN 1 WHEN 'keuangan' THEN 2 WHEN 'proses' THEN 3 ELSE 4 END")
             ->orderBy('sort')->orderBy('code')->get()
             ->map(fn (StrategicObjective $o) => [
                 'kode' => $o->code,

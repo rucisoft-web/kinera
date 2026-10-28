@@ -3,15 +3,15 @@
     $p = $perspectives;
 
     // Diagram peta strategi: 4 lapis perspektif, panah sebab-akibat dari bawah ke atas
-    $lanes = ['keuangan', 'pelanggan', 'proses', 'sdm'];
+    $lanes = \App\Support\Terms::PERSPECTIVES;
     $cy = fn (int $lane) => 10 + $lane * 100 + 46;
     $nodes = [
-        'f1' => [0, 390, 'Anggaran tepat sasaran'], 'f2' => [0, 690, 'Akuntabilitas keuangan'],
-        'c1' => [1, 390, 'Layanan memuaskan'], 'c2' => [1, 690, 'Kepercayaan publik naik'],
+        'c1' => [0, 290, 'Layanan memuaskan'], 'c2' => [0, 540, 'Kepercayaan publik naik'],
+        'f1' => [1, 415, 'Anggaran tepat sasaran'], 'f2' => [1, 790, 'Akuntabilitas keuangan'],
         'p1' => [2, 290, 'Mutu layanan andal'], 'p2' => [2, 540, 'Inovasi layanan'], 'p3' => [2, 790, 'Operasi efisien'],
         'l1' => [3, 290, 'ASN kompeten'], 'l2' => [3, 540, 'Sistem informasi terpadu'], 'l3' => [3, 790, 'Budaya kinerja'],
     ];
-    $links = [['l1', 'p1'], ['l2', 'p2'], ['l2', 'p3'], ['l3', 'p3'], ['p1', 'c1'], ['p2', 'c2'], ['p3', 'f2'], ['c1', 'f1'], ['c2', 'f1']];
+    $links = [['l1', 'p1'], ['l2', 'p2'], ['l2', 'p3'], ['l3', 'p3'], ['p1', 'c1'], ['p2', 'c2'], ['p3', 'f2'], ['f1', 'c1'], ['f2', 'c2']];
 
     // Diagram siklus bulanan: 5 simpul melingkar
     $R = 130; $cx0 = 210; $cy0 = 200;
@@ -106,7 +106,7 @@
                         @php [$la, $xa] = $nodes[$from]; [$lb, $xb] = $nodes[$to]; @endphp
                         <path d="M{{ $xa }} {{ $cy($la) - 23 }} C {{ $xa }} {{ $cy($la) - 60 }}, {{ $xb }} {{ $cy($lb) + 60 }}, {{ $xb }} {{ $cy($lb) + 25 }}" class="kn-link" marker-end="url(#kn-arrow)"/>
                     @endforeach
-                    <path d="M{{ $nodes['f1'][1] + 100 }} {{ $cy(0) }} L{{ $nodes['f2'][1] - 104 }} {{ $cy(0) }}" class="kn-link" marker-end="url(#kn-arrow)"/>
+                    <path d="M{{ $nodes['f1'][1] + 100 }} {{ $cy(1) }} L{{ $nodes['f2'][1] - 104 }} {{ $cy(1) }}" class="kn-link" marker-end="url(#kn-arrow)"/>
                     @foreach ($nodes as [$lane, $x, $label])
                         <rect x="{{ $x - 98 }}" y="{{ $cy($lane) - 23 }}" width="196" height="46" rx="8" class="kn-card" stroke="{{ $p[$lanes[$lane]]['color'] }}"/>
                         <text x="{{ $x }}" y="{{ $cy($lane) + 4 }}" text-anchor="middle" class="kn-card-t">{{ $label }}</text>
@@ -114,7 +114,7 @@
                 </svg>
             </div>
             <div class="kenali-explain">
-                <p>Peta Strategi menunjukkan <b>hubungan sebab-akibat</b>: SDM dan sistem yang kuat memperbaiki proses, proses yang baik menghasilkan layanan yang memuaskan masyarakat, dan layanan yang baik menjadi bukti anggaran dipakai tepat sasaran.</p>
+                <p>Peta Strategi menunjukkan <b>hubungan sebab-akibat</b>: SDM dan sistem yang kuat memperbaiki proses, proses yang baik menghasilkan layanan yang memuaskan masyarakat, sementara anggaran yang tepat sasaran dan akuntabel menopangnya. Di sektor publik, <b>pemangku kepentingan berada di puncak peta</b>.</p>
                 <ul>
                     <li><span class="arah-dot" style="background: {{ $p['keuangan']['color'] }}"></span><b>{{ $p['keuangan']['label'] }}</b>: anggaran yang efektif, efisien, dan akuntabel.</li>
                     <li><span class="arah-dot" style="background: {{ $p['pelanggan']['color'] }}"></span><b>{{ $p['pelanggan']['label'] }}</b>: manfaat yang dijanjikan kepada masyarakat dan pengguna layanan.</li>

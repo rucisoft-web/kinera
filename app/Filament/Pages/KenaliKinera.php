@@ -42,7 +42,7 @@ class KenaliKinera extends Page
                 ['Tgl '.$c['meeting_day'], 'Rapat', 'Rapat manajemen membahas sasaran merah/kuning, memutuskan tindakan korektif.'],
             ],
             'phases' => collect(Terms::PHASES)->map(fn ($k) => Terms::get($k))->all(),
-            'perspectives' => collect(['keuangan', 'pelanggan', 'proses', 'sdm'])
+            'perspectives' => collect(Terms::PERSPECTIVES)
                 ->mapWithKeys(fn ($k) => [$k => ['label' => Terms::get($k), 'color' => Terms::perspectiveColor($k)]])->all(),
         ];
     }

@@ -36,7 +36,7 @@
                 <span class="label">Skor strategis {{ $lastMonth ? 's.d. '.Terms::months()[$lastMonth] : '' }}</span>
                 <span class="arah-badge {{ $badge($overall['status']) }}" style="font-size:.85rem">{{ strtoupper($overall['status'] ?? 'belum ada data') }}</span>
                 <span class="sub">Hijau ≥ {{ config('bsc.score_green') }} · Kuning ≥ {{ config('bsc.score_yellow') }} · Merah &lt; {{ config('bsc.score_yellow') }}</span>
-                <span class="sub">Bobot: @foreach (['keuangan', 'pelanggan', 'proses', 'sdm'] as $p){{ \App\Support\Terms::get($p) }} {{ config('bsc.perspective_weights.'.$p) }}%@if (! $loop->last), @endif @endforeach</span>
+                <span class="sub">Bobot: @foreach (\App\Support\Terms::PERSPECTIVES as $p){{ \App\Support\Terms::get($p) }} {{ config('bsc.perspective_weights.'.$p) }}%@if (! $loop->last), @endif @endforeach</span>
             </div>
         </div>
         <div class="arah-card">

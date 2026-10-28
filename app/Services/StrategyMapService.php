@@ -14,7 +14,7 @@ class StrategyMapService
     {
         $objectives = $this->score->objectives();
         $lanes = [];
-        $order = ['keuangan', 'pelanggan', 'proses', 'sdm'];
+        $order = Terms::PERSPECTIVES;
         $laneHeight = 170;
         $cardW = 210;
         $cardH = 92;

@@ -4,7 +4,8 @@ namespace App\Support;
 
 class Terms
 {
-    public const PERSPECTIVES = ['keuangan', 'pelanggan', 'proses', 'sdm'];
+    /** Urutan sektor publik dari atas: pemangku kepentingan di puncak, keuangan sebagai penopang. */
+    public const PERSPECTIVES = ['pelanggan', 'keuangan', 'proses', 'sdm'];
 
     public const PHASES = ['brahman', 'atman', 'karma_phala', 'punarbhawa', 'moksa'];
 

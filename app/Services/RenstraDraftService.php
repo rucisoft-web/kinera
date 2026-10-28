@@ -47,7 +47,7 @@ class RenstraDraftService
         $years = range($start, $start + 4);
 
         $objectives = StrategicObjective::with(['theme', 'owner', 'kpis' => fn ($q) => $q->where('is_active', true)->orderBy('code')->with('owner')])
-            ->orderByRaw("CASE perspective WHEN 'keuangan' THEN 1 WHEN 'pelanggan' THEN 2 WHEN 'proses' THEN 3 ELSE 4 END")
+            ->orderByRaw("CASE perspective WHEN 'pelanggan' THEN 1 WHEN 'keuangan' THEN 2 WHEN 'proses' THEN 3 ELSE 4 END")
             ->orderBy('sort')->orderBy('code')->get();
 
         $kpis = $objectives->flatMap->kpis->values();

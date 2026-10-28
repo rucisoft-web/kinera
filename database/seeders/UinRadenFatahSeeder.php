@@ -356,7 +356,7 @@ class UinRadenFatahSeeder extends ShowcaseSeeder
         foreach ([
             ['L1', 'P1', 3], ['L1', 'P3', 2], ['L2', 'C3', 3], ['L2', 'P2', 2], ['L3', 'C1', 2], ['L3', 'P3', 2],
             ['P1', 'C1', 3], ['P1', 'C2', 3], ['P2', 'C3', 2], ['P3', 'F2', 3], ['P4', 'F1', 3], ['P4', 'C1', 2],
-            ['C1', 'F1', 3], ['C2', 'C1', 2], ['C3', 'F1', 2], ['F1', 'F2', 2],
+            ['F1', 'C1', 3], ['C2', 'C1', 2], ['F1', 'C3', 2], ['F1', 'F2', 2],
         ] as [$s, $t, $str]) {
             ObjectiveRelation::create(['source_objective_id' => $obj[$s]->id, 'target_objective_id' => $obj[$t]->id, 'strength' => $str]);
         }
