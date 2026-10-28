@@ -116,6 +116,13 @@ KINERA_NOTIFY_MAIL=true
 KINERA_SEED_DEMO=false
 # situs demo/promosi: tombol "Masuk sebagai Tamu" (hanya lihat), lihat bagian 8
 KINERA_GUEST_LOGIN=false
+
+# Rencana Kerja (AI): isi kunci API Anthropic untuk menyusun draf dengan Claude.
+# Kosongkan bila tidak dipakai; menu Rencana Kerja (AI) tetap jalan dalam mode contoh tanpa AI.
+# Data isian dan lampiran yang dipilih pengguna dikirim ke Anthropic saat menyusun draf.
+ANTHROPIC_API_KEY=
+ANTHROPIC_MODEL=claude-opus-5-5
+ANTHROPIC_EFFORT=medium
 ```
 
 Biarkan `APP_KEY=` kosong; nilainya diisi otomatis oleh `php artisan key:generate` di langkah 6 (baris ini harus ada, kalau tidak muncul error *No APP_KEY variable was found*).

@@ -20,6 +20,11 @@ Route::middleware(['web', 'auth', \App\Http\Middleware\SetBscContext::class])
     ->get('/admin/renstra/cetak', \App\Http\Controllers\RenstraController::class)
     ->name('renstra.print');
 
+// Draf Rencana Kerja (disusun Claude atau mode contoh)
+Route::middleware(['web', 'auth', \App\Http\Middleware\SetBscContext::class])
+    ->get('/admin/rencana-kerja/cetak/{draft}', \App\Http\Controllers\WorkPlanController::class)
+    ->name('workplan.print');
+
 // Situs demo: masuk sebagai Tamu (hanya lihat), aktif bila KINERA_GUEST_LOGIN=true
 Route::middleware(['web', 'throttle:20,1'])
     ->get('/masuk-tamu', \App\Http\Controllers\GuestLoginController::class)
