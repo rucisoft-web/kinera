@@ -11,9 +11,6 @@ use App\Support\BscContext;
 use Database\Seeders\BscRolePermissionSeeder;
 use Database\Seeders\MaturityQuestionSeeder;
 use Database\Seeders\ShowcaseSeeder;
-use Database\Seeders\UinRadenFatahSeeder;
-use Database\Seeders\UinSuskaRiauSeeder;
-use Database\Seeders\UnjSeeder;
 use Database\Seeders\UinSukaSeeder;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
@@ -23,15 +20,15 @@ use Illuminate\Support\Str;
 class DemoCompany extends Command
 {
     /** @var array<string,class-string<ShowcaseSeeder>> */
-    public const DEMOS = ['UINSUKA' => UinSukaSeeder::class, 'UINRF' => UinRadenFatahSeeder::class, 'UINSUSKA' => UinSuskaRiauSeeder::class, 'UNJ' => UnjSeeder::class];
+    public const DEMOS = ['UINSUKA' => UinSukaSeeder::class];
 
     protected $signature = 'kinera:demo
-        {perusahaan=UINSUKA : Kode demo instansi: UINSUKA (UIN Sunan Kalijaga Yogyakarta), UINRF (UIN Raden Fatah Palembang), UINSUSKA (UIN Suska Riau), UNJ (Universitas Negeri Jakarta, non-BLU)}
+        {perusahaan=UINSUKA : Kode demo instansi: UINSUKA (UIN Sunan Kalijaga Yogyakarta, Renstra 2025–2029)}
         {--password= : Kata sandi akun contoh instansi itu (bila kosong dibuat acak dan ditampilkan)}
         {--reset : Hapus dulu data instansi itu untuk perioda 2025 & 2026 yang sudah ada}
         {--force : Lewati konfirmasi}';
 
-    protected $description = 'Muat demo lengkap instansi (UIN Sunan Kalijaga, UIN Raden Fatah, UIN Suska Riau) (Strategy Map, Indikator Kinerja, Kontrak Kinerja, inisiatif, tinjauan) perioda 2025 & 2026';
+    protected $description = 'Muat demo lengkap UIN Sunan Kalijaga (Renstra 2025–2029) (Strategy Map, Indikator Kinerja, Kontrak Kinerja, inisiatif, tinjauan) perioda 2025 & 2026';
 
     protected $aliases = ['kinera:demo-uin'];
 

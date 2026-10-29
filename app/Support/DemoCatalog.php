@@ -11,10 +11,7 @@ class DemoCatalog
 {
     /** [kode, nama, sektor, pelajaran utama] */
     public const CASES = [
-        ['UINSUKA', 'UIN Sunan Kalijaga Yogyakarta', 'PTKIN berpola BLU (Kementerian Agama)', 'Kontrak Kinerja Pemimpin BLU: PNBP 99,48% & pendapatan kerja sama di bawah 65% menggugurkan syarat insentif; adendum 2025 dan usulan perubahan 2026.'],
-        ['UINRF', 'UIN Raden Fatah Palembang', 'PTKIN berpola BLU (Kementerian Agama)', 'Target Perjanjian Kinerja terlalu rendah (capaian sampai 553%, dibatasi capaian maksimum), PNBP bergantung UKT, dan belanja modal 72,55%; usulan perubahan target akreditasi 2026.'],
-        ['UINSUSKA', 'UIN Sultan Syarif Kasim Riau', 'PTKIN berpola BLU (Kementerian Agama)', 'Perjanjian Kinerja dan Kontrak Kinerja belum selaras (pertumbuhan mahasiswa 6,70% vs 1%), dana BLU terserap 87,76%, pendapatan aset di bawah 65%; usulan perubahan target dosen bersertifikat pendidik mengikuti PK 2026.'],
-        ['UNJ', 'Universitas Negeri Jakarta', 'PTN Badan Hukum, bukan BLU (Kemdiktisaintek)', 'Pengukuran kinerja tanpa modul BLU: IKU PTN dari Renstra 2025–2029 dan 13 Program Kerja 2026 (Rp51,58 M) sebagai inisiatif; prodi berstandar internasional dan pendapatan kerja sama tertinggal, publikasi Q1 melampaui target.'],
+        ['UINSUKA', 'UIN Sunan Kalijaga Yogyakarta', 'PTKIN berpola BLU (Kementerian Agama)', 'Renstra 2025–2029 diturunkan ke peta strategi: 8 Sasaran Program, IKSP/IKSK, 7 strategi transformasi menuju PTNBH & Kampus 2; Kontrak Kinerja BLU dengan PNBP 99,48% dan pendapatan kerja sama di bawah 65%, serta usulan perubahan target 2026.'],
     ];
 
     /** Perioda pembuka sebuah instansi: tahun berjalan (aktif) lebih dulu, lalu tahun terbaru. */

@@ -17,10 +17,7 @@ class ShowcaseDemoTest extends TestCase
     public static function demos(): array
     {
         return [
-            'UIN Sunan Kalijaga' => ['UINSUKA', 12, 6, 'Audited TA 2025'],
-            'UIN Raden Fatah' => ['UINRF', 12, 6, 'LKjIP 2025'],
-            'UIN Suska Riau' => ['UINSUSKA', 12, 6, 'Kontrak Kinerja'],
-            'Universitas Negeri Jakarta' => ['UNJ', 12, 6, 'Program Kerja UNJ'],
+            'UIN Sunan Kalijaga' => ['UINSUKA', 14, 9, 'Renstra UIN Sunan Kalijaga 2025–2029'],
         ];
     }
 
@@ -71,39 +68,41 @@ class ShowcaseDemoTest extends TestCase
         $this->seed(\Database\Seeders\DemoSeeder::class);
         $this->seed(\Database\Seeders\DemoSeeder::class);
 
-        $this->assertSame(['UINRF', 'UINSUKA', 'UINSUSKA', 'UNJ'], Company::orderBy('code')->pluck('code')->all());
-        $this->assertSame(8, AnalysisPeriod::count());
+        $this->assertSame(['UINSUKA'], Company::orderBy('code')->pluck('code')->all());
+        $this->assertSame(2, AnalysisPeriod::count());
     }
 
     public function test_blu_module_is_hidden_for_non_blu_instansi(): void
     {
         $this->seed(\Database\Seeders\BscRolePermissionSeeder::class);
-        $this->artisan('kinera:demo', ['perusahaan' => 'UNJ', '--password' => 'Contoh-2026!', '--force' => true]);
-        $this->artisan('kinera:demo', ['perusahaan' => 'UINRF', '--password' => 'Contoh-2026!', '--force' => true]);
+        $this->artisan('kinera:demo', ['perusahaan' => 'UINSUKA', '--password' => 'Contoh-2026!', '--force' => true]);
+        $company = Company::where('code', 'UINSUKA')->firstOrFail();
+        $this->actingAs(\App\Models\User::where('email', 'uinsuka.rektor@contoh.local')->firstOrFail());
+        app(BscContext::class)->set($company->id, AnalysisPeriod::where('company_id', $company->id)->where('is_active', true)->value('id'));
 
-        foreach (['UNJ' => false, 'UINRF' => true] as $code => $blu) {
-            $company = Company::where('code', $code)->firstOrFail();
-            $this->actingAs(\App\Models\User::where('email', strtolower($code).'.rektor@contoh.local')->firstOrFail());
+        foreach ([true, false] as $blu) {
+            $company->update(['blu_field' => $blu ? 'pendidikan' : null, 'blu_since' => null]);
+            app(BscContext::class)->clear();
             app(BscContext::class)->set($company->id, AnalysisPeriod::where('company_id', $company->id)->where('is_active', true)->value('id'));
-            $this->assertSame($blu, \App\Support\BluModule::enabled(), $code);
-            $this->assertSame($blu, \App\Filament\Pages\CapaianKinerjaBlu::canAccess(), $code);
-            $this->assertSame($blu, \App\Filament\Resources\PerformanceContracts\PerformanceContractResource::canViewAny(), $code);
+            $this->assertSame($blu, \App\Support\BluModule::enabled());
+            $this->assertSame($blu, \App\Filament\Pages\CapaianKinerjaBlu::canAccess());
+            $this->assertSame($blu, \App\Filament\Resources\PerformanceContracts\PerformanceContractResource::canViewAny());
         }
     }
 
     public function test_renstra_draft_prints_and_downloads_as_word(): void
     {
         $this->seed(\Database\Seeders\BscRolePermissionSeeder::class);
-        $this->artisan('kinera:demo', ['perusahaan' => 'UNJ', '--password' => 'Contoh-2026!', '--force' => true]);
-        $company = Company::where('code', 'UNJ')->firstOrFail();
+        $this->artisan('kinera:demo', ['perusahaan' => 'UINSUKA', '--password' => 'Contoh-2026!', '--force' => true]);
+        $company = Company::where('code', 'UINSUKA')->firstOrFail();
         $period = AnalysisPeriod::where('company_id', $company->id)->where('is_active', true)->firstOrFail();
-        $this->actingAs(\App\Models\User::where('email', 'unj.rektor@contoh.local')->firstOrFail());
+        $this->actingAs(\App\Models\User::where('email', 'uinsuka.rektor@contoh.local')->firstOrFail());
         app(BscContext::class)->set($company->id, $period->id);
 
         $svc = app(\App\Services\RenstraDraftService::class);
         $d = $svc->build($period->year - 1);
         $this->assertSame(range($period->year - 1, $period->year + 3), $d['years']);
-        $this->assertCount(12, $d['objectives']);
+        $this->assertCount(14, $d['objectives']);
         foreach ($d['kpiRows'] as $row) {
             $this->assertEquals(round((float) $row['kpi']->annual_target, (int) $row['kpi']->decimals), $row['targets'][$period->year], $row['kpi']->code);
             if ($row['kpi']->unit === '%') {
@@ -115,7 +114,7 @@ class ShowcaseDemoTest extends TestCase
             ->assertSee('RENCANA STRATEGIS')->assertSee('Bab IV')->assertSee('Lampiran 2')->assertSee('DATA DEMO');
         $this->get(route('renstra.print', ['format' => 'word']))->assertOk()
             ->assertHeader('Content-Type', 'application/msword; charset=UTF-8')
-            ->assertDownload('Draf-Renstra-unj-'.$period->year.'-'.($period->year + 4).'.doc');
+            ->assertDownload('Draf-Renstra-uinsuka-'.$period->year.'-'.($period->year + 4).'.doc');
     }
 
     public function test_kpi_is_only_expected_in_its_reporting_months(): void

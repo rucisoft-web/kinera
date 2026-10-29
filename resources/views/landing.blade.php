@@ -213,7 +213,7 @@
         <div class="l-wrap">
             <span class="l-eyebrow">Coba sendiri, tanpa akun</span>
             <h2>Data demo tahun berjalan {{ $year }}</h2>
-            <p class="l-lead">Masuk sebagai Tamu pada perioda {{ $year }} (proyeksi). Contoh juga berisi perioda tahun sebelumnya yang sudah ditutup, lengkap dengan capaian indikator. Tiga kampus contoh berpola BLU sehingga Kontrak Kinerja beserta adendumnya ikut tampil; Universitas Negeri Jakarta (PTN Badan Hukum) menunjukkan pengukuran kinerja tanpa modul BLU.</p>
+            <p class="l-lead">Masuk sebagai Tamu pada perioda {{ $year }} (proyeksi). Contoh juga berisi perioda tahun sebelumnya yang sudah ditutup, lengkap dengan capaian indikator. Kampus contoh UIN Sunan Kalijaga Yogyakarta disusun dari Renstra 2025–2029 dan berpola BLU, sehingga peta strategi, indikator, inisiatif, Kontrak Kinerja beserta adendumnya, hingga draf Renstra dan Rencana Kerja ikut tampil.</p>
             <div class="l-demo-warn" role="note"><span class="l-tag l-tag-inline">Data demo</span><span>Hanya data demo untuk keperluan memaksimalkan penyajian fitur-fitur perangkat lunak. Angka 2025 sebagian mengacu pada dokumen publik masing-masing kampus (laporan keuangan, Perjanjian Kinerja, LKjIP/Laporan Kinerja, dan Renstra); rincian triwulanan, Kontrak Kinerja, sebagian realisasi indikator, dan seluruh data {{ $year }} (proyeksi) adalah simulasi. Bukan data resmi kampus tersebut maupun kementerian terkait.</span></div>
             @if ($cases === [])
                 <p class="l-card">Data contoh belum dipasang. Jalankan <code>php artisan kinera:demo</code> di server.</p>
@@ -353,7 +353,7 @@
         <img src="{{ asset('images/kinera-logo.svg') }}" alt="Kinera" class="l-foot-logo">
         <p><b>Kinera</b> · <a href="https://rucisoft.id" target="_blank" rel="noopener">Rucisoft</a> · bekerja sama dengan Pusat Studi Manajemen Perguruan Tinggi UIN Sunan Kalijaga</p>
         <p><a href="mailto:{{ $email }}">{{ $email }}</a> · <a href="{{ $wa('Halo Rucisoft, saya tertarik dengan Kinera.') }}" target="_blank" rel="noopener">WhatsApp {{ preg_replace('/^62(\d{3})(\d{4})(\d+)$/', '0$1-$2-$3', $whatsapp) }}</a></p>
-        <p class="l-foot-warn"><b>DATA DEMO:</b> hanya untuk keperluan memaksimalkan penyajian fitur-fitur perangkat lunak. Sebagian angka 2025 mengacu pada dokumen publik kampus contoh (UIN Sunan Kalijaga, UIN Raden Fatah, UIN Suska Riau); selebihnya simulasi dan proyeksi, dan bukan data resmi kampus tersebut, Kementerian Agama, maupun Kementerian Keuangan.</p>
+        <p class="l-foot-warn"><b>DATA DEMO:</b> hanya untuk keperluan memaksimalkan penyajian fitur-fitur perangkat lunak. Sebagian angka 2025 mengacu pada dokumen publik kampus contoh (Renstra 2025–2029 dan Laporan Keuangan BLU 2025 UIN Sunan Kalijaga); selebihnya simulasi dan proyeksi, dan bukan data resmi kampus tersebut, Kementerian Agama, maupun Kementerian Keuangan.</p>
     </div>
 </footer>
 </body>

@@ -177,23 +177,20 @@ Cron ini menjalankan pengingat harian (07.30 WIB), antrian notifikasi, dan pembe
 
 ### Memuat data demo (untuk presentasi)
 
-Tersedia empat demo lengkap. Tiga di antaranya PTKIN berpola BLU di bawah Kementerian Agama sehingga modul Kontrak Kinerja BLU ikut terisi: **UINSUKA** (UIN Sunan Kalijaga Yogyakarta), **UINRF** (UIN Raden Fatah Palembang), dan **UINSUSKA** (UIN Sultan Syarif Kasim Riau). Demo keempat, **UNJ** (Universitas Negeri Jakarta, PTN Badan Hukum), bukan BLU: menu Kontrak Kinerja BLU dan Capaian & Insentif tidak tampil, dan pengukuran kinerja memakai IKU, Perjanjian Kinerja, serta 13 Program Kerja 2026 sebagai inisiatif.
+Tersedia satu demo lengkap: **UINSUKA** (UIN Sunan Kalijaga Yogyakarta), PTKIN berpola BLU di bawah Kementerian Agama, disusun dari Renstra 2025–2029 sehingga seluruh menu (peta strategi, indikator, inisiatif, Kontrak Kinerja BLU, Capaian & Insentif, Draf Renstra, Rencana Kerja, Import Data, Log Audit) dan grafik dashboard terisi.
 
 Menu khusus BLU hanya tampil untuk instansi yang mengisi *Bidang layanan (khusus BLU)* atau *Menerapkan PK-BLU sejak* di data instansi.
 
-> **Peringatan:** isinya DATA DEMO, hanya untuk keperluan memaksimalkan penyajian fitur-fitur perangkat lunak. Angka 2025 sebagian mengacu pada Laporan Keuangan BLU Audited TA 2025, Perjanjian Kinerja 2025, dan RSB 2020–2024 UIN Sunan Kalijaga; rincian triwulanan, Kontrak Kinerja, realisasi indikator layanan, dan seluruh data 2026 (proyeksi) adalah simulasi. Bukan data resmi UIN Sunan Kalijaga, Kementerian Agama, maupun Kementerian Keuangan. Peringatan ini tampil otomatis di setiap halaman dan setiap cetakan.
+> **Peringatan:** isinya DATA DEMO, hanya untuk keperluan memaksimalkan penyajian fitur-fitur perangkat lunak. Kerangka strategi mengacu pada Renstra UIN Sunan Kalijaga 2025–2029 dan angka keuangan 2025 pada Laporan Keuangan BLU Audited TA 2025; rincian bulanan, Kontrak Kinerja, realisasi indikator layanan, dan seluruh data 2026 (proyeksi) adalah simulasi. Bukan data resmi UIN Sunan Kalijaga, Kementerian Agama, maupun Kementerian Keuangan. Peringatan ini tampil otomatis di setiap halaman dan setiap cetakan.
 
 ```bash
 cd ~/kinera
 php artisan kinera:demo UINSUKA
-php artisan kinera:demo UINRF
-php artisan kinera:demo UINSUSKA
-php artisan kinera:demo UNJ
 ```
 
-Atau sekaligus: `php artisan db:seed --class=DemoSeeder --force` (demo yang sudah terpasang dilewati).
+Atau: `php artisan db:seed --class=DemoSeeder --force` (dilewati bila demo sudah terpasang).
 
-Setiap perintah membuat instansi dengan perioda 2025 (ditutup) dan 2026 (berjalan, proyeksi), lengkap dengan peta strategi, 25 Indikator Kinerja beserta Definisi Operasional, **Kontrak Kinerja** (awal, adendum 2025, usulan perubahan 2026), capaian & syarat insentif, inisiatif, ekosistem, tinjauan, temuan, dan kematangan, serta akun `uinsuka.*` (@contoh.local). Kata sandi akun tersebut dibuat acak dan ditampilkan di layar; untuk menentukannya sendiri tambahkan `--password=SandiAnda123`.
+Perintah ini membuat instansi dengan perioda 2025 (ditutup) dan 2026 (berjalan, proyeksi), lengkap dengan peta strategi 14 sasaran, 39 Indikator Kinerja beserta Definisi Operasional, **Kontrak Kinerja** (awal, adendum 2025, usulan perubahan 2026), capaian & syarat insentif, inisiatif, ekosistem, tinjauan, temuan, kematangan, riwayat import, draf Rencana Kerja, dan log audit, serta akun `uinsuka.*` (@contoh.local). Kata sandi akun tersebut dibuat acak dan ditampilkan di layar; untuk menentukannya sendiri tambahkan `--password=SandiAnda123`.
 
 Bila instansi itu sudah punya perioda 2025 atau 2026 (misalnya dari import Excel sebelumnya), perintah menolak berjalan. Tambahkan `--reset --force` untuk menghapus data kedua perioda itu dan menggantinya dengan data demo. Lewat cron sekali jalan (seperti bagian 6): `cd /home/userku/kinera && php artisan kinera:demo UINSUKA --force --password=SandiAnda123 > storage/logs/demo.txt 2>&1`, lalu jalankan `php artisan optimize` dengan cara yang sama.
 
@@ -238,6 +235,8 @@ php artisan up
 Tanpa Terminal: upload zip versi baru, ekstrak menimpa folder `kinera` (zip tidak berisi `.env`, dan isi folder `storage` seperti log tidak terhapus), lalu jalankan `php artisan migrate --force` dan `php artisan optimize` lewat cron sekali jalan seperti bagian 6. Bila memakai Pilihan 2 di bagian 4, salin ulang isi `public` ke `public_html`.
 
 Selalu **backup database** dulu (*phpMyAdmin* › Export, atau *Backup* di cPanel).
+
+**Instal ulang bersih** (mengosongkan database lalu memuat demo UIN Sunan Kalijaga): ikuti `INSTAL-ULANG.md` di dalam zip.
 
 ## 10. Masalah umum
 

@@ -14,11 +14,9 @@ use Illuminate\Support\Facades\Hash;
 /**
  * Satker BLU contoh untuk demo & pelatihan (is_demo = true, hapus dengan `php artisan kinera:hapus-contoh`).
  *
- * - UINSUKA: UIN Sunan Kalijaga Yogyakarta — demo lengkap 2025 (LK Audited & Perjanjian Kinerja 2025) + proyeksi 2026,
- *   termasuk Kontrak Kinerja Pemimpin BLU beserta adendum & usulan perubahannya. Lihat UinSukaSeeder.
- * - UINRF: UIN Raden Fatah Palembang — LKjIP 2025 & Renstra 2020–2024; pelajaran target PK terlalu rendah. Lihat UinRadenFatahSeeder.
- * - UINSUSKA: UIN Suska Riau — Laporan Kinerja 2025 (PK & Kontrak Kinerja), PK 2026, RIP 2014–2034; pelajaran PK vs Kontrak Kinerja belum selaras. Lihat UinSuskaRiauSeeder.
- * - UNJ: Universitas Negeri Jakarta — PTN Badan Hukum (bukan BLU), Renstra 2025–2029 & Program Kerja 2026; tanpa modul Kontrak Kinerja BLU. Lihat UnjSeeder.
+ * - UINSUKA: UIN Sunan Kalijaga Yogyakarta — satu-satunya demo, disusun dari Renstra 2025–2029 (IKSP/IKSK, strategi transformasi,
+ *   kerangka regulasi & pendanaan) dan LK BLU Audited 2025; perioda 2025 (ditutup) + 2026 (berjalan), termasuk Kontrak Kinerja BLU,
+ *   riwayat import, dan contoh draf Rencana Kerja. Lihat UinSukaSeeder.
  * - Demo bertanda is_demo dan menampilkan peringatan "data demo" (App\Support\DemoNotice): hanya untuk keperluan
  *   memaksimalkan penyajian fitur-fitur perangkat lunak, bukan data resmi.
  */
@@ -37,7 +35,7 @@ class DemoSeeder extends Seeder
         $this->assign($admin, 'super-admin', null);
 
         // demo yang sudah terpasang dilewati, sehingga seeder aman dijalankan ulang untuk menambah demo baru
-        foreach ([UinSukaSeeder::class, UinRadenFatahSeeder::class, UinSuskaRiauSeeder::class, UnjSeeder::class] as $seeder) {
+        foreach ([UinSukaSeeder::class] as $seeder) {
             $installed = AnalysisPeriod::whereHas('company', fn ($q) => $q->where('code', $seeder::CODE))->whereIn('code', ['2025', '2026'])->exists();
             if (! $installed) {
                 (new $seeder(self::PASSWORD))->run();
