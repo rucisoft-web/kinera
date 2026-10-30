@@ -140,7 +140,7 @@ class GuestModeTest extends TestCase
             ->assertSee('Manajemen risiko')->assertSee('Gerbang mutu')->assertSee('Steering Committee');
         $this->get(\App\Filament\Pages\WorkshopKinera::getUrl())->assertOk()
             ->assertSee('Rundown')->assertSee('Hari 1')->assertSee('Hari 2')->assertSee('Sesi 8')
-            ->assertSee('sambutan Kepala PSMPT UIN Sunan Kalijaga')->assertSee('files/brosur-kinera-workshop-2-hari.pdf', false)
+            ->assertSee('sambutan Ketua PSMPT UIN Sunan Kalijaga')->assertSee('Strategic Leadership Lab')->assertSee('Akses Kinera 3 bulan')->assertSee('files/brosur-kinera-workshop-2-hari.pdf', false)
             ->assertSee('https://wa.me/6281199892939', false)->assertDontSee('Minggu pertama');
     }
 

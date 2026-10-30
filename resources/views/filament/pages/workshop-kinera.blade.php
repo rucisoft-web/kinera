@@ -5,7 +5,7 @@
     $days = [
         ['Hari 1', 'Balanced Scorecard dan Peta Strategi instansi', [
             ['08.00', '08.30', 'Registrasi peserta', 'Pembagian kelompok dan akses demo Kinera', 'break'],
-            ['08.30', '09.00', 'Pembukaan dan sambutan Kepala PSMPT UIN Sunan Kalijaga', 'Pusat Studi Manajemen Perguruan Tinggi membuka workshop dan memperkenalkan program kerja sama', 'open'],
+            ['08.30', '09.00', 'Pembukaan dan sambutan Ketua PSMPT UIN Sunan Kalijaga', 'Pusat Studi Manajemen Perguruan Tinggi membuka workshop dan memperkenalkan program kerja sama', 'open'],
             ['09.00', '10.15', 'Sesi 1 · Balanced Scorecard untuk sektor publik', 'Empat perspektif sektor publik dan hubungan sebab-akibat', 'talk'],
             ['10.15', '10.30', 'Rehat pagi', '', 'break'],
             ['10.30', '12.00', 'Sesi 2 · Anatomi scorecard: sasaran, ukuran, target, dan inisiatif', 'Ukuran hasil dan pendorong, 1–2 IKU per sasaran, dan inisiatif yang mendorongnya', 'talk'],
@@ -74,6 +74,7 @@
         ['Daftar IK dan definisi operasional', 'Rumus, sumber data, pemilik, baseline, dan trajektori triwulanan.'],
         ['Scorecard pimpinan dan targetnya', 'Disusun langsung di Kinera lengkap dengan riwayat perubahan; format Kontrak Kinerja PER-6/PB/2025 bagi instansi berpola BLU.'],
         ['Rencana aksi 90 hari', 'Langkah konkret memulai di instansi, ditambah materi PDF dan sertifikat.'],
+        ['Akses Kinera 3 bulan', 'Akun di kinera.rucisoft.id selama 3 bulan untuk melanjutkan scorecard hasil workshop.'],
     ];
 @endphp
 <x-filament-panels::page>
@@ -81,7 +82,8 @@
     <section class="kenali-workshop ws-hero">
         <div>
             <span class="kenali-eyebrow">Workshop 2 hari · bersama PSMPT UIN Sunan Kalijaga</span>
-            <h2>Workshop 2 hari: dari strategi ke scorecard yang dipantau</h2>
+            <h2>Strategic Leadership Lab</h2>
+            <p><b style="color:#E2C27A">Mengelola Renstra Perguruan Tinggi dengan Balanced Scorecard</b></p>
             <p>Diselenggarakan bersama Pusat Studi Manajemen Perguruan Tinggi (PSMPT) UIN Sunan Kalijaga untuk pimpinan instansi pemerintah, termasuk perguruan tinggi negeri, APIP, serta tim perencanaan dan keuangan. Hari pertama membangun Balanced Scorecard dan Peta Strategi instansi; hari kedua melengkapi IKU dengan definisi operasional dan target, menyepakati scorecard pimpinan (termasuk Kontrak Kinerja bagi instansi berpola BLU), dan mempraktikkannya di Kinera dengan data demo UIN Sunan Kalijaga.</p>
             <div class="kenali-actions">
                 <a href="{{ $registerUrl }}" target="_blank" rel="noopener" class="arah-btn arah-btn-primary kenali-btn-lg">Daftar Workshop</a>
@@ -105,7 +107,7 @@
     <section class="kenali-section">
         <h2>Yang dibawa pulang</h2>
         <p class="kenali-lead">Peserta pulang dengan hasil kerja yang bisa langsung dibahas di instansi.</p>
-        <div class="arah-grid arah-grid-4">
+        <div class="arah-grid arah-grid-5">
             @foreach ($gains as $i => [$t, $d])
                 <div class="arah-card ws-gain">
                     <div class="ws-gain-no">{{ $i + 1 }}</div>

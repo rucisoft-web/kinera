@@ -168,7 +168,7 @@
                 @foreach ([
                     ['01', 'Pahami', 'Baca penjelasan Kinera untuk pimpinan, lengkap dengan diagram dan contoh.', $guest(['ke' => 'kenali']), 'Kenali Kinera'],
                     ['02', 'Coba', 'Jelajahi data demo perguruan tinggi negeri sebagai Tamu, tanpa akun.', '#data-contoh', 'Coba data demo'],
-                    ['03', 'Workshop', 'Dua hari bersama PSMPT UIN Sunan Kalijaga: dari Peta Strategi sampai laporan kinerja.', '#workshop', 'Lihat rundown'],
+                    ['03', 'Workshop', 'Strategic Leadership Lab, dua hari bersama PSMPT UIN Sunan Kalijaga: dari Peta Strategi sampai laporan kinerja.', '#workshop', 'Lihat rundown'],
                     ['04', 'Pastikan', 'Demo 30–45 menit bersama tim pimpinan untuk memetakan kebutuhan instansi.', $wa('Halo Rucisoft, kami ingin menjadwalkan demo Kinera.'), 'Jadwalkan demo'],
                     ['05', 'Buktikan', 'Pilot terbatas di satu atau dua unit dengan ukuran keberhasilan yang disepakati.', $wa('Halo Rucisoft, kami ingin membahas pilot Kinera.'), 'Ajukan pilot'],
                     ['06', 'Terapkan', 'Proposal transparan: implementasi, pelatihan per peran, pendampingan, dan pemasangan di server instansi.', 'mailto:'.$email.'?subject='.rawurlencode('Proposal Kinera'), 'Minta proposal'],
@@ -294,14 +294,14 @@
                 <div class="l-cta-head">
                     <div class="l-cta-badge"><img src="{{ asset('images/mitra/uin-sunan-kalijaga.png') }}" alt="Logo UIN Sunan Kalijaga Yogyakarta"></div>
                     <div>
-                        <span class="l-eyebrow">Workshop bersama PSMPT UIN Sunan Kalijaga</span>
-                        <h2>Workshop 2 hari: dari strategi ke pengukuran kinerja.</h2>
+                        <span class="l-eyebrow">Workshop 2 hari bersama PSMPT UIN Sunan Kalijaga</span>
+                        <h2>Strategic Leadership Lab: Mengelola Renstra Perguruan Tinggi dengan Balanced Scorecard.</h2>
                         <p>Untuk pimpinan instansi pemerintah dan perguruan tinggi negeri, tim perencanaan dan keuangan, serta APIP/SPI. 08.00–16.30 WIB.</p>
                     </div>
                 </div>
                 <div class="l-rundown">
                     @foreach ([
-                        ['Hari 1', 'Balanced Scorecard dan Peta Strategi instansi', [['08.00', 'Registrasi peserta'], ['08.30', 'Pembukaan dan sambutan Kepala PSMPT UIN Sunan Kalijaga'], ['09.00', 'Balanced Scorecard untuk sektor publik: empat perspektif'], ['10.30', 'Anatomi scorecard: sasaran, ukuran, target, dan inisiatif'], ['13.00', 'Diagnosis kinerja dan penyusunan sasaran strategis'], ['15.00', 'Menyusun Peta Strategi dan Indikator Kinerja per kelompok']]],
+                        ['Hari 1', 'Balanced Scorecard dan Peta Strategi instansi', [['08.00', 'Registrasi peserta'], ['08.30', 'Pembukaan dan sambutan Ketua PSMPT UIN Sunan Kalijaga'], ['09.00', 'Balanced Scorecard untuk sektor publik: empat perspektif'], ['10.30', 'Anatomi scorecard: sasaran, ukuran, target, dan inisiatif'], ['13.00', 'Diagnosis kinerja dan penyusunan sasaran strategis'], ['15.00', 'Menyusun Peta Strategi dan Indikator Kinerja per kelompok']]],
                         ['Hari 2', 'Pengukuran kinerja dan implementasi dengan Kinera', [['08.00', 'Definisi operasional, target, dan trajektori triwulanan'], ['10.30', 'Simulasi penetapan dan perubahan target (termasuk Kontrak Kinerja BLU)'], ['13.00', 'Praktik aplikasi Kinera: alur realisasi, capaian, dan laporan'], ['14.30', 'Inisiatif strategis, temuan, dan tindak lanjut pengawas'], ['15.30', 'Rencana aksi 90 hari, penutupan, dan penyerahan sertifikat']]],
                     ] as [$day, $theme, $rows])
                         <div class="l-day-card">
@@ -314,7 +314,7 @@
                     <a href="{{ $wa('Halo Rucisoft, saya ingin mendaftar Workshop Kinera 2 hari.') }}" target="_blank" rel="noopener" class="l-btn l-btn-primary">Daftar via WhatsApp</a>
                     <a href="{{ $brosur }}" class="l-btn" download>Unduh brosur (PDF)</a>
                 </div>
-                <p class="l-cta-note">Hasil yang dibawa pulang: draf Peta Strategi, daftar indikator dan Definisi Operasional, scorecard pimpinan beserta targetnya (format Kontrak Kinerja bagi BLU), dan rencana aksi 90 hari.</p>
+                <p class="l-cta-note">Hasil yang dibawa pulang: draf Peta Strategi, daftar indikator dan Definisi Operasional, scorecard pimpinan beserta targetnya (format Kontrak Kinerja bagi BLU), rencana aksi 90 hari, sertifikat, dan akses ke kinera.rucisoft.id selama 3 bulan. Hubungi: <b>Jarot Wahyudi</b> · HP <b>0812-2783-3795</b>.</p>
             </div>
         </div>
     </section>

@@ -256,7 +256,8 @@
     <section class="kenali-section kenali-workshop" id="workshop">
         <div>
             <span class="kenali-eyebrow">Workshop 2 hari · bersama PSMPT UIN Sunan Kalijaga</span>
-            <h2>Dari strategi ke pengukuran kinerja dalam dua hari</h2>
+            <h2>Strategic Leadership Lab</h2>
+            <p><b style="color:#E2C27A">Mengelola Renstra Perguruan Tinggi dengan Balanced Scorecard</b></p>
             <p>Kelas praktis 08.00–16.30 WIB untuk pimpinan instansi pemerintah dan perguruan tinggi negeri, tim perencanaan dan keuangan, serta APIP/SPI, diselenggarakan bersama Pusat Studi Manajemen Perguruan Tinggi UIN Sunan Kalijaga.</p>
             <div class="kenali-take">
                 <b>Yang Anda bawa pulang</b>
@@ -266,6 +267,7 @@
                     <li>Scorecard pimpinan beserta targetnya (format Kontrak Kinerja bagi instansi BLU)</li>
                     <li>Pengalaman memakai Kinera: alur realisasi, capaian, dan laporan</li>
                     <li>Rencana aksi 90 hari, materi PDF, dan sertifikat</li>
+                    <li>Akses ke kinera.rucisoft.id selama 3 bulan</li>
                 </ul>
             </div>
             <div class="kenali-actions">
@@ -277,7 +279,7 @@
             @endif
         </div>
         <ol class="kenali-agenda">
-            <li><b>Hari 1 · Balanced Scorecard untuk sektor publik</b><span>Pembukaan oleh Kepala PSMPT, empat perspektif sektor publik</span></li>
+            <li><b>Hari 1 · Balanced Scorecard untuk sektor publik</b><span>Pembukaan oleh Ketua PSMPT, empat perspektif sektor publik</span></li>
             <li><b>Hari 1 · Anatomi scorecard</b><span>Sasaran, ukuran hasil dan pendorong, target, dan inisiatif</span></li>
             <li><b>Hari 1 · Peta Strategi dan Indikator Kinerja</b><span>Diagnosis kinerja, sasaran strategis, latihan kelompok</span></li>
             <li><b>Hari 2 · Definisi operasional dan target</b><span>Rumus, sumber data, trajektori triwulanan</span></li>
