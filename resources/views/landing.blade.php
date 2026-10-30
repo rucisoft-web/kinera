@@ -295,7 +295,8 @@
                     <div class="l-cta-badge"><img src="{{ asset('images/mitra/uin-sunan-kalijaga.png') }}" alt="Logo UIN Sunan Kalijaga Yogyakarta"></div>
                     <div>
                         <span class="l-eyebrow">Workshop 2 hari bersama PSMPT UIN Sunan Kalijaga</span>
-                        <h2>Strategic Leadership Lab: Mengelola Renstra Perguruan Tinggi dengan Balanced Scorecard.</h2>
+                        <h2>Strategic Leadership Lab</h2>
+                        <p class="l-cta-sub">Mengelola Renstra Perguruan Tinggi dengan Balanced Scorecard.</p>
                         <p>Untuk pimpinan instansi pemerintah dan perguruan tinggi negeri, tim perencanaan dan keuangan, serta APIP/SPI. 08.00–16.30 WIB.</p>
                     </div>
                 </div>

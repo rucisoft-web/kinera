@@ -147,6 +147,7 @@ code { font-size: .85em; background: var(--kertas-2); padding: .1rem .3rem; bord
 .l-cta-head { display: flex; gap: 1.1rem; align-items: center; flex-wrap: wrap; }
 .l-cta-head > div:last-child { flex: 1 1 20rem; }
 .l-cta-head h2 { color: #fff; }
+.l-cta-head .l-cta-sub { color: #E9C77B; font-weight: 600; font-size: 1.15rem; margin: .1rem 0 .5rem; }
 .l-cta-badge { background: #fff; border-radius: .6rem; padding: .45rem .55rem; flex: none; }
 .l-cta-badge img { height: 4.2rem; width: auto; }
 .l-rundown { display: grid; gap: 1rem; grid-template-columns: minmax(0, 1fr); }

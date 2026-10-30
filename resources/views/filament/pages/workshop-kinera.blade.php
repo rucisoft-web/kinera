@@ -83,7 +83,7 @@
         <div>
             <span class="kenali-eyebrow">Workshop 2 hari · bersama PSMPT UIN Sunan Kalijaga</span>
             <h2>Strategic Leadership Lab</h2>
-            <p><b style="color:#E2C27A">Mengelola Renstra Perguruan Tinggi dengan Balanced Scorecard</b></p>
+            <p><b style="color:#E2C27A">Mengelola Renstra Perguruan Tinggi dengan Balanced Scorecard.</b></p>
             <p>Diselenggarakan bersama Pusat Studi Manajemen Perguruan Tinggi (PSMPT) UIN Sunan Kalijaga untuk pimpinan instansi pemerintah, termasuk perguruan tinggi negeri, APIP, serta tim perencanaan dan keuangan. Hari pertama membangun Balanced Scorecard dan Peta Strategi instansi; hari kedua melengkapi IKU dengan definisi operasional dan target, menyepakati scorecard pimpinan (termasuk Kontrak Kinerja bagi instansi berpola BLU), dan mempraktikkannya di Kinera dengan data demo UIN Sunan Kalijaga.</p>
             <div class="kenali-actions">
                 <a href="{{ $registerUrl }}" target="_blank" rel="noopener" class="arah-btn arah-btn-primary kenali-btn-lg">Daftar Workshop</a>

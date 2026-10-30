@@ -257,7 +257,7 @@
         <div>
             <span class="kenali-eyebrow">Workshop 2 hari · bersama PSMPT UIN Sunan Kalijaga</span>
             <h2>Strategic Leadership Lab</h2>
-            <p><b style="color:#E2C27A">Mengelola Renstra Perguruan Tinggi dengan Balanced Scorecard</b></p>
+            <p><b style="color:#E2C27A">Mengelola Renstra Perguruan Tinggi dengan Balanced Scorecard.</b></p>
             <p>Kelas praktis 08.00–16.30 WIB untuk pimpinan instansi pemerintah dan perguruan tinggi negeri, tim perencanaan dan keuangan, serta APIP/SPI, diselenggarakan bersama Pusat Studi Manajemen Perguruan Tinggi UIN Sunan Kalijaga.</p>
             <div class="kenali-take">
                 <b>Yang Anda bawa pulang</b>
