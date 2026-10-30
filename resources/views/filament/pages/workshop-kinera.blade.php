@@ -5,7 +5,7 @@
     $days = [
         ['Hari 1', 'Balanced Scorecard dan Peta Strategi instansi', [
             ['08.00', '08.30', 'Registrasi peserta', 'Pembagian kelompok dan akses demo Kinera', 'break'],
-            ['08.30', '09.00', 'Pembukaan dan sambutan Kepala PSMPT UIN Sunan Kalijaga', 'Pusat Studi Manajemen Perguruan Tinggi membuka workshop dan memperkenalkan program kerja sama', 'open'],
+            ['08.30', '09.00', 'Pembukaan dan sambutan Ketua PSMPT UIN Sunan Kalijaga', 'Pusat Studi Manajemen Perguruan Tinggi membuka workshop dan memperkenalkan program kerja sama', 'open'],
             ['09.00', '10.15', 'Sesi 1 · Balanced Scorecard untuk sektor publik', 'Empat perspektif sektor publik dan hubungan sebab-akibat', 'talk'],
             ['10.15', '10.30', 'Rehat pagi', '', 'break'],
             ['10.30', '12.00', 'Sesi 2 · Anatomi scorecard: sasaran, ukuran, target, dan inisiatif', 'Ukuran hasil dan pendorong, 1–2 IKU per sasaran, dan inisiatif yang mendorongnya', 'talk'],
