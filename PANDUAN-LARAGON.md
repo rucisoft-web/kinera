@@ -1,6 +1,6 @@
-# Panduan Instalasi Ruci BSC Professional di Laragon
+# Panduan Instalasi Kinera di Laragon
 
-Lokasi program: **`C:\laragon\www\ruci-bsc`** · Alamat: **http://ruci-bsc.test/admin**
+Lokasi program: **`C:\laragon\www\kinera`** · Alamat: **http://kinera.test/admin**
 
 ## 1. Prasyarat
 
@@ -16,10 +16,10 @@ Lokasi program: **`C:\laragon\www\ruci-bsc`** · Alamat: **http://ruci-bsc.test/
 
 ```bat
 cd C:\laragon\www
-git clone https://github.com/rucisoft-web/ruci-bsc.git
+git clone https://github.com/rucisoft-web/kinera.git
 ```
 
-Klik **Reload** pada Laragon. Laragon otomatis membuat virtual host `ruci-bsc.test` yang mengarah ke folder `public`.
+Klik **Reload** pada Laragon. Laragon otomatis membuat virtual host `kinera.test` yang mengarah ke folder `public`.
 
 ## 3. Instalasi
 
@@ -28,67 +28,67 @@ Klik **Reload** pada Laragon. Laragon otomatis membuat virtual host `ruci-bsc.te
 Buka **Terminal** Laragon, lalu:
 
 ```bat
-cd C:\laragon\www\ruci-bsc
+cd C:\laragon\www\kinera
 setup-laragon.bat
 ```
 
-Skrip melakukan: cek PHP & ekstensi → `.env` → `composer install` (bila perlu) → `key:generate` → membuat database `ruci_bsc` (utf8mb4) → `migrate:fresh --seed` dengan data contoh → `filament:assets` → `optimize:clear` → `dhastram:doctor`.
+Skrip melakukan: cek PHP & ekstensi → `.env` → `composer install` (bila perlu) → `key:generate` → membuat database `kinera` (utf8mb4) → `migrate:fresh --seed` dengan data contoh → `filament:assets` → `optimize:clear` → `kinera:doctor`.
 
 ### Cara B: manual
 
 ```bat
-cd C:\laragon\www\ruci-bsc
+cd C:\laragon\www\kinera
 copy .env.example .env
 composer install
 php artisan key:generate
-mysql -u root -e "CREATE DATABASE ruci_bsc CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci"
+mysql -u root -e "CREATE DATABASE kinera CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci"
 php artisan migrate --seed
 php artisan filament:assets
 php artisan optimize:clear
-php artisan dhastram:doctor
+php artisan kinera:doctor
 ```
 
-Data contoh dimuat bila `APP_ENV` bukan `production` atau `RUCI_SEED_DEMO=true` di `.env`.
+Data contoh dimuat bila `APP_ENV` bukan `production` atau `KINERA_SEED_DEMO=true` di `.env`.
 
 > Menjalankan ulang Cara A mengembalikan database ke data contoh (**semua perubahan hilang**).
 
 ## 4. Masuk ke aplikasi
 
-Buka **http://ruci-bsc.test/admin**
+Buka **http://kinera.test/admin**
 
 | Akun | Email | Kata sandi |
 |---|---|---|
-| Super Admin | `admin@rucibsc.local` | `Ruci@BSC2026` (atau nilai `RUCI_ADMIN_PASSWORD`) |
-| Admin Diamond Food (contoh) | `dfi.admin@contoh.local` | `Contoh-2026!` |
-| Direktur Diamond Food (contoh) | `dfi.direktur@contoh.local` | `Contoh-2026!` |
+| Super Admin | `admin@kinera.local` | `Kinera@2026` (atau nilai `KINERA_ADMIN_PASSWORD`) |
+| Admin Satker UIN Sunan Kalijaga (contoh) | `uinsuka.admin@contoh.local` | `Contoh-2026!` |
+| Rektor / Pemimpin BLU (contoh) | `uinsuka.rektor@contoh.local` | `Contoh-2026!` |
 | Admin NLP / KSB (fiktif) | `nlp.admin@contoh.local`, `ksb.admin@contoh.local` | `Contoh-2026!` |
 
 Daftar lengkap akun contoh ada di README.md. Kata sandi baru minimal 10 karakter, mengandung huruf dan angka. Login dibatasi 5 percobaan per menit.
 
-## 5. Menambah perusahaan sungguhan
+## 5. Menambah satker BLU sungguhan
 
-1. Login sebagai Super Admin › **Administrasi › Perusahaan** › tambah perusahaan, lalu buat perioda (misalnya Tahun 2026).
-2. **Pilih Perusahaan & Perioda** › pilih perusahaan baru.
+1. Login sebagai Super Admin › **Administrasi › Satker BLU** › tambah satker BLU (lengkapi identitas BLU & penandatangan), lalu buat perioda (misalnya Tahun 2026).
+2. **Pilih Satker BLU & Perioda** › pilih satker baru.
 3. **Administrasi › Import Data** › unduh template › isi di Excel › **Pratinjau** › **Proses Import**.
-4. Tambahkan admin perusahaan di **Pengguna** dengan peran *Company Admin* untuk perusahaan itu. Admin tersebut bisa menambah pengguna lain di perusahaannya sendiri.
+4. Tambahkan admin satker di **Pengguna** dengan peran *Admin Satker* untuk satker itu. Admin tersebut bisa menambah pengguna lain di satkernya sendiri.
 
-Bila data contoh tidak dibutuhkan lagi: `php artisan rucibsc:hapus-contoh`.
+Bila data contoh tidak dibutuhkan lagi: `php artisan kinera:hapus-contoh`.
 
 ## 6. Pengingat otomatis (opsional di komputer lokal)
 
 - Saat uji coba: `php artisan schedule:work` (biarkan jendela terbuka).
-- Permanen di Windows: Task Scheduler › Create Task › Trigger tiap 1 menit › Action: `C:\laragon\bin\php\php-8.3.x\php.exe` dengan argumen `C:\laragon\www\ruci-bsc\artisan schedule:run`.
-- Uji manual: `php artisan rucibsc:reminders --date=2026-11-03`.
+- Permanen di Windows: Task Scheduler › Create Task › Trigger tiap 1 menit › Action: `C:\laragon\bin\php\php-8.3.x\php.exe` dengan argumen `C:\laragon\www\kinera\artisan schedule:run`.
+- Uji manual: `php artisan kinera:reminders --date=2026-11-03`.
 
 ## 7. Perintah penting
 
 | Perintah | Fungsi |
 |---|---|
-| `php artisan dhastram:doctor` | Pemeriksaan PHP, ekstensi, database, izin & peran |
-| `php artisan dhastram:create-admin` | Membuat Super Admin baru |
-| `php artisan db:seed --class=DhastramRolePermissionSeeder` | Memperbarui izin & peran (aman diulang) |
-| `php artisan rucibsc:hapus-contoh` | Menghapus perusahaan & akun contoh |
-| `php artisan rucibsc:reminders` | Kirim pengingat siklus hari ini |
+| `php artisan kinera:doctor` | Pemeriksaan PHP, ekstensi, database, izin & peran |
+| `php artisan kinera:create-admin` | Membuat Super Admin baru |
+| `php artisan db:seed --class=BscRolePermissionSeeder` | Memperbarui izin & peran (aman diulang) |
+| `php artisan kinera:hapus-contoh` | Menghapus satker BLU & akun contoh |
+| `php artisan kinera:reminders` | Kirim pengingat siklus hari ini |
 
 ## 8. Masalah umum
 
@@ -97,8 +97,8 @@ Bila data contoh tidak dibutuhkan lagi: `php artisan rucibsc:hapus-contoh`.
 | `Your PHP version (8.1…) does not satisfy…` / halaman putih | Ganti PHP ke 8.3+ (lihat Prasyarat). |
 | `Class "Collator" not found` / error `intl` | Aktifkan ekstensi **intl**, restart Laragon. |
 | Upload Excel gagal / error `ZipArchive` | Aktifkan ekstensi **zip**. |
-| `SQLSTATE[HY000] [1049] Unknown database 'ruci_bsc'` | Buat database dulu (langkah 3). |
+| `SQLSTATE[HY000] [1049] Unknown database 'kinera'` | Buat database dulu (langkah 3). |
 | `SQLSTATE[HY000] [2002]` | MySQL belum jalan — klik **Start All**. |
-| `ruci-bsc.test` tidak terbuka | Klik **Reload** di Laragon; pastikan *Menu › Preferences › Auto virtual hosts* aktif. Alternatif: `php artisan serve` lalu buka http://127.0.0.1:8000/admin. |
+| `kinera.test` tidak terbuka | Klik **Reload** di Laragon; pastikan *Menu › Preferences › Auto virtual hosts* aktif. Alternatif: `php artisan serve` lalu buka http://127.0.0.1:8000/admin. |
 | Tampilan tanpa gaya | Jalankan `php artisan filament:assets`. |
 | `419 Page Expired` | Hapus cookie situs / `php artisan optimize:clear`. |

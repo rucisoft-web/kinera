@@ -6,7 +6,7 @@ use App\Filament\Resources\MarketAnalyses\Pages\ListMarketAnalyses;
 use App\Filament\Resources\MarketAnalyses\Pages\CreateMarketAnalysis;
 use App\Filament\Resources\MarketAnalyses\Pages\ViewMarketAnalysis;
 use App\Filament\Resources\MarketAnalyses\Pages\EditMarketAnalysis;
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Support\F;
 use App\Support\Fmt;
 use App\Support\Terms;
@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Auth;
 
 class MarketAnalysisResource extends Resource
 {
-    use HasDhastramPermissions;
+    use HasBscPermissions;
 
     protected static ?string $model = Models\MarketAnalysis::class;
 

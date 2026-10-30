@@ -6,7 +6,7 @@ use App\Filament\Resources\Users\Pages\ListUsers;
 use App\Filament\Resources\Users\Pages\CreateUser;
 use App\Filament\Resources\Users\Pages\ViewUser;
 use App\Filament\Resources\Users\Pages\EditUser;
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Concerns\ScopesToActiveCompany;
 use App\Filament\Support\F;
 use App\Support\Fmt;
@@ -51,9 +51,9 @@ use Illuminate\Support\Facades\Auth;
 
 class UserResource extends Resource
 {
-    use HasDhastramPermissions, ScopesToActiveCompany {
-        HasDhastramPermissions::canEdit as canEditByPermission;
-        HasDhastramPermissions::canDelete as canDeleteByPermission;
+    use HasBscPermissions, ScopesToActiveCompany {
+        HasBscPermissions::canEdit as canEditByPermission;
+        HasBscPermissions::canDelete as canDeleteByPermission;
     }
 
     protected static ?string $model = Models\User::class;
@@ -91,8 +91,8 @@ class UserResource extends Resource
                     ->required(fn (string $operation) => $operation === 'create')->dehydrated(fn ($state) => filled($state))
                     ->helperText('Minimal 10 karakter, huruf & angka. Pengguna wajib mengganti saat login pertama.')->visibleOn('create'),
                 Toggle::make('must_change_password')->label('Wajib ganti kata sandi saat login')->default(true),
-                // Hanya Super Admin yang mengatur akses lintas perusahaan; admin lain otomatis memakai perusahaan aktif (CreateUser).
-                Select::make('companies')->label('Akses perusahaan')->relationship('companies', 'name')->multiple()->preload()->columnSpanFull()
+                // Hanya Super Admin yang mengatur akses lintas instansi; admin lain otomatis memakai instansi aktif (CreateUser).
+                Select::make('companies')->label('Akses instansi')->relationship('companies', 'name')->multiple()->preload()->columnSpanFull()
                     ->visible(fn () => static::managesAllCompanies()),
             ]),
         ]);
@@ -123,7 +123,7 @@ class UserResource extends Resource
             ]);
     }
 
-    /** Admin non-Super Admin hanya melihat pengguna perusahaan yang sedang aktif. */
+    /** Admin non-Super Admin hanya melihat pengguna instansi yang sedang aktif. */
     public static function getEloquentQuery(): Builder
     {
         $q = parent::getEloquentQuery();
@@ -137,7 +137,7 @@ class UserResource extends Resource
             ->orWhereHas('roleAssignments', fn (Builder $r) => $r->where('company_id', $companyId)));
     }
 
-    /** Akun yang juga dipakai di perusahaan lain (atau Super Admin) hanya bisa diubah oleh Super Admin. */
+    /** Akun yang juga dipakai di instansi lain (atau Super Admin) hanya bisa diubah oleh Super Admin. */
     public static function canEdit(Model $record): bool
     {
         return static::canEditByPermission($record) && static::ownsUserAccount($record);

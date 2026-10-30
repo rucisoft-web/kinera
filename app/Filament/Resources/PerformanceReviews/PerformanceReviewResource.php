@@ -6,7 +6,7 @@ use App\Filament\Resources\PerformanceReviews\Pages\ListPerformanceReviews;
 use App\Filament\Resources\PerformanceReviews\Pages\CreatePerformanceReview;
 use App\Filament\Resources\PerformanceReviews\Pages\ViewPerformanceReview;
 use App\Filament\Resources\PerformanceReviews\Pages\EditPerformanceReview;
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Support\F;
 use App\Support\Fmt;
 use App\Support\Terms;
@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Auth;
 
 class PerformanceReviewResource extends Resource
 {
-    use HasDhastramPermissions;
+    use HasBscPermissions;
 
     protected static ?string $model = Models\PerformanceReview::class;
 

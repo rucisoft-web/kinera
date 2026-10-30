@@ -42,7 +42,7 @@ class MaturityQuestionSeeder extends Seeder
             'moksa' => [
                 ['Pelembagaan ritme', 'Ritme manajemen (laporan mingguan, rapat bulanan, rapat pengawas) berjalan konsisten.'],
                 ['Kebijakan & SOP', 'Praktik baik dibakukan menjadi kebijakan/SOP dan disosialisasikan.'],
-                ['Sistem pendukung', 'Sistem (aplikasi operasional, Ruci BSC) dipakai sebagai alat operasional, bukan sekadar laporan.'],
+                ['Sistem pendukung', 'Sistem (aplikasi operasional, Kinera) dipakai sebagai alat operasional, bukan sekadar laporan.'],
                 ['Pembelajaran organisasi', 'Pelajaran dari keberhasilan/kegagalan didokumentasikan dan dipakai untuk perioda berikutnya.'],
                 ['Ketergantungan & risiko', 'Ketergantungan strategis (dana, vendor, pemilik) dipetakan beserta mitigasinya.'],
             ],

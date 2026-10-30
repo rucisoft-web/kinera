@@ -6,7 +6,7 @@ use App\Filament\Resources\StrategicChoices\Pages\ListStrategicChoices;
 use App\Filament\Resources\StrategicChoices\Pages\CreateStrategicChoice;
 use App\Filament\Resources\StrategicChoices\Pages\ViewStrategicChoice;
 use App\Filament\Resources\StrategicChoices\Pages\EditStrategicChoice;
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Support\F;
 use App\Support\Fmt;
 use App\Support\Terms;
@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Auth;
 
 class StrategicChoiceResource extends Resource
 {
-    use HasDhastramPermissions;
+    use HasBscPermissions;
 
     protected static ?string $model = Models\StrategicChoice::class;
 

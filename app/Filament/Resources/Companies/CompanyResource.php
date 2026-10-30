@@ -6,7 +6,7 @@ use App\Filament\Resources\Companies\Pages\ListCompanies;
 use App\Filament\Resources\Companies\Pages\CreateCompany;
 use App\Filament\Resources\Companies\Pages\ViewCompany;
 use App\Filament\Resources\Companies\Pages\EditCompany;
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Support\F;
 use App\Support\Fmt;
 use App\Support\Terms;
@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CompanyResource extends Resource
 {
-    use HasDhastramPermissions;
+    use HasBscPermissions;
 
     protected static ?string $model = Models\Company::class;
 
@@ -58,11 +58,11 @@ class CompanyResource extends Resource
 
     protected static ?int $navigationSort = 1;
 
-    protected static ?string $modelLabel = 'Perusahaan';
+    protected static ?string $modelLabel = 'Instansi';
 
-    protected static ?string $pluralModelLabel = 'Perusahaan';
+    protected static ?string $pluralModelLabel = 'Instansi';
 
-    protected static ?string $navigationLabel = 'Perusahaan';
+    protected static ?string $navigationLabel = 'Instansi';
 
     protected static ?string $navigationGroupKey = 'Administrasi';
 
@@ -79,7 +79,7 @@ class CompanyResource extends Resource
                 TextInput::make('code')->label('Kode')->required()->unique(ignoreRecord: true),
                 TextInput::make('name')->label('Nama')->required(),
                 TextInput::make('legal_name')->label('Nama legal'),
-                TextInput::make('industry')->label('Industri'),
+                TextInput::make('industry')->label('Rumpun layanan'),
                 TextInput::make('address')->label('Alamat')->columnSpanFull(),
                 TextInput::make('city')->label('Kota'),
                 TextInput::make('phone')->label('Telepon'),
@@ -88,6 +88,20 @@ class CompanyResource extends Resource
                 Toggle::make('is_active')->label('Aktif')->default(true),
                 Textarea::make('description')->label('Deskripsi')->rows(3)->columnSpanFull(),
             ]),
+            Section::make('Pimpinan & penandatangan Perjanjian Kinerja')->columns(2)->collapsible()
+                ->description('Dipakai pada cetakan Perjanjian/Kontrak Kinerja, Berita Acara, dan Surat Pernyataan. Isian bertanda "khusus BLU" hanya untuk instansi berpola BLU (PER-6/PB/2025). Kosongkan bila belum ada; cetakan menampilkan titik-titik.')
+                ->schema([
+                    Select::make('blu_field')->label('Bidang layanan (khusus BLU)')->helperText('Isi bila instansi berpola BLU; menu Kontrak Kinerja dan Capaian & Insentif hanya tampil untuk instansi BLU.')->options(['kesehatan' => 'Layanan kesehatan', 'pendidikan' => 'Layanan pendidikan', 'lainnya' => 'Layanan lainnya'])->native(false),
+                    TextInput::make('ministry')->label('Kementerian Negara/Lembaga'),
+                    TextInput::make('technical_supervisor')->label('Pembina Teknis / unit eselon I atasan'),
+                    DatePicker::make('blu_since')->label('Menerapkan PK-BLU sejak (khusus BLU)'),
+                    TextInput::make('leader_title')->label('Jabatan pimpinan instansi')->placeholder('Rektor / Kepala / Direktur / Bupati'),
+                    TextInput::make('leader_name')->label('Nama pimpinan instansi'),
+                    TextInput::make('leader_nip')->label('NIP pimpinan instansi'),
+                    TextInput::make('remuneration_decree')->label('Keputusan remunerasi (khusus BLU)'),
+                    TextInput::make('dg_name')->label('Nama Direktur Jenderal Perbendaharaan (khusus BLU)'),
+                    TextInput::make('dg_nip')->label('NIP Direktur Jenderal Perbendaharaan (khusus BLU)'),
+                ]),
         ]);
     }
 
@@ -131,7 +145,7 @@ class CompanyResource extends Resource
             'edit' => EditCompany::route('/{record}/edit'),
         ];
     }
-    /** Perusahaan (klien) dibuat dan dikelola oleh Super Admin. */
+    /** Instansi (klien) dibuat dan dikelola oleh Super Admin. */
     public static function shouldRegisterNavigation(): bool
     {
         return (bool) Auth::user()?->isSuperAdmin();

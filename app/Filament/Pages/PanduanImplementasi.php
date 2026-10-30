@@ -4,7 +4,7 @@ namespace App\Filament\Pages;
 
 use Filament\Pages\Page;
 
-/** Panduan implementasi Ruci BSC di sebuah perusahaan: rencana proyek lengkap dari prasyarat sampai serah terima. */
+/** Panduan implementasi Kinera di sebuah instansi: rencana proyek lengkap dari prasyarat sampai serah terima. */
 class PanduanImplementasi extends Page
 {
     protected static ?string $title = 'Panduan Implementasi';
@@ -29,8 +29,8 @@ class PanduanImplementasi extends Page
     protected function getViewData(): array
     {
         return [
-            'workshopUrl' => config('dhastram.workshop_url'),
-            'workshopContact' => config('dhastram.workshop_contact'),
+            'workshopUrl' => \App\Filament\Pages\WorkshopKinera::registerUrl(),
+            'workshopContact' => config('bsc.workshop_contact'),
         ];
     }
 }

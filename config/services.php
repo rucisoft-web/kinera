@@ -35,4 +35,11 @@ return [
         ],
     ],
 
+    // Penyusunan Rencana Kerja dengan Claude. Tanpa kunci, Kinera memakai mode contoh (tanpa AI).
+    'anthropic' => [
+        'key' => env('ANTHROPIC_API_KEY'),
+        'model' => env('ANTHROPIC_MODEL', 'claude-opus-5-5'),
+        'effort' => env('ANTHROPIC_EFFORT', 'medium'),
+        'enabled' => (bool) env('KINERA_AI_ENABLED', true),
+    ],
 ];

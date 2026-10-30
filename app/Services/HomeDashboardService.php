@@ -8,12 +8,12 @@ use App\Models\InitiativeMilestone;
 use App\Models\Kpi;
 use App\Models\KpiActual;
 use App\Models\User;
-use App\Support\DhastramContext;
+use App\Support\BscContext;
 
 /** Daftar "tugas saya" untuk Beranda, sesuai peran dan kepemilikan. */
 class HomeDashboardService
 {
-    public function __construct(protected KpiApprovalService $approval, protected DhastramContext $ctx) {}
+    public function __construct(protected KpiApprovalService $approval, protected BscContext $ctx) {}
 
     public function tasks(User $user): array
     {

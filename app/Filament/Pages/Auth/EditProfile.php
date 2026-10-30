@@ -26,7 +26,7 @@ class EditProfile extends BaseEditProfile
                 TextInput::make('phone')->label('Telepon / WA'),
             ]),
             Section::make('Kata sandi')
-                ->description(fn () => auth()->user()?->must_change_password ? 'Wajib diganti sebelum memakai Ruci BSC. Minimal 10 karakter, huruf & angka.' : 'Kosongkan bila tidak ingin mengganti.')
+                ->description(fn () => auth()->user()?->must_change_password ? 'Wajib diganti sebelum memakai Kinera. Minimal 10 karakter, huruf & angka.' : 'Kosongkan bila tidak ingin mengganti.')
                 ->schema([
                     $this->getPasswordFormComponent()->rule(Password::defaults())
                         ->required(fn () => (bool) auth()->user()?->must_change_password),

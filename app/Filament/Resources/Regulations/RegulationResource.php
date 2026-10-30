@@ -6,7 +6,7 @@ use App\Filament\Resources\Regulations\Pages\ListRegulations;
 use App\Filament\Resources\Regulations\Pages\CreateRegulation;
 use App\Filament\Resources\Regulations\Pages\ViewRegulation;
 use App\Filament\Resources\Regulations\Pages\EditRegulation;
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Support\F;
 use App\Support\Fmt;
 use App\Support\Terms;
@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Auth;
 
 class RegulationResource extends Resource
 {
-    use HasDhastramPermissions;
+    use HasBscPermissions;
 
     protected static ?string $model = Models\Regulation::class;
 
@@ -82,7 +82,7 @@ class RegulationResource extends Resource
                 TextInput::make('category')->label('Kategori'),
                 DatePicker::make('effective_date')->label('Berlaku sejak'),
                 Textarea::make('description')->label('Uraian')->rows(3)->columnSpanFull(),
-                Textarea::make('impact')->label('Dampak bagi perusahaan')->rows(3)->columnSpanFull(),
+                Textarea::make('impact')->label('Dampak bagi instansi')->rows(3)->columnSpanFull(),
                 Select::make('compliance_status')->label('Status kepatuhan')->options(['patuh' => 'Patuh', 'sebagian' => 'Sebagian', 'belum' => 'Belum patuh', 'dipantau' => 'Dipantau'])->native(false),
                 F::user('owner_id'),
                 DatePicker::make('due_date')->label('Tenggat'),

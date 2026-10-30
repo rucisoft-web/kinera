@@ -13,9 +13,9 @@ use function Laravel\Prompts\text;
 
 class CreateAdmin extends Command
 {
-    protected $signature = 'dhastram:create-admin {--name=} {--email=} {--password=}';
+    protected $signature = 'kinera:create-admin {--name=} {--email=} {--password=}';
 
-    protected $description = 'Membuat akun Super Admin pertama Ruci BSC';
+    protected $description = 'Membuat akun Super Admin pertama Kinera';
 
     public function handle(): int
     {
@@ -30,7 +30,7 @@ class CreateAdmin extends Command
         }
         $role = Role::where('slug', 'super-admin')->first();
         if (! $role) {
-            $this->error('Peran belum ada. Jalankan: php artisan db:seed --class=DhastramRolePermissionSeeder');
+            $this->error('Peran belum ada. Jalankan: php artisan db:seed --class=BscRolePermissionSeeder');
 
             return self::FAILURE;
         }

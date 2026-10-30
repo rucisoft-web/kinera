@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\Companies\RelationManagers;
 
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Support\F;
 use App\Support\Fmt;
 use App\Support\Terms;
@@ -61,7 +61,7 @@ class PeriodsRelationManager extends RelationManager
             Select::make('status')->options(['perencanaan' => 'Perencanaan', 'berjalan' => 'Berjalan', 'ditutup' => 'Ditutup'])->native(false),
             DatePicker::make('start_date')->label('Mulai')->required(),
             DatePicker::make('end_date')->label('Selesai')->required(),
-            Toggle::make('is_active')->label('Perioda bawaan')->helperText('Perioda yang otomatis dibuka saat pengguna masuk ke perusahaan ini. Biasanya tahun berjalan; cukup satu perioda per perusahaan.'),
+            Toggle::make('is_active')->label('Perioda bawaan')->helperText('Perioda yang otomatis dibuka saat pengguna masuk ke instansi ini. Biasanya tahun berjalan; cukup satu perioda per instansi.'),
             Textarea::make('notes')->label('Catatan')->rows(2)->columnSpanFull(),
         ]);
     }

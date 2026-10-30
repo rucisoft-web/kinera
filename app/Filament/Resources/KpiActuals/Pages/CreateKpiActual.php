@@ -21,7 +21,7 @@ class CreateKpiActual extends CreateRecord
     protected function mutateFormDataBeforeCreate(array $data): array
     {
         $kpi = \App\Models\Kpi::findOrFail($data['kpi_id']);
-        abort_unless(app(\App\Services\KpiApprovalService::class)->canInput(auth()->user(), $kpi), 403, 'Anda hanya dapat mengisi realisasi KPI milik Anda.');
+        abort_unless(app(\App\Services\KpiApprovalService::class)->canInput(auth()->user(), $kpi), 403, 'Anda hanya dapat mengisi realisasi IK milik Anda.');
         if (\App\Models\KpiActual::where('kpi_id', $kpi->id)->where('month', $data['month'])->exists()) {
             \Filament\Notifications\Notification::make()->title('Realisasi bulan ini sudah ada — silakan ubah baris yang ada.')->danger()->send();
             $this->halt();

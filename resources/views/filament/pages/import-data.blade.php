@@ -12,8 +12,8 @@
                 <button type="button" class="arah-btn" wire:click="downloadCurrent" @disabled(! $period)>⤓ Data perioda ini (untuk diubah)</button>
             </div>
             <p class="arah-muted" style="margin-top:.8rem">
-                Sheet: Jati Diri, Nilai Inti, Tema, Sasaran, Relasi Sasaran, KPI, Target, Realisasi, Inisiatif. Petunjuk kolom ada di sheet pertama.
-                Kode sasaran/KPI menjadi kunci, jadi upload ulang memperbarui data yang sama.
+                Sheet: Jati Diri, Nilai Inti, Tema, Sasaran, Relasi Sasaran, KPI (= Indikator Kinerja), Target, Realisasi, Inisiatif. Petunjuk kolom ada di sheet pertama.
+                Kode sasaran/Indikator Kinerja menjadi kunci, jadi upload ulang memperbarui data yang sama.
             </p>
         </div>
 

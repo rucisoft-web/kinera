@@ -40,7 +40,7 @@ class Fmt
         };
     }
 
-    /** OBJ/DFI/2026/001 -> OBJ-001 */
+    /** OBJ/UINSUKA/2026/001 -> OBJ-001 */
     public static function shortCode(?string $code): ?string
     {
         if (! $code) {

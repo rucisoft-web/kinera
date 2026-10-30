@@ -6,7 +6,7 @@ use App\Filament\Resources\EnvironmentScans\Pages\ListEnvironmentScans;
 use App\Filament\Resources\EnvironmentScans\Pages\CreateEnvironmentScan;
 use App\Filament\Resources\EnvironmentScans\Pages\ViewEnvironmentScan;
 use App\Filament\Resources\EnvironmentScans\Pages\EditEnvironmentScan;
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Support\F;
 use App\Support\Fmt;
 use App\Support\Terms;
@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Auth;
 
 class EnvironmentScanResource extends Resource
 {
-    use HasDhastramPermissions;
+    use HasBscPermissions;
 
     protected static ?string $model = Models\EnvironmentScan::class;
 

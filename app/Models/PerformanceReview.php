@@ -3,12 +3,12 @@
 namespace App\Models;
 
 use App\Models\Concerns\Auditable;
-use App\Models\Concerns\BelongsToDhastramContext;
+use App\Models\Concerns\BelongsToBscContext;
 use Illuminate\Database\Eloquent\Model;
 
 class PerformanceReview extends Model
 {
-    use BelongsToDhastramContext, Auditable;
+    use BelongsToBscContext, Auditable;
 
     protected $guarded = ['id'];
 
@@ -39,7 +39,7 @@ class PerformanceReview extends Model
     public const TYPES = [
         'weekly_gm' => 'Laporan Mingguan Pimpinan',
         'rapat_manajemen' => 'Rapat Manajemen',
-        'rapat_timwas' => 'Rapat Dewan Pengawas',
+        'rapat_timwas' => 'Rapat pengawas (APIP / Dewan Pengawas)',
         'kuartalan' => 'Tinjauan Kuartalan',
         'tahunan' => 'Tinjauan Tahunan',
     ];

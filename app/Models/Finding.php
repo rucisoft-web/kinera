@@ -3,14 +3,14 @@
 namespace App\Models;
 
 use App\Models\Concerns\Auditable;
-use App\Models\Concerns\BelongsToDhastramContext;
+use App\Models\Concerns\BelongsToBscContext;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Finding extends Model
 {
-    use Auditable, BelongsToDhastramContext;
+    use Auditable, BelongsToBscContext;
 
     public const STATUSES = [
         'terbuka' => 'Terbuka',
@@ -21,7 +21,7 @@ class Finding extends Model
 
     public const SEVERITIES = ['rendah' => 'Rendah', 'sedang' => 'Sedang', 'tinggi' => 'Tinggi', 'kritis' => 'Kritis'];
 
-    public const SOURCES = ['tinjauan' => 'Tinjauan kinerja', 'timwas' => 'Dewan Pengawas', 'audit' => 'Audit', 'pelanggan' => 'Ulasan pelanggan', 'internal' => 'Internal'];
+    public const SOURCES = ['tinjauan' => 'Tinjauan kinerja', 'timwas' => 'Pengawas (APIP / Dewan Pengawas)', 'audit' => 'Audit', 'pelanggan' => 'Pengaduan masyarakat', 'internal' => 'Internal'];
 
     protected $guarded = ['id'];
 

@@ -6,7 +6,7 @@ use App\Filament\Resources\Findings\Pages\ListFindings;
 use App\Filament\Resources\Findings\Pages\CreateFinding;
 use App\Filament\Resources\Findings\Pages\ViewFinding;
 use App\Filament\Resources\Findings\Pages\EditFinding;
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Support\F;
 use App\Support\Fmt;
 use App\Support\Terms;
@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Auth;
 
 class FindingResource extends Resource
 {
-    use HasDhastramPermissions;
+    use HasBscPermissions;
 
     protected static ?string $model = Models\Finding::class;
 
@@ -83,7 +83,7 @@ class FindingResource extends Resource
                 Select::make('performance_review_id')->label('Tinjauan asal')->relationship('review', 'title')->searchable()->preload(),
                 F::perspective(),
                 F::money('amount', 'Nilai dampak'),
-                Select::make('kpi_id')->label('KPI terkait')->options(fn () => Models\Kpi::orderBy('code')->get()->mapWithKeys(fn ($k) => [$k->id => $k->label]))->searchable(),
+                Select::make('kpi_id')->label('IK terkait')->options(fn () => Models\Kpi::orderBy('code')->get()->mapWithKeys(fn ($k) => [$k->id => $k->label]))->searchable(),
                 Select::make('strategic_initiative_id')->label('Inisiatif terkait')->relationship('initiative', 'title')->searchable()->preload(),
             ]),
             Section::make('Penutupan')->columns(3)->visibleOn(['view'])->schema([

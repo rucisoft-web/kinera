@@ -43,7 +43,7 @@
                         @foreach ($wrap($c['objective']->title) as $li => $line)
                             <text x="{{ $c['x'] + 10 }}" y="{{ $c['y'] + 40 + $li * 14 }}" class="card-title">{{ $line }}</text>
                         @endforeach
-                        <text x="{{ $c['x'] + 10 }}" y="{{ $c['y'] + $m['cardH'] - 8 }}" style="font-size:9.5px; fill:var(--k-tinta-2)">{{ $c['kpis']->count() }} KPI · {{ \Illuminate\Support\Str::limit($c['objective']->owner?->name, 22) }}</text>
+                        <text x="{{ $c['x'] + 10 }}" y="{{ $c['y'] + $m['cardH'] - 8 }}" style="font-size:9.5px; fill:var(--k-tinta-2)">{{ $c['kpis']->count() }} IK · {{ $c['kpis']->filter(fn ($r) => $r['kpi']->indicator_type === 'lag')->count() }} hasil, {{ $c['kpis']->filter(fn ($r) => $r['kpi']->indicator_type === 'lead')->count() }} pendorong</text>
                     </a>
                 @endforeach
             @endforeach

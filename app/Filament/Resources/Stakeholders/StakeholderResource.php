@@ -6,7 +6,7 @@ use App\Filament\Resources\Stakeholders\Pages\ListStakeholders;
 use App\Filament\Resources\Stakeholders\Pages\CreateStakeholder;
 use App\Filament\Resources\Stakeholders\Pages\ViewStakeholder;
 use App\Filament\Resources\Stakeholders\Pages\EditStakeholder;
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Support\F;
 use App\Support\Fmt;
 use App\Support\Terms;
@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Auth;
 
 class StakeholderResource extends Resource
 {
-    use HasDhastramPermissions;
+    use HasBscPermissions;
 
     protected static ?string $model = Models\Stakeholder::class;
 

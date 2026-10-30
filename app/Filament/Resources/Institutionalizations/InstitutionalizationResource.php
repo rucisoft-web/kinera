@@ -6,7 +6,7 @@ use App\Filament\Resources\Institutionalizations\Pages\ListInstitutionalizations
 use App\Filament\Resources\Institutionalizations\Pages\CreateInstitutionalization;
 use App\Filament\Resources\Institutionalizations\Pages\ViewInstitutionalization;
 use App\Filament\Resources\Institutionalizations\Pages\EditInstitutionalization;
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Support\F;
 use App\Support\Fmt;
 use App\Support\Terms;
@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Auth;
 
 class InstitutionalizationResource extends Resource
 {
-    use HasDhastramPermissions;
+    use HasBscPermissions;
 
     protected static ?string $model = Models\Institutionalization::class;
 

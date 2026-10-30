@@ -9,28 +9,28 @@ use App\Models\Kpi;
 use App\Models\KpiActual;
 use App\Models\User;
 use App\Notifications\ArahNotification;
-use App\Support\DhastramContext;
+use App\Support\BscContext;
 use App\Support\Terms;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Notification;
 
 /**
  * Notifikasi terjadwal (harian 07.30 WIB):
- * - tanggal 3: pengingat input realisasi bulan lalu ke pemilik KPI yang belum mengisi
+ * - tanggal 3: pengingat input realisasi bulan lalu ke penanggung jawab IK yang belum mengisi
  * - tanggal 6: permintaan verifikasi ke Keuangan; tanggal 8: permintaan persetujuan ke Pimpinan
  * - milestone jatuh tempo 7 hari lagi ke PIC
  * - tindakan korektif lewat tenggat ke PIC (setiap Senin)
  */
 class SendReminders extends Command
 {
-    protected $signature = 'rucibsc:reminders {--date= : Simulasikan tanggal (Y-m-d)}';
+    protected $signature = 'kinera:reminders {--date= : Simulasikan tanggal (Y-m-d)}';
 
-    protected $description = 'Kirim pengingat siklus Ruci BSC (realisasi, verifikasi, persetujuan, milestone, tindakan korektif)';
+    protected $description = 'Kirim pengingat siklus Kinera (realisasi, verifikasi, persetujuan, milestone, tindakan korektif)';
 
-    public function handle(DhastramContext $ctx): int
+    public function handle(BscContext $ctx): int
     {
         $today = $this->option('date') ? \Carbon\Carbon::parse($this->option('date')) : today();
-        $cycle = config('dhastram.cycle');
+        $cycle = config('bsc.cycle');
         $sent = 0;
         foreach (AnalysisPeriod::where('status', 'berjalan')->get() as $period) {
             $ctx->set($period->company_id, $period->id);
@@ -45,7 +45,7 @@ class SendReminders extends Command
                 foreach ($kpis->groupBy('owner_id') as $list) {
                     $list->first()->owner->notify(new ArahNotification(
                         'Pengingat input realisasi '.$monthName,
-                        $list->count().' KPI belum diisi: '.$list->pluck('short_code')->join(', ').'. Batas tanggal '.$cycle['input_day'].'.',
+                        $list->count().' IK belum diisi: '.$list->pluck('short_code')->join(', ').'. Batas tanggal '.$cycle['input_day'].'.',
                         url('/admin'), 'warning'));
                     $sent++;
                 }
@@ -53,7 +53,7 @@ class SendReminders extends Command
             if ($today->day === $cycle['input_day'] + 1) {
                 $n = KpiActual::where('month', $month)->where('status', 'draf')->whereHas('kpi', fn ($q) => $q->where('is_financial', true))->count();
                 if ($n) {
-                    $sent += $this->toPermission('kpi.verify_finance', $period->company_id, 'Verifikasi realisasi keuangan '.$monthName, $n.' realisasi KPI keuangan menunggu verifikasi (batas tanggal '.$cycle['verify_day'].').');
+                    $sent += $this->toPermission('kpi.verify_finance', $period->company_id, 'Verifikasi realisasi keuangan '.$monthName, $n.' realisasi IK yang wajib verifikasi Keuangan menunggu verifikasi (batas tanggal '.$cycle['verify_day'].').');
                 }
             }
             if ($today->day === $cycle['approve_day']) {

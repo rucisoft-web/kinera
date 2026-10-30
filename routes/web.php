@@ -3,21 +3,36 @@
 use App\Http\Controllers\ReportExportController;
 use Illuminate\Support\Facades\Route;
 
-// Halaman depan situs demo (RUCI_GUEST_LOGIN=true); selain itu langsung ke panel
+// Halaman depan situs demo (KINERA_GUEST_LOGIN=true); selain itu langsung ke panel
 Route::middleware('web')->get('/', \App\Http\Controllers\LandingController::class)->name('arah.landing');
 
-Route::middleware(['web', 'auth', \App\Http\Middleware\SetDhastramContext::class])
+Route::middleware(['web', 'auth', \App\Http\Middleware\SetBscContext::class])
     ->get('/admin/laporan/ekspor/{report}', ReportExportController::class)
     ->name('arah.report.export');
 
-// Situs demo: masuk sebagai Tamu (hanya lihat), aktif bila RUCI_GUEST_LOGIN=true
+// Edisi BLU: cetak Kontrak Kinerja & lampiran PER-6/PB/2025
+Route::middleware(['web', 'auth', \App\Http\Middleware\SetBscContext::class])
+    ->get('/admin/kontrak-kinerja/cetak/{doc}/{contract}', \App\Http\Controllers\BluPrintController::class)
+    ->name('blu.print');
+
+// Draf Renstra dari isian Kinera (cetak/PDF atau unduh Word)
+Route::middleware(['web', 'auth', \App\Http\Middleware\SetBscContext::class])
+    ->get('/admin/renstra/cetak', \App\Http\Controllers\RenstraController::class)
+    ->name('renstra.print');
+
+// Draf Rencana Kerja (disusun Claude atau mode contoh)
+Route::middleware(['web', 'auth', \App\Http\Middleware\SetBscContext::class])
+    ->get('/admin/rencana-kerja/cetak/{draft}', \App\Http\Controllers\WorkPlanController::class)
+    ->name('workplan.print');
+
+// Situs demo: masuk sebagai Tamu (hanya lihat), aktif bila KINERA_GUEST_LOGIN=true
 Route::middleware(['web', 'throttle:20,1'])
     ->get('/masuk-tamu', \App\Http\Controllers\GuestLoginController::class)
     ->name('arah.guest');
 
-// Tautan yang bisa dibagikan ke calon peserta Workshop: langsung ke menu "Kenali Ruci BSC"
+// Tautan yang bisa dibagikan ke calon peserta Workshop: langsung ke menu "Kenali Kinera"
 Route::middleware('web')->get('/kenali', function () {
-    $page = \App\Filament\Pages\KenaliRuciBsc::getUrl();
+    $page = \App\Filament\Pages\KenaliKinera::getUrl();
     if (auth()->check()) {
         return redirect($page);
     }

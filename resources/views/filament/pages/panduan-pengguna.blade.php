@@ -1,5 +1,5 @@
 @php
-    $src = fn (string $ref) => asset('images/'.(str_starts_with($ref, 'k:') ? 'kenali/' : 'panduan/').substr($ref, 2).'.jpg').'?v=1';
+    $src = fn (string $ref) => asset('images/'.(str_starts_with($ref, 'k:') ? 'kenali/' : 'panduan/').substr($ref, 2).'.jpg').'?v=3';
 @endphp
 <x-filament-panels::page>
 <div class="arah panduan" x-data="{ tab: (location.hash || '#semua').slice(1) }" x-init="if (! @js(array_keys($roles)).includes(tab)) tab = 'semua'">
@@ -48,6 +48,6 @@
         </section>
     @endforeach
 
-    <div class="arah-muted panduan-foot">Tangkapan layar diambil dari data demo PT Diamond Food Indonesia Tbk dan PT Medikaloka Hermina Tbk (disusun untuk pembelajaran, mengacu secara garis besar pada laporan tahunan; bukan data resmi perusahaan). Menu yang terlihat bisa berbeda sesuai hak akses peran Anda.</div>
+    <div class="arah-muted panduan-foot">Tangkapan layar diambil dari data demo UIN Sunan Kalijaga Yogyakarta (hanya untuk keperluan memaksimalkan penyajian fitur-fitur perangkat lunak; bukan data resmi). Menu yang terlihat bisa berbeda sesuai hak akses peran Anda.</div>
 </div>
 </x-filament-panels::page>

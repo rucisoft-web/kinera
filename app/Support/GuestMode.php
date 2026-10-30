@@ -16,7 +16,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
  * Akses Tamu untuk situs demo/promosi: pengunjung masuk dengan satu klik dan hanya bisa melihat.
- * Aktif bila RUCI_GUEST_LOGIN=true. Peran `tamu` hanya berisi izin lihat; selain itu setiap
+ * Aktif bila KINERA_GUEST_LOGIN=true. Peran `tamu` hanya berisi izin lihat; selain itu setiap
  * penyimpanan/penghapusan model oleh Tamu ditolak di sini sebagai pengaman terakhir.
  */
 class GuestMode
@@ -30,12 +30,12 @@ class GuestMode
 
     public static function enabled(): bool
     {
-        return (bool) config('dhastram.guest_login');
+        return (bool) config('bsc.guest_login');
     }
 
     public static function email(): string
     {
-        return (string) config('dhastram.guest_email');
+        return (string) config('bsc.guest_email');
     }
 
     public static function isGuest(?User $user = null): bool
@@ -45,12 +45,12 @@ class GuestMode
         return $user instanceof User && $user->isGuestVisitor();
     }
 
-    /** Akun Tamu bersama: dibuat bila belum ada, peran `tamu` global (semua perusahaan). */
+    /** Akun Tamu bersama: dibuat bila belum ada, peran `tamu` global (semua instansi). */
     public static function user(): User
     {
         $role = Role::where('slug', self::ROLE)->first();
         if (! $role) {
-            (new \Database\Seeders\DhastramRolePermissionSeeder)->run();
+            (new \Database\Seeders\BscRolePermissionSeeder)->run();
             $role = Role::where('slug', self::ROLE)->firstOrFail();
         }
         $user = User::where('email', self::email())->first() ?? User::forceCreate([
@@ -72,10 +72,10 @@ class GuestMode
         return $user;
     }
 
-    /** Perusahaan pembuka untuk Tamu: contoh pertama (DFI bila ada). */
+    /** Instansi pembuka untuk Tamu: contoh pertama (UINSUKA bila ada). */
     public static function startCompany(): ?Company
     {
-        return Company::where('code', 'DFI')->first()
+        return Company::where('code', 'UINSUKA')->first()
             ?? Company::where('is_demo', true)->orderBy('id')->first()
             ?? Company::orderBy('id')->first();
     }

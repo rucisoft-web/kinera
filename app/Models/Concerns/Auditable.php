@@ -37,7 +37,7 @@ trait Auditable
 
     public function writeAudit(string $event, array $old, array $new): void
     {
-        if (! config('dhastram.audit_enabled') || app()->runningUnitTests() && ! Auth::check()) {
+        if (! config('bsc.audit_enabled') || app()->runningUnitTests() && ! Auth::check()) {
             return;
         }
         if (app()->runningInConsole() && ! Auth::check()) {

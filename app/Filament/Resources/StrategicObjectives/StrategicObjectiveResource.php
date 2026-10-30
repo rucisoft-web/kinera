@@ -6,7 +6,7 @@ use App\Filament\Resources\StrategicObjectives\Pages\ListStrategicObjectives;
 use App\Filament\Resources\StrategicObjectives\Pages\CreateStrategicObjective;
 use App\Filament\Resources\StrategicObjectives\Pages\ViewStrategicObjective;
 use App\Filament\Resources\StrategicObjectives\Pages\EditStrategicObjective;
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Support\F;
 use App\Support\Fmt;
 use App\Support\Terms;
@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Auth;
 
 class StrategicObjectiveResource extends Resource
 {
-    use HasDhastramPermissions;
+    use HasBscPermissions;
 
     protected static ?string $model = Models\StrategicObjective::class;
 
@@ -88,7 +88,7 @@ class StrategicObjectiveResource extends Resource
                 Placeholder::make('capaian')->label('')->content(function ($record) {
                     $row = static::scoreFor($record);
                     if (! $row) { return '-'; }
-                    return new \Illuminate\Support\HtmlString('<strong>Skor '.Fmt::num($row['score'], 1).'</strong> ('.($row['status'] ?? 'belum ada data').') dari '.$row['kpis']->count().' KPI');
+                    return new \Illuminate\Support\HtmlString('<strong>Skor '.Fmt::num($row['score'], 1).'</strong> ('.($row['status'] ?? 'belum ada data').') dari '.$row['kpis']->count().' IK');
                 }),
             ]),
         ]);
@@ -103,7 +103,7 @@ class StrategicObjectiveResource extends Resource
                 TextColumn::make('title')->label('Sasaran')->wrap()->searchable()->description(fn ($record) => $record->theme?->name),
                 TextColumn::make('owner.name')->label('Penanggung jawab'),
                 TextColumn::make('weight')->label('Bobot'),
-                TextColumn::make('kpis_count')->label('KPI')->counts('kpis'),
+                TextColumn::make('kpis_count')->label('IK')->counts('kpis'),
                 F::scoreColumn('score_ytd', 'Skor YTD')->state(fn ($record) => static::scoreFor($record)['score'] ?? null),
             ])
             ->filters([

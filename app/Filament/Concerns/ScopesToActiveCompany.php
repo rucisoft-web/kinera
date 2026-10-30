@@ -3,12 +3,12 @@
 namespace App\Filament\Concerns;
 
 use App\Models;
-use App\Support\DhastramContext;
+use App\Support\BscContext;
 use Illuminate\Support\Facades\Auth;
 
 /**
- * Pembatasan multi-perusahaan untuk menu Administrasi.
- * Super Admin mengelola semua perusahaan; admin lain hanya perusahaan yang sedang aktif.
+ * Pembatasan multi-instansi untuk menu Administrasi.
+ * Super Admin mengelola semua instansi; admin lain hanya instansi yang sedang aktif.
  */
 trait ScopesToActiveCompany
 {
@@ -19,13 +19,13 @@ trait ScopesToActiveCompany
 
     protected static function activeCompanyId(): ?int
     {
-        return app(DhastramContext::class)->companyId();
+        return app(BscContext::class)->companyId();
     }
 
     /**
-     * Admin perusahaan hanya boleh mengubah akun yang terdaftar di perusahaan aktif saja.
-     * Akun yang juga terdaftar di perusahaan lain (atau berperan global) hanya diubah Super Admin,
-     * supaya reset sandi tidak bisa dipakai untuk masuk ke perusahaan lain.
+     * Admin instansi hanya boleh mengubah akun yang terdaftar di instansi aktif saja.
+     * Akun yang juga terdaftar di instansi lain (atau berperan global) hanya diubah Super Admin,
+     * supaya reset sandi tidak bisa dipakai untuk masuk ke instansi lain.
      */
     protected static function ownsUserAccount(Models\User $user): bool
     {
@@ -42,7 +42,7 @@ trait ScopesToActiveCompany
         return $companies->isNotEmpty() && $companies->every(fn ($id) => $id === $active);
     }
 
-    /** Pilihan perusahaan pada formulir: semua (Super Admin) atau hanya perusahaan aktif. */
+    /** Pilihan instansi pada formulir: semua (Super Admin) atau hanya instansi aktif. */
     protected static function companyOptions(): array
     {
         $q = Models\Company::orderBy('name');

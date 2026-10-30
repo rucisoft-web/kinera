@@ -3,12 +3,12 @@
 namespace App\Models;
 
 use App\Models\Concerns\Auditable;
-use App\Models\Concerns\BelongsToDhastramContext;
+use App\Models\Concerns\BelongsToBscContext;
 use Illuminate\Database\Eloquent\Model;
 
 class CorrectiveAction extends Model
 {
-    use BelongsToDhastramContext, Auditable;
+    use BelongsToBscContext, Auditable;
 
     protected $guarded = ['id'];
 

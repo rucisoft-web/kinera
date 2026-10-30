@@ -1,7 +1,7 @@
 @echo off
 REM ============================================================
-REM  Ruci BSC Professional - instalasi otomatis di Laragon (Windows)
-REM  Jalankan dari Terminal Laragon:  cd C:\laragon\www\ruci-bsc  lalu  setup-laragon.bat
+REM  Kinera - instalasi otomatis di Laragon (Windows)
+REM  Jalankan dari Terminal Laragon:  cd C:\laragon\www\kinera  lalu  setup-laragon.bat
 REM ============================================================
 setlocal
 cd /d "%~dp0"
@@ -29,15 +29,15 @@ if not exist vendor\autoload.php (
 )
 php artisan key:generate --force
 
-echo [3/7] Membuat database ruci_bsc (MySQL root tanpa sandi)...
-mysql -u root -e "CREATE DATABASE IF NOT EXISTS ruci_bsc CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+echo [3/7] Membuat database kinera (MySQL root tanpa sandi)...
+mysql -u root -e "CREATE DATABASE IF NOT EXISTS kinera CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
 if errorlevel 1 (
   echo   Gagal membuat database. Pastikan MySQL Laragon sudah Start, atau buat manual lewat HeidiSQL.
   goto :fail
 )
 
 echo [4/7] Membuat tabel dan memuat data contoh (Diamond Food, NLP, KSB)...
-set RUCI_SEED_DEMO=true
+set KINERA_SEED_DEMO=true
 php artisan migrate:fresh --seed --force
 if errorlevel 1 goto :fail
 
@@ -48,13 +48,13 @@ echo [6/7] Membersihkan cache...
 php artisan optimize:clear
 
 echo [7/7] Pemeriksaan konfigurasi...
-php artisan dhastram:doctor
+php artisan kinera:doctor
 
 echo.
 echo ============================================================
-echo  SELESAI. Buka  http://ruci-bsc.test/admin
+echo  SELESAI. Buka  http://kinera.test/admin
 echo  (klik Reload di Laragon bila virtual host belum aktif)
-echo  Super admin  : admin@rucibsc.local / Ruci@BSC2026
+echo  Super admin  : admin@kinera.local / Kinera@2026
 echo  Akun contoh  : dfi.admin@contoh.local dll. (sandi Contoh-2026!)
 echo ============================================================
 goto :eof

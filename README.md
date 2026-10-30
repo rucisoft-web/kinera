@@ -1,7 +1,24 @@
-# Ruci BSC Professional
+<img src="public/images/kinera-logo.svg" alt="Kinera" height="66">
 
-Aplikasi **Balanced Scorecard multi-perusahaan** berbasis Laravel + MySQL, dikembangkan dari edisi DHASTRAM (ARAH GPCH).
-Satu instalasi melayani banyak perusahaan; setiap perusahaan punya data, perioda, admin dan pengguna sendiri, dan datanya bisa diupload satu per satu lewat file Excel.
+# Kinera
+
+**Kinera** dari Rucisoft adalah aplikasi **pengukuran kinerja instansi pemerintah** berbasis Balanced Scorecard (Laravel + MySQL)
+untuk kementerian/lembaga, pemerintah daerah dan OPD, PTN/PTKIN, serta rumah sakit pemerintah: Renstra, Peta Strategi,
+Perjanjian Kinerja, IKU, realisasi berjenjang, inisiatif, temuan, dan bahan LKjIP/SAKIP. Instansi berpola BLU mendapat modul tambahan
+**Kontrak Kinerja Pemimpin BLU** menurut **PER-6/PB/2025** (Pedoman Penyusunan Kontrak Kinerja dan Penetapan Persetujuan Capaian Kinerja Pemimpin BLU).
+Satu instalasi melayani banyak instansi; setiap instansi punya data, perioda, admin dan pengguna sendiri, dan datanya bisa diupload lewat file Excel.
+
+## Modul khusus instansi berpola BLU (PER-6/PB/2025)
+
+| Ketentuan | Di aplikasi |
+|---|---|
+| Pasal 5: Indikator Kinerja, trajektori, target, aspek layanan & keuangan (+ kebijakan/penugasan), Definisi Operasional | Menu **Indikator Kinerja**: aspek, wajib (mandatory), capaian maksimum, peran insentif (PNBP/EBITDA/opini), Definisi Operasional (definisi, rumus, sumber data, cara pengambilan data, metode pengujian, dokumen pendukung); trajektori bawaan triwulanan |
+| Pasal 6–9: usulan (hari kerja terakhir Desember), kesepakatan & Berita Acara (25 Januari), penandatanganan (31 Januari) | Menu **Kontrak Kinerja**: versi, status draf → diusulkan → disepakati → ditandatangani; potret indikator & target trajektori; cetak **Lampiran I** (Kontrak Kinerja) dan **Lampiran II** (Berita Acara) |
+| Pasal 10: laporan capaian ≤ 15 hari kerja setelah periode trajektori | Halaman **Capaian & Insentif**: perhitungan per triwulan (format **Lampiran VI**), kalender tenggat dengan status tepat waktu/terlambat/lewat tenggat |
+| Pasal 14 ayat (4): syarat insentif a–h | Uji otomatis: total capaian > target, indikator wajib tercapai, tidak ada IK < 65% (`KINERA_SCORE_FLOOR`), PNBP tercapai, surplus EBITDA, opini WTP, bebas kasus hukum, persyaratan lain; cetak **Lampiran IV** (surat pernyataan) |
+| Pasal 19 & 21: perubahan (dasar huruf a/b/c, usul ≤ 30 September, tanda tangan ≤ 1 Desember) dan adendum 2025 | Versi perubahan/adendum menandai IK baru, diubah, dan **target turun**; IK yang targetnya turun dibatasi capaian maksimum 100% (Pasal 19 ayat 8); versi lama otomatis berstatus "digantikan" |
+
+Kode inti: `App\Services\BluContractService`, `App\Models\PerformanceContract`, `App\Filament\Pages\CapaianKinerjaBlu`, `App\Http\Controllers\BluPrintController`, `resources/views/blu/`. Istilah tampilan (perspektif, menu) diatur kamus di `config/bsc.php`: bawaan `KINERA_TERMS=instansi` (instansi pemerintah), atau `blu` bila seluruh pengguna berpola BLU.
 
 **Instalasi di Laragon → [PANDUAN-LARAGON.md](PANDUAN-LARAGON.md)** · **Instalasi di cPanel → [PANDUAN-CPANEL.md](PANDUAN-CPANEL.md)**
 
@@ -12,37 +29,37 @@ Satu instalasi melayani banyak perusahaan; setiap perusahaan punya data, perioda
 | Runtime | PHP 8.3+, **Laravel 13**, Livewire 4 |
 | Antarmuka | **Filament v5** (panel `/admin`), stylesheet statis `public/css/arah.css` (tanpa Node.js) |
 | Basis data | **MySQL 8 / MariaDB 10.6+** (SQLite untuk test) |
-| Konteks | `DhastramContext` (sesi + tabel `user_contexts`) & global scope `BelongsToDhastramContext` menyaring setiap query per perusahaan/perioda |
+| Konteks | `BscContext` (sesi + tabel `user_contexts`) & global scope `BelongsToBscContext` menyaring setiap query per instansi/perioda |
 | Excel | OpenSpout: import, template kosong, dan ekspor data perioda |
-| Audit | `audit_logs` mencatat buat/ubah/hapus (`DHASTRAM_AUDIT_ENABLED`) |
-| Jadwal | `rucibsc:reminders` harian (pengingat siklus input → verifikasi → persetujuan) |
+| Audit | `audit_logs` mencatat buat/ubah/hapus (`KINERA_AUDIT_ENABLED`) |
+| Jadwal | `kinera:reminders` harian (pengingat siklus input → verifikasi → persetujuan) |
 
-## Multi-perusahaan
+## Multi-instansi
 
-- **Super Admin** mengelola semua perusahaan, peran, dan semua akun.
-- **Company Admin** mengelola pengguna dan penugasan peran **hanya di perusahaan yang sedang aktif**. Akun yang juga terdaftar di perusahaan lain hanya bisa diubah Super Admin (mencegah reset sandi lintas perusahaan).
-- Peran diberikan per perusahaan (`role_user.company_id`); satu orang boleh punya peran di beberapa perusahaan dan berpindah lewat **Pilih Perusahaan & Perioda**.
+- **Super Admin** mengelola semua instansi, peran, dan semua akun.
+- **Company Admin** mengelola pengguna dan penugasan peran **hanya di instansi yang sedang aktif**. Akun yang juga terdaftar di instansi lain hanya bisa diubah Super Admin (mencegah reset sandi lintas instansi).
+- Peran diberikan per instansi (`role_user.company_id`); satu orang boleh punya peran di beberapa instansi dan berpindah lewat **Pilih Instansi & Perioda**.
 
-## Import data perusahaan (menu Administrasi › Import Data)
+## Import data instansi (menu Administrasi › Import Data)
 
-1. Pilih perusahaan & perioda tujuan.
+1. Pilih instansi & perioda tujuan.
 2. Unduh **template kosong** atau **ekspor data perioda saat ini**.
-3. Isi sheet yang diperlukan: Jati Diri, Nilai Inti, Tema, Sasaran, Relasi Sasaran, KPI, Target, Realisasi, Inisiatif. Sheet yang tidak ada di file tidak diubah.
+3. Isi sheet yang diperlukan: Jati Diri, Nilai Inti, Tema, Sasaran, Relasi Sasaran, KPI (Indikator Kinerja), Target, Realisasi, Inisiatif. Sheet yang tidak ada di file tidak diubah.
 4. **Pratinjau** dulu (tidak menyimpan apa pun), lalu **Proses Import**.
 
-Kode (sasaran, KPI, tema, inisiatif) menjadi kunci, jadi upload ulang memperbarui data, bukan menduplikasi. Baris yang salah dilewati dan dilaporkan dengan nomor barisnya. Angka boleh format Indonesia (`11.098.665`, `6,62`). Realisasi masuk sebagai **draf**, kecuali pengguna punya izin persetujuan dan mencentang "langsung setujui". Import terakhir sebuah perioda bisa **dibatalkan** (nilai sebelumnya dipulihkan). Izin: `import.manage`.
+Kode (sasaran, Indikator Kinerja, tema, inisiatif) menjadi kunci, jadi upload ulang memperbarui data, bukan menduplikasi. Baris yang salah dilewati dan dilaporkan dengan nomor barisnya. Angka boleh format Indonesia (`11.098.665`, `6,62`). Realisasi masuk sebagai **draf**, kecuali pengguna punya izin persetujuan dan mencentang "langsung setujui". Import terakhir sebuah perioda bisa **dibatalkan** (nilai sebelumnya dipulihkan). Izin: `import.manage`.
 
 ## Modul
 
-- **Umum:** Beranda, Pusat Kendali Eksekutif, Alur Kerja, Peta Strategi, Laporan (+ Excel), Pilih Perusahaan & Perioda.
+- **Umum:** Beranda, Pusat Kendali Eksekutif, Alur Kerja, Peta Strategi, Laporan (+ Excel), Pilih Instansi & Perioda.
 - **Ekosistem:** Pemindaian Lingkungan, PESTEL, Analisis Industri, Pasar & Pelanggan, Pesaing, Regulasi, Pemangku Kepentingan, Isu Strategis, SWOT, TOWS.
 - **Jati Diri:** visi, misi, nilai inti, budaya, kapabilitas.
-- **Kinerja:** Tema, Pilihan Strategis, Sasaran, Relasi Sasaran, KPI, Target, Realisasi (draf → terverifikasi → disetujui/terkunci, atau dikembalikan), Tinjauan Kinerja.
+- **Kinerja:** **Kontrak Kinerja**, **Capaian & Insentif**, Tema, Pilihan Strategis, Sasaran, Relasi Sasaran, Indikator Kinerja, Target, Realisasi (draf → terverifikasi → disetujui/terkunci, atau dikembalikan), Tinjauan Kinerja.
 - **Perbaikan:** Portofolio & Inisiatif Strategis, Aktivitas, Milestone, Anggaran, Temuan, Tindakan Korektif.
 - **Kesinambungan:** Kematangan Manajemen Strategi, Ketergantungan, Institusionalisasi.
-- **Administrasi:** Perusahaan, Pengguna, Peran, Penugasan Peran, Import Data, Log Audit.
+- **Administrasi:** Instansi, Pengguna, Peran, Penugasan Peran, Import Data, Log Audit.
 
-Skor KPI: polaritas naik = realisasi ÷ target × 100, turun = target ÷ realisasi × 100, maksimal 120; hijau ≥ 100, kuning ≥ 80. Agregasi jumlah, rata-rata, atau terakhir.
+Capaian IK: polaritas naik = realisasi ÷ target × 100, turun = target ÷ realisasi × 100, dibatasi capaian maksimum per IK (bawaan 120; 100 bila target diturunkan lewat perubahan kontrak); hijau ≥ 100, kuning ≥ 80. Agregasi jumlah, rata-rata, atau terakhir.
 
 ## Peran bawaan
 
@@ -50,50 +67,33 @@ Skor KPI: polaritas naik = realisasi ÷ target × 100, turun = target ÷ realisa
 
 ## Data contoh
 
-Di luar produksi (atau bila `RUCI_SEED_DEMO=true`) seeder memuat enam belas perusahaan contoh:
+Di luar produksi (atau bila `KINERA_SEED_DEMO=true`) seeder memuat satu instansi contoh, UINSUKA (`php artisan kinera:demo UINSUKA`):
 
-| Kode | Perusahaan | Isi |
+| Kode | Instansi | Isi |
 |---|---|---|
-| DFI | PT Diamond Food Indonesia Tbk | Demo lengkap: perioda 2025 (ditutup, angka tahunan dari Laporan Tahunan 2025) dan 2026 (berjalan, simulasi Jan–Sep). Peta strategi 4 tema, 15 sasaran, 39 KPI, 15 inisiatif, ekosistem, tinjauan, temuan, kematangan |
-| HMN | PT Medikaloka Hermina Tbk | Demo lengkap jaringan rumah sakit: perioda 2025 (angka tahunan dari Laporan Tahunan 2025) dan 2026 (simulasi Jan–Sep). Peta strategi 4 tema, 16 sasaran, 45 KPI termasuk indikator mutu Kemenkes (INM), KRIS, klaim JKN, dokter spesialis |
-| MEDC | PT Medco Energi Internasional Tbk | Demo lengkap energi (migas, listrik, tambang tembaga-emas): 2025 dan 2026, 15 sasaran, 44 KPI dalam US$ juta, mboepd, GWh, TRIR |
-| PWON | PT Pakuwon Jati Tbk | Demo lengkap properti (mal, perkantoran, hotel, pengembangan): 2025 dan 2026, 15 sasaran, 44 KPI termasuk recurring income, okupansi, marketing sales |
-| KAEF | PT Kimia Farma Tbk | Demo lengkap farmasi dalam masa penyehatan (produksi, distribusi, apotek, klinik, lab): 2025 dan 2026, 14 sasaran, 37 KPI termasuk restrukturisasi utang |
-| SMGR | PT Semen Indonesia (Persero) Tbk | Demo lengkap semen & bahan bangunan: 2025 dan 2026, 14 sasaran, 39 KPI termasuk utilisasi, biaya energi, emisi CO₂ per ton |
-| MAPI | PT Mitra Adiperkasa Tbk | Demo lengkap ritel gaya hidup (aktif, fashion, F&B, digital): 2025 dan 2026, 14 sasaran, 35 KPI termasuk SSSG, hari persediaan, omnichannel |
-| GOTO | PT GoTo Gojek Tokopedia Tbk | Demo lengkap ekosistem digital (on-demand, e-commerce, fintech): 2025 dan 2026, 14 sasaran, 36 KPI termasuk GTV, EBITDA disesuaikan, keandalan |
-| ASII | PT Astra International Tbk | Demo lengkap konglomerasi tujuh segmen: 2025 dan 2026, 14 sasaran, 38 KPI termasuk pangsa pasar mobil, alat berat, replanting sawit |
-| BBCA | PT Bank Central Asia Tbk | Demo lengkap perbankan: 2025 dan 2026, 14 sasaran, 39 KPI termasuk CASA, NIM, LAR, transaksi digital |
-| TLKM | PT Telkom Indonesia (Persero) Tbk | Demo lengkap telekomunikasi: 2025 dan 2026, 14 sasaran, 33 KPI termasuk FMC, data center, EBITDA margin |
-| BIRD | PT Blue Bird Tbk | Demo lengkap transportasi darat (taksi, limosin, bus): 2025 dan 2026, 14 sasaran, 37 KPI termasuk utilisasi armada, armada listrik, keselamatan |
-| BTPN | PT Bank SMBC Indonesia Tbk | Demo lengkap bank universal & induk konglomerasi (Jenius, BTPN Syariah, OTO, SOF): 2025 dan 2026, 14 sasaran, 37 KPI termasuk cost of credit, NPF Grup OTO, CASA |
-| BMTP | PT Bank Mandiri Taspen | Demo lengkap bank pensiunan & UMKM (Bank Mantap): 2025 dan 2026 dengan target dari RBB, 14 sasaran, 36 KPI termasuk kredit pensiun, CASA, NPL mikro |
-| NLP | PT Nusantara Logistik Prima (fiktif) | Perioda 2026 (Jan–Agu disetujui, Sep draf) + 2027 perencanaan |
-| KSB | Klinik Sehat Bersama (fiktif) | Perioda 2026 |
+| UINSUKA | UIN Sunan Kalijaga Yogyakarta (BLU pendidikan, Pembina Teknis Ditjen Pendidikan Islam Kemenag) | Disusun dari Renstra 2025–2029: visi-misi-tujuan, 8 Sasaran Program dengan IKSP/IKSK, target 2026 Matriks Kinerja, baseline 2024 dari capaian 2020–2024, 7 strategi & 6 lingkup transformasi, peta jalan, kerangka regulasi (8 rancangan) dan pendanaan. Angka keuangan 2025 dari LK BLU Audited TA 2025 (PNBP Rp219,5 M = 99,48% target, EBITDA ±Rp71,9 M, opini WTP). Perioda 2025 (ditutup) dan 2026 (berjalan, proyeksi Januari–September). 14 sasaran, 39 Indikator Kinerja, 9 inisiatif 2026 (mengisi keempat kuadran portofolio), Kontrak Kinerja awal + adendum 2025 + usulan perubahan 2026, temuan & tindakan korektif, tinjauan, kematangan, riwayat import, draf Rencana Kerja 2026/2027, dan jejak log audit. |
 
-Akun: Super Admin `admin@rucibsc.local` / `Ruci@BSC2026` (ubah lewat `RUCI_ADMIN_PASSWORD`). Akun contoh per perusahaan, kata sandi `Contoh-2026!`:
-`dfi.admin@contoh.local`, `dfi.direktur@…`, `dfi.keuangan@…`, `dfi.komersial@…`, `dfi.rantaipasok@…`, `dfi.produksi@…`, `dfi.sdm@…`, `dfi.ti@…`, `dfi.strategi@…`, `dfi.komisaris@…`, `dfi.analis@…`; untuk Hermina `hmn.admin`, `hmn.direktur`, `hmn.keuangan`, `hmn.medis`, `hmn.operasional`, `hmn.pemasaran`, `hmn.pengembangan`, `hmn.sdm`, `hmn.ti`, `hmn.strategi`, `hmn.komisaris`, `hmn.analis` (@contoh.local); pola serupa untuk `medc.*`, `pwon.*`, `kaef.*`, `smgr.*`, `mapi.*`, `goto.*`, `asii.*`, `bbca.*`, `tlkm.*`, `bird.*`, `btpn.*`, `bmtp.*`, `nlp.*`, dan `ksb.*`.
+Akun: Super Admin `admin@kinera.local` / `Kinera@2026` (ubah lewat `KINERA_ADMIN_PASSWORD`). Akun contoh, kata sandi `Contoh-2026!`:
+`uinsuka.rektor` (pimpinan), `uinsuka.wr2` (keuangan), `uinsuka.wr1`, `uinsuka.wr3`, `uinsuka.lppm`, `uinsuka.lpm`, `uinsuka.bisnis`, `uinsuka.sdm`, `uinsuka.ti`, `uinsuka.perencanaan` (strategy office), `uinsuka.dewas` (Dewan Pengawas), `uinsuka.analis`, `uinsuka.admin` (@contoh.local). Nama dan NIP pejabat sebenarnya sengaja tidak dipakai; semua penandatangan bertanda "(contoh)".
 
-**Peringatan data demo.** Semua data contoh adalah DATA DEMO untuk pembelajaran. Untuk DFI, HMN, MEDC, PWON, KAEF, SMGR, MAPI, GOTO, ASII, BBCA, TLKM, BIRD, BTPN, dan BMTP, angka 2025 secara garis besar mengacu pada Laporan Tahunan 2025 perusahaan terkait (kolom `companies.demo_source`); target, rincian bulanan, data 2026, dan sebagian indikator adalah simulasi. Peringatan ini tampil sebagai pita di setiap halaman perusahaan demo (`App\Support\DemoNotice`), di halaman login, dan di sheet Petunjuk template Excel.
+**Peringatan data demo.** Data contoh adalah DATA DEMO, hanya untuk keperluan memaksimalkan penyajian fitur-fitur perangkat lunak. Kerangka strategi mengacu pada Renstra 2025–2029 dan angka keuangan 2025 pada LK BLU Audited UIN Sunan Kalijaga (kolom `companies.demo_source`); rincian bulanan, Kontrak Kinerja, realisasi indikator layanan, dan seluruh data 2026 (proyeksi) adalah simulasi, bukan data resmi UIN Sunan Kalijaga, Kementerian Agama, maupun Kementerian Keuangan. Peringatan tampil sebagai pita di setiap halaman (`App\Support\DemoNotice`), di halaman depan & login, di setiap cetakan Kontrak Kinerja (tanda air DATA DEMO), dan di sheet Petunjuk template Excel.
 
-Memuat satu demo di server yang sudah berjalan: `php artisan rucibsc:demo DFI|HMN|MEDC|PWON|KAEF|SMGR|MAPI|GOTO|ASII|BBCA|TLKM|BIRD|BTPN|BMTP` (Diamond Food, Hermina, Medco, Pakuwon, Kimia Farma, Semen Indonesia, MAP, GoTo, Astra, BCA, Telkom, Blue Bird, SMBC Indonesia, Mandiri Taspen). Kata sandi akun contoh dibuat acak dan ditampilkan (atau tentukan dengan `--password=`). Bila perusahaan itu sudah punya perioda 2025/2026, tambahkan `--reset` untuk menggantinya. Nama lama `rucibsc:demo-diamond` tetap bisa dipakai.
+Memuat demo di server yang sudah berjalan: `php artisan kinera:demo UINSUKA` (alias `kinera:demo-uin`). Kata sandi akun contoh dibuat acak dan ditampilkan (atau tentukan dengan `--password=`). Bila satker itu sudah punya perioda 2025/2026, tambahkan `--reset`.
 
-Situs demo/promosi: `RUCI_GUEST_LOGIN=true` menampilkan tombol **Masuk sebagai Tamu (lihat-lihat)** di halaman login (rute `/masuk-tamu`, menerima `?perusahaan=KODE` untuk membuka perusahaan contoh pada tahun berjalan dan `?ke=kenali|panduan|implementasi|workshop`). Rute `/` menjadi halaman depan promosi (`LandingController`, `resources/views/landing.blade.php`, `public/css/landing.css`) dengan daftar data demo dari `App\Support\DemoCatalog`; bila akses Tamu mati, `/` diarahkan ke `/admin`. Akun Tamu (peran `tamu`, global) hanya punya izin lihat tanpa log audit dan ekspor, konteksnya disimpan per sesi, dan `App\Support\GuestMode` menolak setiap penyimpanan/penghapusan model oleh Tamu sebagai pengaman terakhir.
+Situs demo/promosi: `KINERA_GUEST_LOGIN=true` menampilkan tombol **Masuk sebagai Tamu (lihat-lihat)** di halaman login (rute `/masuk-tamu`, menerima `?perusahaan=KODE` dan `?ke=kenali|panduan|implementasi|workshop`). Rute `/` menjadi halaman depan promosi (`LandingController`, `resources/views/landing.blade.php`) dengan daftar data demo dari `App\Support\DemoCatalog`; bila akses Tamu mati, `/` diarahkan ke `/admin`. Akun Tamu hanya punya izin lihat.
 
-Menu **Kenali Ruci BSC** (`/admin/kenali-ruci-bsc`, tautan berbagi `/kenali`) menjelaskan Ruci BSC untuk pimpinan dan mengajak ikut Workshop; tautan dan kontak Workshop lewat `RUCI_WORKSHOP_URL` dan `RUCI_WORKSHOP_CONTACT`. Tangkapan layarnya ada di `public/images/kenali/`. Grup menu **Panduan** juga berisi **Panduan Pengguna** (per peran, tangkapan layar di `public/images/panduan/`) dan **Panduan Implementasi** (prasyarat, lingkup, jadwal, sumber daya, organisasi proyek, mutu, komunikasi, risiko, pengadaan, integrasi; bisa dicetak ke PDF), serta **Workshop Ruci BSC** (rundown & materi workshop sehari, jadwal otomatis setiap Minggu pertama awal bulan, plus edisi khusus setengah hari untuk Komisaris dan Direksi BUMN; nama narasumber tamu lewat `RUCI_WORKSHOP_SPECIAL_SPEAKER`).
-
-Sebelum dipakai sungguhan: `php artisan rucibsc:hapus-contoh` menghapus semua perusahaan dan akun contoh, lalu ganti sandi Super Admin.
+Sebelum dipakai sungguhan: `php artisan kinera:hapus-contoh` menghapus semua instansi dan akun contoh, lalu ganti sandi Super Admin.
 
 ## Perintah penting
 
 | Perintah | Fungsi |
 |---|---|
-| `php artisan dhastram:doctor` | Cek PHP, ekstensi, database, izin, peran, data contoh |
-| `php artisan dhastram:create-admin` | Membuat Super Admin baru |
-| `php artisan db:seed --class=DhastramRolePermissionSeeder` | Memperbarui izin & peran (aman diulang) |
-| `php artisan rucibsc:demo DFI\|HMN\|MEDC\|PWON\|KAEF\|SMGR\|MAPI\|GOTO\|ASII\|BBCA\|TLKM\|BIRD\|BTPN\|BMTP [--reset]` | Memuat satu demo lengkap (2025 + 2026) |
-| `php artisan rucibsc:hapus-contoh` | Menghapus perusahaan & akun contoh |
-| `php artisan rucibsc:reminders --date=2026-11-03` | Uji pengingat |
+| `php artisan kinera:doctor` | Cek PHP, ekstensi, database, izin, peran, data contoh |
+| `php artisan kinera:create-admin` | Membuat Super Admin baru |
+| `php artisan db:seed --class=BscRolePermissionSeeder` | Memperbarui izin & peran (aman diulang) |
+| `php artisan kinera:demo UINSUKA [--reset]` | Memuat demo UIN Sunan Kalijaga (2025 + proyeksi 2026) |
+| `php artisan kinera:hapus-contoh` | Menghapus instansi & akun contoh |
+| `php artisan kinera:reminders --date=2026-11-03` | Uji pengingat |
 | `php vendor/bin/phpunit` | Menjalankan test otomatis |
 
 ## Produksi (cPanel / VPS)
@@ -101,6 +101,6 @@ Sebelum dipakai sungguhan: `php artisan rucibsc:hapus-contoh` menghapus semua pe
 Langkah lengkap untuk cPanel (dengan atau tanpa Terminal) ada di [PANDUAN-CPANEL.md](PANDUAN-CPANEL.md).
 
 
-`APP_ENV=production`, `APP_DEBUG=false`, `SESSION_SECURE_COOKIE=true`; document root ke `public/`; cron `* * * * * php /path/ruci-bsc/artisan schedule:run`.
-Di produksi `DatabaseSeeder` hanya membuat izin, peran, dan pertanyaan kematangan. Buat Super Admin dengan `dhastram:create-admin`, tambahkan perusahaan, lalu upload datanya lewat Import Data.
-Rilis: `composer install --no-dev --optimize-autoloader` → `php artisan migrate --force` → `php artisan optimize` → `php artisan dhastram:doctor`.
+`APP_ENV=production`, `APP_DEBUG=false`, `SESSION_SECURE_COOKIE=true`; document root ke `public/`; cron `* * * * * php /path/kinera/artisan schedule:run`.
+Di produksi `DatabaseSeeder` hanya membuat izin, peran, dan pertanyaan kematangan. Buat Super Admin dengan `kinera:create-admin`, tambahkan instansi (isi pimpinan & penandatangan; isian khusus BLU bila berpola BLU), lalu upload datanya lewat Import Data.
+Rilis: `composer install --no-dev --optimize-autoloader` → `php artisan migrate --force` → `php artisan optimize` → `php artisan kinera:doctor`.

@@ -4,13 +4,14 @@ namespace App\Support;
 
 class Terms
 {
-    public const PERSPECTIVES = ['keuangan', 'pelanggan', 'proses', 'sdm'];
+    /** Urutan sektor publik dari atas: pemangku kepentingan di puncak, keuangan sebagai penopang. */
+    public const PERSPECTIVES = ['pelanggan', 'keuangan', 'proses', 'sdm'];
 
     public const PHASES = ['brahman', 'atman', 'karma_phala', 'punarbhawa', 'moksa'];
 
     public static function get(string $key): string
     {
-        $dict = config('dhastram.dictionaries.'.config('dhastram.terms', 'umum'), []);
+        $dict = config('bsc.dictionaries.'.config('bsc.terms', 'instansi'), []);
 
         return $dict[$key] ?? $key;
     }

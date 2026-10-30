@@ -6,8 +6,9 @@ use App\Models\Kpi;
 use Illuminate\Support\Collection;
 
 /**
- * Skor KPI: higher-is-better = aktual/target x 100, lower-is-better = target/aktual x 100.
- * Status hijau >= 100, kuning >= 80, merah di bawahnya.
+ * Capaian Indikator Kinerja: makin besar makin baik = realisasi/target x 100, makin kecil makin baik = target/realisasi x 100,
+ * dibatasi capaian maksimum per indikator (KMK remunerasi BLU). Status hijau >= 100, kuning >= 80, merah di bawahnya;
+ * capaian < 65% ditandai khusus karena menggugurkan syarat insentif (PER-6/PB/2025 Pasal 14 ayat 4 huruf c).
  */
 class KpiScoringService
 {
@@ -16,7 +17,7 @@ class KpiScoringService
         if (! $kpi || $actual === null || $target === null) {
             return null;
         }
-        $cap = (float) config('dhastram.score_cap', 120);
+        $cap = $kpi->achievementCap();
         if ($kpi->direction === 'lower') {
             if ($actual <= 0) {
                 return $target <= 0 ? 100.0 : $cap;
@@ -39,14 +40,14 @@ class KpiScoringService
         }
 
         return match (true) {
-            $score >= config('dhastram.score_green', 100) => 'hijau',
-            $score >= config('dhastram.score_yellow', 80) => 'kuning',
+            $score >= config('bsc.score_green', 100) => 'hijau',
+            $score >= config('bsc.score_yellow', 80) => 'kuning',
             default => 'merah',
         };
     }
 
     /**
-     * Capaian KPI sampai bulan tertentu (YTD) sesuai jenis agregasi.
+     * Capaian IK sampai bulan tertentu (YTD) sesuai jenis agregasi.
      *
      * @return array{actual:?float,target:?float,score:?float,status:?string,months:int,last_month:?int}
      */

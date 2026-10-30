@@ -4,15 +4,15 @@ namespace App\Services;
 
 use App\Models\Finding;
 use App\Models\StrategicInitiative;
-use App\Support\DhastramContext;
+use App\Support\BscContext;
 
-/** Pusat Kendali Eksekutif: skor strategis, capaian perspektif, sasaran merah/kuning, KPI kritis, inisiatif terlambat. */
+/** Pusat Kendali Eksekutif: skor strategis, capaian perspektif, sasaran merah/kuning, IK kritis, inisiatif terlambat. */
 class ExecutiveDashboardService
 {
     public function __construct(
         protected StrategicScoreService $score,
         protected InitiativeProgressService $progress,
-        protected DhastramContext $ctx,
+        protected BscContext $ctx,
     ) {}
 
     public function data(): array

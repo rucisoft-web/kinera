@@ -7,8 +7,8 @@ use App\Models\Company;
 use App\Models\Role;
 use App\Models\User;
 use App\Services\Import\BscTemplate;
-use App\Support\DhastramContext;
-use Database\Seeders\DhastramRolePermissionSeeder;
+use App\Support\BscContext;
+use Database\Seeders\BscRolePermissionSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Support\Str;
@@ -23,7 +23,7 @@ abstract class TestCase extends BaseTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->seed(DhastramRolePermissionSeeder::class);
+        $this->seed(BscRolePermissionSeeder::class);
     }
 
     protected function company(string $code, int $year = 2026): array
@@ -54,6 +54,6 @@ abstract class TestCase extends BaseTestCase
 
     protected function useContext(AnalysisPeriod $period): void
     {
-        app(DhastramContext::class)->set($period->company_id, $period->id);
+        app(BscContext::class)->set($period->company_id, $period->id);
     }
 }

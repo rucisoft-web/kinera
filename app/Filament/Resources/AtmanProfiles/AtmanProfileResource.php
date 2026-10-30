@@ -6,7 +6,7 @@ use App\Filament\Resources\AtmanProfiles\Pages\ListAtmanProfiles;
 use App\Filament\Resources\AtmanProfiles\Pages\CreateAtmanProfile;
 use App\Filament\Resources\AtmanProfiles\Pages\ViewAtmanProfile;
 use App\Filament\Resources\AtmanProfiles\Pages\EditAtmanProfile;
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Support\F;
 use App\Support\Fmt;
 use App\Support\Terms;
@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AtmanProfileResource extends Resource
 {
-    use HasDhastramPermissions;
+    use HasBscPermissions;
 
     protected static ?string $model = Models\AtmanProfile::class;
 

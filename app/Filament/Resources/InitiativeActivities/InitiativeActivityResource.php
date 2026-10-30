@@ -6,7 +6,7 @@ use App\Filament\Resources\InitiativeActivities\Pages\ListInitiativeActivities;
 use App\Filament\Resources\InitiativeActivities\Pages\CreateInitiativeActivity;
 use App\Filament\Resources\InitiativeActivities\Pages\ViewInitiativeActivity;
 use App\Filament\Resources\InitiativeActivities\Pages\EditInitiativeActivity;
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Support\F;
 use App\Support\Fmt;
 use App\Support\Terms;
@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Auth;
 
 class InitiativeActivityResource extends Resource
 {
-    use HasDhastramPermissions;
+    use HasBscPermissions;
 
     protected static ?string $model = Models\InitiativeActivity::class;
 

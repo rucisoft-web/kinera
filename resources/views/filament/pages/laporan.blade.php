@@ -26,7 +26,7 @@
         <div class="arah-scroll">
         @if ($current === 'scorecard')
             <table class="arah-table">
-                <thead><tr><th>KPI</th><th>Satuan</th>@foreach (range(1, 12) as $m)<th class="num">{{ Terms::monthShort($m) }}</th>@endforeach<th class="num">YTD</th><th class="num">Skor</th></tr></thead>
+                <thead><tr><th>IK</th><th>Satuan</th>@foreach (range(1, 12) as $m)<th class="num">{{ Terms::monthShort($m) }}</th>@endforeach<th class="num">YTD</th><th class="num">Skor</th></tr></thead>
                 <tbody>
                 @php $lastP = null; @endphp
                 @foreach ($data as $row)
@@ -61,7 +61,7 @@
                 @endforeach
             </div>
             <table class="arah-table">
-                <thead><tr><th>Sasaran</th><th>Perspektif</th><th>Penanggung jawab</th><th class="num">Bobot</th><th class="num">KPI</th><th class="num">Skor</th></tr></thead>
+                <thead><tr><th>Sasaran</th><th>Perspektif</th><th>Penanggung jawab</th><th class="num">Bobot</th><th class="num">IK</th><th class="num">Skor</th></tr></thead>
                 <tbody>
                 @foreach ($data['objectives'] as $o)
                     <tr><td><strong>{{ $o['objective']->short_code }}</strong> {{ $o['objective']->title }}</td><td>{{ Terms::perspective($o['objective']->perspective) }}</td><td>{{ $o['objective']->owner?->name }}</td>

@@ -5,7 +5,7 @@ namespace App\Filament\Resources\RoleAssignments;
 use App\Filament\Resources\RoleAssignments\Pages\ListRoleAssignments;
 use App\Filament\Resources\RoleAssignments\Pages\CreateRoleAssignment;
 use App\Filament\Resources\RoleAssignments\Pages\EditRoleAssignment;
-use App\Filament\Concerns\HasDhastramPermissions;
+use App\Filament\Concerns\HasBscPermissions;
 use App\Filament\Concerns\ScopesToActiveCompany;
 use App\Filament\Support\F;
 use App\Support\Fmt;
@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Auth;
 
 class RoleAssignmentResource extends Resource
 {
-    use HasDhastramPermissions, ScopesToActiveCompany;
+    use HasBscPermissions, ScopesToActiveCompany;
 
     protected static ?string $model = Models\RoleAssignment::class;
 
@@ -76,7 +76,7 @@ class RoleAssignmentResource extends Resource
             Section::make()->columns(3)->schema([
                 Select::make('user_id')->label('Pengguna')->relationship('user', 'name', fn (Builder $query) => static::managesAllCompanies() ? $query : $query->where(fn (Builder $w) => $w->whereHas('companies', fn (Builder $c) => $c->whereKey(static::activeCompanyId()))->orWhereHas('roleAssignments', fn (Builder $r) => $r->where('company_id', static::activeCompanyId()))))->required()->searchable()->preload(),
                 Select::make('role_id')->label('Peran')->options(fn () => static::assignableRoleOptions())->required()->native(false),
-                Select::make('company_id')->label('Perusahaan')->options(fn () => static::companyOptions())->placeholder('Global')->native(false)
+                Select::make('company_id')->label('Instansi')->options(fn () => static::companyOptions())->placeholder('Global')->native(false)
                     ->default(fn () => static::managesAllCompanies() ? null : static::activeCompanyId())
                     ->required(fn () => ! static::managesAllCompanies()),
             ]),
@@ -89,7 +89,7 @@ class RoleAssignmentResource extends Resource
             ->columns([
                 TextColumn::make('user.name')->label('Pengguna')->searchable()->description(fn ($record) => $record->user?->job_title),
                 TextColumn::make('role.name')->label('Peran')->badge(),
-                TextColumn::make('company.code')->label('Perusahaan')->placeholder('Global'),
+                TextColumn::make('company.code')->label('Instansi')->placeholder('Global'),
             ])
             ->filters([
                 SelectFilter::make('role_id')->label('Peran')->relationship('role', 'name'),
@@ -105,7 +105,7 @@ class RoleAssignmentResource extends Resource
             ]);
     }
 
-    /** Admin non-Super Admin hanya melihat & mengubah penugasan di perusahaan aktif. */
+    /** Admin non-Super Admin hanya melihat & mengubah penugasan di instansi aktif. */
     public static function getEloquentQuery(): Builder
     {
         $q = parent::getEloquentQuery();

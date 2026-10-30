@@ -1,18 +1,18 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "rucisoft/ruci-bsc",
+    "name": "rucisoft/kinera",
     "type": "project",
-    "description": "Ruci BSC Professional - Balanced Scorecard & manajemen strategi multi-perusahaan (edisi DHASTRAM)",
+    "description": "Kinera - Balanced Scorecard & Kontrak Kinerja Pemimpin BLU (PER-6/PB/2025)",
     "keywords": [
         "laravel",
         "filament",
-        "dhastram",
         "strategic-management",
         "balanced-scorecard"
     ],
     "license": "MIT",
     "require": {
         "php": "^8.3",
+        "anthropic-ai/sdk": "^1.3",
         "filament/filament": "^5.10",
         "laravel/framework": "^13.37",
         "laravel/tinker": "^3.0"

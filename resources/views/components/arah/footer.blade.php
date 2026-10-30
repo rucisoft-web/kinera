@@ -1,4 +1,4 @@
 <div class="arah-footer">
-    {{ config('dhastram.brand_name') }} — {{ config('dhastram.brand_tagline') }}<br>
-    <b>RUCI</b> · Result Driven, Unified, Consultancy and Innovation
+    {{ config('bsc.brand_name') }} — {{ config('bsc.brand_tagline') }}<br>
+    <b>Rucisoft</b> · bersama Pusat Studi Manajemen Perguruan Tinggi UIN Sunan Kalijaga
 </div>

@@ -3,14 +3,14 @@
 namespace App\Models;
 
 use App\Models\Concerns\Auditable;
-use App\Models\Concerns\BelongsToDhastramContext;
+use App\Models\Concerns\BelongsToBscContext;
 use App\Services\KpiScoringService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class KpiActual extends Model
 {
-    use Auditable, BelongsToDhastramContext;
+    use Auditable, BelongsToBscContext;
 
     public const STATUSES = [
         'draf' => 'Draf',
@@ -75,6 +75,6 @@ class KpiActual extends Model
 
     public function auditLabel(): string
     {
-        return ($this->kpi?->short_code ?? 'KPI').' bulan '.$this->month;
+        return ($this->kpi?->short_code ?? 'IK').' bulan '.$this->month;
     }
 }

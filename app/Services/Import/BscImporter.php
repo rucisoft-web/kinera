@@ -15,7 +15,7 @@ use App\Models\StrategicInitiative;
 use App\Models\StrategicObjective;
 use App\Models\StrategicTheme;
 use App\Models\User;
-use App\Support\DhastramContext;
+use App\Support\BscContext;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use OpenSpout\Reader\XLSX\Options;
@@ -45,7 +45,7 @@ class BscImporter
     /** @var array<string,?User> */
     protected array $userCache = [];
 
-    public function __construct(protected DhastramContext $ctx) {}
+    public function __construct(protected BscContext $ctx) {}
 
     /**
      * @param  array{approve_actuals?:bool,file_name?:string,file_path?:string}  $options

@@ -6,7 +6,7 @@ use App\Models\StrategicObjective;
 use App\Support\Terms;
 use Illuminate\Support\Collection;
 
-/** Capaian sasaran tertimbang dari bobot KPI, capaian perspektif, dan skor strategis. */
+/** Capaian sasaran tertimbang dari bobot IK, capaian perspektif, dan skor strategis. */
 class StrategicScoreService
 {
     public function __construct(protected KpiScoringService $kpiScoring) {}
@@ -62,7 +62,7 @@ class StrategicScoreService
     public function overall(?array $perspectives = null): array
     {
         $perspectives ??= $this->perspectives();
-        $weights = config('dhastram.perspective_weights');
+        $weights = config('bsc.perspective_weights');
         $sum = 0;
         $w = 0;
         foreach ($perspectives as $key => $p) {
