@@ -48,6 +48,12 @@ class UinSukaSeeder extends ShowcaseSeeder
 {
     public const CODE = 'UINSUKA';
 
+    /** Pengecualian jenis IK supaya setiap perspektif memuat campuran hasil & pendorong (bahan ajar sesi 2 dan 4). */
+    public const INDICATOR_TYPE_OVERRIDES = [
+        'C1.2' => 'lead', 'C2.3' => 'lead', 'C3.2' => 'lead', 'C4.2' => 'lead',
+        'P1.1' => 'lag', 'P3.3' => 'lag', 'P4.1' => 'lag',
+    ];
+
     public const LT = 'Renstra UIN Sunan Kalijaga 2025–2029 & Laporan Keuangan BLU Audited TA 2025';
 
     public const RENSTRA = 'Renstra UIN Sunan Kalijaga Yogyakarta 2025–2029';
@@ -876,5 +882,10 @@ class UinSukaSeeder extends ShowcaseSeeder
                 ['Pelatihan pengelola kinerja fakultas', 'pelatihan', 'Penanggung jawab IKSK fakultas dilatih menyusun Definisi Operasional & bukti.', 'Semesteran', 'strategi', $year === 2025 ? 'rencana' : 'berjalan'],
             ],
         ];
+    }
+
+    protected function indicatorType(string $code, StrategicObjective $objective): string
+    {
+        return self::INDICATOR_TYPE_OVERRIDES[$code] ?? parent::indicatorType($code, $objective);
     }
 }

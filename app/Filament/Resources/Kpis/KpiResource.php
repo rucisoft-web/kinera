@@ -81,6 +81,8 @@ class KpiResource extends Resource
                 Select::make('unit')->label('Satuan')->options(fn ($state) => Models\Kpi::UNITS + ($state ? [$state => $state] : []))->required()->native(false),
                 Select::make('direction')->label('Polaritas')->options(['higher' => 'Makin besar makin baik', 'lower' => 'Makin kecil makin baik'])->required()->native(false),
                 Select::make('aggregation')->label('Agregasi kumulatif')->options(Models\Kpi::AGGREGATIONS)->required()->native(false),
+                Select::make('indicator_type')->label('Jenis indikator')->options(Models\Kpi::INDICATOR_TYPES)->native(false)
+                    ->helperText('Hasil (lag): capaian akhir sasaran. Pendorong (lead): sinyal dini yang memengaruhi hasil.'),
                 F::user('owner_id', 'Penanggung jawab IK')->required(),
                 TextInput::make('weight')->label('Bobot dalam sasaran')->numeric()->default(1),
                 TextInput::make('decimals')->label('Desimal tampilan')->numeric()->default(0),
@@ -125,6 +127,8 @@ class KpiResource extends Resource
                     ->color(fn ($state) => match ($state) { 'keuangan' => 'danger', 'penugasan' => 'warning', default => 'info' }),
                 IconColumn::make('is_mandatory')->label('Wajib')->boolean()->falseIcon('heroicon-o-minus')->falseColor('gray'),
                 TextColumn::make('frequency')->label('Trajektori')->formatStateUsing(fn ($state) => Models\Kpi::FREQUENCIES[$state] ?? $state)->toggleable(),
+                TextColumn::make('indicator_type')->label('Jenis')->badge()->formatStateUsing(fn ($state) => $state === 'lead' ? 'Pendorong' : ($state === 'lag' ? 'Hasil' : null))
+                    ->color(fn ($state) => $state === 'lead' ? 'info' : 'warning')->tooltip(fn ($state) => Models\Kpi::INDICATOR_TYPES[$state] ?? null),
                 TextColumn::make('unit')->label('Satuan'),
                 TextColumn::make('direction')->label('Arah')->formatStateUsing(fn ($state) => $state === 'lower' ? '↓' : '↑')->alignCenter(),
                 TextColumn::make('owner.name')->label('Pemilik')->searchable(),
@@ -135,6 +139,7 @@ class KpiResource extends Resource
             ->filters([
                 SelectFilter::make('strategic_objective_id')->label('Sasaran')->relationship('objective', 'title'),
                 SelectFilter::make('owner_id')->label('Pemilik')->relationship('owner', 'name'),
+                SelectFilter::make('indicator_type')->label('Jenis indikator')->options(Models\Kpi::INDICATOR_TYPES),
                 SelectFilter::make('aspect')->label('Aspek')->options(Models\Kpi::ASPECTS),
                 TernaryFilter::make('is_mandatory')->label('Wajib dicapai'),
                 TernaryFilter::make('is_financial')->label('Wajib verifikasi Keuangan'),

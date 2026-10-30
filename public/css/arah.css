@@ -446,3 +446,29 @@ html:not(.dark) .kenali-svg .kn-node { fill: #fff; }
 .bantuan-card b { color: var(--k-taum); font-size: .95rem; }
 .bantuan-card:hover { border-color: #C2912F; }
 @media print { .fi-sidebar, .fi-topbar, .bantuan-toc, .arah-demo-banner, .kenali-actions { display: none !important; } .bantuan { grid-template-columns: 1fr; } }
+
+/* ===== Modul ajar ===== */
+.modul { display: flex; flex-direction: column; gap: 1.1rem; }
+.modul-tabs { flex-wrap: wrap; }
+.modul-sesi { display: flex; flex-direction: column; gap: 1.2rem; }
+.modul-head { display: flex; align-items: center; gap: .9rem; padding: 1rem 1.2rem; border-left: 4px solid #C2912F; }
+.modul-head small { font-size: .75rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: #8A6418; }
+.modul-head h3 { font-size: 1.25rem; font-weight: 700; color: var(--k-taum); margin: .1rem 0 0; }
+.modul-list { margin: 0; padding-left: 1.2rem; display: grid; gap: .3rem; font-size: .9rem; line-height: 1.6; }
+.modul-konsep { display: flex; flex-direction: column; gap: .3rem; padding: .85rem 1rem; font-size: .86rem; line-height: 1.6; color: var(--k-tinta-2); }
+.modul-konsep b { color: var(--k-taum); font-size: .92rem; }
+.modul-help { margin-top: .6rem; font-size: .85rem; }
+.modul-help a { color: var(--k-taum); font-weight: 600; }
+.modul-kuis { display: grid; gap: .75rem; }
+.modul-q { padding: .9rem 1rem; font-size: .9rem; }
+.modul-q > b { color: var(--k-taum); display: block; margin-bottom: .5rem; line-height: 1.5; }
+.modul-opts { display: grid; gap: .4rem; }
+@media (min-width: 900px) { .modul-opts { grid-template-columns: 1fr 1fr; } }
+.modul-opts button { text-align: left; padding: .5rem .7rem; border: 1px solid var(--k-garis); border-radius: .5rem; background: var(--k-kartu); font-size: .86rem; cursor: pointer; }
+.modul-opts button:hover:not(:disabled) { border-color: var(--k-taum); }
+.modul-opts button.is-right { background: #E6F4EC; border-color: #1E7A4C; color: #145A37; font-weight: 600; }
+.modul-opts button.is-wrong { background: #FBEAEA; border-color: #C0392B; color: #8E241A; }
+.modul-why { margin-top: .6rem; font-size: .86rem; line-height: 1.6; background: #FBF4E4; border-radius: .5rem; padding: .55rem .75rem; }
+.modul-why span { font-weight: 700; }
+.modul-reset { margin-left: .4rem; font-size: .78rem; text-decoration: underline; background: none; border: 0; cursor: pointer; color: var(--k-taum); }
+@media print { .modul-sesi { display: flex !important; } .modul-tabs { display: none !important; } .modul-why { display: block !important; } }

@@ -29,6 +29,9 @@ class Kpi extends Model
     /** Indikator penanda syarat insentif (Pasal 14 ayat 4 huruf d–f). */
     public const INCENTIVE_ROLES = ['pnbp' => 'Target PNBP (huruf d)', 'ebitda' => 'Surplus EBITDA (huruf e)', 'opini' => 'Opini laporan keuangan audited (huruf f)'];
 
+    /** Balanced Scorecard: indikator hasil (lag) mengukur capaian akhir, indikator pendorong (lead) memberi sinyal dini. */
+    public const INDICATOR_TYPES = ['lag' => 'Hasil (lag)', 'lead' => 'Pendorong (lead)'];
+
     public const AGGREGATIONS = ['sum' => 'Jumlah (akumulasi)', 'average' => 'Rata-rata', 'last' => 'Nilai terakhir'];
 
     /** Bulan pelaporan sesuai frekuensi: kuartalan Mar/Jun/Sep/Des, semesteran Jun/Des, tahunan Des. */

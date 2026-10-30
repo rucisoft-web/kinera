@@ -28,6 +28,7 @@ use App\Models\UserContext;
 use App\Services\MaturityScoringService;
 use App\Support\BscContext;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 /**
  * Kerangka demo lengkap satu perusahaan: perioda 2025 (ditutup, angka tahunan dari laporan tahunan)
@@ -49,6 +50,50 @@ abstract class ShowcaseSeeder
     protected Company $company;
 
     public function __construct(protected string $password) {}
+
+    /** Salinan latihan workshop: kode instansi, label nama, dan awalan email sendiri (mis. LAT01 → lat01.rektor@contoh.local). */
+    protected ?string $practiceCode = null;
+
+    protected ?string $practiceLabel = null;
+
+    public function asPractice(string $code, string $label): static
+    {
+        $this->practiceCode = strtoupper($code);
+        $this->practiceLabel = $label;
+
+        return $this;
+    }
+
+    protected function code(): string
+    {
+        return $this->practiceCode ?? static::CODE;
+    }
+
+    protected function attributesForCompany(): array
+    {
+        $attr = $this->companyAttributes() + ['is_active' => true, 'is_demo' => true, 'demo_source' => static::LT];
+        if ($this->practiceCode) {
+            $attr['name'] .= ' · '.$this->practiceLabel;
+        }
+
+        return $attr;
+    }
+
+    /** Instansi latihan kosong: hanya profil, akun peran, dan perioda 2026 untuk menyusun strategi dari nol. */
+    public function runEmpty(): Company
+    {
+        $this->company = Company::updateOrCreate(['code' => $this->code()], ['name' => 'Instansi '.$this->practiceLabel, 'legal_name' => null, 'demo_source' => null] + $this->attributesForCompany());
+        $this->users();
+        $p2026 = AnalysisPeriod::updateOrCreate(['company_id' => $this->company->id, 'code' => '2026'], [
+            'name' => 'Tahun 2026', 'year' => 2026, 'start_date' => '2026-01-01', 'end_date' => '2026-12-31', 'status' => 'berjalan', 'is_active' => true,
+            'notes' => 'Perioda latihan workshop: isi dari nol.',
+        ]);
+        foreach ($this->u as $user) {
+            UserContext::updateOrCreate(['user_id' => $user->id], ['company_id' => $this->company->id, 'analysis_period_id' => $p2026->id]);
+        }
+
+        return $this->company;
+    }
 
     // ------------------------------------------------------------------ isi yang wajib disediakan subkelas
 
@@ -107,6 +152,12 @@ abstract class ShowcaseSeeder
         return null;
     }
 
+    /** Hasil (lag) untuk perspektif Pemangku Kepentingan & Keuangan, pendorong (lead) untuk Proses & Pembelajaran; subkelas bisa mengecualikan. */
+    protected function indicatorType(string $code, StrategicObjective $objective): string
+    {
+        return in_array($objective->perspective, ['pelanggan', 'keuangan'], true) ? 'lag' : 'lead';
+    }
+
     /** KPI yang ditandai kritis mulai 2026. */
     protected function criticalIn2026(): array
     {
@@ -131,7 +182,7 @@ abstract class ShowcaseSeeder
 
     public function run(): Company
     {
-        $this->company = Company::updateOrCreate(['code' => static::CODE], $this->companyAttributes() + ['is_active' => true, 'is_demo' => true, 'demo_source' => static::LT]);
+        $this->company = Company::updateOrCreate(['code' => $this->code()], $this->attributesForCompany());
         $this->users();
 
         $p2025 = AnalysisPeriod::updateOrCreate(['company_id' => $this->company->id, 'code' => '2025'], [
@@ -159,6 +210,10 @@ abstract class ShowcaseSeeder
     protected function users(): void
     {
         foreach ($this->userDefs() as $key => [$name, $email, $title, $dept, $roles]) {
+            if ($this->practiceCode) {
+                $email = strtolower($this->practiceCode).'.'.Str::after($email, '.');
+                $name = $name.' · '.$this->practiceCode;
+            }
             $user = User::updateOrCreate(['email' => $email.'@contoh.local'], [
                 'name' => $name, 'job_title' => $title, 'department' => $dept, 'is_active' => true,
                 'password' => Hash::make($this->password), 'must_change_password' => false, 'email_verified_at' => now(),
@@ -231,7 +286,7 @@ abstract class ShowcaseSeeder
 
             $kpi = Kpi::create([
                 'code' => $code, 'strategic_objective_id' => $obj[$o]->id, 'name' => $name, 'unit' => $unit, 'direction' => $dir, 'aggregation' => $agg,
-                'frequency' => $freq, 'owner_id' => $this->id($owner), 'weight' => 1, 'is_financial' => $fin,
+                'frequency' => $freq, 'indicator_type' => $this->indicatorType($code, $obj[$o]), 'owner_id' => $this->id($owner), 'weight' => 1, 'is_financial' => $fin,
                 'is_critical' => $crit || ($year === 2026 && in_array($code, $this->criticalIn2026(), true)),
                 'decimals' => $dec, 'baseline' => $baseline, 'annual_target' => $annualTarget, 'formula' => $formula, 'data_source' => $source,
                 'description' => $fromLt ? 'DATA DEMO. Realisasi tahunan 2025 secara garis besar mengacu pada '.static::LT.'.' : 'DATA DEMO. Indikator ilustrasi untuk penyajian fitur (angka simulasi).',

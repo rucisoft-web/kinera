@@ -88,6 +88,7 @@
             <div class="kenali-actions">
                 <a href="{{ $registerUrl }}" target="_blank" rel="noopener" class="arah-btn arah-btn-primary kenali-btn-lg">Daftar Workshop</a>
                 <a href="#rundown" class="arah-btn kenali-btn-lg">Lihat rundown</a>
+                <a href="{{ Pages\ModulAjar::getUrl() }}" class="arah-btn kenali-btn-lg">Modul ajar</a>
                 <a href="{{ $brochureUrl }}" target="_blank" rel="noopener" class="arah-btn kenali-btn-lg">Unduh brosur (PDF)</a>
             </div>
             @if ($workshopContact)<div class="kenali-contact">Informasi &amp; pendaftaran: <b>{{ $workshopContact }}</b></div>@endif
