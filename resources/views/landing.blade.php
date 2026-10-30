@@ -17,7 +17,7 @@
     <meta property="og:description" content="Dari Renstra dan Perjanjian Kinerja sampai laporan capaian, dalam satu sistem.">
     <meta property="og:image" content="{{ $img('pusat-kendali') }}">
     <link rel="icon" href="{{ asset('images/favicon.svg') }}" type="image/svg+xml">
-    <link rel="stylesheet" href="{{ asset('css/landing.css') }}?v=2">
+    <link rel="stylesheet" href="{{ asset('css/landing.css') }}?v=3">
 </head>
 <body>
 <header class="l-top">
