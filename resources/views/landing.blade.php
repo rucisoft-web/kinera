@@ -301,7 +301,7 @@
                 </div>
                 <div class="l-rundown">
                     @foreach ([
-                        ['Hari 1', 'Balanced Scorecard dan Peta Strategi instansi', [['08.00', 'Registrasi peserta'], ['08.30', 'Pembukaan dan sambutan Kepala PSMPT UIN Sunan Kalijaga'], ['09.00', 'Balanced Scorecard untuk sektor publik: empat perspektif'], ['10.30', 'Anatomi scorecard: sasaran, ukuran, target, dan inisiatif'], ['13.00', 'Diagnosis kinerja dan penyusunan sasaran strategis'], ['15.00', 'Menyusun Peta Strategi dan Indikator Kinerja per kelompok']]],
+                        ['Hari 1', 'Balanced Scorecard dan Peta Strategi instansi', [['08.00', 'Registrasi peserta'], ['08.30', 'Pembukaan dan sambutan Ketua PSMPT UIN Sunan Kalijaga'], ['09.00', 'Balanced Scorecard untuk sektor publik: empat perspektif'], ['10.30', 'Anatomi scorecard: sasaran, ukuran, target, dan inisiatif'], ['13.00', 'Diagnosis kinerja dan penyusunan sasaran strategis'], ['15.00', 'Menyusun Peta Strategi dan Indikator Kinerja per kelompok']]],
                         ['Hari 2', 'Pengukuran kinerja dan implementasi dengan Kinera', [['08.00', 'Definisi operasional, target, dan trajektori triwulanan'], ['10.30', 'Simulasi penetapan dan perubahan target (termasuk Kontrak Kinerja BLU)'], ['13.00', 'Praktik aplikasi Kinera: alur realisasi, capaian, dan laporan'], ['14.30', 'Inisiatif strategis, temuan, dan tindak lanjut pengawas'], ['15.30', 'Rencana aksi 90 hari, penutupan, dan penyerahan sertifikat']]],
                     ] as [$day, $theme, $rows])
                         <div class="l-day-card">

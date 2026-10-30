@@ -277,7 +277,7 @@
             @endif
         </div>
         <ol class="kenali-agenda">
-            <li><b>Hari 1 · Balanced Scorecard untuk sektor publik</b><span>Pembukaan oleh Kepala PSMPT, empat perspektif sektor publik</span></li>
+            <li><b>Hari 1 · Balanced Scorecard untuk sektor publik</b><span>Pembukaan oleh Ketua PSMPT, empat perspektif sektor publik</span></li>
             <li><b>Hari 1 · Anatomi scorecard</b><span>Sasaran, ukuran hasil dan pendorong, target, dan inisiatif</span></li>
             <li><b>Hari 1 · Peta Strategi dan Indikator Kinerja</b><span>Diagnosis kinerja, sasaran strategis, latihan kelompok</span></li>
             <li><b>Hari 2 · Definisi operasional dan target</b><span>Rumus, sumber data, trajektori triwulanan</span></li>
