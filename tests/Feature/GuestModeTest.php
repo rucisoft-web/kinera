@@ -174,4 +174,19 @@ class GuestModeTest extends TestCase
             $this->assertSame(403, $e->getStatusCode());
         }
     }
+
+    public function test_help_link_and_topic_pages(): void
+    {
+        config(['bsc.guest_login' => true]);
+        $this->company('UINSUKA');
+        $this->get('/masuk-tamu');
+
+        $this->get(\App\Filament\Resources\PestelAnalyses\PestelAnalysisResource::getUrl('index'))->assertOk()
+            ->assertSee('admin/bantuan?topik=pestel', false);
+        foreach (array_keys(\App\Support\Bantuan::registry()) as $key) {
+            $this->assertTrue(\App\Support\Bantuan::exists($key), $key);
+            $this->get(\App\Filament\Pages\BantuanPengisian::urlFor($key))->assertOk()->assertSee('Teori singkat')->assertSee('images/bantuan/'.$key.'.jpg', false);
+        }
+        $this->get(\App\Filament\Pages\BantuanPengisian::getUrl())->assertOk()->assertSee('Analisis Industri');
+    }
 }

@@ -79,6 +79,7 @@ class AdminPanelProvider extends PanelProvider
             ->renderHook(PanelsRenderHook::AUTH_LOGIN_FORM_AFTER, fn () => Blade::render('<x-arah.guest-login />'))
             ->renderHook(PanelsRenderHook::CONTENT_START, fn () => Blade::render('<x-arah.guest-banner /><x-arah.demo-banner />'))
             ->renderHook(PanelsRenderHook::FOOTER, fn () => Blade::render('<x-arah.footer />'))
+            ->renderHook(PanelsRenderHook::PAGE_HEADER_ACTIONS_BEFORE, fn (array $scopes) => Blade::render('<x-arah.bantuan-link :scopes="$scopes" />', ['scopes' => $scopes]))
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
