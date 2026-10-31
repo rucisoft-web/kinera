@@ -118,6 +118,10 @@ code { font-size: .85em; background: var(--kertas-2); padding: .1rem .3rem; bord
 .l-step-no { display: inline-grid; place-items: center; width: 1.45rem; height: 1.45rem; border-radius: 50%; background: var(--taum); color: #fff; font-size: .78rem; letter-spacing: 0; }
 .l-problem { border-top: 3px solid var(--kencu); }
 .l-problem h3 { margin-bottom: .35rem; }
+.l-change { border-top: 3px solid var(--taum); }
+.l-change h3 { margin-bottom: .6rem; }
+.l-change p { margin-bottom: .75rem; }
+.l-change p:last-child { margin-bottom: 0; }
 .l-barrier { border-top: 3px solid #E0A526; }
 /* Fitur bergambar */
 .l-feature { display: grid; gap: 1.5rem; align-items: center; grid-template-columns: minmax(0, 1fr); margin-top: 2.5rem; }

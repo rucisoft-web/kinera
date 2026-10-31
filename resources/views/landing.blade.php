@@ -17,7 +17,7 @@
     <meta property="og:description" content="Dari Renstra dan Perjanjian Kinerja sampai laporan capaian, dalam satu sistem.">
     <meta property="og:image" content="{{ $img('pusat-kendali') }}">
     <link rel="icon" href="{{ asset('images/favicon.svg') }}" type="image/svg+xml">
-    <link rel="stylesheet" href="{{ asset('css/landing.css') }}?v=3">
+    <link rel="stylesheet" href="{{ asset('css/landing.css') }}?v=4">
 </head>
 <body>
 <header class="l-top">
@@ -27,8 +27,9 @@
             <a href="#masalah">Kenapa perlu</a>
             <a href="#solusi">Fitur</a>
             <a href="#data-contoh">Data demo</a>
-            <a href="#workshop">Workshop</a>
             <a href="#panduan">Panduan</a>
+            <a href="#mulai">Mulai</a>
+            <a href="#workshop">Workshop</a>
             <a href="#tanya">Tanya jawab</a>
             <a href="https://rucisoft.id" target="_blank" rel="noopener">Rucisoft.id</a>
         </nav>
@@ -37,16 +38,17 @@
 </header>
 
 <main>
+    {{-- ##### AIDA · ATTENTION ##### --}}
     {{-- ===== Pembuka ===== --}}
     <section class="l-hero">
         <div class="l-wrap l-hero-in">
             <div>
                 <span class="l-eyebrow">Untuk pimpinan instansi pemerintah dan perguruan tinggi negeri</span>
                 <h1>Kinerja instansi yang terukur, terbukti, dan tepat waktu.</h1>
-                <p class="l-lead">Kinera memakai <b>Balanced Scorecard</b> untuk mengukur kinerja kementerian/lembaga, pemerintah daerah, dan perguruan tinggi negeri: Peta Strategi, Indikator Kinerja Utama, Perjanjian Kinerja, target triwulanan, Definisi Operasional, realisasi berbukti, dan laporan capaian untuk SAKIP/LKjIP. Bagi instansi berpola BLU tersedia modul <b>Kontrak Kinerja Pemimpin BLU</b> (PER-6/PB/2025).</p>
+                <p class="l-lead">Perjanjian Kinerja ditandatangani awal tahun, tetapi capaiannya sering baru terlihat menjelang LKjIP. Kinera memakai <b>Balanced Scorecard</b> agar pimpinan melihat capaian setiap triwulan, dari Peta Strategi sampai laporan SAKIP, dengan angka yang sudah diverifikasi. Instansi berpola BLU mendapat modul <b>Kontrak Kinerja Pemimpin BLU</b> (PER-6/PB/2025).</p>
                 <div class="l-actions">
                     <a href="#data-contoh" class="l-btn l-btn-primary">Coba data demo {{ $year }}</a>
-                    <a href="#solusi" class="l-btn">Lihat fiturnya</a>
+                    <a href="#workshop" class="l-btn">Ikut workshop 2 hari</a>
                 </div>
                 <p class="l-note">Tanpa akun. Mode Tamu hanya melihat, data contoh tidak bisa diubah. Data demo hanya untuk keperluan memaksimalkan penyajian fitur-fitur perangkat lunak.</p>
             </div>
@@ -71,7 +73,7 @@
     </section>
 
     {{-- ===== 1. Masalah ===== --}}
-    <section class="l-section" id="masalah">
+    <section class="l-section l-alt" id="masalah">
         <div class="l-wrap">
             <span class="l-step-head"><span class="l-step-no">1</span>Masalah yang sering dihadapi</span>
             <h2>Rencana strategis disahkan, lalu jarang dibuka lagi.</h2>
@@ -91,8 +93,9 @@
         </div>
     </section>
 
+    {{-- ##### AIDA · INTEREST ##### --}}
     {{-- ===== 2. Penyebab ===== --}}
-    <section class="l-section l-alt" id="kenapa">
+    <section class="l-section" id="kenapa">
         <div class="l-wrap">
             <span class="l-step-head"><span class="l-step-no">2</span>Mengapa masalah ini terjadi</span>
             <h2>Akar masalahnya ada pada cara strategi diterjemahkan dan dipantau.</h2>
@@ -115,6 +118,26 @@
         </div>
     </section>
 
+    {{-- ===== Lima fase ===== --}}
+    <section class="l-section l-alt" id="fitur">
+        <div class="l-wrap">
+            <span class="l-eyebrow">Kerangka lengkap, bukan sekadar dasbor</span>
+            <h2>Lima fase dari analisis sampai pembelajaran.</h2>
+            <div class="l-grid l-grid-5">
+                @foreach ([
+                    ['1', 'Analisis', 'Lingkungan strategis: PESTEL, pasar, pesaing, regulasi, dan pemangku kepentingan.'],
+                    ['2', 'Perumusan', 'SWOT–TOWS, isu strategis, visi–misi–nilai, dan pilihan strategi.'],
+                    ['3', 'Peta Strategi & Indikator', 'Sasaran di empat perspektif, Indikator Kinerja Utama, trajektori, Definisi Operasional, dan Perjanjian Kinerja.'],
+                    ['4', 'Pelaksanaan', 'Inisiatif, tonggak, aktivitas, anggaran dan serapan, serta realisasi per trajektori.'],
+                    ['5', 'Capaian & Perbaikan', 'Laporan capaian triwulanan, bahan LKjIP, perubahan target, temuan, dan tindakan korektif.'],
+                ] as [$n, $t, $d])
+                    <div class="l-card l-phase"><span class="l-phase-n">{{ $n }}</span><h3>{{ $t }}</h3><p>{{ $d }}</p></div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
+    {{-- ##### AIDA · DESIRE ##### --}}
     {{-- ===== 3. Solusi bergambar ===== --}}
     <section class="l-section" id="solusi">
         <div class="l-wrap">
@@ -158,58 +181,38 @@
         </div>
     </section>
 
-    {{-- ===== 4. Cara memperoleh ===== --}}
-    <section class="l-section l-alt" id="mulai">
+    {{-- ===== Yang berubah ===== --}}
+    <section class="l-section l-alt" id="hasil">
         <div class="l-wrap">
-            <span class="l-step-head"><span class="l-step-no">4</span>Cara memperoleh Kinera</span>
-            <h2>Mulai dari tahap mana pun yang sesuai dengan kesiapan instansi Anda.</h2>
-            <p class="l-lead">Rucisoft tidak meminta Anda langsung membeli. Pahami dulu masalahnya, coba data demonya, ikuti workshop, buktikan lewat pilot, lalu putuskan dengan proposal yang jelas.</p>
-            <div class="l-grid l-grid-6">
+            <span class="l-eyebrow">Yang berubah bagi pimpinan</span>
+            <h2>Dari mengejar laporan menjelang tenggat ke keputusan setiap triwulan.</h2>
+            <p class="l-lead">Bayangkan rapat pimpinan triwulan berikutnya: indikator yang tertinggal sudah ditandai, angkanya sudah diverifikasi, dan setiap laporan dicetak dari data yang sama.</p>
+            <div class="l-grid l-grid-3">
                 @foreach ([
-                    ['01', 'Pahami', 'Baca penjelasan Kinera untuk pimpinan, lengkap dengan diagram dan contoh.', $guest(['ke' => 'kenali']), 'Kenali Kinera'],
-                    ['02', 'Coba', 'Jelajahi data demo perguruan tinggi negeri sebagai Tamu, tanpa akun.', '#data-contoh', 'Coba data demo'],
-                    ['03', 'Workshop', 'Strategic Leadership Lab, dua hari bersama PSMPT UIN Sunan Kalijaga: dari Peta Strategi sampai laporan kinerja.', '#workshop', 'Lihat rundown'],
-                    ['04', 'Pastikan', 'Demo 30–45 menit bersama tim pimpinan untuk memetakan kebutuhan instansi.', $wa('Halo Rucisoft, kami ingin menjadwalkan demo Kinera.'), 'Jadwalkan demo'],
-                    ['05', 'Buktikan', 'Pilot terbatas di satu atau dua unit dengan ukuran keberhasilan yang disepakati.', $wa('Halo Rucisoft, kami ingin membahas pilot Kinera.'), 'Ajukan pilot'],
-                    ['06', 'Terapkan', 'Proposal transparan: implementasi, pelatihan per peran, pendampingan, dan pemasangan di server instansi.', 'mailto:'.$email.'?subject='.rawurlencode('Proposal Kinera'), 'Minta proposal'],
-                ] as [$n, $t, $d, $href, $cta])
-                    <a class="l-card l-way" href="{{ $href }}" @if (str_starts_with($href, 'http')) target="_blank" rel="noopener" @endif>
-                        <span class="l-way-n">{{ $n }}</span>
+                    ['Capaian Perjanjian Kinerja', 'Baru dihitung menjelang LKjIP, saat waktu perbaikan tinggal sedikit.', 'Terpantau sejak triwulan pertama, dengan status hijau, kuning, dan merah per indikator.'],
+                    ['Rekap data unit kerja', 'Spreadsheet dari setiap bidang dengan versi angka yang berbeda-beda.', 'Satu alur realisasi: unit mengisi, verifikator memeriksa, pimpinan menyetujui.'],
+                    ['Anggaran dan hasil', 'Serapan dilaporkan rapi, tetapi tidak terlihat sasaran mana yang dibiayai.', 'Setiap inisiatif terhubung ke sasaran, lengkap dengan anggaran dan serapannya.'],
+                    ['Definisi indikator', 'Rumus dan sumber data berbeda antarunit, sehingga angka sulit diuji.', 'Definisi Operasional baku: rumus, sumber data, cara uji, dan dokumen pendukung.'],
+                    ['Tindak lanjut pengawas', 'Temuan APIP dan auditor berhenti di notulen.', 'Temuan dan tindakan korektif dipantau sampai ditutup.'],
+                    ['Laporan untuk banyak pihak', 'Disusun ulang untuk pimpinan, kementerian, dan evaluator.', 'Dicetak langsung dari angka yang sama, tanpa menyusun ulang.'],
+                ] as [$t, $before, $after])
+                    <div class="l-card l-change">
                         <h3>{{ $t }}</h3>
-                        <p>{{ $d }}</p>
-                        <span class="l-go">{{ $cta }} →</span>
-                    </a>
+                        <span class="l-chip">Sebelum</span>
+                        <p>{{ $before }}</p>
+                        <span class="l-chip l-chip-blue">Dengan Kinera</span>
+                        <p>{{ $after }}</p>
+                    </div>
                 @endforeach
             </div>
             <div class="l-actions l-gap-top">
-                <a href="{{ $wa('Halo Rucisoft, saya tertarik dengan Kinera.') }}" target="_blank" rel="noopener" class="l-btn l-btn-primary">Tanya via WhatsApp</a>
-                <a href="{{ $brosur }}" class="l-btn" download>Unduh brosur (PDF)</a>
-                <a href="mailto:{{ $email }}" class="l-btn">{{ $email }}</a>
-            </div>
-        </div>
-    </section>
-
-    {{-- ===== Lima fase ===== --}}
-    <section class="l-section" id="fitur">
-        <div class="l-wrap">
-            <span class="l-eyebrow">Kerangka lengkap, bukan sekadar dasbor</span>
-            <h2>Lima fase dari analisis sampai pembelajaran.</h2>
-            <div class="l-grid l-grid-5">
-                @foreach ([
-                    ['1', 'Analisis', 'Lingkungan strategis: PESTEL, pasar, pesaing, regulasi, dan pemangku kepentingan.'],
-                    ['2', 'Perumusan', 'SWOT–TOWS, isu strategis, visi–misi–nilai, dan pilihan strategi.'],
-                    ['3', 'Peta Strategi & Indikator', 'Sasaran di empat perspektif, Indikator Kinerja Utama, trajektori, Definisi Operasional, dan Perjanjian Kinerja.'],
-                    ['4', 'Pelaksanaan', 'Inisiatif, tonggak, aktivitas, anggaran dan serapan, serta realisasi per trajektori.'],
-                    ['5', 'Capaian & Perbaikan', 'Laporan capaian triwulanan, bahan LKjIP, perubahan target, temuan, dan tindakan korektif.'],
-                ] as [$n, $t, $d])
-                    <div class="l-card l-phase"><span class="l-phase-n">{{ $n }}</span><h3>{{ $t }}</h3><p>{{ $d }}</p></div>
-                @endforeach
+                <a href="#data-contoh" class="l-btn l-btn-primary">Buktikan dengan data demo</a>
             </div>
         </div>
     </section>
 
     {{-- ===== Data demo tahun berjalan ===== --}}
-    <section class="l-section l-alt" id="data-contoh">
+    <section class="l-section" id="data-contoh">
         <div class="l-wrap">
             <span class="l-eyebrow">Coba sendiri, tanpa akun</span>
             <h2>Data demo tahun berjalan {{ $year }}</h2>
@@ -239,7 +242,7 @@
     </section>
 
     {{-- ===== Panduan ===== --}}
-    <section class="l-section" id="panduan">
+    <section class="l-section l-alt" id="panduan">
         <div class="l-wrap">
             <span class="l-eyebrow">Panduan Kinera</span>
             <h2>Siapa mengerjakan apa, dan kapan.</h2>
@@ -284,6 +287,38 @@
                 <a href="{{ $guest(['ke' => 'kenali']) }}" class="l-btn">Kenali Kinera</a>
             </div>
             <p class="l-note">Panduan lengkap dengan tangkapan layar terbuka di dalam aplikasi sebagai Tamu.</p>
+        </div>
+    </section>
+
+    {{-- ##### AIDA · ACTION ##### --}}
+    {{-- ===== 4. Cara memperoleh ===== --}}
+    <section class="l-section" id="mulai">
+        <div class="l-wrap">
+            <span class="l-step-head"><span class="l-step-no">4</span>Cara memperoleh Kinera</span>
+            <h2>Mulai dari tahap mana pun yang sesuai dengan kesiapan instansi Anda.</h2>
+            <p class="l-lead">Rucisoft tidak meminta Anda langsung membeli. Pahami dulu masalahnya, coba data demonya, ikuti workshop, buktikan lewat pilot, lalu putuskan dengan proposal yang jelas.</p>
+            <div class="l-grid l-grid-6">
+                @foreach ([
+                    ['01', 'Pahami', 'Baca penjelasan Kinera untuk pimpinan, lengkap dengan diagram dan contoh.', $guest(['ke' => 'kenali']), 'Kenali Kinera'],
+                    ['02', 'Coba', 'Jelajahi data demo perguruan tinggi negeri sebagai Tamu, tanpa akun.', '#data-contoh', 'Coba data demo'],
+                    ['03', 'Workshop', 'Strategic Leadership Lab, dua hari bersama PSMPT UIN Sunan Kalijaga: dari Peta Strategi sampai laporan kinerja.', '#workshop', 'Lihat rundown'],
+                    ['04', 'Pastikan', 'Demo 30–45 menit bersama tim pimpinan untuk memetakan kebutuhan instansi.', $wa('Halo Rucisoft, kami ingin menjadwalkan demo Kinera.'), 'Jadwalkan demo'],
+                    ['05', 'Buktikan', 'Pilot terbatas di satu atau dua unit dengan ukuran keberhasilan yang disepakati.', $wa('Halo Rucisoft, kami ingin membahas pilot Kinera.'), 'Ajukan pilot'],
+                    ['06', 'Terapkan', 'Proposal transparan: implementasi, pelatihan per peran, pendampingan, dan pemasangan di server instansi.', 'mailto:'.$email.'?subject='.rawurlencode('Proposal Kinera'), 'Minta proposal'],
+                ] as [$n, $t, $d, $href, $cta])
+                    <a class="l-card l-way" href="{{ $href }}" @if (str_starts_with($href, 'http')) target="_blank" rel="noopener" @endif>
+                        <span class="l-way-n">{{ $n }}</span>
+                        <h3>{{ $t }}</h3>
+                        <p>{{ $d }}</p>
+                        <span class="l-go">{{ $cta }} →</span>
+                    </a>
+                @endforeach
+            </div>
+            <div class="l-actions l-gap-top">
+                <a href="{{ $wa('Halo Rucisoft, saya tertarik dengan Kinera.') }}" target="_blank" rel="noopener" class="l-btn l-btn-primary">Tanya via WhatsApp</a>
+                <a href="{{ $brosur }}" class="l-btn" download>Unduh brosur (PDF)</a>
+                <a href="mailto:{{ $email }}" class="l-btn">{{ $email }}</a>
+            </div>
         </div>
     </section>
 
@@ -340,8 +375,10 @@
     <section class="l-section l-final l-alt">
         <div class="l-wrap l-narrow">
             <h2>Lihat sendiri dalam lima menit.</h2>
+            <p class="l-lead">Coba data demo sekarang, atau daftarkan tim pimpinan Anda ke workshop bersama PSMPT UIN Sunan Kalijaga.</p>
             <div class="l-actions l-center">
                 <a href="#data-contoh" class="l-btn l-btn-primary">Coba sebagai Tamu</a>
+                <a href="{{ $wa('Halo Rucisoft, saya ingin mendaftar Workshop Kinera 2 hari.') }}" target="_blank" rel="noopener" class="l-btn">Daftar workshop</a>
                 <a href="{{ $wa('Halo Rucisoft, saya tertarik dengan Kinera.') }}" target="_blank" rel="noopener" class="l-btn">Tanya via WhatsApp</a>
                 <a href="{{ url('/admin/login') }}" class="l-btn">Masuk dengan akun</a>
             </div>
