@@ -34,6 +34,7 @@ code { font-size: .85em; background: var(--kertas-2); padding: .1rem .3rem; bord
 .l-nav a { color: var(--tinta-2); text-decoration: none; font-weight: 500; }
 .l-nav a:hover { color: var(--tinta); }
 @media (max-width: 860px) { .l-nav { display: none; } .l-top-in > .l-btn { margin-left: auto; } }
+@media (max-width: 1120px) { .l-nav a.l-nav-opt { display: none; } }
 /* Tombol */
 .l-btn { display: inline-flex; align-items: center; justify-content: center; padding: .65rem 1.15rem; border-radius: .55rem; border: 1.5px solid var(--taum); color: var(--link); font-weight: 650; font-size: .93rem; text-decoration: none; background: transparent; }
 .l-btn:hover { background: var(--kertas-2); }

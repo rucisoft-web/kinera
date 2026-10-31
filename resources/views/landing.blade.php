@@ -17,7 +17,7 @@
     <meta property="og:description" content="Dari Renstra dan Perjanjian Kinerja sampai laporan capaian, dalam satu sistem.">
     <meta property="og:image" content="{{ $img('pusat-kendali') }}">
     <link rel="icon" href="{{ asset('images/favicon.svg') }}" type="image/svg+xml">
-    <link rel="stylesheet" href="{{ asset('css/landing.css') }}?v=3">
+    <link rel="stylesheet" href="{{ asset('css/landing.css') }}?v=4">
 </head>
 <body>
 <header class="l-top">
@@ -27,9 +27,10 @@
             <a href="#masalah">Kenapa perlu</a>
             <a href="#solusi">Fitur</a>
             <a href="#data-contoh">Data demo</a>
+            <a href="#panduan" class="l-nav-opt">Panduan</a>
             <a href="#workshop">Workshop</a>
-            <a href="#panduan">Panduan</a>
-            <a href="#tanya">Tanya jawab</a>
+            <a href="#tanya" class="l-nav-opt">Tanya jawab</a>
+            <a href="#mulai">Cara memperoleh</a>
             <a href="https://rucisoft.id" target="_blank" rel="noopener">Rucisoft.id</a>
         </nav>
         <a href="{{ url('/admin/login') }}" class="l-btn l-btn-sm">Masuk</a>
@@ -69,6 +70,8 @@
             <a href="#workshop" class="l-btn l-mitra-btn">Workshop 2 hari →</a>
         </div>
     </section>
+
+    {{-- ================= AIDA 1: ATTENTION (perhatian) — pembuka, mitra, masalah, penyebab ================= --}}
 
     {{-- ===== 1. Masalah ===== --}}
     <section class="l-section" id="masalah">
@@ -115,6 +118,8 @@
         </div>
     </section>
 
+    {{-- ================= AIDA 2: INTEREST (minat) — solusi dan kerangka lima fase ================= --}}
+
     {{-- ===== 3. Solusi bergambar ===== --}}
     <section class="l-section" id="solusi">
         <div class="l-wrap">
@@ -158,39 +163,8 @@
         </div>
     </section>
 
-    {{-- ===== 4. Cara memperoleh ===== --}}
-    <section class="l-section l-alt" id="mulai">
-        <div class="l-wrap">
-            <span class="l-step-head"><span class="l-step-no">4</span>Cara memperoleh Kinera</span>
-            <h2>Mulai dari tahap mana pun yang sesuai dengan kesiapan instansi Anda.</h2>
-            <p class="l-lead">Rucisoft tidak meminta Anda langsung membeli. Pahami dulu masalahnya, coba data demonya, ikuti workshop, buktikan lewat pilot, lalu putuskan dengan proposal yang jelas.</p>
-            <div class="l-grid l-grid-6">
-                @foreach ([
-                    ['01', 'Pahami', 'Baca penjelasan Kinera untuk pimpinan, lengkap dengan diagram dan contoh.', $guest(['ke' => 'kenali']), 'Kenali Kinera'],
-                    ['02', 'Coba', 'Jelajahi data demo perguruan tinggi negeri sebagai Tamu, tanpa akun.', '#data-contoh', 'Coba data demo'],
-                    ['03', 'Workshop', 'Strategic Leadership Lab, dua hari bersama PSMPT UIN Sunan Kalijaga: dari Peta Strategi sampai laporan kinerja.', '#workshop', 'Lihat rundown'],
-                    ['04', 'Pastikan', 'Demo 30–45 menit bersama tim pimpinan untuk memetakan kebutuhan instansi.', $wa('Halo Rucisoft, kami ingin menjadwalkan demo Kinera.'), 'Jadwalkan demo'],
-                    ['05', 'Buktikan', 'Pilot terbatas di satu atau dua unit dengan ukuran keberhasilan yang disepakati.', $wa('Halo Rucisoft, kami ingin membahas pilot Kinera.'), 'Ajukan pilot'],
-                    ['06', 'Terapkan', 'Proposal transparan: implementasi, pelatihan per peran, pendampingan, dan pemasangan di server instansi.', 'mailto:'.$email.'?subject='.rawurlencode('Proposal Kinera'), 'Minta proposal'],
-                ] as [$n, $t, $d, $href, $cta])
-                    <a class="l-card l-way" href="{{ $href }}" @if (str_starts_with($href, 'http')) target="_blank" rel="noopener" @endif>
-                        <span class="l-way-n">{{ $n }}</span>
-                        <h3>{{ $t }}</h3>
-                        <p>{{ $d }}</p>
-                        <span class="l-go">{{ $cta }} →</span>
-                    </a>
-                @endforeach
-            </div>
-            <div class="l-actions l-gap-top">
-                <a href="{{ $wa('Halo Rucisoft, saya tertarik dengan Kinera.') }}" target="_blank" rel="noopener" class="l-btn l-btn-primary">Tanya via WhatsApp</a>
-                <a href="{{ $brosur }}" class="l-btn" download>Unduh brosur (PDF)</a>
-                <a href="mailto:{{ $email }}" class="l-btn">{{ $email }}</a>
-            </div>
-        </div>
-    </section>
-
     {{-- ===== Lima fase ===== --}}
-    <section class="l-section" id="fitur">
+    <section class="l-section l-alt" id="fitur">
         <div class="l-wrap">
             <span class="l-eyebrow">Kerangka lengkap, bukan sekadar dasbor</span>
             <h2>Lima fase dari analisis sampai pembelajaran.</h2>
@@ -208,10 +182,12 @@
         </div>
     </section>
 
-    {{-- ===== Data demo tahun berjalan ===== --}}
-    <section class="l-section l-alt" id="data-contoh">
+    {{-- ================= AIDA 3: DESIRE (keinginan) — bukti: data demo, panduan, workshop, tanya jawab ================= --}}
+
+    {{-- ===== 4. Data demo tahun berjalan ===== --}}
+    <section class="l-section" id="data-contoh">
         <div class="l-wrap">
-            <span class="l-eyebrow">Coba sendiri, tanpa akun</span>
+            <span class="l-step-head"><span class="l-step-no">4</span>Buktikan sendiri, tanpa akun</span>
             <h2>Data demo tahun berjalan {{ $year }}</h2>
             <p class="l-lead">Masuk sebagai Tamu pada perioda {{ $year }} (proyeksi). Contoh juga berisi perioda tahun sebelumnya yang sudah ditutup, lengkap dengan capaian indikator. Kampus contoh UIN Sunan Kalijaga Yogyakarta disusun dari Renstra 2025–2029 dan berpola BLU, sehingga peta strategi, indikator, inisiatif, Kontrak Kinerja beserta adendumnya, hingga draf Renstra dan Rencana Kerja ikut tampil.</p>
             <div class="l-demo-warn" role="note"><span class="l-tag l-tag-inline">Data demo</span><span>Hanya data demo untuk keperluan memaksimalkan penyajian fitur-fitur perangkat lunak. Angka 2025 sebagian mengacu pada dokumen publik masing-masing kampus (laporan keuangan, Perjanjian Kinerja, LKjIP/Laporan Kinerja, dan Renstra); rincian triwulanan, Kontrak Kinerja, sebagian realisasi indikator, dan seluruh data {{ $year }} (proyeksi) adalah simulasi. Bukan data resmi kampus tersebut maupun kementerian terkait.</span></div>
@@ -239,7 +215,7 @@
     </section>
 
     {{-- ===== Panduan ===== --}}
-    <section class="l-section" id="panduan">
+    <section class="l-section l-alt" id="panduan">
         <div class="l-wrap">
             <span class="l-eyebrow">Panduan Kinera</span>
             <h2>Siapa mengerjakan apa, dan kapan.</h2>
@@ -288,7 +264,7 @@
     </section>
 
     {{-- ===== Workshop 2 hari ===== --}}
-    <section class="l-section l-alt" id="workshop">
+    <section class="l-section" id="workshop">
         <div class="l-wrap">
             <div class="l-cta">
                 <div class="l-cta-head">
@@ -321,7 +297,7 @@
     </section>
 
     {{-- ===== Tanya jawab ===== --}}
-    <section class="l-section" id="tanya">
+    <section class="l-section l-alt" id="tanya">
         <div class="l-wrap l-narrow">
             <h2>Tanya jawab</h2>
             @foreach ([
@@ -334,6 +310,39 @@
             ] as [$q, $a])
                 <details class="l-faq"><summary>{{ $q }}</summary><p>{{ $a }}</p></details>
             @endforeach
+        </div>
+    </section>
+
+    {{-- ================= AIDA 4: ACTION (tindakan) — cara memperoleh dan ajakan akhir ================= --}}
+
+    {{-- ===== 5. Cara memperoleh ===== --}}
+    <section class="l-section" id="mulai">
+        <div class="l-wrap">
+            <span class="l-step-head"><span class="l-step-no">5</span>Cara memperoleh Kinera</span>
+            <h2>Mulai dari tahap mana pun yang sesuai dengan kesiapan instansi Anda.</h2>
+            <p class="l-lead">Rucisoft tidak meminta Anda langsung membeli. Pahami dulu masalahnya, coba data demonya, ikuti workshop, buktikan lewat pilot, lalu putuskan dengan proposal yang jelas.</p>
+            <div class="l-grid l-grid-6">
+                @foreach ([
+                    ['01', 'Pahami', 'Baca penjelasan Kinera untuk pimpinan, lengkap dengan diagram dan contoh.', $guest(['ke' => 'kenali']), 'Kenali Kinera'],
+                    ['02', 'Coba', 'Jelajahi data demo perguruan tinggi negeri sebagai Tamu, tanpa akun.', '#data-contoh', 'Coba data demo'],
+                    ['03', 'Workshop', 'Strategic Leadership Lab, dua hari bersama PSMPT UIN Sunan Kalijaga: dari Peta Strategi sampai laporan kinerja.', '#workshop', 'Lihat rundown'],
+                    ['04', 'Pastikan', 'Demo 30–45 menit bersama tim pimpinan untuk memetakan kebutuhan instansi.', $wa('Halo Rucisoft, kami ingin menjadwalkan demo Kinera.'), 'Jadwalkan demo'],
+                    ['05', 'Buktikan', 'Pilot terbatas di satu atau dua unit dengan ukuran keberhasilan yang disepakati.', $wa('Halo Rucisoft, kami ingin membahas pilot Kinera.'), 'Ajukan pilot'],
+                    ['06', 'Terapkan', 'Proposal transparan: implementasi, pelatihan per peran, pendampingan, dan pemasangan di server instansi.', 'mailto:'.$email.'?subject='.rawurlencode('Proposal Kinera'), 'Minta proposal'],
+                ] as [$n, $t, $d, $href, $cta])
+                    <a class="l-card l-way" href="{{ $href }}" @if (str_starts_with($href, 'http')) target="_blank" rel="noopener" @endif>
+                        <span class="l-way-n">{{ $n }}</span>
+                        <h3>{{ $t }}</h3>
+                        <p>{{ $d }}</p>
+                        <span class="l-go">{{ $cta }} →</span>
+                    </a>
+                @endforeach
+            </div>
+            <div class="l-actions l-gap-top">
+                <a href="{{ $wa('Halo Rucisoft, saya tertarik dengan Kinera.') }}" target="_blank" rel="noopener" class="l-btn l-btn-primary">Tanya via WhatsApp</a>
+                <a href="{{ $brosur }}" class="l-btn" download>Unduh brosur (PDF)</a>
+                <a href="mailto:{{ $email }}" class="l-btn">{{ $email }}</a>
+            </div>
         </div>
     </section>
 
